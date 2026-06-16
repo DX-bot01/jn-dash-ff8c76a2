@@ -211,6 +211,7 @@
   .chart-wrap.h280 { height:280px; }
   .chart-wrap.h240 { height:240px; }
   .chart-wrap.h220 { height:220px; }
+  .chart-wrap.h300 { height:300px; }
 
   /* ── Category table ── */
   .cat-table { width:100%; border-collapse:collapse; }
@@ -421,7 +422,7 @@
         </div>
         <table class="cat-table">
           <thead><tr>
-            <th>品类</th><th class="right">销售额</th><th class="right">占比</th><th class="right">完成率</th>
+            <th>品类</th><th class="right">销售额</th><th class="right">占比</th><th class="right">环比差额</th>
           </tr></thead>
           <tbody id="catBody"></tbody>
         </table>
@@ -432,9 +433,20 @@
     <div class="panel full" style="margin-bottom:18px">
       <div class="panel-header">
         <span class="panel-title">📊 品类完成率 & 环比对比</span>
+        <span class="panel-sub">本期 · 上期 · 环比差额</span>
       </div>
-      <div class="chart-wrap h240" id="catChartWrap">
-        <div id="catChart" style="width:100%;height:100%"></div>
+      <div class="panel-grid" style="margin-bottom:0; grid-template-columns: 1fr 1fr;">
+        <div class="chart-wrap h300" id="catChartWrap" style="grid-column:1">
+          <div id="catChart" style="width:100%;height:100%"></div>
+        </div>
+        <div style="grid-column:2; padding:8px 0; max-height:300px; overflow-y:auto;">
+          <table class="cat-table" style="width:100%">
+            <thead><tr>
+              <th>品类</th><th class="right">本期</th><th class="right">上期</th><th class="right">环比差额</th><th class="right">占比</th>
+            </tr></thead>
+            <tbody id="catFullBody"></tbody>
+          </table>
+        </div>
       </div>
     </div>
 
@@ -769,40 +781,92 @@ function renderCatChart(d) {
   if (!d.category_breakdown||!d.category_breakdown.length) return;
   var c = ensureChart('catChart');
   if (!c) return;
-  var cats = d.category_breakdown;
+  var cats = d.category_breakdown.slice(); // copy
+
+  // Build top10 + 其他
+  var topCats = [];
+  var otherSales=0, otherLast=0;
+  if (cats.length > 10) {
+    cats.sort(function(a,b){ return (b.sales||0)-(a.sales||0); });
+    for (var i=0; i<cats.length; i++) {
+      if (i < 10) { topCats.push(cats[i]); }
+      else { otherSales+=cats[i].sales||0; otherLast+=cats[i].last_sales||0; }
+    }
+    if (otherSales>0) topCats.push({name:'其他品类 ('+(cats.length-10)+'项)', sales:otherSales, last_sales:otherLast, share:0});
+  } else {
+    topCats = cats;
+  }
+
   c.setOption({
-    tooltip: { trigger:'axis', axisPointer:{type:'shadow'} },
-    grid: { left:100, right:30, top:8, bottom:8 },
-    legend: { data:['本期','上期','占比'], top:0, textStyle:{fontSize:11} },
+    tooltip: {
+      trigger:'axis', axisPointer:{type:'shadow'},
+      formatter: function(ps){
+        var name = ps[0].name; var html = '<b>'+name+'</b><br/>';
+        ps.forEach(function(p){ html += p.marker+' '+p.seriesName+': <b>¥'+(p.value||0).toLocaleString()+'</b><br/>'; });
+        var diff = (ps[0].value||0) - (ps[1].value||0);
+        var sign = diff>=0?'+':''; var clr = diff>=0?'#16a34a':'#dc2626';
+        html += '<span style="color:'+clr+';font-weight:600">环比差额: '+sign+'¥'+diff.toLocaleString()+'</span>';
+        return html;
+      }
+    },
+    grid: { left:100, right:70, top:10, bottom:20 },
+    legend: { data:['本期','上期'], top:0, textStyle:{fontSize:11}, itemWidth:14, itemHeight:10 },
     xAxis: {
       type:'value',
-      axisLabel:{formatter:function(v){return (v/10000).toFixed(1)+'万';},fontSize:11},
-      splitLine:{lineStyle:{color:'#f3f4f6'}}
+      axisLabel:{formatter:function(v){return (v/10000).toFixed(1)+'万';},fontSize:11,color:'#9ca3af'},
+      splitLine:{lineStyle:{color:'#f3f4f6',type:'dashed'}}
     },
     yAxis: {
-      type:'category', data: cats.map(function(c){return c.name;}),
-      axisLabel:{fontSize:12}, axisTick:{show:false}, inverse:true
+      type:'category', data: topCats.map(function(c){return c.name;}),
+      axisLabel:{fontSize:12,color:'#374151',fontWeight:500}, axisTick:{show:false}, inverse:true,
+      axisLine:{show:false}
     },
     series: [
       {
         name:'本期', type:'bar',
-        data: cats.map(function(c){return c.sales;}),
-        itemStyle:{borderRadius:[0,4,4,0],color:'#2563eb'}, barGap:'10%'
+        data: topCats.map(function(c){return c.sales||0;}),
+        itemStyle:{borderRadius:[0,4,4,0],
+          color: new echarts.graphic.LinearGradient(0,0,1,0,[
+            {offset:0,color:'#3b82f6'},{offset:1,color:'#2563eb'}
+          ])
+        },
+        barWidth:'40%',
+        label:{show:true,position:'right',fontSize:10,color:'#2563eb',fontWeight:600,
+          formatter:function(p){return '¥'+(p.value/10000).toFixed(1)+'万';}
+        }
       },
       {
         name:'上期', type:'bar',
-        data: cats.map(function(c){return c.last_sales;}),
-        itemStyle:{borderRadius:[0,4,4,0],color:'#bfdbfe'}
-      },
-      {
-        name:'占比', type:'line',
-        data: cats.map(function(c){return Math.round(c.share||0);}),
-        lineStyle:{color:'#dc2626',width:2}, symbol:'diamond', symbolSize:8,
-        itemStyle:{color:'#dc2626'},
-        label:{show:true,formatter:'{c}%',fontSize:11,fontWeight:600}
+        data: topCats.map(function(c){return c.last_sales||0;}),
+        itemStyle:{borderRadius:[0,4,4,0],color:'#f3f4f6',borderColor:'#d1d5db',borderWidth:1},
+        barWidth:'40%',
+        label:{show:true,position:'right',fontSize:10,color:'#9ca3af',fontWeight:500,
+          formatter:function(p){return p.value>0?'¥'+(p.value/10000).toFixed(1)+'万':'';}
+        }
       }
     ]
   });
+}
+
+function renderCategoryFull(cats) {
+  // Full category detail table for the comparison panel
+  if (!cats||!cats.length) return;
+  var html = '';
+  var colors = ['#2563eb','#16a34a','#d97706','#7c3aed','#dc2626','#0891b2','#db2777','#059669','#ca8a04','#9333ea','#ea580c','#0284c7'];
+  cats.forEach(function(c,i){
+    var diff = (c.sales||0) - (c.last_sales||0);
+    var pct = (c.share||0);
+    var diffSign = diff>=0?'+':'';
+    var diffCls = diff>=0?'over':'under';
+    html += '<tr>'+
+      '<td><span class="cat-dot" style="background:'+colors[i%12]+'"></span>'+c.name+'</td>'+
+      '<td class="right" style="font-weight:600">'+fmt(c.sales)+'</td>'+
+      '<td class="right" style="color:#9ca3af">'+fmt(c.last_sales||0)+'</td>'+
+      '<td class="cat-rate '+diffCls+'">'+diffSign+fmt(diff)+'</td>'+
+      '<td class="right" style="color:#6b7280">'+pct.toFixed(1)+'%</td>'+
+      '</tr>';
+  });
+  document.getElementById('catFullBody').innerHTML = html;
 }
 
 // ── Alert System ──
@@ -883,6 +947,7 @@ function renderAll() {
   renderAreaCompletion(d);
   renderRanking(d.stores);
   renderCategory(d.category_breakdown, d.total_sales);
+  renderCategoryFull(d.category_breakdown);
   renderAlerts(d);
   renderTrendChart(d);
   renderAreaChart(d);
