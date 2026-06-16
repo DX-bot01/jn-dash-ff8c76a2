@@ -1,0 +1,424 @@
+{
+  "date": "2026年06月 (1-15日)",
+  "compare_date": "2026年05月",
+  "is_month": true,
+  "total_sales": 1532351.69,
+  "last_period_sales": 3128793.31,
+  "target_amount": 5000000,
+  "avg_bill": 14.14,
+  "last_period_avg_bill": 15.25,
+  "total_customers": 108391,
+  "achieved_stores": 0,
+  "last_period_achieved": 18,
+  "total_stores": 22,
+  "month_target": 5000000,
+  "month_completed": 1532351.69,
+  "month_remaining_days": 15,
+  "stores": [
+    {
+      "name": "济南万科城店",
+      "area": "二区",
+      "sales": 97651.9,
+      "target": 230644.8,
+      "customers": 7457,
+      "avg_bill": 13.1,
+      "prev_rank": 1
+    },
+    {
+      "name": "济南城投伴山居店",
+      "area": "二区",
+      "sales": 110077.98,
+      "target": 242230.69,
+      "customers": 9209,
+      "avg_bill": 11.95,
+      "prev_rank": 2
+    },
+    {
+      "name": "济南白马南路店",
+      "area": "二区",
+      "sales": 116947.35,
+      "target": 255711.78,
+      "customers": 7725,
+      "avg_bill": 15.14,
+      "prev_rank": 3
+    },
+    {
+      "name": "济南文贤居店",
+      "area": "二区",
+      "sales": 71102.88,
+      "target": 170861.75,
+      "customers": 4271,
+      "avg_bill": 16.65,
+      "prev_rank": 20
+    },
+    {
+      "name": "济南海信九麓府店",
+      "area": "二区",
+      "sales": 76716.81,
+      "target": 167983.19,
+      "customers": 5339,
+      "avg_bill": 14.37,
+      "prev_rank": 4
+    },
+    {
+      "name": "济南梁王新城",
+      "area": "一区",
+      "sales": 99047.92,
+      "target": 225848.35,
+      "customers": 6496,
+      "avg_bill": 15.25,
+      "prev_rank": 5
+    },
+    {
+      "name": "济南仁华居店",
+      "area": "一区",
+      "sales": 64986.9,
+      "target": 143734.04,
+      "customers": 4082,
+      "avg_bill": 15.92,
+      "prev_rank": 6
+    },
+    {
+      "name": "济南中海山湖壹号店",
+      "area": "一区",
+      "sales": 73466.03,
+      "target": 171010.14,
+      "customers": 4915,
+      "avg_bill": 14.95,
+      "prev_rank": 7
+    },
+    {
+      "name": "济南中海云著店",
+      "area": "二区",
+      "sales": 58118.58,
+      "target": 121625.02,
+      "customers": 4042,
+      "avg_bill": 14.38,
+      "prev_rank": 8
+    },
+    {
+      "name": "济南香溢澜庭店",
+      "area": "一区",
+      "sales": 86901.86,
+      "target": 207605.99,
+      "customers": 6509,
+      "avg_bill": 13.35,
+      "prev_rank": 9
+    },
+    {
+      "name": "济南天鸿万卷府店",
+      "area": "一区",
+      "sales": 84857.55,
+      "target": 196786.69,
+      "customers": 6621,
+      "avg_bill": 12.82,
+      "prev_rank": 10
+    },
+    {
+      "name": "济南保利和塘悦色店",
+      "area": "一区",
+      "sales": 62919.75,
+      "target": 157403.34,
+      "customers": 4808,
+      "avg_bill": 13.09,
+      "prev_rank": 11
+    },
+    {
+      "name": "济南祥泰城店",
+      "area": "一区",
+      "sales": 56391.75,
+      "target": 125370.37,
+      "customers": 4421,
+      "avg_bill": 12.76,
+      "prev_rank": 12
+    },
+    {
+      "name": "济南御山首府店",
+      "area": "一区",
+      "sales": 72133.36,
+      "target": 143067.56,
+      "customers": 4842,
+      "avg_bill": 14.9,
+      "prev_rank": 13
+    },
+    {
+      "name": "济南御景台店",
+      "area": "一区",
+      "sales": 42691.7,
+      "target": 120000.0,
+      "customers": 3758,
+      "avg_bill": 11.36,
+      "prev_rank": 14
+    },
+    {
+      "name": "济南天鸿万象东方店",
+      "area": "一区",
+      "sales": 52930.4,
+      "target": 122098.45,
+      "customers": 3974,
+      "avg_bill": 13.32,
+      "prev_rank": 15
+    },
+    {
+      "name": "济南中建新悦城店",
+      "area": "一区",
+      "sales": 66195.95,
+      "target": 103743.23,
+      "customers": 3952,
+      "avg_bill": 16.75,
+      "prev_rank": 16
+    },
+    {
+      "name": "济南绿地国际花都店",
+      "area": "二区",
+      "sales": 83600.2,
+      "target": 186494.52,
+      "customers": 5646,
+      "avg_bill": 14.81,
+      "prev_rank": 17
+    },
+    {
+      "name": "济南鲁建小区店",
+      "area": "二区",
+      "sales": 93913.68,
+      "target": 194112.07,
+      "customers": 6594,
+      "avg_bill": 14.24,
+      "prev_rank": 18
+    },
+    {
+      "name": "济南城市之星店",
+      "area": "一区",
+      "sales": 47595.18,
+      "target": 120000.0,
+      "customers": 2779,
+      "avg_bill": 17.13,
+      "prev_rank": 19
+    },
+    {
+      "name": "济南北徐花园店",
+      "area": "二区",
+      "sales": 14103.96,
+      "target": 120000.0,
+      "customers": 949,
+      "avg_bill": 14.86,
+      "prev_rank": 22
+    },
+    {
+      "name": "济南梦世界店",
+      "area": "筹开区",
+      "sales": 0.0,
+      "target": 120000.0,
+      "customers": 2,
+      "avg_bill": 0.0,
+      "prev_rank": 22
+    }
+  ],
+  "areas": [
+    {
+      "name": "一区",
+      "manager": "高硕",
+      "color": "#4F46E5",
+      "sales": 810118.35,
+      "stores": 12,
+      "target": 3673336.32,
+      "last_sales": 1730044.91
+    },
+    {
+      "name": "二区",
+      "manager": "古子箴",
+      "color": "#0891B2",
+      "sales": 722233.34,
+      "stores": 9,
+      "target": 3379327.64,
+      "last_sales": 1398748.4
+    },
+    {
+      "name": "筹开区",
+      "manager": "代航宇",
+      "color": "#D97706",
+      "sales": 0.0,
+      "stores": 1,
+      "target": 240000.0,
+      "last_sales": 0
+    }
+  ],
+  "category_breakdown": [
+    {
+      "name": "酒水饮料",
+      "sales": 604699.38,
+      "share": 39.5,
+      "last_sales": 1075536.15
+    },
+    {
+      "name": "休闲食品",
+      "sales": 211760.1,
+      "share": 13.8,
+      "last_sales": 479657.47
+    },
+    {
+      "name": "乳制品",
+      "sales": 167200.19,
+      "share": 10.9,
+      "last_sales": 323030.63
+    },
+    {
+      "name": "冻品",
+      "sales": 147505.6,
+      "share": 9.6,
+      "last_sales": 281656.07
+    },
+    {
+      "name": "洗化百货",
+      "sales": 85809.61,
+      "share": 5.6,
+      "last_sales": 229301.97
+    },
+    {
+      "name": "方便食品",
+      "sales": 83052.31,
+      "share": 5.4,
+      "last_sales": 174650.59
+    },
+    {
+      "name": "调味干货",
+      "sales": 76014.45,
+      "share": 5.0,
+      "last_sales": 179360.69
+    },
+    {
+      "name": "米面粮油",
+      "sales": 52232.73,
+      "share": 3.4,
+      "last_sales": 119522.32
+    },
+    {
+      "name": "烘焙",
+      "sales": 33898.67,
+      "share": 2.2,
+      "last_sales": 71546.27
+    },
+    {
+      "name": "蛋品",
+      "sales": 29392.96,
+      "share": 1.9,
+      "last_sales": 146997.33
+    },
+    {
+      "name": "低温食品",
+      "sales": 14280.23,
+      "share": 0.9,
+      "last_sales": 23155.92
+    },
+    {
+      "name": "香烟中类",
+      "sales": 11827.0,
+      "share": 0.8,
+      "last_sales": 3721.0
+    },
+    {
+      "name": "槟榔",
+      "sales": 6365.45,
+      "share": 0.4,
+      "last_sales": 5871.43
+    },
+    {
+      "name": "出清",
+      "sales": 4205.51,
+      "share": 0.3,
+      "last_sales": 6281.71
+    },
+    {
+      "name": "抖音套餐",
+      "sales": 3319.4,
+      "share": 0.2,
+      "last_sales": 6903.24
+    },
+    {
+      "name": "耗材",
+      "sales": 788.1,
+      "share": 0.1,
+      "last_sales": 1600.52
+    },
+    {
+      "name": "设备",
+      "sales": 0.0,
+      "share": 0.0,
+      "last_sales": 0
+    }
+  ],
+  "recharge": {
+    "current": 134306.46,
+    "last": 254025.99
+  },
+  "trend": {
+    "dates": [
+      "06/01",
+      "06/02",
+      "06/03",
+      "06/04",
+      "06/05",
+      "06/06",
+      "06/07",
+      "06/08",
+      "06/09",
+      "06/10",
+      "06/11",
+      "06/12",
+      "06/13",
+      "06/14",
+      "06/15"
+    ],
+    "sales_amounts": [
+      107880.6,
+      104806.77,
+      93623.31,
+      96925.18,
+      106598.87,
+      109324.79,
+      121859.06,
+      90926.81,
+      88048.71,
+      86730.18,
+      91502.95,
+      105833.32,
+      126060.49,
+      111716.18,
+      90514.47
+    ],
+    "completion_rates": [
+      64.7,
+      62.9,
+      56.2,
+      58.2,
+      64.0,
+      65.6,
+      73.1,
+      54.6,
+      52.8,
+      52.0,
+      54.9,
+      63.5,
+      75.6,
+      67.0,
+      54.3
+    ],
+    "daily_targets": [
+      166666.67,
+      166666.67,
+      166666.67,
+      166666.67,
+      166666.67,
+      166666.67,
+      166666.67,
+      166666.67,
+      166666.67,
+      166666.67,
+      166666.67,
+      166666.67,
+      166666.67,
+      166666.67,
+      166666.67
+    ]
+  }
+}
