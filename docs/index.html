@@ -436,8 +436,9 @@
       </div>
       <div class="kpi-card rate">
         <div class="kpi-label" id="kpiCompLabel">--</div>
-        <div class="kpi-value" id="kpiCompletion">--</div>
+        <div class="kpi-value" id="kpiCompletion" style="display:flex;align-items:baseline;gap:8px"></div>
         <div class="kpi-time-node" id="kpiTimeNode"></div>
+        <div class="kpi-comp-amount" id="kpiCompAmount" style="font-size:13px;color:var(--text-secondary);margin-top:2px;letter-spacing:0.5px"></div>
         <div class="kpi-footer">
           <span class="kpi-trend" id="kpiCompTrend">--</span>
           <span class="kpi-sub" id="kpiCompSub">--</span>
@@ -684,6 +685,11 @@ function renderKpi(d) {
 
   setText('kpiSales', fmt(totalSales));
   setText('kpiCompletion', fmtPct(compRate));
+  // Add completed/target amount line
+  var compAmountEl = document.getElementById('kpiCompAmount');
+  if (compAmountEl) {
+    compAmountEl.textContent = '已完成 ¥' + fmt(totalSales) + ' / 目标 ¥' + fmt(targetAmt);
+  }
   setText('kpiAvgBill', '¥' + avgBill);
   setText('kpiStores', achieved + '/' + totalStores);
 
@@ -970,9 +976,17 @@ function renderCatChart(d) {
   if (!c) return;
   var cats = d.category_breakdown;
   c.setOption({
-    tooltip: { trigger:'axis', axisPointer:{type:'shadow'} },
-    grid: { left:100, right:30, top:8, bottom:8 },
-    legend: { data:['本期','上期','占比'], top:0, textStyle:{fontSize:11} },
+    tooltip: { trigger:'axis', axisPointer:{type:'shadow'},
+      formatter: function(ps){
+        var html = ps[0].axisValue+'<br/>';
+        ps.forEach(function(p){
+          html += p.marker+' '+p.seriesName+': <b>'+(p.seriesName==='占比'?p.value+'%':'¥'+(p.value||0).toLocaleString())+'</b><br/>';
+        });
+        return html;
+      }
+    },
+    grid: { left:85, right:55, top:8, bottom:28 },
+    legend: { data:['本期','上期','占比'], bottom:0, textStyle:{fontSize:11}, itemWidth:10, itemHeight:10 },
     xAxis: {
       type:'value',
       axisLabel:{formatter:function(v){return (v/10000).toFixed(1)+'万';},fontSize:11},
@@ -980,7 +994,7 @@ function renderCatChart(d) {
     },
     yAxis: {
       type:'category', data: cats.map(function(c){return c.name;}),
-      axisLabel:{fontSize:12}, axisTick:{show:false}, inverse:true
+      axisLabel:{fontSize:11}, axisTick:{show:false}, inverse:true
     },
     series: [
       {
@@ -998,7 +1012,7 @@ function renderCatChart(d) {
         data: cats.map(function(c){return Math.round(c.share||0);}),
         lineStyle:{color:'#dc2626',width:2}, symbol:'diamond', symbolSize:8,
         itemStyle:{color:'#dc2626'},
-        label:{show:true,formatter:'{c}%',fontSize:11,fontWeight:600}
+        label:{show:true,formatter:'{c}%',fontSize:10,fontWeight:600,position:'right'}
       }
     ]
   });
