@@ -143,7 +143,7 @@
     },
     {
       "name": "济南中海山湖壹号店",
-      "area": "筹开区",
+      "area": "一区",
       "sales": 73466.03,
       "target": 171010.14,
       "customers": 4915,
@@ -394,7 +394,7 @@
     },
     {
       "name": "济南梦世界店",
-      "area": "筹开区",
+      "area": "一区",
       "sales": 0.0,
       "target": 120000.0,
       "customers": 2,
@@ -417,10 +417,10 @@
       "name": "一区",
       "manager": "高硕",
       "color": "#4F46E5",
-      "sales": 736652.32,
-      "stores": 11,
-      "target": 1625699.31,
-      "last_sales": 1570394.29
+      "sales": 810118.35,
+      "stores": 13,
+      "target": 1916709.45,
+      "last_sales": 1730044.91
     },
     {
       "name": "二区",
@@ -430,15 +430,6 @@
       "stores": 9,
       "target": 1689663.82,
       "last_sales": 1398748.4
-    },
-    {
-      "name": "筹开区",
-      "manager": "代航宇",
-      "color": "#DC2626",
-      "sales": 73466.03,
-      "stores": 2,
-      "target": 291010.14,
-      "last_sales": 159650.62
     }
   ],
   "category_breakdown": [
