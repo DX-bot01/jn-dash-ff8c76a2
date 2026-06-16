@@ -314,6 +314,7 @@
   .area-badge-sm.area-1 { background:#e0e7ff; color:#4338ca; }
   .area-badge-sm.area-2 { background:#ccfbf1; color:#0f766e; }
   .area-badge-sm.area-3 { background:#fef3c7; color:#b45309; }
+  .area-badge-sm.area-4 { background:#fee2e2; color:#b91c1c; }
 
   /* Suggestions tags */
   .sugg-tag {
@@ -352,7 +353,7 @@
         <span id="updateTime">--</span>
       </div>
       <div class="header-meta" style="margin-top:8px; gap:18px;" id="areaInfo">
-        🔵 <b>一区</b> 高硕 · 13店&emsp;🟢 <b>二区</b> 古子箴 · 11店&emsp;🟠 <b>筹开区</b> 代航宇 · 筹开门店
+        🔵 <b>一区</b> 高硕 · 6店&emsp;🟢 <b>二区</b> 古子箴 · 6店&emsp;🟠 <b>三区</b> · 5店&emsp;🔴 <b>筹开区</b> 代航宇 · 7店
       </div>
     </div>
     <div class="header-right">
@@ -393,22 +394,27 @@
     <button class="area-btn active" data-area="all" onclick="switchArea('all')">🌐 全部</button>
     <button class="area-btn" data-area="一区" onclick="switchArea('一区')">🔵 一区 · 高硕</button>
     <button class="area-btn" data-area="二区" onclick="switchArea('二区')">🟢 二区 · 古子箴</button>
-    <button class="area-btn" data-area="筹开区" onclick="switchArea('筹开区')">🟠 筹开区 · 代航宇</button>
+    <button class="area-btn" data-area="三区" onclick="switchArea('三区')">🟠 三区</button>
+    <button class="area-btn" data-area="筹开区" onclick="switchArea('筹开区')">🔴 筹开区 · 代航宇</button>
   </div>
 
   <!-- ═══════ AREA COMPLETION ROW ═══════ -->
   <div class="area-comp-row" id="areaCompRow" style="display:none">
     <div class="area-comp-card" id="areaComp1">
       <div class="area-comp-name"></div>
-      <span class="area-comp-bar-wrap"><span class="rank-bar" id="areaCompBar1" style="width:0%;border-radius:8px"></span><span class="rank-bar-label" id="areaCompVal1">--</span></span>
+      <span class="area-comp-bar-wrap"><span class="rank-bar" id="areaCompBar1" style="width:0%"></span><span class="rank-bar-label" id="areaCompVal1">--</span></span>
     </div>
     <div class="area-comp-card" id="areaComp2">
       <div class="area-comp-name"></div>
-      <span class="area-comp-bar-wrap"><span class="rank-bar" id="areaCompBar2" style="width:0%;border-radius:8px"></span><span class="rank-bar-label" id="areaCompVal2">--</span></span>
+      <span class="area-comp-bar-wrap"><span class="rank-bar" id="areaCompBar2" style="width:0%"></span><span class="rank-bar-label" id="areaCompVal2">--</span></span>
     </div>
     <div class="area-comp-card" id="areaComp3">
       <div class="area-comp-name"></div>
-      <span class="area-comp-bar-wrap"><span class="rank-bar" id="areaCompBar3" style="width:0%;border-radius:8px"></span><span class="rank-bar-label" id="areaCompVal3">--</span></span>
+      <span class="area-comp-bar-wrap"><span class="rank-bar" id="areaCompBar3" style="width:0%"></span><span class="rank-bar-label" id="areaCompVal3">--</span></span>
+    </div>
+    <div class="area-comp-card" id="areaComp4">
+      <div class="area-comp-name"></div>
+      <span class="area-comp-bar-wrap"><span class="rank-bar" id="areaCompBar4" style="width:0%"></span><span class="rank-bar-label" id="areaCompVal4">--</span></span>
     </div>
   </div>
 
@@ -753,7 +759,7 @@ function renderRanking(rawStores) {
     var numCls = rank===1 ? 'top1' : rank===2 ? 'top2' : rank===3 ? 'top3' : '';
 
     var areaBadge = '';
-    var areaMap = {'一区':'🔵','二区':'🟢','筹开区':'🟠'};
+    var areaMap = {'一区':'🔵','二区':'🟢','三区':'🟠','筹开区':'🔴'};
     if (s.area && areaMap[s.area]) areaBadge = ' <span style="font-size:11px">'+areaMap[s.area]+'</span>';
     else if (s.district) areaBadge = ' <span style="font-size:11px;color:#9ca3af">'+s.district+'</span>';
 
@@ -864,7 +870,7 @@ function renderAreaChart(d) {
   if (!d.areas||!d.areas.length) return;
   var c = ensureChart('areaChart');
   if (!c) return;
-  var areaColors = {'一区':'#4F46E5','二区':'#0891B2','筹开区':'#D97706'};
+  var areaColors = {'一区':'#4F46E5','二区':'#0891B2','三区':'#D97706','筹开区':'#DC2626'};
 
   if (currentArea !== 'all' && d.stores) {
     // Show individual stores for selected area
@@ -1076,7 +1082,7 @@ function renderStoreDetail(d) {
     // Build rows
     var html = '';
     display.forEach(function(s){
-      var areaCls = {'一区':'area-1','二区':'area-2','筹开区':'area-3'}[s.area]||'';
+      var areaCls = {'一区':'area-1','二区':'area-2','三区':'area-3','筹开区':'area-4'}[s.area]||'';
       var mgr = areaMgr[s.area]||'';
 
       var growthCls = function(v){ return v>0?'st-up':v<0?'st-down':'st-flat'; };
@@ -1289,11 +1295,11 @@ function updateRangeLabel() {
   // 动态更新区域门店数
   if (d && d.areas) {
     var aLines = [];
-    var colors = {'一区':'🔵','二区':'🟢','筹开区':'🟠'};
+    var colors = {'一区':'🔵','二区':'🟢','三区':'🟠','筹开区':'🔴'};
     d.areas.forEach(function(a){
       var icon = colors[a.name] || '⚪';
       var mgr = a.manager || '';
-      var label = a.name === '筹开区' ? '筹开门店' : (a.stores||0)+'店';
+      var label = (a.stores||0)+'店';
       if (mgr) aLines.push(icon+' <b>'+a.name+'</b> '+mgr+' · '+label);
     });
     if (aLines.length) document.getElementById('areaInfo').innerHTML = aLines.join('&emsp;');
@@ -1315,8 +1321,8 @@ function updateAreaFilterBtns() {
     if (d && d.areas) {
       var area = d.areas.find(function(a){ return a.name === areaName; });
       if (area && area.stores) {
-        b.textContent = (areaName==='一区'?'🔵 ':'')+(areaName==='二区'?'🟢 ':'')+(areaName==='筹开区'?'🟠 ':'')+
-          areaName+' · '+(area.manager||'')+' · '+area.stores+'店';
+        var emoji = {'一区':'🔵','二区':'🟢','三区':'🟠','筹开区':'🔴'}[areaName]||'';
+        b.textContent = emoji + ' '+areaName+' · '+(area.manager||'')+' · '+area.stores+'店';
       }
     }
   });
