@@ -1,7 +1,21 @@
-# Netlify 配置（含 token，切勿提交！）
-.netlify-config.json
-# 发布临时目录
-release/
-# Node
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+
+# Node 垃圾（npm install 残留）
 node_modules/
+package.json
 package-lock.json
+
+# Netlify 配置（含 token）
+.netlify-config.json
+
+# 临时文件
+release/
+_screenshot_preview.png
+data_gap_analysis.md
+
+# IDE
+.vscode/
+.idea/
