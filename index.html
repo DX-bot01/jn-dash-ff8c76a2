@@ -99,10 +99,8 @@
     transition: transform .2s;
   }
   .area-comp-card:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
-  .area-comp-name { font-size:11px; color:var(--text-muted); margin-bottom:4px; font-weight:500; }
-  .area-comp-value { font-size:22px; font-weight:700; }
-  .area-comp-bar { height:5px; border-radius:3px; margin-top:6px; overflow:hidden; background:#f0f0f0; }
-  .area-comp-fill { height:100%; border-radius:3px; transition:width .5s; }
+  .area-comp-name { font-size:11px; color:var(--text-muted); margin-bottom:8px; font-weight:500; }
+  .area-comp-bar-wrap { width:100%; height:16px; background:#f0f0f0; border-radius:8px; overflow:hidden; display:block; position:relative; }
 
   /* ── KPI Cards ── */
   .kpi-grid { display:grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 20px; }
@@ -133,6 +131,7 @@
   .kpi-trend.up   { color: var(--green); background: var(--green-light); }
   .kpi-trend.down { color: var(--red);   background: var(--red-light); }
   .kpi-sub { color: var(--text-muted); }
+  .kpi-time-node { font-size:10px; color: var(--text-secondary); margin-top:4px; font-weight:500; }
 
   /* ── Alert Strip ── */
   .alert-strip {
@@ -195,7 +194,7 @@
   .rank-table .rank-change.down { color: var(--red); }
   .rank-table .rank-change.same { color: var(--text-muted); }
   .rank-bar-wrap { width:100px; height:14px; background:#f0f0f0; border-radius:7px; overflow:hidden; display:inline-block; vertical-align:middle; position:relative; }
-  .rank-bar { height:100%; border-radius:7px; transition:width .4s; }
+  .rank-bar { position:absolute; left:0; top:0; bottom:0; border-radius:7px; transition:width .4s; }
   .rank-bar.high { background: linear-gradient(90deg, #16a34a, #22c55e); }
   .rank-bar.mid  { background: linear-gradient(90deg, #2563eb, #3b82f6); }
   .rank-bar.low  { background: linear-gradient(90deg, #dc2626, #ef4444); }
@@ -400,19 +399,16 @@
   <!-- ═══════ AREA COMPLETION ROW ═══════ -->
   <div class="area-comp-row" id="areaCompRow" style="display:none">
     <div class="area-comp-card" id="areaComp1">
-      <div class="area-comp-name">🔵 一区 · 高硕</div>
-      <div class="area-comp-value" id="areaCompVal1">--</div>
-      <div class="area-comp-bar"><div class="area-comp-fill" id="areaCompBar1" style="background:var(--blue)"></div></div>
+      <div class="area-comp-name"></div>
+      <span class="area-comp-bar-wrap"><span class="rank-bar" id="areaCompBar1" style="width:0%;border-radius:8px"></span><span class="rank-bar-label" id="areaCompVal1">--</span></span>
     </div>
     <div class="area-comp-card" id="areaComp2">
-      <div class="area-comp-name">🟢 二区 · 古子箴</div>
-      <div class="area-comp-value" id="areaCompVal2">--</div>
-      <div class="area-comp-bar"><div class="area-comp-fill" id="areaCompBar2" style="background:#0891b2"></div></div>
+      <div class="area-comp-name"></div>
+      <span class="area-comp-bar-wrap"><span class="rank-bar" id="areaCompBar2" style="width:0%;border-radius:8px"></span><span class="rank-bar-label" id="areaCompVal2">--</span></span>
     </div>
     <div class="area-comp-card" id="areaComp3">
-      <div class="area-comp-name">🟠 筹开区 · 代航宇</div>
-      <div class="area-comp-value" id="areaCompVal3">--</div>
-      <div class="area-comp-bar"><div class="area-comp-fill" id="areaCompBar3" style="background:var(--amber)"></div></div>
+      <div class="area-comp-name"></div>
+      <span class="area-comp-bar-wrap"><span class="rank-bar" id="areaCompBar3" style="width:0%;border-radius:8px"></span><span class="rank-bar-label" id="areaCompVal3">--</span></span>
     </div>
   </div>
 
@@ -434,8 +430,9 @@
         </div>
       </div>
       <div class="kpi-card rate">
-        <div class="kpi-label">🎯 目标完成率</div>
+        <div class="kpi-label" id="kpiCompLabel">--</div>
         <div class="kpi-value" id="kpiCompletion">--</div>
+        <div class="kpi-time-node" id="kpiTimeNode"></div>
         <div class="kpi-footer">
           <span class="kpi-trend" id="kpiCompTrend">--</span>
           <span class="kpi-sub" id="kpiCompSub">--</span>
@@ -665,9 +662,36 @@ function renderKpi(d) {
   document.getElementById('kpiAvgBill').textContent = '¥'+avgBill;
   document.getElementById('kpiStores').textContent = achieved+'/'+totalStores;
 
+  // Dynamic label: 实际完成率 (月报/周报) or 时间完成率 (日报)
+  var compLabel = document.getElementById('kpiCompLabel');
+  if (currentPeriod === 'day') {
+    compLabel.textContent = '⏱ 时间完成率';
+  } else {
+    compLabel.textContent = '🎯 实际完成率';
+  }
+
+  // Time-node line below completion rate
+  var timeNode = document.getElementById('kpiTimeNode');
+  if (currentPeriod === 'day') {
+    timeNode.textContent = '单日应完成 3.33%';
+  } else if (currentPeriod === 'week') {
+    timeNode.textContent = '七天应完成 23.33%';
+  } else {
+    // Monthly: show 截至昨日 (date)
+    var md = allData.month;
+    var datePart = '';
+    if (md && md.date) {
+      // Extract date range: "2026年06月 (1-15日)" → "(1-15日)"
+      var m = md.date.match(/\(([^)]+)\)/);
+      datePart = m ? ' ' + m[1] : '';
+    }
+    timeNode.textContent = '时间节点 · 截止至昨日' + datePart;
+  }
+  timeNode.style.display = 'block';
+
   var el = function(id,txt,cls){ var e=document.getElementById(id); e.textContent=txt; e.className='kpi-trend '+(cls||''); };
   el('kpiSalesTrend', sg.text, sg.cls);
-  el('kpiCompTrend', '目标 '+fmtPct(compRate), '');
+  el('kpiCompTrend', '对比上期', '');
   el('kpiAvgTrend', ag.text, ag.cls);
   el('kpiStoreTrend', (stg>=0?'+':'')+stg, stg>=0?'up':'down');
   document.getElementById('kpiCompSub').textContent = currentArea==='all' ? '' : '筛选: '+currentArea;
@@ -1173,13 +1197,16 @@ function renderAreaCompletion(d) {
     var target = a.target || 0;
     var rate = target > 0 ? (a.sales||0) / target * 100 : 0;
     var ratePct = Math.round(rate);
-    var color = idx===1 ? 'var(--blue)' : idx===2 ? '#0891b2' : 'var(--amber)';
+    var barCls = ratePct >= 80 ? 'high' : ratePct >= 60 ? 'mid' : 'low';
+    var bar = document.getElementById('areaCompBar'+idx);
+    bar.style.width = Math.min(ratePct, 100) + '%';
+    bar.className = 'rank-bar ' + barCls;
+    bar.style.borderRadius = '8px';
     document.getElementById('areaCompVal'+idx).textContent = ratePct + '%';
-    document.getElementById('areaCompVal'+idx).style.color = ratePct >= 80 ? 'var(--green)' : ratePct >= 60 ? 'var(--amber)' : 'var(--red)';
-    document.getElementById('areaCompBar'+idx).style.width = Math.min(ratePct, 100) + '%';
-    card.querySelector('.area-comp-name').textContent =
-      (idx===1?'🔵 ':'')+(idx===2?'🟢 ':'')+(idx===3?'🟠 ':'') + a.name + ' · ' + (a.manager||'') +
-      '  ¥'+(a.sales||0).toLocaleString() + ' / ¥'+(target||0).toLocaleString();
+    card.querySelector('.area-comp-name').innerHTML =
+      '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:'+ (barCls==='high'?'#16a34a':barCls==='mid'?'#2563eb':'#dc2626') +';margin-right:4px;vertical-align:middle"></span>' +
+      a.name + ' · ' + (a.manager||'') +
+      '  <span style="float:right;font-size:10px;color:var(--text-muted)">¥'+(a.sales||0).toLocaleString() + ' / ¥'+(target||0).toLocaleString()+'</span>';
   });
 }
 
