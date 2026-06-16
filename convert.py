@@ -305,6 +305,62 @@ def calc_ranks(stores, prev_stores):
         for i, s in enumerate(stores):
             s['prev_rank'] = i+1
 
+def enrich_stores(stores, prev_stores, rec_by_store, prev_rec_by_store):
+    """合并上期销售/订单/客单价、储值数据、运营建议到每个门店"""
+    prev_map = {}
+    for ps in prev_stores:
+        prev_map[ps['name']] = ps
+
+    for s in stores:
+        ps = prev_map.get(s['name'], {})
+        s['last_sales']     = ps.get('sales', 0)
+        s['last_orders']    = ps.get('customers', 0)
+        s['last_avg_bill']  = round(ps.get('avg_bill', 0), 2) if ps.get('avg_bill', 0) else 0
+        s['recharge']       = round(rec_by_store.get(s['name'], 0), 2)
+        s['last_recharge']  = round(prev_rec_by_store.get(s['name'], 0), 2)
+
+        # 智能建议
+        suggestions = []
+        rate = (s['sales'] / s['target'] * 100) if s['target'] > 0 else 0
+
+        # 完成率预警
+        if rate < 50:
+            suggestions.append('🔴 完成率<50%，紧急跟进')
+        elif rate < 70:
+            suggestions.append('🟠 完成率偏低')
+        elif rate < 85:
+            suggestions.append('🟡 需要提速')
+        else:
+            suggestions.append('🟢 节奏正常')
+
+        # 环比预警
+        last_s = s.get('last_sales', 0)
+        if last_s > 0:
+            growth = (s['sales'] - last_s) / last_s * 100
+            if growth < -30:
+                suggestions.append('📉 环比大跌')
+            elif growth < -15:
+                suggestions.append('📉 环比下滑')
+
+        # 客单价
+        if s.get('avg_bill', 99) < 11 and s.get('customers', 0) > 0:
+            suggestions.append('客单价<¥11')
+
+        # 储值转化
+        rec_ratio = (s['recharge'] / s['sales'] * 100) if s['sales'] > 0 else 0
+        if rec_ratio < 1.5:
+            suggestions.append('储值转化弱')
+
+        s['suggestions'] = suggestions
+
+def collect_store_recharge(rec_rows, date_range):
+    """按门店聚合储值（指定日期范围）"""
+    m = defaultdict(float)
+    for r in rec_rows:
+        if date_range[0] <= r['date'] <= date_range[1]:
+            m[r['store']] += r['received']
+    return m
+
 def build_trend(store_rows, target_amount):
     """
     从每日明细构建趋势数据
@@ -347,7 +403,7 @@ def calendar_month_days(d):
 def build_period(yesterday, targets, store_cur, store_prev,
                  cat_cur, cat_prev, rec_cur, rec_prev,
                  date_range_cur, date_range_prev, label_cur, label_prev,
-                 is_month=False):
+                 is_month=False, is_day=False):
     """
     通用周期计算
     """
@@ -365,6 +421,26 @@ def build_period(yesterday, targets, store_cur, store_prev,
     stores      = agg_stores(cur_store_rows, targets)
     prev_stores = agg_stores(prev_store_rows, targets) if prev_store_rows else []
     calc_ranks(stores, prev_stores)
+
+    # 门店目标按周期缩放: 日报=日均  周报=七天  月报=全月
+    days_in_cur = (date_range_cur[1] - date_range_cur[0]).days + 1
+    month_days  = calendar_month_days(date_range_cur[1])
+    if is_month:
+        scale = month_days / max(days_in_cur, 1)
+    elif is_day:
+        scale = 1.0 / month_days       # 日均
+    else:
+        scale = 7.0 / month_days       # 七天
+    if scale != 1.0:
+        for s in stores:
+            s['target'] = round(s['target'] * scale, 2)
+        for s in prev_stores:
+            s['target'] = round(s['target'] * scale, 2)
+
+    # 门店数据增强: 上期对比 + 储值 + 建议
+    rec_by_store      = collect_store_recharge(rec_cur, date_range_cur)
+    prev_rec_by_store = collect_store_recharge(rec_prev, date_range_prev) if rec_prev else defaultdict(float)
+    enrich_stores(stores, prev_stores, rec_by_store, prev_rec_by_store)
 
     # 聚合品类
     cats      = agg_categories(cur_cat_rows)
@@ -545,7 +621,7 @@ def run(yesterday=None):
         (daily_compare, daily_compare),
         daily_date.strftime('%Y-%m-%d'),
         daily_compare.strftime('%Y-%m-%d'),
-        is_month=False,
+        is_month=False, is_day=True,
     )
 
     # 如果上期数据在当月找不到(跨月)，回退到上月文件
@@ -556,6 +632,10 @@ def run(yesterday=None):
         prev_rec_rows   = [r for r in rec_prev   if r['date'] == daily_compare] if rec_prev else []
 
         prev_stores = agg_stores(prev_store_rows, targets)
+        # 日目标缩放
+        prev_month_days = calendar_month_days(daily_compare)
+        for p in prev_stores:
+            p['target'] = round(p['target'] / prev_month_days, 2)
         prev_total  = round(sum(s['sales'] for s in prev_stores), 2)
         prev_cust    = sum(s['customers'] for s in prev_stores)
         prev_avg_bill = round(prev_total/prev_cust, 2) if prev_cust > 0 else 0
@@ -577,6 +657,11 @@ def run(yesterday=None):
         # 储值环比
         prev_rec = agg_recharge(prev_rec_rows)
         daily['recharge']['last'] = prev_rec['total']
+
+        # 门店增强(跨月回退)
+        daily_rec_map = collect_store_recharge(rec_cur, (daily_date, daily_date))
+        prev_rec_map_daily = collect_store_recharge(rec_prev, (daily_compare, daily_compare)) if rec_prev else defaultdict(float)
+        enrich_stores(daily['stores'], prev_stores, daily_rec_map, prev_rec_map_daily)
 
     write_json(OUTPUT_DIR / "daily.json", daily)
     write_json(HISTORY / f"{daily_date.strftime('%Y-%m-%d')}.json", daily)
@@ -602,7 +687,7 @@ def run(yesterday=None):
         (last_week_start, last_week_end),
         f"{week_start.strftime('%m/%d')} ~ {(week_start + timedelta(days=6)).strftime('%m/%d')} (截至{week_end.strftime('%m/%d')})",
         f"上周 ({last_week_start.strftime('%m/%d')}-{last_week_end.strftime('%m/%d')})",
-        is_month=False,
+        is_month=False, is_day=False,
     )
 
     # 周上期跨月回退
@@ -613,6 +698,10 @@ def run(yesterday=None):
         all_prev = prev_rows_in_cur + prev_rows_in_prev
         if all_prev:
             prev_stores = agg_stores(all_prev, targets)
+            # 七天目标缩放
+            prev_month_days = calendar_month_days(last_week_end)
+            for p in prev_stores:
+                p['target'] = round(p['target'] * 7.0 / prev_month_days, 2)
             prev_total  = round(sum(s['sales'] for s in prev_stores), 2)
             prev_cust    = sum(s['customers'] for s in prev_stores)
             prev_avg_bill = round(prev_total/prev_cust, 2) if prev_cust > 0 else 0
@@ -621,6 +710,16 @@ def run(yesterday=None):
             weekly['last_period_avg_bill'] = prev_avg_bill
             weekly['last_period_achieved'] = prev_achieved
             calc_ranks(weekly['stores'], prev_stores)
+
+            # 门店增强(周报跨月回退)
+            prev_rec_in_cur  = [r for r in rec_cur if last_week_start <= r['date'] <= last_week_end]
+            prev_rec_in_prev = [r for r in rec_prev if last_week_start <= r['date'] <= last_week_end] if rec_prev else []
+            all_prev_rec = prev_rec_in_cur + prev_rec_in_prev
+            weekly_rec_map = collect_store_recharge(rec_cur, (week_start, week_end))
+            prev_rec_map_week = defaultdict(float)
+            for r in all_prev_rec:
+                prev_rec_map_week[r['store']] += r['received']
+            enrich_stores(weekly['stores'], prev_stores, weekly_rec_map, prev_rec_map_week)
 
     write_json(OUTPUT_DIR / "weekly.json", weekly)
     print(f"│  ✅ weekly.json  ¥{weekly['total_sales']:,.0f} (环比 ¥{weekly['last_period_sales']:,.0f})")
