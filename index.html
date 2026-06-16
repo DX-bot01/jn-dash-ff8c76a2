@@ -348,12 +348,12 @@
       <div class="header-meta">
         <span><span class="dot"></span>运行中</span>
         <span id="dataRange">加载中...</span>
-        <span id="storeCount">24家门店</span>
+        <span id="storeCount">26家门店</span>
         <span>运营部 · 李超博</span>
         <span id="updateTime">--</span>
       </div>
       <div class="header-meta" style="margin-top:8px; gap:18px;" id="areaInfo">
-        🔵 <b>一区</b> 高硕 · 6店&emsp;🟢 <b>二区</b> 古子箴 · 6店&emsp;🟠 <b>三区</b> · 5店&emsp;🔴 <b>筹开区</b> 代航宇 · 7店
+        🔵 <b>一区</b> 高硕 · 12店&emsp;🟢 <b>二区</b> 古子箴 · 11店&emsp;🔴 <b>筹开区</b> 代航宇 · 3店
       </div>
     </div>
     <div class="header-right">
@@ -394,7 +394,6 @@
     <button class="area-btn active" data-area="all" onclick="switchArea('all')">🌐 全部</button>
     <button class="area-btn" data-area="一区" onclick="switchArea('一区')">🔵 一区 · 高硕</button>
     <button class="area-btn" data-area="二区" onclick="switchArea('二区')">🟢 二区 · 古子箴</button>
-    <button class="area-btn" data-area="三区" onclick="switchArea('三区')">🟠 三区</button>
     <button class="area-btn" data-area="筹开区" onclick="switchArea('筹开区')">🔴 筹开区 · 代航宇</button>
   </div>
 
@@ -604,7 +603,7 @@ var storeDetailCache = [];
 
 // ── Utility ──
 function fmt(v) { return v >= 10000 ? (v/10000).toFixed(1)+'万' : v.toLocaleString(); }
-function fmtPct(v) { return Math.round(v)+'%'; }
+function fmtPct(v) { return v.toFixed(2)+'%'; }
 function fmtMoney(v) { return '¥'+v.toLocaleString(); }
 
 function calcGrowth(cur, prev) {
@@ -637,12 +636,16 @@ function filteredAreas(areas) {
 // ── KPI Rendering ──
 function renderKpi(d) {
   var stores = filteredStores(d.stores);
+  var isFiltered = currentArea !== 'all';
+
   // Recalculate totals from filtered stores
-  var totalSales = 0, totalCustomers = 0, totalOrders = 0;
+  var totalSales = 0, totalCustomers = 0, totalRecharge = 0, totalRechargeLast = 0;
   var achieved = 0, totalStores = stores.length;
   stores.forEach(function(s){
     totalSales += (s.sales || 0);
     totalCustomers += (s.customers || 0);
+    totalRecharge += (s.recharge || 0);
+    totalRechargeLast += (s.last_recharge || 0);
     var rate = s.target>0 ? (s.sales||0)/s.target*100 : 0;
     if (rate >= 100) achieved++;
   });
@@ -653,76 +656,96 @@ function renderKpi(d) {
   var lastSales = Math.round((d.last_period_sales || 0) * filteredRate);
   var lastAvgBill = d.last_period_avg_bill || avgBill;
 
+  // Target amount: use area target when filtered, global target otherwise
   var targetAmt = d.target_amount || 0;
-  if (currentArea !== 'all' && d.areas) {
+  if (isFiltered && d.areas) {
     var areaObj = d.areas.find(function(a){ return a.name === currentArea; });
     if (areaObj && areaObj.target) targetAmt = areaObj.target;
   }
   var compRate = targetAmt > 0 ? totalSales / targetAmt * 100 : 0;
+
   var sg = calcGrowth(totalSales, lastSales);
   var ag = calcGrowth(avgBill, lastAvgBill);
-  var stg = achieved - (d.last_period_achieved || 0);
+  // For last period achieved: scale proportionally
+  var lastAchieved = Math.round((d.last_period_achieved || 0) * filteredRate);
+  var stg = achieved - lastAchieved;
 
-  document.getElementById('kpiSales').textContent = fmt(totalSales);
-  document.getElementById('kpiCompletion').textContent = fmtPct(compRate);
-  document.getElementById('kpiAvgBill').textContent = '¥'+avgBill;
-  document.getElementById('kpiStores').textContent = achieved+'/'+totalStores;
+  // ── Safe DOM helper ──
+  var setText = function(id, txt) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = txt;
+  };
+  var setEl = function(id, txt, cls) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = txt;
+    el.className = 'kpi-trend ' + (cls || '');
+  };
 
-  // Dynamic label: 实际完成率 (月报/周报) or 时间完成率 (日报)
+  setText('kpiSales', fmt(totalSales));
+  setText('kpiCompletion', fmtPct(compRate));
+  setText('kpiAvgBill', '¥' + avgBill);
+  setText('kpiStores', achieved + '/' + totalStores);
+
+  // Dynamic label
   var compLabel = document.getElementById('kpiCompLabel');
-  if (currentPeriod === 'day') {
-    compLabel.textContent = '⏱ 时间完成率';
-  } else {
-    compLabel.textContent = '🎯 实际完成率';
+  if (compLabel) {
+    compLabel.textContent = (currentPeriod === 'day') ? '⏱ 时间完成率' : '🎯 实际完成率';
   }
 
-  // Time-node line below completion rate
+  // Time-node line
   var timeNode = document.getElementById('kpiTimeNode');
-  if (currentPeriod === 'day') {
-    timeNode.textContent = '单日应完成 3.33%';
-  } else if (currentPeriod === 'week') {
-    timeNode.textContent = '七天应完成 23.33%';
-  } else {
-    // Monthly: show 截至昨日 (date)
-    var md = allData.month;
-    var datePart = '';
-    if (md && md.date) {
-      // Extract date range: "2026年06月 (1-15日)" → "(1-15日)"
-      var m = md.date.match(/\(([^)]+)\)/);
-      datePart = m ? ' ' + m[1] : '';
+  if (timeNode) {
+    if (currentPeriod === 'day') {
+      timeNode.textContent = '单日应完成 3.33%';
+    } else if (currentPeriod === 'week') {
+      timeNode.textContent = '七天应完成 23.33%';
+    } else {
+      var md = allData.month;
+      var datePart = '';
+      if (md && md.date) {
+        var m = md.date.match(/\(([^)]+)\)/);
+        datePart = m ? ' ' + m[1] : '';
+      }
+      timeNode.textContent = '时间节点 · 截止至昨日' + datePart;
     }
-    timeNode.textContent = '时间节点 · 截止至昨日' + datePart;
+    timeNode.style.display = 'block';
   }
-  timeNode.style.display = 'block';
 
-  var el = function(id,txt,cls){ var e=document.getElementById(id); e.textContent=txt; e.className='kpi-trend '+(cls||''); };
-  el('kpiSalesTrend', sg.text, sg.cls);
-  el('kpiCompTrend', '对比上期', '');
-  el('kpiAvgTrend', ag.text, ag.cls);
-  el('kpiStoreTrend', (stg>=0?'+':'')+stg, stg>=0?'up':'down');
-  document.getElementById('kpiCompSub').textContent = currentArea==='all' ? '' : '筛选: '+currentArea;
+  setEl('kpiSalesTrend', sg.text, sg.cls);
+  setEl('kpiCompTrend', '对比上期', '');
+  setEl('kpiAvgTrend', ag.text, ag.cls);
+  setEl('kpiStoreTrend', (stg>=0?'+':'')+stg, stg>=0?'up':'down');
+  setText('kpiCompSub', isFiltered ? '筛选: '+currentArea : '');
 
-  // Recharge KPI
-  var rec = d.recharge || {};
-  var recCur = rec.current || 0;
-  var recLast = rec.last || 0;
-  var recGrowth = calcGrowth(recCur, recLast);
-  el('kpiRecharge', fmt(recCur), '');
-  el('kpiRecTrend', recGrowth.text, recGrowth.cls);
+  // Recharge KPI — use store-level aggregation when area-filtered
+  if (isFiltered && stores.length > 0) {
+    var recGrowth = calcGrowth(totalRecharge, totalRechargeLast);
+    setEl('kpiRecharge', fmt(totalRecharge), '');
+    setEl('kpiRecTrend', recGrowth.text, recGrowth.cls);
+  } else {
+    var rec = d.recharge || {};
+    var recCur = rec.current || 0;
+    var recLast = rec.last || 0;
+    var recGrowth = calcGrowth(recCur, recLast);
+    setEl('kpiRecharge', fmt(recCur), '');
+    setEl('kpiRecTrend', recGrowth.text, recGrowth.cls);
+  }
+
+  console.log('renderKpi: area='+currentArea+' stores='+stores.length+' sales='+fmt(totalSales)+' target='+fmt(targetAmt)+' comp='+fmtPct(compRate)+' recharge='+fmt(totalRecharge));
 }
 
 // ── Gap Calculator ──
 function renderGap(d) {
-  if (!d.month_target) { document.getElementById('gapBanner').style.display='none'; return; }
-  document.getElementById('gapBanner').style.display='flex';
+  var gapBanner = document.getElementById('gapBanner');
+  if (!d.month_target) { if(gapBanner) gapBanner.style.display='none'; return; }
+  if (gapBanner) gapBanner.style.display='flex';
   var stores = filteredStores(d.stores);
   var completed = stores.reduce(function(sum,s){ return sum + (s.sales||0); }, 0);
   var monthTarget = d.month_target;
-  if (currentArea !== 'all') {
-    // Scale target proportionally
-    var areaSales = d.areas ? d.areas.reduce(function(s,a){ return s + (a.sales||0); }, 0) : d.total_sales;
-    var ratio = areaSales > 0 ? completed / d.total_sales : 1;
-    monthTarget = Math.round(d.month_target * ratio);
+  if (currentArea !== 'all' && d.areas) {
+    var areaObj = d.areas.find(function(a){ return a.name === currentArea; });
+    if (areaObj && areaObj.target) monthTarget = areaObj.target;
   }
   var remaining = monthTarget - completed;
   var days = d.month_remaining_days || 1;
@@ -759,7 +782,7 @@ function renderRanking(rawStores) {
     var numCls = rank===1 ? 'top1' : rank===2 ? 'top2' : rank===3 ? 'top3' : '';
 
     var areaBadge = '';
-    var areaMap = {'一区':'🔵','二区':'🟢','三区':'🟠','筹开区':'🔴'};
+    var areaMap = {'一区':'🔵','二区':'🟢','筹开区':'🔴'};
     if (s.area && areaMap[s.area]) areaBadge = ' <span style="font-size:11px">'+areaMap[s.area]+'</span>';
     else if (s.district) areaBadge = ' <span style="font-size:11px;color:#9ca3af">'+s.district+'</span>';
 
@@ -788,7 +811,7 @@ function renderCategory(cats, total) {
     html += '<tr>'+
       '<td><span class="cat-dot" style="background:'+colors[i%6]+'"></span>'+c.name+'</td>'+
       '<td class="right">'+fmt(c.sales)+'</td>'+
-      '<td class="right">'+pct.toFixed(1)+'%</td>'+
+      '<td class="right">'+pct.toFixed(2)+'%</td>'+
       '<td class="cat-rate '+rateCls+'">'+diffSign+fmt(diff)+'</td>'+
       '</tr>';
   });
@@ -870,7 +893,7 @@ function renderAreaChart(d) {
   if (!d.areas||!d.areas.length) return;
   var c = ensureChart('areaChart');
   if (!c) return;
-  var areaColors = {'一区':'#4F46E5','二区':'#0891B2','三区':'#D97706','筹开区':'#DC2626'};
+  var areaColors = {'一区':'#4F46E5','二区':'#0891B2','筹开区':'#DC2626'};
 
   if (currentArea !== 'all' && d.stores) {
     // Show individual stores for selected area
@@ -1082,7 +1105,7 @@ function renderStoreDetail(d) {
     // Build rows
     var html = '';
     display.forEach(function(s){
-      var areaCls = {'一区':'area-1','二区':'area-2','三区':'area-3','筹开区':'area-4'}[s.area]||'';
+      var areaCls = {'一区':'area-1','二区':'area-2','筹开区':'area-4'}[s.area]||'';
       var mgr = areaMgr[s.area]||'';
 
       var growthCls = function(v){ return v>0?'st-up':v<0?'st-down':'st-flat'; };
@@ -1123,7 +1146,7 @@ function renderStoreDetail(d) {
       var compCls = s._completion>=85?'st-good':s._completion>=60?'st-flat':'st-alert';
       var compBarCls = s._completion>=85?'high':s._completion>=60?'mid':'low';
       var compBarW = Math.min(Math.round(s._completion), 100);
-      html += '<td style="min-width:90px"><span class="rank-bar-wrap" style="width:80px;height:12px"><span class="rank-bar '+compBarCls+'" style="width:'+compBarW+'%"></span><span class="rank-bar-label">'+s._completion.toFixed(1)+'%</span></span></td>';
+      html += '<td style="min-width:90px"><span class="rank-bar-wrap" style="width:80px;height:12px"><span class="rank-bar '+compBarCls+'" style="width:'+compBarW+'%"></span><span class="rank-bar-label">'+s._completion.toFixed(2)+'%</span></span></td>';
       // 建议
       html += '<td>';
       (s.suggestions||[]).forEach(function(sugg){
@@ -1208,7 +1231,7 @@ function renderAreaCompletion(d) {
     bar.style.width = Math.min(ratePct, 100) + '%';
     bar.className = 'rank-bar ' + barCls;
     bar.style.borderRadius = '8px';
-    document.getElementById('areaCompVal'+idx).textContent = ratePct + '%';
+    document.getElementById('areaCompVal'+idx).textContent = rate.toFixed(2) + '%';
     card.querySelector('.area-comp-name').innerHTML =
       '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:'+ (barCls==='high'?'#16a34a':barCls==='mid'?'#2563eb':'#dc2626') +';margin-right:4px;vertical-align:middle"></span>' +
       a.name + ' · ' + (a.manager||'') +
@@ -1295,7 +1318,7 @@ function updateRangeLabel() {
   // 动态更新区域门店数
   if (d && d.areas) {
     var aLines = [];
-    var colors = {'一区':'🔵','二区':'🟢','三区':'🟠','筹开区':'🔴'};
+    var colors = {'一区':'🔵','二区':'🟢','筹开区':'🔴'};
     d.areas.forEach(function(a){
       var icon = colors[a.name] || '⚪';
       var mgr = a.manager || '';
@@ -1321,7 +1344,7 @@ function updateAreaFilterBtns() {
     if (d && d.areas) {
       var area = d.areas.find(function(a){ return a.name === areaName; });
       if (area && area.stores) {
-        var emoji = {'一区':'🔵','二区':'🟢','三区':'🟠','筹开区':'🔴'}[areaName]||'';
+        var emoji = {'一区':'🔵','二区':'🟢','筹开区':'🔴'}[areaName]||'';
         b.textContent = emoji + ' '+areaName+' · '+(area.manager||'')+' · '+area.stores+'店';
       }
     }
