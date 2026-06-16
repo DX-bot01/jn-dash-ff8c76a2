@@ -194,11 +194,12 @@
   .rank-table .rank-change.up { color: var(--green); }
   .rank-table .rank-change.down { color: var(--red); }
   .rank-table .rank-change.same { color: var(--text-muted); }
-  .rank-bar-wrap { width:80px; height:6px; background:#f0f0f0; border-radius:3px; overflow:hidden; display:inline-block; vertical-align:middle; }
-  .rank-bar { height:100%; border-radius:3px; transition:width .4s; }
+  .rank-bar-wrap { width:100px; height:14px; background:#f0f0f0; border-radius:7px; overflow:hidden; display:inline-block; vertical-align:middle; position:relative; }
+  .rank-bar { height:100%; border-radius:7px; transition:width .4s; }
   .rank-bar.high { background: linear-gradient(90deg, #16a34a, #22c55e); }
   .rank-bar.mid  { background: linear-gradient(90deg, #2563eb, #3b82f6); }
   .rank-bar.low  { background: linear-gradient(90deg, #dc2626, #ef4444); }
+  .rank-bar-label { position:absolute; top:0; left:0; right:0; bottom:0; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:#fff; text-shadow: 0 1px 2px rgba(0,0,0,0.3); pointer-events:none; }
   .rank-val  { font-weight:700; text-align:right; }
   .rank-info { font-size:11px; color: var(--text-muted); text-align:right; }
 
@@ -211,7 +212,6 @@
   .chart-wrap.h280 { height:280px; }
   .chart-wrap.h240 { height:240px; }
   .chart-wrap.h220 { height:220px; }
-  .chart-wrap.h300 { height:300px; }
 
   /* ── Category table ── */
   .cat-table { width:100%; border-collapse:collapse; }
@@ -232,6 +232,100 @@
     border-top:1px solid var(--border); margin-top:12px;
   }
   .footer-bar code { background:#f3f4f6; padding:2px 6px; border-radius:4px; font-size:11px; }
+
+  /* ── Store Detail Panel ── */
+  .store-detail-panel { margin-bottom:18px; }
+  .store-detail-toolbar {
+    display:flex; align-items:center; gap:12px; margin-bottom:14px; flex-wrap:wrap;
+  }
+  .store-topn-tabs {
+    display:flex; background:var(--card-glass); backdrop-filter:blur(8px);
+    border-radius:7px; border:1px solid var(--border); overflow:hidden;
+  }
+  .store-topn-tab {
+    padding:5px 14px; border:none; background:none; font-size:12px;
+    cursor:pointer; color:var(--text-secondary); font-weight:500;
+    transition:all .15s;
+  }
+  .store-topn-tab:hover { color:var(--blue); background:var(--blue-light); }
+  .store-topn-tab.active { background:var(--blue); color:#fff; }
+  .store-export-btn {
+    padding:6px 14px; border-radius:7px; border:1px solid var(--border);
+    background:var(--card-glass); font-size:12px; cursor:pointer;
+    color:var(--text-secondary); transition:all .15s;
+  }
+  .store-export-btn:hover { border-color:var(--blue); color:var(--blue); }
+  .store-source-tag {
+    font-size:11px; color:var(--text-muted); margin-left:auto;
+    display:flex; align-items:center; gap:6px;
+  }
+  .store-source-tag .csv-icon { font-size:14px; }
+  .store-sort-hint {
+    font-size:11px; color:var(--text-muted); margin-left:6px;
+  }
+
+  /* Sortable table */
+  .store-table-wrap {
+    max-height:520px; overflow:auto; border-radius:var(--radius);
+    border:1px solid var(--border);
+  }
+  .store-table-wrap::-webkit-scrollbar { width:5px; height:5px; }
+  .store-table-wrap::-webkit-scrollbar-thumb { background:#d1d5db; border-radius:3px; }
+  .store-table {
+    width:100%; border-collapse:collapse; font-size:12px;
+    min-width:1200px;
+  }
+  .store-table thead { position:sticky; top:0; z-index:2; }
+  .store-table th {
+    background: linear-gradient(180deg, #f8fafc, #f1f5f9);
+    color: var(--text-secondary); font-weight:600; font-size:11px;
+    padding:10px 8px; text-align:center; white-space:nowrap;
+    border-bottom:2px solid var(--border); cursor:pointer;
+    user-select:none; position:relative;
+  }
+  .store-table th:hover { color:var(--blue); background:#eff6ff; }
+  .store-table th.sorted { color:var(--blue); background:#dbeafe; }
+  .store-table th .sort-icon { font-size:9px; margin-left:3px; }
+  .store-table th.sorted-asc .sort-icon::after { content:'▲'; }
+  .store-table th.sorted-desc .sort-icon::after { content:'▼'; }
+  .store-table th.col-store { min-width:110px; position:sticky; left:0; z-index:3;
+    background: linear-gradient(180deg, #f8fafc, #f1f5f9); }
+  .store-table td {
+    padding:8px 8px; text-align:center; border-bottom:1px solid #f3f4f6;
+    white-space:nowrap;
+  }
+  .store-table td.col-store {
+    position:sticky; left:0; z-index:1; background:var(--card-glass);
+    font-weight:600; text-align:left;
+  }
+  .store-table tr:hover td { background:rgba(37,99,235,0.04); }
+  .store-table tr:hover td.col-store { background:#eff6ff; }
+  .store-table .st-sub { font-size:10px; color:var(--text-muted); }
+  .store-table .st-up   { color:var(--green); font-weight:600; }
+  .store-table .st-down { color:var(--red); font-weight:600; }
+  .store-table .st-flat { color:var(--text-muted); }
+  .store-table .st-alert { color:var(--red); font-weight:700; }
+  .store-table .st-good  { color:var(--green); font-weight:600; }
+
+  /* Area badge mini */
+  .area-badge-sm {
+    display:inline-block; padding:1px 6px; border-radius:4px;
+    font-size:10px; font-weight:600; white-space:nowrap;
+  }
+  .area-badge-sm.area-1 { background:#e0e7ff; color:#4338ca; }
+  .area-badge-sm.area-2 { background:#ccfbf1; color:#0f766e; }
+  .area-badge-sm.area-3 { background:#fef3c7; color:#b45309; }
+
+  /* Suggestions tags */
+  .sugg-tag {
+    display:inline-block; padding:2px 6px; border-radius:4px;
+    font-size:10px; margin:1px; white-space:nowrap;
+  }
+  .sugg-tag.red { background:#fef2f2; color:#dc2626; }
+  .sugg-tag.orange { background:#fff7ed; color:#ea580c; }
+  .sugg-tag.yellow { background:#fffbeb; color:#d97706; }
+  .sugg-tag.green { background:#f0fdf4; color:#16a34a; }
+  .sugg-tag.blue { background:#eff6ff; color:#2563eb; }
 
   /* ── Responsive ── */
   @media (max-width: 960px) {
@@ -336,7 +430,7 @@
         <div class="kpi-value" id="kpiSales">--</div>
         <div class="kpi-footer">
           <span class="kpi-trend" id="kpiSalesTrend">--</span>
-          <span class="kpi-sub" id="kpiSalesSub">较上期</span>
+          <span class="kpi-sub">较上期</span>
         </div>
       </div>
       <div class="kpi-card rate">
@@ -352,7 +446,7 @@
         <div class="kpi-value" id="kpiAvgBill">--</div>
         <div class="kpi-footer">
           <span class="kpi-trend" id="kpiAvgTrend">--</span>
-          <span class="kpi-sub" id="kpiAvgSub">较上期</span>
+          <span class="kpi-sub">较上期</span>
         </div>
       </div>
       <div class="kpi-card stores">
@@ -360,7 +454,7 @@
         <div class="kpi-value" id="kpiStores">--</div>
         <div class="kpi-footer">
           <span class="kpi-trend" id="kpiStoreTrend">--</span>
-          <span class="kpi-sub" id="kpiStoreSub">较上期</span>
+          <span class="kpi-sub">较上期</span>
         </div>
       </div>
       <div class="kpi-card recharge">
@@ -368,7 +462,7 @@
         <div class="kpi-value" id="kpiRecharge">--</div>
         <div class="kpi-footer">
           <span class="kpi-trend" id="kpiRecTrend">--</span>
-          <span class="kpi-sub" id="kpiRecSub">较上期</span>
+          <span class="kpi-sub">较上期</span>
         </div>
       </div>
     </div>
@@ -384,7 +478,7 @@
         <div class="rank-scroll">
           <table class="rank-table">
             <thead><tr>
-              <th>#</th><th>门店</th><th>区域</th><th>进度</th><th class="right">完成率</th><th class="right">环比金额</th><th class="right">排名</th>
+              <th>#</th><th>门店</th><th>区域</th><th style="min-width:110px">完成率</th><th class="right">环比</th>
             </tr></thead>
             <tbody id="rankBody"></tbody>
           </table>
@@ -422,7 +516,7 @@
         </div>
         <table class="cat-table">
           <thead><tr>
-            <th>品类</th><th class="right">销售额</th><th class="right">占比</th><th class="right">环比差额</th>
+            <th>品类</th><th class="right">销售额</th><th class="right">占比</th><th class="right">完成率</th>
           </tr></thead>
           <tbody id="catBody"></tbody>
         </table>
@@ -433,20 +527,57 @@
     <div class="panel full" style="margin-bottom:18px">
       <div class="panel-header">
         <span class="panel-title">📊 品类完成率 & 环比对比</span>
-        <span class="panel-sub">本期 · 上期 · 环比差额</span>
       </div>
-      <div class="panel-grid" style="margin-bottom:0; grid-template-columns: 1fr 1fr;">
-        <div class="chart-wrap h300" id="catChartWrap" style="grid-column:1">
-          <div id="catChart" style="width:100%;height:100%"></div>
+      <div class="chart-wrap h240" id="catChartWrap">
+        <div id="catChart" style="width:100%;height:100%"></div>
+      </div>
+    </div>
+
+    <!-- Row 4: 门店明细与异常预警 (full width) -->
+    <div class="panel full store-detail-panel" id="storeDetailPanel">
+      <div class="panel-header">
+        <span class="panel-title">🔍 门店明细与异常预警</span>
+        <span class="panel-sub" id="storeDetailSub">--</span>
+      </div>
+      <div class="store-detail-toolbar">
+        <div class="store-topn-tabs">
+          <button class="store-topn-tab active" onclick="switchStoreTopN(10)">TOP 10</button>
+          <button class="store-topn-tab" onclick="switchStoreTopN(20)">TOP 20</button>
+          <button class="store-topn-tab" onclick="switchStoreTopN(30)">TOP 30</button>
         </div>
-        <div style="grid-column:2; padding:8px 0; max-height:300px; overflow-y:auto;">
-          <table class="cat-table" style="width:100%">
-            <thead><tr>
-              <th>品类</th><th class="right">本期</th><th class="right">上期</th><th class="right">环比差额</th><th class="right">占比</th>
-            </tr></thead>
-            <tbody id="catFullBody"></tbody>
-          </table>
-        </div>
+        <button class="store-export-btn" onclick="exportStoreTable()">📸 导出图片</button>
+        <span class="store-source-tag">
+          <span class="csv-icon">📄</span> 数据源: <b>本月CSV</b> + <b>上月CSV</b>
+        </span>
+      </div>
+      <div style="font-size:11px;color:var(--text-muted);margin-bottom:8px;">
+        <span class="store-sort-hint">💡 点击表头排序 | 默认按销售额降序</span>
+      </div>
+      <div class="store-table-wrap">
+        <table class="store-table" id="storeDetailTable">
+          <thead>
+            <tr>
+              <th class="col-store" onclick="sortStoreDetail('name')">门店 <span class="sort-icon"></span></th>
+              <th onclick="sortStoreDetail('area')">区域/负责人 <span class="sort-icon"></span></th>
+              <th onclick="sortStoreDetail('sales')" class="sorted sorted-desc">销售额(本期)<span class="sort-icon"></span></th>
+              <th onclick="sortStoreDetail('last_sales')">销售额(上期)<span class="sort-icon"></span></th>
+              <th onclick="sortStoreDetail('sales_growth')">销售环比<span class="sort-icon"></span></th>
+              <th onclick="sortStoreDetail('customers')">订单数(本期)<span class="sort-icon"></span></th>
+              <th onclick="sortStoreDetail('last_orders')">订单数(上期)<span class="sort-icon"></span></th>
+              <th onclick="sortStoreDetail('orders_growth')">订单环比<span class="sort-icon"></span></th>
+              <th onclick="sortStoreDetail('avg_bill')">客单价(本期)<span class="sort-icon"></span></th>
+              <th onclick="sortStoreDetail('last_avg_bill')">客单价(上期)<span class="sort-icon"></span></th>
+              <th onclick="sortStoreDetail('bill_growth')">客单环比<span class="sort-icon"></span></th>
+              <th onclick="sortStoreDetail('recharge')">会员储值(本期)<span class="sort-icon"></span></th>
+              <th onclick="sortStoreDetail('last_recharge')">会员储值(上期)<span class="sort-icon"></span></th>
+              <th onclick="sortStoreDetail('recharge_growth')">储值环比<span class="sort-icon"></span></th>
+              <th onclick="sortStoreDetail('recharge_ratio')">储值占比<span class="sort-icon"></span></th>
+              <th onclick="sortStoreDetail('completion')">任务达成<span class="sort-icon"></span></th>
+              <th>建议</th>
+            </tr>
+          </thead>
+          <tbody id="storeDetailBody"></tbody>
+        </table>
       </div>
     </div>
 
@@ -463,6 +594,10 @@ var currentPeriod = 'day';
 var currentArea = 'all';
 var allData = {};
 var charts = {};
+var storeTopN = 10;
+var storeSortMetric = 'sales';
+var storeSortDir = 'desc';
+var storeDetailCache = [];
 
 // ── Utility ──
 function fmt(v) { return v >= 10000 ? (v/10000).toFixed(1)+'万' : v.toLocaleString(); }
@@ -470,18 +605,9 @@ function fmtPct(v) { return Math.round(v)+'%'; }
 function fmtMoney(v) { return '¥'+v.toLocaleString(); }
 
 function calcGrowth(cur, prev) {
-  // Returns both absolute diff and percentage for 环比 display
-  if (!prev || prev===0) return {text:'--', cls:'', abs:0, absText:'--', pct:0};
-  var diff = cur - prev;
-  var g = (diff/prev)*100;
-  var absText = (diff>=0?'↑ ':'↓ ') + fmt(Math.abs(diff));
-  return {
-    text: absText + ' (' + (g>=0?'+':'') + Math.abs(g).toFixed(1) + '%)',
-    cls: diff>=0?'up':'down',
-    abs: diff,
-    absText: absText,
-    pct: g
-  };
+  if (!prev || prev===0) return {text:'--',cls:''};
+  var g = ((cur-prev)/prev)*100;
+  return { text: (g>=0?'+':'')+Math.abs(g).toFixed(1)+'%', cls: g>=0?'up':'down' };
 }
 
 // ── Area Filter ──
@@ -539,31 +665,20 @@ function renderKpi(d) {
   document.getElementById('kpiAvgBill').textContent = '¥'+avgBill;
   document.getElementById('kpiStores').textContent = achieved+'/'+totalStores;
 
-  // Helper: trend badge shows %, sub shows absolute
-  var setKpiTrend = function(trendEl, subEl, growth, unit){
-    trendEl.textContent = growth.cls ? (growth.pct>=0?'+':'')+Math.abs(growth.pct).toFixed(1)+'%' : '--';
-    trendEl.className = 'kpi-trend ' + (growth.cls||'');
-    subEl.textContent = unit==='%' ? '' : (growth.absText||'') + ' 较上期';
-    if (unit==='%') subEl.textContent = '完成率';
-  };
-
-  setKpiTrend(document.getElementById('kpiSalesTrend'), document.getElementById('kpiSalesSub'), sg);
-  document.getElementById('kpiCompTrend').textContent = '目标 '+fmtPct(compRate);
-  document.getElementById('kpiCompTrend').className = 'kpi-trend ';
+  var el = function(id,txt,cls){ var e=document.getElementById(id); e.textContent=txt; e.className='kpi-trend '+(cls||''); };
+  el('kpiSalesTrend', sg.text, sg.cls);
+  el('kpiCompTrend', '目标 '+fmtPct(compRate), '');
+  el('kpiAvgTrend', ag.text, ag.cls);
+  el('kpiStoreTrend', (stg>=0?'+':'')+stg, stg>=0?'up':'down');
   document.getElementById('kpiCompSub').textContent = currentArea==='all' ? '' : '筛选: '+currentArea;
-  setKpiTrend(document.getElementById('kpiAvgTrend'), document.getElementById('kpiAvgSub'), ag);
-  var stTrend = document.getElementById('kpiStoreTrend');
-  stTrend.textContent = (stg>=0?'+':'')+stg;
-  stTrend.className = 'kpi-trend '+(stg>=0?'up':'down');
-  document.getElementById('kpiStoreSub').textContent = '较上期';
 
   // Recharge KPI
   var rec = d.recharge || {};
   var recCur = rec.current || 0;
   var recLast = rec.last || 0;
   var recGrowth = calcGrowth(recCur, recLast);
-  document.getElementById('kpiRecharge').textContent = fmt(recCur);
-  setKpiTrend(document.getElementById('kpiRecTrend'), document.getElementById('kpiRecSub'), recGrowth);
+  el('kpiRecharge', fmt(recCur), '');
+  el('kpiRecTrend', recGrowth.text, recGrowth.cls);
 }
 
 // ── Gap Calculator ──
@@ -611,18 +726,6 @@ function renderRanking(rawStores) {
     else if (delta < 0) changeHtml = '<span class="rank-change down">↓'+Math.abs(delta)+'</span>';
     else changeHtml = '<span class="rank-change same">—</span>';
 
-    // Sales growth (环比差额)
-    var lastSales = s.last_sales || 0;
-    var salesDiff = s.sales - lastSales;
-    var salesGrowthHtml = '';
-    if (lastSales > 0) {
-      var sign = salesDiff >= 0 ? '↑ ' : '↓ ';
-      var cls = salesDiff >= 0 ? 'up' : 'down';
-      salesGrowthHtml = '<span class="rank-change '+cls+'" style="font-size:11px">'+sign+fmt(Math.abs(salesDiff))+'</span>';
-    } else {
-      salesGrowthHtml = '<span style="font-size:10px;color:#9ca3af">--</span>';
-    }
-
     var numCls = rank===1 ? 'top1' : rank===2 ? 'top2' : rank===3 ? 'top3' : '';
 
     var areaBadge = '';
@@ -634,10 +737,8 @@ function renderRanking(rawStores) {
       '<td class="rank-num '+numCls+'">'+(rank<=3 ? ['🥇','🥈','🥉'][rank-1] : rank)+'</td>'+
       '<td>'+s.name+'</td>'+
       '<td>'+areaBadge+'</td>'+
-      '<td><span class="rank-bar-wrap"><span class="rank-bar '+barCls+'" style="width:'+barW+'%"></span></span></td>'+
-      '<td class="rank-val">'+Math.round(s.rate)+'%</td>'+
-      '<td style="text-align:right;font-weight:600">'+salesGrowthHtml+'</td>'+
-      '<td style="text-align:right">'+changeHtml+'</td>'+
+      '<td><span class="rank-bar-wrap"><span class="rank-bar '+barCls+'" style="width:'+barW+'%"></span><span class="rank-bar-label">'+Math.round(s.rate)+'%</span></span></td>'+
+      '<td style="text-align:right">'+changeHtml+' <span class="rank-info">'+fmt(s.sales)+'</span></td>'+
       '</tr>';
   });
   document.getElementById('rankBody').innerHTML = html;
@@ -814,92 +915,40 @@ function renderCatChart(d) {
   if (!d.category_breakdown||!d.category_breakdown.length) return;
   var c = ensureChart('catChart');
   if (!c) return;
-  var cats = d.category_breakdown.slice(); // copy
-
-  // Build top10 + 其他
-  var topCats = [];
-  var otherSales=0, otherLast=0;
-  if (cats.length > 10) {
-    cats.sort(function(a,b){ return (b.sales||0)-(a.sales||0); });
-    for (var i=0; i<cats.length; i++) {
-      if (i < 10) { topCats.push(cats[i]); }
-      else { otherSales+=cats[i].sales||0; otherLast+=cats[i].last_sales||0; }
-    }
-    if (otherSales>0) topCats.push({name:'其他品类 ('+(cats.length-10)+'项)', sales:otherSales, last_sales:otherLast, share:0});
-  } else {
-    topCats = cats;
-  }
-
+  var cats = d.category_breakdown;
   c.setOption({
-    tooltip: {
-      trigger:'axis', axisPointer:{type:'shadow'},
-      formatter: function(ps){
-        var name = ps[0].name; var html = '<b>'+name+'</b><br/>';
-        ps.forEach(function(p){ html += p.marker+' '+p.seriesName+': <b>¥'+(p.value||0).toLocaleString()+'</b><br/>'; });
-        var diff = (ps[0].value||0) - (ps[1].value||0);
-        var sign = diff>=0?'+':''; var clr = diff>=0?'#16a34a':'#dc2626';
-        html += '<span style="color:'+clr+';font-weight:600">环比差额: '+sign+'¥'+diff.toLocaleString()+'</span>';
-        return html;
-      }
-    },
-    grid: { left:100, right:70, top:10, bottom:20 },
-    legend: { data:['本期','上期'], top:0, textStyle:{fontSize:11}, itemWidth:14, itemHeight:10 },
+    tooltip: { trigger:'axis', axisPointer:{type:'shadow'} },
+    grid: { left:100, right:30, top:8, bottom:8 },
+    legend: { data:['本期','上期','占比'], top:0, textStyle:{fontSize:11} },
     xAxis: {
       type:'value',
-      axisLabel:{formatter:function(v){return (v/10000).toFixed(1)+'万';},fontSize:11,color:'#9ca3af'},
-      splitLine:{lineStyle:{color:'#f3f4f6',type:'dashed'}}
+      axisLabel:{formatter:function(v){return (v/10000).toFixed(1)+'万';},fontSize:11},
+      splitLine:{lineStyle:{color:'#f3f4f6'}}
     },
     yAxis: {
-      type:'category', data: topCats.map(function(c){return c.name;}),
-      axisLabel:{fontSize:12,color:'#374151',fontWeight:500}, axisTick:{show:false}, inverse:true,
-      axisLine:{show:false}
+      type:'category', data: cats.map(function(c){return c.name;}),
+      axisLabel:{fontSize:12}, axisTick:{show:false}, inverse:true
     },
     series: [
       {
         name:'本期', type:'bar',
-        data: topCats.map(function(c){return c.sales||0;}),
-        itemStyle:{borderRadius:[0,4,4,0],
-          color: new echarts.graphic.LinearGradient(0,0,1,0,[
-            {offset:0,color:'#3b82f6'},{offset:1,color:'#2563eb'}
-          ])
-        },
-        barWidth:'40%',
-        label:{show:true,position:'right',fontSize:10,color:'#2563eb',fontWeight:600,
-          formatter:function(p){return '¥'+(p.value/10000).toFixed(1)+'万';}
-        }
+        data: cats.map(function(c){return c.sales;}),
+        itemStyle:{borderRadius:[0,4,4,0],color:'#2563eb'}, barGap:'10%'
       },
       {
         name:'上期', type:'bar',
-        data: topCats.map(function(c){return c.last_sales||0;}),
-        itemStyle:{borderRadius:[0,4,4,0],color:'#f3f4f6',borderColor:'#d1d5db',borderWidth:1},
-        barWidth:'40%',
-        label:{show:true,position:'right',fontSize:10,color:'#9ca3af',fontWeight:500,
-          formatter:function(p){return p.value>0?'¥'+(p.value/10000).toFixed(1)+'万':'';}
-        }
+        data: cats.map(function(c){return c.last_sales;}),
+        itemStyle:{borderRadius:[0,4,4,0],color:'#bfdbfe'}
+      },
+      {
+        name:'占比', type:'line',
+        data: cats.map(function(c){return Math.round(c.share||0);}),
+        lineStyle:{color:'#dc2626',width:2}, symbol:'diamond', symbolSize:8,
+        itemStyle:{color:'#dc2626'},
+        label:{show:true,formatter:'{c}%',fontSize:11,fontWeight:600}
       }
     ]
   });
-}
-
-function renderCategoryFull(cats) {
-  // Full category detail table for the comparison panel
-  if (!cats||!cats.length) return;
-  var html = '';
-  var colors = ['#2563eb','#16a34a','#d97706','#7c3aed','#dc2626','#0891b2','#db2777','#059669','#ca8a04','#9333ea','#ea580c','#0284c7'];
-  cats.forEach(function(c,i){
-    var diff = (c.sales||0) - (c.last_sales||0);
-    var pct = (c.share||0);
-    var diffSign = diff>=0?'+':'';
-    var diffCls = diff>=0?'over':'under';
-    html += '<tr>'+
-      '<td><span class="cat-dot" style="background:'+colors[i%12]+'"></span>'+c.name+'</td>'+
-      '<td class="right" style="font-weight:600">'+fmt(c.sales)+'</td>'+
-      '<td class="right" style="color:#9ca3af">'+fmt(c.last_sales||0)+'</td>'+
-      '<td class="cat-rate '+diffCls+'">'+diffSign+fmt(diff)+'</td>'+
-      '<td class="right" style="color:#6b7280">'+pct.toFixed(1)+'%</td>'+
-      '</tr>';
-  });
-  document.getElementById('catFullBody').innerHTML = html;
 }
 
 // ── Alert System ──
@@ -946,7 +995,169 @@ function renderAlerts(d) {
   }
 }
 
-// ── Orchestration ──
+// ── Store Detail Table ──
+function renderStoreDetail(d) {
+  try {
+    if (!d.stores || !d.stores.length) { console.warn('renderStoreDetail: no stores'); return; }
+    var stores = filteredStores(d.stores);
+    if (!stores.length) { console.warn('renderStoreDetail: no filtered stores for area='+currentArea); return; }
+
+    // Compute derived fields
+    stores.forEach(function(s){
+      s._name            = s.name;
+      s._area            = s.area;
+      s._sales_growth    = s.last_sales>0 ? ((s.sales-s.last_sales)/s.last_sales*100) : 0;
+      s._orders_growth   = s.last_orders>0 ? ((s.customers-s.last_orders)/s.last_orders*100) : 0;
+      s._bill_growth     = s.last_avg_bill>0 ? ((s.avg_bill-s.last_avg_bill)/s.last_avg_bill*100) : 0;
+      s._recharge_growth = s.last_recharge>0 ? ((s.recharge-s.last_recharge)/s.last_recharge*100) : 0;
+      s._recharge_ratio  = s.sales>0 ? (s.recharge/s.sales*100) : 0;
+      s._completion      = s.target>0 ? (s.sales/s.target*100) : 0;
+    });
+
+    // Sort
+    var metricMap = {
+      'name':'_name','area':'_area','sales':'sales','last_sales':'last_sales',
+      'sales_growth':'_sales_growth','customers':'customers','last_orders':'last_orders',
+      'orders_growth':'_orders_growth','avg_bill':'avg_bill','last_avg_bill':'last_avg_bill',
+      'bill_growth':'_bill_growth','recharge':'recharge','last_recharge':'last_recharge',
+      'recharge_growth':'_recharge_growth','recharge_ratio':'_recharge_ratio','completion':'_completion'
+    };
+    var key = metricMap[storeSortMetric] || 'sales';
+    stores.sort(function(a,b){
+      var va = typeof a[key]==='string' ? a[key] : (a[key]||0);
+      var vb = typeof b[key]==='string' ? b[key] : (b[key]||0);
+      if (typeof va === 'string') return storeSortDir==='asc' ? va.localeCompare(vb) : vb.localeCompare(va);
+      return storeSortDir==='asc' ? va-vb : vb-va;
+    });
+
+    storeDetailCache = stores;
+
+    // Update header sort indicators
+    document.querySelectorAll('#storeDetailTable th').forEach(function(th){
+      th.classList.remove('sorted','sorted-asc','sorted-desc');
+      var metric = th.getAttribute('onclick')||'';
+      var m = metric.match(/sortStoreDetail\('([^']+)'\)/);
+      if (m && m[1] === storeSortMetric) {
+        th.classList.add('sorted', storeSortDir==='asc'?'sorted-asc':'sorted-desc');
+      }
+    });
+
+    // Top N filter
+    var display = stores.slice(0, storeTopN);
+
+    // Area manager map
+    var areaMgr = {};
+    if (d.areas) d.areas.forEach(function(a){ areaMgr[a.name] = a.manager||''; });
+
+    // Build rows
+    var html = '';
+    display.forEach(function(s){
+      var areaCls = {'一区':'area-1','二区':'area-2','筹开区':'area-3'}[s.area]||'';
+      var mgr = areaMgr[s.area]||'';
+
+      var growthCls = function(v){ return v>0?'st-up':v<0?'st-down':'st-flat'; };
+      var growthSign = function(v){ return v>0?'+':''; };
+
+      html += '<tr>';
+      // 门店
+      html += '<td class="col-store">'+s.name+'</td>';
+      // 区域/负责人
+      html += '<td><span class="area-badge-sm '+areaCls+'">'+s.area+'</span> '+(mgr?'<span class="st-sub">'+mgr+'</span>':'')+'</td>';
+      // 销售额本期
+      html += '<td><b>'+fmt(s.sales)+'</b></td>';
+      // 销售额上期
+      html += '<td class="st-sub">'+fmt(s.last_sales)+'</td>';
+      // 销售环比
+      html += '<td class="'+growthCls(s._sales_growth)+'">'+growthSign(s._sales_growth)+s._sales_growth.toFixed(1)+'%</td>';
+      // 订单数本期
+      html += '<td>'+s.customers.toLocaleString()+'</td>';
+      // 订单数上期
+      html += '<td class="st-sub">'+s.last_orders.toLocaleString()+'</td>';
+      // 订单环比
+      html += '<td class="'+growthCls(s._orders_growth)+'">'+growthSign(s._orders_growth)+s._orders_growth.toFixed(1)+'%</td>';
+      // 客单价本期
+      html += '<td>¥'+s.avg_bill+'</td>';
+      // 客单价上期
+      html += '<td class="st-sub">¥'+s.last_avg_bill+'</td>';
+      // 客单环比
+      html += '<td class="'+growthCls(s._bill_growth)+'">'+growthSign(s._bill_growth)+s._bill_growth.toFixed(1)+'%</td>';
+      // 会员储值本期
+      html += '<td>¥'+s.recharge.toFixed(0)+'</td>';
+      // 会员储值上期
+      html += '<td class="st-sub">¥'+s.last_recharge.toFixed(0)+'</td>';
+      // 储值环比
+      html += '<td class="'+growthCls(s._recharge_growth)+'">'+growthSign(s._recharge_growth)+s._recharge_growth.toFixed(1)+'%</td>';
+      // 储值占比
+      html += '<td>'+s._recharge_ratio.toFixed(1)+'%</td>';
+      // 任务达成
+      var compCls = s._completion>=85?'st-good':s._completion>=60?'st-flat':'st-alert';
+      var compBarCls = s._completion>=85?'high':s._completion>=60?'mid':'low';
+      var compBarW = Math.min(Math.round(s._completion), 100);
+      html += '<td style="min-width:90px"><span class="rank-bar-wrap" style="width:80px;height:12px"><span class="rank-bar '+compBarCls+'" style="width:'+compBarW+'%"></span><span class="rank-bar-label">'+s._completion.toFixed(1)+'%</span></span></td>';
+      // 建议
+      html += '<td>';
+      (s.suggestions||[]).forEach(function(sugg){
+        var sc = 'blue';
+        if (sugg.indexOf('🔴')>=0) sc='red';
+        else if (sugg.indexOf('🟠')>=0) sc='orange';
+        else if (sugg.indexOf('🟡')>=0) sc='yellow';
+        else if (sugg.indexOf('🟢')>=0) sc='green';
+        else if (sugg.indexOf('📉')>=0) sc='red';
+        html += '<span class="sugg-tag '+sc+'">'+sugg+'</span>';
+      });
+      html += '</td>';
+      html += '</tr>';
+    });
+
+    document.getElementById('storeDetailBody').innerHTML = html;
+    document.getElementById('storeDetailSub').textContent = '共'+stores.length+'家门店 · 显示前'+storeTopN+' · 排序: '+(storeSortMetric==='sales'?'销售额':storeSortMetric)+' · '+currentPeriod;
+  } catch(e) {
+    console.error('renderStoreDetail error:', e);
+  }
+}
+
+function sortStoreDetail(metric) {
+  if (storeSortMetric === metric) {
+    storeSortDir = storeSortDir === 'asc' ? 'desc' : 'asc';
+  } else {
+    storeSortMetric = metric;
+    storeSortDir = metric === 'name' || metric === 'area' ? 'asc' : 'desc';
+  }
+  var d = allData[currentPeriod];
+  if (d) renderStoreDetail(d);
+}
+
+function switchStoreTopN(n) {
+  storeTopN = n;
+  document.querySelectorAll('.store-topn-tab').forEach(function(b,i){
+    b.className = 'store-topn-tab' + (i===0&&n===10||i===1&&n===20||i===2&&n===30 ? ' active' : '');
+  });
+  var d = allData[currentPeriod];
+  if (d) renderStoreDetail(d);
+}
+
+function exportStoreTable() {
+  var panel = document.getElementById('storeDetailPanel');
+  // Simple approach: copy table as HTML, open in new window for print/screenshot
+  var title = '济南区域·门店明细';
+  var styles = '';
+  var rules = document.styleSheets;
+  try {
+    for (var i=0; i<rules.length; i++) {
+      try { styles += Array.from(rules[i].cssRules).map(function(r){return r.cssText;}).join('\n'); }
+      catch(e){}
+    }
+  } catch(e){}
+  var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'+title+'</title><style>'+styles+'</style></head><body style="padding:20px;">'+
+    '<h2>🔍 '+title+'</h2><p>'+document.getElementById('storeDetailSub').textContent+'</p>'+
+    panel.querySelector('.store-table-wrap').outerHTML+
+    '</body></html>';
+  var w = window.open('','_blank','width=1400,height=900');
+  w.document.write(html);
+  w.document.close();
+}
+
+// ── Area Completion Cards ──
 function renderAreaCompletion(d) {
   var row = document.getElementById('areaCompRow');
   // Only show for monthly view
@@ -975,20 +1186,32 @@ function renderAreaCompletion(d) {
 function renderAll() {
   var d = allData[currentPeriod];
   if (!d) return;
-  renderKpi(d);
-  renderGap(d);
-  renderAreaCompletion(d);
-  renderRanking(d.stores);
-  renderCategory(d.category_breakdown, d.total_sales);
-  renderCategoryFull(d.category_breakdown);
-  renderAlerts(d);
-  renderTrendChart(d);
-  renderAreaChart(d);
-  renderCatChart(d);
+  var fns = [
+    ['renderKpi', renderKpi],
+    ['renderGap', renderGap],
+    ['renderAreaCompletion', renderAreaCompletion],
+    ['renderRanking', function(){ renderRanking(d.stores); }],
+    ['renderCategory', function(){ renderCategory(d.category_breakdown, d.total_sales); }],
+    ['renderAlerts', renderAlerts],
+    ['renderTrendChart', renderTrendChart],
+    ['renderAreaChart', renderAreaChart],
+    ['renderCatChart', renderCatChart],
+    ['renderStoreDetail', renderStoreDetail]
+  ];
+  for (var i=0; i<fns.length; i++) {
+    try {
+      fns[i][1](d);
+    } catch(e) {
+      console.error('renderAll ['+fns[i][0]+'] error:', e);
+    }
+  }
 }
 
 function switchPeriod(period) {
   currentPeriod = period;
+  // Reset store detail sort to default when switching periods
+  storeSortMetric = 'sales';
+  storeSortDir = 'desc';
   document.getElementById('btnDay').className   = (period==='day')   ? 'active':'';
   document.getElementById('btnWeek').className  = (period==='week')  ? 'active':'';
   document.getElementById('btnMonth').className = (period==='month') ? 'active':'';
