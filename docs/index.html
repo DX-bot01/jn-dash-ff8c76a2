@@ -336,7 +336,7 @@
         <div class="kpi-value" id="kpiSales">--</div>
         <div class="kpi-footer">
           <span class="kpi-trend" id="kpiSalesTrend">--</span>
-          <span class="kpi-sub">较上期</span>
+          <span class="kpi-sub" id="kpiSalesSub">较上期</span>
         </div>
       </div>
       <div class="kpi-card rate">
@@ -352,7 +352,7 @@
         <div class="kpi-value" id="kpiAvgBill">--</div>
         <div class="kpi-footer">
           <span class="kpi-trend" id="kpiAvgTrend">--</span>
-          <span class="kpi-sub">较上期</span>
+          <span class="kpi-sub" id="kpiAvgSub">较上期</span>
         </div>
       </div>
       <div class="kpi-card stores">
@@ -360,7 +360,7 @@
         <div class="kpi-value" id="kpiStores">--</div>
         <div class="kpi-footer">
           <span class="kpi-trend" id="kpiStoreTrend">--</span>
-          <span class="kpi-sub">较上期</span>
+          <span class="kpi-sub" id="kpiStoreSub">较上期</span>
         </div>
       </div>
       <div class="kpi-card recharge">
@@ -368,7 +368,7 @@
         <div class="kpi-value" id="kpiRecharge">--</div>
         <div class="kpi-footer">
           <span class="kpi-trend" id="kpiRecTrend">--</span>
-          <span class="kpi-sub">较上期</span>
+          <span class="kpi-sub" id="kpiRecSub">较上期</span>
         </div>
       </div>
     </div>
@@ -384,7 +384,7 @@
         <div class="rank-scroll">
           <table class="rank-table">
             <thead><tr>
-              <th>#</th><th>门店</th><th>区域</th><th>进度</th><th class="right">完成率</th><th class="right">环比</th>
+              <th>#</th><th>门店</th><th>区域</th><th>进度</th><th class="right">完成率</th><th class="right">环比金额</th><th class="right">排名</th>
             </tr></thead>
             <tbody id="rankBody"></tbody>
           </table>
@@ -470,9 +470,18 @@ function fmtPct(v) { return Math.round(v)+'%'; }
 function fmtMoney(v) { return '¥'+v.toLocaleString(); }
 
 function calcGrowth(cur, prev) {
-  if (!prev || prev===0) return {text:'--',cls:''};
-  var g = ((cur-prev)/prev)*100;
-  return { text: (g>=0?'+':'')+Math.abs(g).toFixed(1)+'%', cls: g>=0?'up':'down' };
+  // Returns both absolute diff and percentage for 环比 display
+  if (!prev || prev===0) return {text:'--', cls:'', abs:0, absText:'--', pct:0};
+  var diff = cur - prev;
+  var g = (diff/prev)*100;
+  var absText = (diff>=0?'↑ ':'↓ ') + fmt(Math.abs(diff));
+  return {
+    text: absText + ' (' + (g>=0?'+':'') + Math.abs(g).toFixed(1) + '%)',
+    cls: diff>=0?'up':'down',
+    abs: diff,
+    absText: absText,
+    pct: g
+  };
 }
 
 // ── Area Filter ──
@@ -530,20 +539,31 @@ function renderKpi(d) {
   document.getElementById('kpiAvgBill').textContent = '¥'+avgBill;
   document.getElementById('kpiStores').textContent = achieved+'/'+totalStores;
 
-  var el = function(id,txt,cls){ var e=document.getElementById(id); e.textContent=txt; e.className='kpi-trend '+(cls||''); };
-  el('kpiSalesTrend', sg.text, sg.cls);
-  el('kpiCompTrend', '目标 '+fmtPct(compRate), '');
-  el('kpiAvgTrend', ag.text, ag.cls);
-  el('kpiStoreTrend', (stg>=0?'+':'')+stg, stg>=0?'up':'down');
+  // Helper: trend badge shows %, sub shows absolute
+  var setKpiTrend = function(trendEl, subEl, growth, unit){
+    trendEl.textContent = growth.cls ? (growth.pct>=0?'+':'')+Math.abs(growth.pct).toFixed(1)+'%' : '--';
+    trendEl.className = 'kpi-trend ' + (growth.cls||'');
+    subEl.textContent = unit==='%' ? '' : (growth.absText||'') + ' 较上期';
+    if (unit==='%') subEl.textContent = '完成率';
+  };
+
+  setKpiTrend(document.getElementById('kpiSalesTrend'), document.getElementById('kpiSalesSub'), sg);
+  document.getElementById('kpiCompTrend').textContent = '目标 '+fmtPct(compRate);
+  document.getElementById('kpiCompTrend').className = 'kpi-trend ';
   document.getElementById('kpiCompSub').textContent = currentArea==='all' ? '' : '筛选: '+currentArea;
+  setKpiTrend(document.getElementById('kpiAvgTrend'), document.getElementById('kpiAvgSub'), ag);
+  var stTrend = document.getElementById('kpiStoreTrend');
+  stTrend.textContent = (stg>=0?'+':'')+stg;
+  stTrend.className = 'kpi-trend '+(stg>=0?'up':'down');
+  document.getElementById('kpiStoreSub').textContent = '较上期';
 
   // Recharge KPI
   var rec = d.recharge || {};
   var recCur = rec.current || 0;
   var recLast = rec.last || 0;
   var recGrowth = calcGrowth(recCur, recLast);
-  el('kpiRecharge', fmt(recCur), '');
-  el('kpiRecTrend', recGrowth.text, recGrowth.cls);
+  document.getElementById('kpiRecharge').textContent = fmt(recCur);
+  setKpiTrend(document.getElementById('kpiRecTrend'), document.getElementById('kpiRecSub'), recGrowth);
 }
 
 // ── Gap Calculator ──
@@ -591,6 +611,18 @@ function renderRanking(rawStores) {
     else if (delta < 0) changeHtml = '<span class="rank-change down">↓'+Math.abs(delta)+'</span>';
     else changeHtml = '<span class="rank-change same">—</span>';
 
+    // Sales growth (环比差额)
+    var lastSales = s.last_sales || 0;
+    var salesDiff = s.sales - lastSales;
+    var salesGrowthHtml = '';
+    if (lastSales > 0) {
+      var sign = salesDiff >= 0 ? '↑ ' : '↓ ';
+      var cls = salesDiff >= 0 ? 'up' : 'down';
+      salesGrowthHtml = '<span class="rank-change '+cls+'" style="font-size:11px">'+sign+fmt(Math.abs(salesDiff))+'</span>';
+    } else {
+      salesGrowthHtml = '<span style="font-size:10px;color:#9ca3af">--</span>';
+    }
+
     var numCls = rank===1 ? 'top1' : rank===2 ? 'top2' : rank===3 ? 'top3' : '';
 
     var areaBadge = '';
@@ -604,7 +636,8 @@ function renderRanking(rawStores) {
       '<td>'+areaBadge+'</td>'+
       '<td><span class="rank-bar-wrap"><span class="rank-bar '+barCls+'" style="width:'+barW+'%"></span></span></td>'+
       '<td class="rank-val">'+Math.round(s.rate)+'%</td>'+
-      '<td style="text-align:right">'+changeHtml+' <span class="rank-info">'+fmt(s.sales)+'</span></td>'+
+      '<td style="text-align:right;font-weight:600">'+salesGrowthHtml+'</td>'+
+      '<td style="text-align:right">'+changeHtml+'</td>'+
       '</tr>';
   });
   document.getElementById('rankBody').innerHTML = html;

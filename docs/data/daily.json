@@ -22,7 +22,8 @@
       "target": 230644.8,
       "customers": 478,
       "avg_bill": 11.91,
-      "prev_rank": 1
+      "prev_rank": 1,
+      "last_sales": 5502.16
     },
     {
       "name": "济南城投伴山居店",
@@ -31,7 +32,8 @@
       "target": 242230.69,
       "customers": 547,
       "avg_bill": 11.09,
-      "prev_rank": 2
+      "prev_rank": 2,
+      "last_sales": 6717.26
     },
     {
       "name": "济南白马南路店",
@@ -40,7 +42,8 @@
       "target": 255711.78,
       "customers": 561,
       "avg_bill": 14.96,
-      "prev_rank": 3
+      "prev_rank": 3,
+      "last_sales": 7052.69
     },
     {
       "name": "济南文贤居店",
@@ -49,7 +52,8 @@
       "target": 170861.75,
       "customers": 321,
       "avg_bill": 14.74,
-      "prev_rank": 4
+      "prev_rank": 4,
+      "last_sales": 4086.27
     },
     {
       "name": "济南海信九麓府店",
@@ -58,7 +62,8 @@
       "target": 167983.19,
       "customers": 347,
       "avg_bill": 14.03,
-      "prev_rank": 5
+      "prev_rank": 5,
+      "last_sales": 4120.47
     },
     {
       "name": "济南梁王新城",
@@ -67,7 +72,8 @@
       "target": 225848.35,
       "customers": 419,
       "avg_bill": 14.52,
-      "prev_rank": 6
+      "prev_rank": 6,
+      "last_sales": 5449.45
     },
     {
       "name": "济南仁华居店",
@@ -76,7 +82,8 @@
       "target": 143734.04,
       "customers": 319,
       "avg_bill": 16.32,
-      "prev_rank": 7
+      "prev_rank": 7,
+      "last_sales": 3059.23
     },
     {
       "name": "济南中海云著店",
@@ -85,7 +92,8 @@
       "target": 121625.02,
       "customers": 251,
       "avg_bill": 13.54,
-      "prev_rank": 9
+      "prev_rank": 9,
+      "last_sales": 3581.52
     },
     {
       "name": "济南香溢澜庭店",
@@ -94,7 +102,8 @@
       "target": 207605.99,
       "customers": 431,
       "avg_bill": 13.0,
-      "prev_rank": 10
+      "prev_rank": 10,
+      "last_sales": 5875.29
     },
     {
       "name": "济南天鸿万卷府店",
@@ -103,7 +112,8 @@
       "target": 196786.69,
       "customers": 427,
       "avg_bill": 12.38,
-      "prev_rank": 11
+      "prev_rank": 11,
+      "last_sales": 5024.91
     },
     {
       "name": "济南保利和塘悦色店",
@@ -112,7 +122,8 @@
       "target": 157403.34,
       "customers": 282,
       "avg_bill": 13.48,
-      "prev_rank": 12
+      "prev_rank": 12,
+      "last_sales": 3690.11
     },
     {
       "name": "济南祥泰城店",
@@ -121,7 +132,8 @@
       "target": 125370.37,
       "customers": 293,
       "avg_bill": 11.99,
-      "prev_rank": 13
+      "prev_rank": 13,
+      "last_sales": 3414.45
     },
     {
       "name": "济南御山首府店",
@@ -130,7 +142,8 @@
       "target": 143067.56,
       "customers": 297,
       "avg_bill": 14.0,
-      "prev_rank": 14
+      "prev_rank": 14,
+      "last_sales": 4605.75
     },
     {
       "name": "济南御景台店",
@@ -139,7 +152,8 @@
       "target": 120000.0,
       "customers": 244,
       "avg_bill": 10.57,
-      "prev_rank": 15
+      "prev_rank": 15,
+      "last_sales": 2546.84
     },
     {
       "name": "济南天鸿万象东方店",
@@ -148,7 +162,8 @@
       "target": 122098.45,
       "customers": 252,
       "avg_bill": 14.15,
-      "prev_rank": 16
+      "prev_rank": 16,
+      "last_sales": 2723.39
     },
     {
       "name": "济南中建新悦城店",
@@ -157,7 +172,8 @@
       "target": 103743.23,
       "customers": 252,
       "avg_bill": 14.07,
-      "prev_rank": 17
+      "prev_rank": 17,
+      "last_sales": 4523.84
     },
     {
       "name": "济南北徐花园店",
@@ -166,7 +182,8 @@
       "target": 120000.0,
       "customers": 75,
       "avg_bill": 12.58,
-      "prev_rank": 18
+      "prev_rank": 18,
+      "last_sales": 1311.03
     },
     {
       "name": "济南绿地国际花都店",
@@ -175,7 +192,8 @@
       "target": 186494.52,
       "customers": 365,
       "avg_bill": 14.34,
-      "prev_rank": 19
+      "prev_rank": 19,
+      "last_sales": 4632.09
     },
     {
       "name": "济南鲁建小区店",
@@ -184,7 +202,8 @@
       "target": 194112.07,
       "customers": 429,
       "avg_bill": 14.09,
-      "prev_rank": 20
+      "prev_rank": 20,
+      "last_sales": 5226.0
     },
     {
       "name": "济南城市之星店",
@@ -193,7 +212,8 @@
       "target": 120000.0,
       "customers": 136,
       "avg_bill": 13.25,
-      "prev_rank": 21
+      "prev_rank": 21,
+      "last_sales": 2717.81
     }
   ],
   "areas": [
