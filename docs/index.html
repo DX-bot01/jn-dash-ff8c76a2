@@ -647,7 +647,7 @@ function fmtMoney(v) { return '¥'+v.toLocaleString(); }
 function calcGrowth(cur, prev) {
   if (!prev || prev===0) return {text:'--',cls:''};
   var g = ((cur-prev)/prev)*100;
-  return { text: (g>=0?'+':'')+Math.abs(g).toFixed(1)+'%', cls: g>=0?'up':'down' };
+  return { text: (g>=0?'+':'')+Math.abs(g).toFixed(2)+'%', cls: g>=0?'up':'down' };
 }
 
 // ── Area Filter ──
@@ -768,7 +768,8 @@ function renderKpi(d) {
         var dm = md.date.match(/\((\d+)-(\d+)日?\)/);
         if (dm) { dayNum = parseInt(dm[2]); totalDays = dayNum + (md.month_remaining_days || 0); }
       }
-      var timePct = totalDays > 0 ? Math.round(dayNum / totalDays * 100) : 0;
+      var timePctRaw = totalDays > 0 ? dayNum / totalDays * 100 : 0;
+      var timePct = timePctRaw.toFixed(2);
       progNode.innerHTML = '⏳ 时间进度 <b>' + timePct + '%</b>'
         + '<span class="kpi-progress-bar"><span class="kpi-progress-fill" style="width:' + timePct + '%"></span></span>';
       progNode.style.display = 'flex';
@@ -855,7 +856,7 @@ function renderRanking(rawStores) {
       '<td class="rank-num '+numCls+'">'+(rank<=3 ? ['🥇','🥈','🥉'][rank-1] : rank)+'</td>'+
       '<td>'+s.name+'</td>'+
       '<td>'+areaBadge+'</td>'+
-      '<td><span class="rank-bar-wrap"><span class="rank-bar '+barCls+'" style="width:'+barW+'%"></span><span class="rank-bar-label">'+Math.round(s.rate)+'%</span></span></td>'+
+      '<td><span class="rank-bar-wrap"><span class="rank-bar '+barCls+'" style="width:'+barW+'%"></span><span class="rank-bar-label">'+s.rate.toFixed(2)+'%</span></span></td>'+
       '<td style="text-align:right">'+changeHtml+' <span class="rank-info">'+fmt(s.sales)+'</span></td>'+
       '</tr>';
   });
@@ -905,7 +906,7 @@ function renderTrendChart(d) {
         var html = ps[0].axisValue+'<br/>';
         ps.forEach(function(p){
           html += '<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:'+p.color+';margin-right:6px"></span>';
-          html += p.seriesName+': <b>'+p.value+'%</b><br/>';
+          html += p.seriesName+': <b>'+parseFloat(p.value).toFixed(2)+'%</b><br/>';
         });
         return html;
       }
@@ -920,7 +921,7 @@ function renderTrendChart(d) {
       type:'value',
       min: function(val){ return Math.max(0, val.min - 10); },
       max: function(val){ return val.max + 10; },
-      axisLabel:{formatter:'{value}%',color:'#9ca3af',fontSize:11},
+      axisLabel:{formatter:function(v){return v.toFixed(2)+'%';},color:'#9ca3af',fontSize:11},
       splitLine:{lineStyle:{color:'#f3f4f6'}}
     },
     series: [
@@ -1044,7 +1045,7 @@ function renderCatChart(d) {
       formatter: function(ps){
         var html = ps[0].axisValue+'<br/>';
         ps.forEach(function(p){
-          html += p.marker+' '+p.seriesName+': <b>'+(p.seriesName==='占比'?p.value+'%':'¥'+(p.value||0).toLocaleString())+'</b><br/>';
+          html += p.marker+' '+p.seriesName+': <b>'+(p.seriesName==='占比'?p.value.toFixed(2)+'%':'¥'+(p.value||0).toLocaleString())+'</b><br/>';
         });
         return html;
       }
@@ -1073,10 +1074,10 @@ function renderCatChart(d) {
       },
       {
         name:'占比', type:'line',
-        data: cats.map(function(c){return Math.round(c.share||0);}),
+        data: cats.map(function(c){return c.share||0;}),
         lineStyle:{color:'#dc2626',width:2}, symbol:'diamond', symbolSize:8,
         itemStyle:{color:'#dc2626'},
-        label:{show:true,formatter:'{c}%',fontSize:10,fontWeight:600,position:'right'}
+        label:{show:true,formatter:function(p){return parseFloat(p.value).toFixed(2)+'%';},fontSize:10,fontWeight:600,position:'right'}
       }
     ]
   });
@@ -1179,7 +1180,7 @@ function renderAlerts(d) {
   var stores = filteredStores(d.stores);
   stores.forEach(function(s){
     var rate = s.target>0 ? s.sales/s.target*100 : 0;
-    if (rate < 60) lowStores.push(s.name+' 仅<b>'+Math.round(rate)+'%</b>');
+    if (rate < 60) lowStores.push(s.name+' 仅<b>'+rate.toFixed(2)+'%</b>');
   });
   if (lowStores.length) alerts.push('🔴 '+lowStores.length+'家门店完成率低于60%: '+lowStores.join(' · '));
 
@@ -1188,7 +1189,7 @@ function renderAlerts(d) {
     var rates = d.trend.completion_rates;
     var n = rates.length;
     if (rates[n-1] < rates[n-2] && rates[n-2] < rates[n-3]) {
-      alerts.push('📉 连续2天环比下滑! (前日'+rates[n-3].toFixed(1)+'% → 昨日'+rates[n-2].toFixed(1)+'% → 今日'+rates[n-1].toFixed(1)+'%)');
+      alerts.push('📉 连续2天环比下滑! (前日'+rates[n-3].toFixed(2)+'% → 昨日'+rates[n-2].toFixed(2)+'% → 今日'+rates[n-1].toFixed(2)+'%)');
     }
   }
 
@@ -1286,27 +1287,27 @@ function renderStoreDetail(d) {
       // 销售额上期
       html += '<td class="st-sub">'+fmt(s.last_sales)+'</td>';
       // 销售环比
-      html += '<td class="'+growthCls(s._sales_growth)+'">'+growthSign(s._sales_growth)+s._sales_growth.toFixed(1)+'%</td>';
+      html += '<td class="'+growthCls(s._sales_growth)+'">'+growthSign(s._sales_growth)+s._sales_growth.toFixed(2)+'%</td>';
       // 订单数本期
       html += '<td>'+s.customers.toLocaleString()+'</td>';
       // 订单数上期
       html += '<td class="st-sub">'+s.last_orders.toLocaleString()+'</td>';
       // 订单环比
-      html += '<td class="'+growthCls(s._orders_growth)+'">'+growthSign(s._orders_growth)+s._orders_growth.toFixed(1)+'%</td>';
+      html += '<td class="'+growthCls(s._orders_growth)+'">'+growthSign(s._orders_growth)+s._orders_growth.toFixed(2)+'%</td>';
       // 客单价本期
       html += '<td>¥'+s.avg_bill+'</td>';
       // 客单价上期
       html += '<td class="st-sub">¥'+s.last_avg_bill+'</td>';
       // 客单环比
-      html += '<td class="'+growthCls(s._bill_growth)+'">'+growthSign(s._bill_growth)+s._bill_growth.toFixed(1)+'%</td>';
+      html += '<td class="'+growthCls(s._bill_growth)+'">'+growthSign(s._bill_growth)+s._bill_growth.toFixed(2)+'%</td>';
       // 会员储值本期
       html += '<td>¥'+s.recharge.toFixed(0)+'</td>';
       // 会员储值上期
       html += '<td class="st-sub">¥'+s.last_recharge.toFixed(0)+'</td>';
       // 储值环比
-      html += '<td class="'+growthCls(s._recharge_growth)+'">'+growthSign(s._recharge_growth)+s._recharge_growth.toFixed(1)+'%</td>';
+      html += '<td class="'+growthCls(s._recharge_growth)+'">'+growthSign(s._recharge_growth)+s._recharge_growth.toFixed(2)+'%</td>';
       // 储值占比
-      html += '<td>'+s._recharge_ratio.toFixed(1)+'%</td>';
+      html += '<td>'+s._recharge_ratio.toFixed(2)+'%</td>';
       // 任务达成
       var compCls = s._completion>=85?'st-good':s._completion>=60?'st-flat':'st-alert';
       var compBarCls = s._completion>=85?'high':s._completion>=60?'mid':'low';
