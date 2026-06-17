@@ -210,7 +210,20 @@
   .rank-scroll::-webkit-scrollbar-thumb { background: #d1d5db; border-radius:2px; }
 
   /* ── Charts ── */
-  .chart-wrap { width:100%; }
+  .chart-wrap {
+    width:100%; min-height:180px;
+    resize:vertical; overflow:auto;
+    border-bottom: 2px solid transparent;
+    transition: border-color .2s;
+  }
+  .chart-wrap:hover { border-bottom-color: var(--blue); }
+  .chart-wrap::after {
+    content: ''; display: block; height: 6px;
+    margin: 0 auto; width: 32px; border-radius: 3px;
+    background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
+    opacity: 0; transition: opacity .3s;
+  }
+  .chart-wrap:hover::after { opacity: 1; }
   .chart-wrap.h280 { height:280px; }
   .chart-wrap.h240 { height:240px; }
   .chart-wrap.h220 { height:220px; }
@@ -1530,6 +1543,20 @@ async function loadData() {
 loadData();
 setInterval(function(){ loadData(); }, 300000);
 window.addEventListener('resize', resizeCharts);
+// 图表拖拽拉伸后自动刷新尺寸
+(function(){
+  if (typeof ResizeObserver !== 'undefined') {
+    var ro = new ResizeObserver(function(entries){
+      entries.forEach(function(e){
+        var id = e.target.querySelector('[id]');
+        if (id && charts[id.id]) {
+          charts[id.id].resize();
+        }
+      });
+    });
+    document.querySelectorAll('.chart-wrap').forEach(function(el){ ro.observe(el); });
+  }
+})();
 </script>
 </body>
 </html>
