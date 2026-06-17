@@ -212,21 +212,27 @@
   /* ── Charts ── */
   .chart-wrap {
     width:100%; min-height:180px;
-    resize:vertical; overflow:auto;
-    border-bottom: 2px solid transparent;
-    transition: border-color .2s;
+    position:relative;
   }
-  .chart-wrap:hover { border-bottom-color: var(--blue); }
-  .chart-wrap::after {
-    content: ''; display: block; height: 6px;
-    margin: 0 auto; width: 32px; border-radius: 3px;
-    background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
-    opacity: 0; transition: opacity .3s;
-  }
-  .chart-wrap:hover::after { opacity: 1; }
   .chart-wrap.h280 { height:280px; }
   .chart-wrap.h240 { height:240px; }
   .chart-wrap.h220 { height:220px; }
+  .chart-drag-bar {
+    height: 10px; width: 100%; cursor: row-resize;
+    background: transparent;
+    border-radius: 0 0 var(--radius) var(--radius);
+    transition: background .2s;
+    position: relative;
+  }
+  .chart-drag-bar:hover { background: rgba(37,99,235,0.08); }
+  .chart-drag-bar::after {
+    content: ''; position: absolute;
+    left: 50%; top: 50%; transform: translate(-50%, -50%);
+    width: 40px; height: 4px; border-radius: 2px;
+    background: #cbd5e1;
+    opacity: 0; transition: opacity .2s;
+  }
+  .chart-drag-bar:hover::after { opacity: 1; }
 
   /* ── Category table ── */
   .cat-table { width:100%; border-collapse:collapse; }
@@ -511,7 +517,8 @@
           <span class="panel-title">📉 完成率趋势 · 近7天</span>
         </div>
         <div class="chart-wrap h280" id="trendChartWrap">
-          <div id="trendChart" style="width:100%;height:100%"></div>
+          <div id="trendChart" style="width:100%;height:calc(100% - 10px)"></div>
+          <div class="chart-drag-bar" title="拖拽调整高度"></div>
         </div>
       </div>
     </div>
@@ -524,7 +531,8 @@
           <span class="panel-title" id="areaChartTitle">🏙️ 各区域销售额对比</span>
         </div>
         <div class="chart-wrap h240" id="areaChartWrap">
-          <div id="areaChart" style="width:100%;height:100%"></div>
+          <div id="areaChart" style="width:100%;height:calc(100% - 10px)"></div>
+          <div class="chart-drag-bar" title="拖拽调整高度"></div>
         </div>
       </div>
 
@@ -549,7 +557,8 @@
         <span class="panel-title">📊 品类完成率 & 环比对比</span>
       </div>
       <div class="chart-wrap h280" id="catChartWrap">
-        <div id="catChart" style="width:100%;height:100%"></div>
+        <div id="catChart" style="width:100%;height:calc(100% - 10px)"></div>
+        <div class="chart-drag-bar" title="拖拽调整高度"></div>
       </div>
     </div>
 
@@ -559,7 +568,8 @@
         <span class="panel-title" id="dailyRevTitle">💰 实收金额日对比</span>
       </div>
       <div class="chart-wrap h280" id="dailyRevChartWrap">
-        <div id="dailyRevChart" style="width:100%;height:100%"></div>
+        <div id="dailyRevChart" style="width:100%;height:calc(100% - 10px)"></div>
+        <div class="chart-drag-bar" title="拖拽调整高度"></div>
       </div>
     </div>
 
@@ -1543,19 +1553,37 @@ async function loadData() {
 loadData();
 setInterval(function(){ loadData(); }, 300000);
 window.addEventListener('resize', resizeCharts);
-// 图表拖拽拉伸后自动刷新尺寸
+// 图表底部拖拽条：拖拽调整图表高度
 (function(){
-  if (typeof ResizeObserver !== 'undefined') {
-    var ro = new ResizeObserver(function(entries){
-      entries.forEach(function(e){
-        var id = e.target.querySelector('[id]');
-        if (id && charts[id.id]) {
-          charts[id.id].resize();
-        }
-      });
+  var dragState = null;
+  document.querySelectorAll('.chart-drag-bar').forEach(function(bar){
+    bar.addEventListener('mousedown', function(e){
+      var wrap = bar.parentElement;
+      var rect = wrap.getBoundingClientRect();
+      dragState = { wrap: wrap, startY: e.clientY, startH: rect.height, minH: 180 };
+      e.preventDefault();
     });
-    document.querySelectorAll('.chart-wrap').forEach(function(el){ ro.observe(el); });
-  }
+  });
+  document.addEventListener('mousemove', function(e){
+    if (!dragState) return;
+    var dy = e.clientY - dragState.startY;
+    var newH = Math.max(dragState.minH, dragState.startH + dy);
+    dragState.wrap.style.height = newH + 'px';
+    // resize the chart inside
+    var chartId = dragState.wrap.querySelector('[id]');
+    if (chartId && charts[chartId.id]) {
+      charts[chartId.id].resize();
+    }
+  });
+  document.addEventListener('mouseup', function(){
+    if (!dragState) return;
+    var chartId = dragState.wrap.querySelector('[id]');
+    if (chartId && charts[chartId.id]) {
+      // 二次 resize 确保精确
+      setTimeout(function(){ charts[chartId.id].resize(); }, 50);
+    }
+    dragState = null;
+  });
 })();
 </script>
 </body>
