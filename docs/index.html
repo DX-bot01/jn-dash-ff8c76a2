@@ -540,6 +540,16 @@
       </div>
     </div>
 
+    <!-- Row 3.5: Daily Revenue Comparison (week/month only) -->
+    <div class="panel full" style="margin-bottom:18px;display:none" id="dailyRevPanel">
+      <div class="panel-header">
+        <span class="panel-title" id="dailyRevTitle">💰 实收金额日对比</span>
+      </div>
+      <div class="chart-wrap h280" id="dailyRevChartWrap">
+        <div id="dailyRevChart" style="width:100%;height:100%"></div>
+      </div>
+    </div>
+
     <!-- Row 4: 门店明细与异常预警 (full width) -->
     <div class="panel full store-detail-panel" id="storeDetailPanel">
       <div class="panel-header">
@@ -1001,6 +1011,11 @@ function renderCatChart(d) {
   var c = ensureChart('catChart');
   if (!c) return;
   var cats = d.category_breakdown;
+  // 动态周期标签
+  var periodLabels = {cur:'本期',prev:'上期'};
+  if (currentPeriod === 'day')      { periodLabels = {cur:'昨日',prev:'上周同期'}; }
+  else if (currentPeriod === 'week') { periodLabels = {cur:'本周',prev:'上周'}; }
+  else if (currentPeriod === 'month'){ periodLabels = {cur:'本月',prev:'上月'}; }
   c.setOption({
     tooltip: { trigger:'axis', axisPointer:{type:'shadow'},
       formatter: function(ps){
@@ -1012,7 +1027,7 @@ function renderCatChart(d) {
       }
     },
     grid: { left:85, right:55, top:8, bottom:28 },
-    legend: { data:['本期','上期','占比'], bottom:0, textStyle:{fontSize:11}, itemWidth:10, itemHeight:10 },
+    legend: { data:[periodLabels.cur,periodLabels.prev,'占比'], bottom:0, textStyle:{fontSize:11}, itemWidth:10, itemHeight:10 },
     xAxis: {
       type:'value',
       axisLabel:{formatter:function(v){return (v/10000).toFixed(1)+'万';},fontSize:11},
@@ -1024,12 +1039,12 @@ function renderCatChart(d) {
     },
     series: [
       {
-        name:'本期', type:'bar',
+        name: periodLabels.cur, type:'bar',
         data: cats.map(function(c){return c.sales;}),
         itemStyle:{borderRadius:[0,4,4,0],color:'#2563eb'}, barGap:'10%'
       },
       {
-        name:'上期', type:'bar',
+        name: periodLabels.prev, type:'bar',
         data: cats.map(function(c){return c.last_sales;}),
         itemStyle:{borderRadius:[0,4,4,0],color:'#bfdbfe'}
       },
@@ -1039,6 +1054,93 @@ function renderCatChart(d) {
         lineStyle:{color:'#dc2626',width:2}, symbol:'diamond', symbolSize:8,
         itemStyle:{color:'#dc2626'},
         label:{show:true,formatter:'{c}%',fontSize:10,fontWeight:600,position:'right'}
+      }
+    ]
+  });
+}
+
+// ── Daily Revenue Comparison Chart (Week/Month only) ──
+function renderDailyRevChart(d) {
+  var dr = d.daily_revenue;
+  if (!dr || !dr.labels || !dr.labels.length) {
+    document.getElementById('dailyRevPanel').style.display = 'none';
+    return;
+  }
+  if (currentPeriod === 'day') {
+    document.getElementById('dailyRevPanel').style.display = 'none';
+    return;
+  }
+  document.getElementById('dailyRevPanel').style.display = 'block';
+
+  // Update title
+  var titleEl = document.getElementById('dailyRevTitle');
+  if (currentPeriod === 'week') {
+    titleEl.textContent = '💰 实收金额日对比 · 本周 vs 上周';
+  } else {
+    titleEl.textContent = '💰 实收金额日对比 · 本月 vs 上月';
+  }
+
+  var c = ensureChart('dailyRevChart');
+  if (!c) return;
+
+  var periodLabels = currentPeriod === 'week'
+    ? {cur: '本周', prev: '上周'}
+    : {cur: '本月', prev: '上月'};
+
+  c.setOption({
+    tooltip: {
+      trigger: 'axis',
+      formatter: function(ps) {
+        var html = ps[0].axisValue + '<br/>';
+        ps.forEach(function(p) {
+          html += p.marker + ' ' + p.seriesName + ': <b>¥' + (p.value || 0).toLocaleString() + '</b><br/>';
+        });
+        return html;
+      }
+    },
+    legend: {
+      data: [periodLabels.cur, periodLabels.prev],
+      top: 0,
+      textStyle: { fontSize: 11 }
+    },
+    grid: { left: 60, right: 20, top: 36, bottom: 24 },
+    xAxis: {
+      type: 'category',
+      data: dr.labels,
+      axisLabel: { fontSize: 10, rotate: currentPeriod === 'month' ? 45 : 0 },
+      axisTick: { show: false }
+    },
+    yAxis: {
+      type: 'value',
+      axisLabel: { formatter: function(v) { return (v / 10000).toFixed(1) + '万'; }, fontSize: 11 },
+      splitLine: { lineStyle: { color: '#f3f4f6' } }
+    },
+    series: [
+      {
+        name: periodLabels.cur,
+        type: 'line',
+        data: dr.cur,
+        smooth: true,
+        symbol: 'circle',
+        symbolSize: 5,
+        lineStyle: { color: '#2563eb', width: 2 },
+        itemStyle: { color: '#2563eb' },
+        areaStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            { offset: 0, color: 'rgba(37,99,235,0.12)' },
+            { offset: 1, color: 'rgba(37,99,235,0.01)' }
+          ])
+        }
+      },
+      {
+        name: periodLabels.prev,
+        type: 'line',
+        data: dr.prev,
+        smooth: true,
+        symbol: 'diamond',
+        symbolSize: 5,
+        lineStyle: { color: '#9ca3af', width: 1.5, type: 'dashed' },
+        itemStyle: { color: '#9ca3af' }
       }
     ]
   });
@@ -1292,6 +1394,7 @@ function renderAll() {
     ['renderTrendChart', renderTrendChart],
     ['renderAreaChart', renderAreaChart],
     ['renderCatChart', renderCatChart],
+    ['renderDailyRevChart', renderDailyRevChart],
     ['renderStoreDetail', renderStoreDetail]
   ];
   for (var i=0; i<fns.length; i++) {
