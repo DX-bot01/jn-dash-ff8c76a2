@@ -132,6 +132,9 @@
   .kpi-trend.down { color: var(--red);   background: var(--red-light); }
   .kpi-sub { color: var(--text-muted); }
   .kpi-time-node { font-size:10px; color: var(--text-secondary); margin-top:4px; font-weight:500; }
+  .kpi-progress-node { font-size:10px; color: var(--text-secondary); margin-top:3px; display:flex; align-items:center; gap:6px; }
+  .kpi-progress-bar { flex:1; height:4px; background:#e5e7eb; border-radius:2px; overflow:hidden; }
+  .kpi-progress-fill { height:100%; background:linear-gradient(90deg, #2563eb, #3b82f6); border-radius:2px; transition: width 0.6s ease; }
 
   /* ── Alert Strip ── */
   .alert-strip {
@@ -438,6 +441,7 @@
         <div class="kpi-label" id="kpiCompLabel">--</div>
         <div class="kpi-value" id="kpiCompletion" style="display:flex;align-items:baseline;gap:8px"></div>
         <div class="kpi-time-node" id="kpiTimeNode"></div>
+        <div class="kpi-progress-node" id="kpiProgressNode"></div>
         <div class="kpi-comp-amount" id="kpiCompAmount" style="font-size:13px;color:var(--text-secondary);margin-top:2px;letter-spacing:0.5px"></div>
         <div class="kpi-footer">
           <span class="kpi-trend" id="kpiCompTrend">--</span>
@@ -719,6 +723,25 @@ function renderKpi(d) {
       timeNode.textContent = '数据截止' + (dayNum || '昨日') + '日 · 已过' + (dayNum || '?') + '天/共' + totalDays + '天';
     }
     timeNode.style.display = 'block';
+  }
+
+  // Time-progress node (月报模式显示时间进度条)
+  var progNode = document.getElementById('kpiProgressNode');
+  if (progNode) {
+    if (currentPeriod === 'month') {
+      var md = allData.month;
+      var dayNum = 0, totalDays = 30;
+      if (md && md.date) {
+        var dm = md.date.match(/\((\d+)-(\d+)日?\)/);
+        if (dm) { dayNum = parseInt(dm[2]); totalDays = dayNum + (md.month_remaining_days || 0); }
+      }
+      var timePct = totalDays > 0 ? Math.round(dayNum / totalDays * 100) : 0;
+      progNode.innerHTML = '⏳ 时间进度 <b>' + timePct + '%</b>'
+        + '<span class="kpi-progress-bar"><span class="kpi-progress-fill" style="width:' + timePct + '%"></span></span>';
+      progNode.style.display = 'flex';
+    } else {
+      progNode.style.display = 'none';
+    }
   }
 
   setEl('kpiSalesTrend', sg.text, sg.cls);
