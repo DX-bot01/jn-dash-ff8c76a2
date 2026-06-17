@@ -313,16 +313,16 @@
       ]
     },
     {
-      "name": "济南中海山湖壹号店（一）",
+      "name": "济南中海山湖壹号店",
       "area": "一区",
       "sales": 3882.49,
       "target": 5700.34,
       "customers": 306,
       "avg_bill": 12.69,
-      "prev_rank": 21,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
+      "prev_rank": 8,
+      "last_sales": 4026.06,
+      "last_orders": 287,
+      "last_avg_bill": 14.03,
       "recharge": 0,
       "last_recharge": 0,
       "suggestions": [

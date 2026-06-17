@@ -10,7 +10,7 @@
   "total_customers": 115362,
   "achieved_stores": 0,
   "last_period_achieved": 18,
-  "total_stores": 24,
+  "total_stores": 22,
   "month_target": 3846373.27,
   "month_completed": 1625830.29,
   "month_remaining_days": 14,
@@ -144,10 +144,10 @@
     {
       "name": "济南中海山湖壹号店",
       "area": "一区",
-      "sales": 42901.75,
+      "sales": 77348.52,
       "target": 171010.14,
-      "customers": 2931,
-      "avg_bill": 14.64,
+      "customers": 5221,
+      "avg_bill": 14.81,
       "prev_rank": 7,
       "last_sales": 159650.62,
       "last_orders": 10078,
@@ -382,7 +382,7 @@
       "target": 120000.0,
       "customers": 1006,
       "avg_bill": 14.77,
-      "prev_rank": 24,
+      "prev_rank": 22,
       "last_sales": 0,
       "last_orders": 0,
       "last_avg_bill": 0,
@@ -393,31 +393,13 @@
       ]
     },
     {
-      "name": "济南中海山湖壹号店（停用）",
-      "area": "一区",
-      "sales": 30564.28,
-      "target": 171010.14,
-      "customers": 1984,
-      "avg_bill": 15.41,
-      "prev_rank": 24,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
-      "recharge": 0,
-      "last_recharge": 0,
-      "suggestions": [
-        "🔴 完成率<50%，紧急跟进",
-        "储值转化弱"
-      ]
-    },
-    {
       "name": "济南梦世界店",
       "area": "一区",
       "sales": 0.0,
       "target": 120000.0,
       "customers": 2,
       "avg_bill": 0.0,
-      "prev_rank": 24,
+      "prev_rank": 22,
       "last_sales": 0,
       "last_orders": 0,
       "last_avg_bill": 0,
@@ -428,24 +410,6 @@
         "客单价<¥11",
         "储值转化弱"
       ]
-    },
-    {
-      "name": "济南中海山湖壹号店（一）",
-      "area": "一区",
-      "sales": 3882.49,
-      "target": 171010.14,
-      "customers": 306,
-      "avg_bill": 12.69,
-      "prev_rank": 24,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
-      "recharge": 0,
-      "last_recharge": 0,
-      "suggestions": [
-        "🔴 完成率<50%，紧急跟进",
-        "储值转化弱"
-      ]
     }
   ],
   "areas": [
@@ -454,8 +418,8 @@
       "manager": "高硕",
       "color": "#4F46E5",
       "sales": 859699.36,
-      "stores": 15,
-      "target": 2258729.73,
+      "stores": 13,
+      "target": 1916709.45,
       "last_sales": 1730044.91
     },
     {

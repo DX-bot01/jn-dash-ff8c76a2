@@ -9,7 +9,7 @@
   "last_period_avg_bill": 13.65,
   "total_customers": 13697,
   "achieved_stores": 0,
-  "last_period_achieved": 11,
+  "last_period_achieved": 12,
   "total_stores": 21,
   "month_target": 3846373.29,
   "month_completed": 1625830.29,
@@ -381,20 +381,21 @@
       ]
     },
     {
-      "name": "济南中海山湖壹号店（一）",
+      "name": "济南中海山湖壹号店",
       "area": "一区",
       "sales": 3882.49,
       "target": 39902.37,
       "customers": 306,
       "avg_bill": 12.69,
-      "prev_rank": 21,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
+      "prev_rank": 8,
+      "last_sales": 39656.59,
+      "last_orders": 2599,
+      "last_avg_bill": 15.26,
       "recharge": 0,
-      "last_recharge": 0,
+      "last_recharge": 1000.0,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌",
         "储值转化弱"
       ]
     }

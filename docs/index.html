@@ -708,12 +708,15 @@ function renderKpi(d) {
       timeNode.textContent = '七天应完成 23.33%';
     } else {
       var md = allData.month;
-      var datePart = '';
+      var dayNum = 0, totalDays = 30;
       if (md && md.date) {
-        var m = md.date.match(/\(([^)]+)\)/);
-        datePart = m ? ' ' + m[1] : '';
+        var dayMatch = md.date.match(/\((\d+)-(\d+)日?\)/);
+        if (dayMatch) {
+          dayNum = parseInt(dayMatch[2]);
+          totalDays = dayNum + (md.month_remaining_days || 0);
+        }
       }
-      timeNode.textContent = '时间节点 · 截止至昨日' + datePart;
+      timeNode.textContent = '数据截止' + (dayNum || '昨日') + '日 · 已过' + (dayNum || '?') + '天/共' + totalDays + '天';
     }
     timeNode.style.display = 'block';
   }
