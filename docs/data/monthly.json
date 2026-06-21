@@ -10,7 +10,7 @@
   "total_customers": 148595,
   "achieved_stores": 1,
   "last_period_achieved": 18,
-  "total_stores": 24,
+  "total_stores": 22,
   "month_target": 3846373.27,
   "month_completed": 2117959.67,
   "month_remaining_days": 10,
@@ -18,18 +18,18 @@
     {
       "name": "济南万科城店",
       "area": "二区",
-      "sales": 64125.61,
+      "sales": 121342.67,
       "target": 230644.8,
-      "customers": 4801,
-      "avg_bill": 13.36,
+      "customers": 9284,
+      "avg_bill": 13.07,
       "prev_rank": 1,
       "last_sales": 215323.99,
       "last_orders": 14673,
       "last_avg_bill": 14.67,
-      "recharge": 8100.0,
+      "recharge": 9600.0,
       "last_recharge": 28357.4,
       "suggestions": [
-        "🔴 完成率<50%，紧急跟进",
+        "🟠 完成率偏低",
         "📉 环比大跌"
       ]
     },
@@ -381,7 +381,7 @@
       "target": 120000.0,
       "customers": 3873,
       "avg_bill": 17.7,
-      "prev_rank": 24,
+      "prev_rank": 22,
       "last_sales": 0,
       "last_orders": 0,
       "last_avg_bill": 0,
@@ -392,31 +392,13 @@
       ]
     },
     {
-      "name": "济南万科城店（停用）",
-      "area": "二区",
-      "sales": 38588.85,
-      "target": 230644.8,
-      "customers": 3117,
-      "avg_bill": 12.38,
-      "prev_rank": 24,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
-      "recharge": 0,
-      "last_recharge": 0,
-      "suggestions": [
-        "🔴 完成率<50%，紧急跟进",
-        "储值转化弱"
-      ]
-    },
-    {
       "name": "济南梦世界店",
       "area": "一区",
       "sales": 12413.94,
       "target": 120000.0,
       "customers": 858,
       "avg_bill": 14.47,
-      "prev_rank": 24,
+      "prev_rank": 22,
       "last_sales": 0,
       "last_orders": 0,
       "last_avg_bill": 0,
@@ -425,23 +407,6 @@
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
         "储值转化弱"
-      ]
-    },
-    {
-      "name": "济南万科城店（一）",
-      "area": "二区",
-      "sales": 18628.21,
-      "target": 230644.8,
-      "customers": 1366,
-      "avg_bill": 13.64,
-      "prev_rank": 24,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
-      "recharge": 1500.0,
-      "last_recharge": 0,
-      "suggestions": [
-        "🔴 完成率<50%，紧急跟进"
       ]
     }
   ],
@@ -460,8 +425,8 @@
       "manager": "古子箴",
       "color": "#0891B2",
       "sales": 1016783.64,
-      "stores": 11,
-      "target": 2150953.42,
+      "stores": 9,
+      "target": 1689663.82,
       "last_sales": 1398748.4
     }
   ],

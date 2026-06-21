@@ -4,34 +4,33 @@
   "is_month": false,
   "total_sales": 676122.45,
   "last_period_sales": 700818.64,
-  "target_amount": 895304.22,
+  "target_amount": 841487.1,
   "avg_bill": 14.41,
   "last_period_avg_bill": 13.65,
   "total_customers": 46930,
   "achieved_stores": 8,
   "last_period_achieved": 12,
-  "total_stores": 23,
+  "total_stores": 22,
   "month_target": 3846373.29,
   "month_completed": 2117959.67,
   "month_remaining_days": 10,
   "stores": [
     {
-      "name": "济南万科城店（停用）",
+      "name": "济南万科城店",
       "area": "二区",
-      "sales": 10754.29,
+      "sales": 29382.5,
       "target": 53817.12,
-      "customers": 939,
-      "avg_bill": 11.45,
-      "prev_rank": 22,
-      "last_sales": 27834.56,
-      "last_orders": 2178,
-      "last_avg_bill": 12.78,
-      "recharge": 0,
-      "last_recharge": 0,
+      "customers": 2305,
+      "avg_bill": 12.75,
+      "prev_rank": 1,
+      "last_sales": 44620.27,
+      "last_orders": 3490,
+      "last_avg_bill": 12.79,
+      "recharge": 2100.0,
+      "last_recharge": 2900.0,
       "suggestions": [
-        "🔴 完成率<50%，紧急跟进",
-        "📉 环比大跌",
-        "储值转化弱"
+        "🟠 完成率偏低",
+        "📉 环比大跌"
       ]
     },
     {
@@ -382,30 +381,13 @@
       ]
     },
     {
-      "name": "济南万科城店（一）",
-      "area": "二区",
-      "sales": 18628.21,
-      "target": 53817.12,
-      "customers": 1366,
-      "avg_bill": 13.64,
-      "prev_rank": 23,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
-      "recharge": 1500.0,
-      "last_recharge": 0,
-      "suggestions": [
-        "🔴 完成率<50%，紧急跟进"
-      ]
-    },
-    {
       "name": "济南梦世界店",
       "area": "一区",
       "sales": 12413.94,
       "target": 28000.0,
       "customers": 856,
       "avg_bill": 14.5,
-      "prev_rank": 23,
+      "prev_rank": 22,
       "last_sales": 0.0,
       "last_orders": 2,
       "last_avg_bill": 0,
@@ -423,8 +405,8 @@
       "manager": "古子箴",
       "color": "#0891B2",
       "sales": 339923.97,
-      "stores": 10,
-      "target": 448072.01,
+      "stores": 9,
+      "target": 394254.89,
       "last_sales": 332848.55
     },
     {
