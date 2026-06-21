@@ -573,6 +573,17 @@
       </div>
     </div>
 
+    <!-- Row 3.6: Hourly Sales Breakdown (month only) -->
+    <div class="panel full" style="margin-bottom:18px;display:none" id="hourlyPanel">
+      <div class="panel-header">
+        <span class="panel-title">🕐 时段销售分析（本月累计）</span>
+      </div>
+      <div class="chart-wrap h280" id="hourlyChartWrap">
+        <div id="hourlyChart" style="width:100%;height:calc(100% - 10px)"></div>
+        <div class="chart-drag-bar" title="拖拽调整高度"></div>
+      </div>
+    </div>
+
     <!-- Row 4: 门店明细与异常预警 (full width) -->
     <div class="panel full store-detail-panel" id="storeDetailPanel">
       <div class="panel-header">
@@ -1170,6 +1181,107 @@ function renderDailyRevChart(d) {
   });
 }
 
+// ── Hourly Sales Breakdown (month only) ──
+function renderHourlyChart(d) {
+  if (!d.hourly_data || !d.hourly_data.length) {
+    document.getElementById('hourlyPanel').style.display = 'none';
+    return;
+  }
+  document.getElementById('hourlyPanel').style.display = 'block';
+
+  var wrap = document.getElementById('hourlyChartWrap');
+  var el = document.getElementById('hourlyChart');
+  if (charts.hourly) { charts.hourly.dispose(); }
+  charts.hourly = echarts.init(el);
+
+  var hours = d.hourly_data.map(function(h) { return h.hour + ':00'; });
+  var amounts = d.hourly_data.map(function(h) { return h.amount; });
+  var pcts = d.hourly_data.map(function(h) { return h.pct; });
+
+  var maxAmount = Math.max.apply(null, amounts);
+  var yMax = Math.ceil(maxAmount * 1.15 / 10000) * 10000;
+
+  var option = {
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: { type: 'shadow' },
+      formatter: function(params) {
+        var h = d.hourly_data[params[0].dataIndex];
+        return '<b>' + h.hour_label + '</b><br/>'
+          + '实收金额: <b>¥' + h.amount.toLocaleString() + '</b><br/>'
+          + '订单数: <b>' + h.orders.toLocaleString() + '单</b><br/>'
+          + '占比: <b>' + h.pct.toFixed(2) + '%</b>';
+      }
+    },
+    grid: { left: 80, right: 65, top: 18, bottom: 28 },
+    xAxis: {
+      type: 'category',
+      data: hours,
+      axisLabel: { fontSize: 10, rotate: 45, color: '#9ca3af' },
+      axisTick: { alignWithLabel: true }
+    },
+    yAxis: [
+      {
+        type: 'value',
+        name: '实收(万)',
+        nameTextStyle: { fontSize: 10, color: '#9ca3af' },
+        max: yMax,
+        axisLabel: {
+          formatter: function(v) { return (v / 10000).toFixed(1); },
+          fontSize: 10, color: '#9ca3af'
+        },
+        splitLine: { lineStyle: { color: '#f3f4f6' } }
+      },
+      {
+        type: 'value',
+        name: '占比(%)',
+        nameTextStyle: { fontSize: 10, color: '#9ca3af' },
+        max: Math.ceil(Math.max.apply(null, pcts) * 1.3),
+        axisLabel: { formatter: '{value}%', fontSize: 10, color: '#9ca3af' },
+        splitLine: { show: false }
+      }
+    ],
+    series: [
+      {
+        name: '实收金额',
+        type: 'bar',
+        data: amounts,
+        barWidth: '60%',
+        itemStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            { offset: 0, color: '#3b82f6' },
+            { offset: 1, color: '#93c5fd' }
+          ]),
+          borderRadius: [4, 4, 0, 0]
+        },
+        emphasis: {
+          itemStyle: { color: '#2563eb' }
+        }
+      },
+      {
+        name: '占比',
+        type: 'line',
+        yAxisIndex: 1,
+        data: pcts,
+        smooth: true,
+        symbol: 'circle',
+        symbolSize: 4,
+        lineStyle: { color: '#ef4444', width: 2 },
+        itemStyle: { color: '#ef4444' },
+        label: {
+          show: true,
+          position: 'top',
+          formatter: function(p) { return p.value >= 5 ? p.value.toFixed(1) + '%' : ''; },
+          fontSize: 9,
+          color: '#ef4444'
+        }
+      }
+    ]
+  };
+
+  charts.hourly.setOption(option);
+}
+
 // ── Alert System ──
 function renderAlerts(d) {
   var alerts = [];
@@ -1419,6 +1531,7 @@ function renderAll() {
     ['renderAreaChart', renderAreaChart],
     ['renderCatChart', renderCatChart],
     ['renderDailyRevChart', renderDailyRevChart],
+    ['renderHourlyChart', renderHourlyChart],
     ['renderStoreDetail', renderStoreDetail]
   ];
   for (var i=0; i<fns.length; i++) {
