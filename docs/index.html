@@ -154,6 +154,22 @@
   .alert-strip .alert-item { font-size: 11px; color: #991b1b; line-height: 1.6; }
   .alert-strip .alert-item b { color: var(--red); }
 
+  /* ── Suggestion Cards ── */
+  .suggest-box {
+    margin-top: 14px; padding: 10px 14px;
+    background: rgba(37,99,235,0.03);
+    border-radius: 8px; border-left: 3px solid var(--blue);
+    font-size: 12px; line-height: 1.7;
+  }
+  .suggest-box.warn  { border-left-color: #f59e0b; background: rgba(245,158,11,0.04); }
+  .suggest-box.good  { border-left-color: var(--green); background: rgba(22,163,74,0.04); }
+  .suggest-box.info  { border-left-color: var(--blue); }
+  .suggest-title { font-weight: 700; color: var(--text-primary); margin-bottom: 4px; font-size: 12px; }
+  .suggest-item { color: var(--text-secondary); padding: 1px 0; }
+  .suggest-item::before { content: '▸ '; color: var(--blue); font-size: 10px; }
+  .suggest-box.warn .suggest-item::before { color: #f59e0b; }
+  .suggest-box.good .suggest-item::before { color: var(--green); }
+
   /* ── Gap Calculator ── */
   .gap-banner {
     background: linear-gradient(135deg, #eff6ff, #f0f9ff);
@@ -493,6 +509,9 @@
       </div>
     </div>
 
+    <!-- KPI 建议 -->
+    <div class="suggest-box" id="suggestKpi" style="display:none;margin-bottom:18px"></div>
+
     <!-- Row 1: Ranking + Trend -->
     <div class="panel-grid">
       <!-- Ranking Panel -->
@@ -509,6 +528,7 @@
             <tbody id="rankBody"></tbody>
           </table>
         </div>
+        <div class="suggest-box" id="suggestRank" style="display:none;margin-top:12px"></div>
       </div>
 
       <!-- Trend Chart -->
@@ -520,6 +540,7 @@
           <div id="trendChart" style="width:100%;height:calc(100% - 10px)"></div>
           <div class="chart-drag-bar" title="拖拽调整高度"></div>
         </div>
+        <div class="suggest-box" id="suggestTrend" style="display:none;margin-top:4px"></div>
       </div>
     </div>
 
@@ -534,6 +555,7 @@
           <div id="areaChart" style="width:100%;height:calc(100% - 10px)"></div>
           <div class="chart-drag-bar" title="拖拽调整高度"></div>
         </div>
+        <div class="suggest-box" id="suggestArea" style="display:none;margin-top:4px"></div>
       </div>
 
       <!-- Category Breakdown -->
@@ -548,6 +570,7 @@
           </tr></thead>
           <tbody id="catBody"></tbody>
         </table>
+        <div class="suggest-box" id="suggestCat" style="display:none;margin-top:12px"></div>
       </div>
     </div>
 
@@ -560,6 +583,7 @@
         <div id="catChart" style="width:100%;height:calc(100% - 10px)"></div>
         <div class="chart-drag-bar" title="拖拽调整高度"></div>
       </div>
+      <div class="suggest-box" id="suggestCatChart" style="display:none;margin-top:0"></div>
     </div>
 
     <!-- Row 3.5: Daily Revenue Comparison (week/month only) -->
@@ -571,6 +595,7 @@
         <div id="dailyRevChart" style="width:100%;height:calc(100% - 10px)"></div>
         <div class="chart-drag-bar" title="拖拽调整高度"></div>
       </div>
+      <div class="suggest-box" id="suggestDaily" style="display:none;margin-top:0"></div>
     </div>
 
     <!-- Row 3.6: Hourly Sales Breakdown (month only) -->
@@ -582,6 +607,7 @@
         <div id="hourlyChart" style="width:100%;height:calc(100% - 10px)"></div>
         <div class="chart-drag-bar" title="拖拽调整高度"></div>
       </div>
+      <div class="suggest-box" id="suggestHour" style="display:none;margin-top:0"></div>
     </div>
 
     <!-- Row 4: 门店明细与异常预警 (full width) -->
@@ -630,6 +656,7 @@
           <tbody id="storeDetailBody"></tbody>
         </table>
       </div>
+      <div class="suggest-box" id="suggestStore" style="display:none"></div>
     </div>
 
   </div><!-- /dashboard -->
@@ -1282,6 +1309,231 @@ function renderHourlyChart(d) {
   charts.hourly.setOption(option);
 }
 
+// ── 分析建议引擎 ──
+function renderSuggestions(d) {
+  if (!d.stores || !d.stores.length) return;
+  var stores = filteredStores(d.stores);
+  var totalSales = stores.reduce(function(s,v){return s+(v.sales||0);},0);
+  var totalTarget = stores.reduce(function(s,v){return s+(v.target||0);},0);
+  var overallRate = totalTarget>0 ? totalSales/totalTarget*100 : 0;
+
+  // 门店附加指标: sales_growth
+  stores.forEach(function(s){
+    s._rate = s.target>0 ? s.sales/s.target*100 : 0;
+    s._growth = (s.last_sales && s.last_sales>0) ? ((s.sales-s.last_sales)/s.last_sales*100) : null;
+  });
+  var sortedByRate = stores.slice().sort(function(a,b){return b._rate-a._rate;});
+  var top = sortedByRate[0], bot = sortedByRate[sortedByRate.length-1];
+  var topRate = top ? top._rate : 0;
+  var botRate = bot ? bot._rate : 0;
+  var above80 = stores.filter(function(s){return s._rate>=80;}).length;
+
+  // ── KPI 建议 ──
+  (function(){
+    var box = document.getElementById('suggestKpi');
+    if (!box) return;
+    var items = [];
+    if (overallRate >= 85) items.push('完成率较好，保持节奏，重点关注冲刺门店');
+    else if (overallRate >= 60) items.push('完成率待提升，建议从客流和客单价双维度突破');
+    else items.push('完成率偏低，尽快排查低效门店原因并制定专项拉升方案');
+
+    var avgBill = d.avg_bill || 0;
+    var lastAvgBill = d.last_period_avg_bill || 0;
+    if (avgBill && lastAvgBill && avgBill < lastAvgBill * 0.95)
+      items.push('客单价环比下滑超5%，关注连带率及高毛利商品推荐');
+    if (above80 < stores.length * 0.5)
+      items.push('仅'+above80+'/'+stores.length+'家门店完成率超80%，需加大后端门店帮扶力度');
+
+    box.innerHTML = '<div class="suggest-title">💡 整体建议</div>'
+      + items.map(function(t){return '<div class="suggest-item">'+t+'</div>';}).join('');
+    box.style.display = 'block';
+    box.className = 'suggest-box' + (overallRate>=85 ? ' good' : overallRate>=60 ? ' warn' : ' warn');
+  })();
+
+  // ── 排名建议 ──
+  (function(){
+    var box = document.getElementById('suggestRank');
+    if (!box) return;
+    var items = [];
+    if (topRate >= 100)
+      items.push(top.name+'已超额完成('+topRate.toFixed(2)+'%)，可复制其运营经验至后进门店');
+    var rateGap = topRate - botRate;
+    if (rateGap > 40)
+      items.push('首末门店完成率差距达'+rateGap.toFixed(0)+'个百分点，建议对尾部门店进行专项诊断');
+
+    var upCount = stores.filter(function(s){return s._growth!==null && s._growth>=0;}).length;
+    if (upCount < stores.length * 0.5)
+      items.push('超半数门店环比下滑，需关注整体客流及促销活动有效性');
+
+    if (!items.length) items.push('门店排名健康，各梯队分布合理');
+    box.innerHTML = '<div class="suggest-title">💡 排名分析</div>'
+      + items.map(function(t){return '<div class="suggest-item">'+t+'</div>';}).join('');
+    box.style.display = 'block';
+    box.className = 'suggest-box' + (rateGap>40 ? ' warn' : ' info');
+  })();
+
+  // ── 趋势建议 ──
+  (function(){
+    var box = document.getElementById('suggestTrend');
+    if (!box) return;
+    var items = [];
+    if (d.trend && d.trend.completion_rates && d.trend.completion_rates.length >= 3) {
+      var rates = d.trend.completion_rates, n = rates.length;
+      var cur = rates[n-1], prv = rates[n-3];
+      if (cur < prv)
+        items.push('近3天完成率持续走低，建议发起限时促销或会员唤醒活动');
+      else if (cur > prv * 1.05)
+        items.push('近3天完成率稳步提升，保持当前运营策略');
+      else
+        items.push('趋势平稳，维持日常运营节奏');
+    }
+    if (!items.length) items.push('趋势平稳，维持日常运营节奏');
+    box.innerHTML = '<div class="suggest-title">💡 趋势判断</div>'
+      + items.map(function(t){return '<div class="suggest-item">'+t+'</div>';}).join('');
+    box.style.display = 'block';
+    box.className = 'suggest-box info';
+  })();
+
+  // ── 区域建议 ──
+  (function(){
+    var box = document.getElementById('suggestArea');
+    if (!box) return;
+    if (!d.areas || d.areas.length < 2) { box.style.display = 'none'; return; }
+    // 计算区域完成率和环比
+    d.areas.forEach(function(a){
+      a._completion = a.target>0 ? a.sales/a.target*100 : 0;
+      a._growth = a.last_sales>0 ? ((a.sales-a.last_sales)/a.last_sales*100) : null;
+    });
+    var best = d.areas[0], worst = d.areas[0];
+    d.areas.forEach(function(a){
+      if (a._completion > best._completion) best = a;
+      if (a._completion < worst._completion) worst = a;
+    });
+    var gap = best._completion - worst._completion;
+    var items = [];
+    if (gap > 10)
+      items.push(worst.name+'与'+best.name+'完成率差'+gap.toFixed(0)+'%+，建议倾斜资源至'+worst.name);
+    else
+      items.push('各区域发展均衡，差距在合理范围内');
+
+    d.areas.forEach(function(a){
+      if (a._growth !== null && a._growth < -10)
+        items.push(a.name+'环比下滑显著，排查是否受竞品或季节性因素影响');
+    });
+
+    box.innerHTML = '<div class="suggest-title">💡 区域策略</div>'
+      + items.map(function(t){return '<div class="suggest-item">'+t+'</div>';}).join('');
+    box.style.display = 'block';
+    box.className = 'suggest-box' + (gap>15 ? ' warn' : ' info');
+  })();
+
+  // ── 品类建议 ──
+  (function(){
+    var box = document.getElementById('suggestCat');
+    if (!box) return;
+    var cats = d.category_breakdown;
+    if (!cats || !cats.length) { box.style.display = 'none'; return; }
+    cats.forEach(function(c){
+      c._growth = (c.last_sales && c.last_sales>0) ? ((c.sales-c.last_sales)/c.last_sales*100) : null;
+    });
+    var items = [], topCat = cats[0];
+    if (topCat && topCat.share > 45)
+      items.push('「'+topCat.name+'」占比'+topCat.share.toFixed(1)+'%，依赖度偏高，建议培育第二增长品类');
+
+    var downCats = cats.filter(function(c){return c._growth!==null && c._growth<0;});
+    if (downCats.length >= cats.length * 0.5)
+      items.push('超半数品类环比下滑，建议检查品类结构是否需要季节性调整');
+
+    if (!items.length) items.push('品类结构健康，各品类表现良好');
+    box.innerHTML = '<div class="suggest-title">💡 品类优化</div>'
+      + items.map(function(t){return '<div class="suggest-item">'+t+'</div>';}).join('');
+    box.style.display = 'block';
+    box.className = 'suggest-box' + (downCats.length>=cats.length*0.6 ? ' warn' : ' info');
+  })();
+
+  // ── 品类对比图建议(同品类，合并) ──
+  (function(){
+    var box = document.getElementById('suggestCatChart');
+    if (box) box.style.display = 'none'; // 与品类表合并，不重复显示
+  })();
+
+  // ── 日对比建议 (周/月报) ──
+  (function(){
+    var box = document.getElementById('suggestDaily');
+    if (!box) return;
+    var dr = d.daily_revenue;
+    if (!dr || !dr.cur || !dr.cur.length) { box.style.display = 'none'; return; }
+    var vals = dr.cur, items = [];
+    var max = Math.max.apply(null, vals);
+    var min = Math.min.apply(null, vals);
+    var avg = vals.reduce(function(s,v){return s+v;},0) / vals.length;
+    var fluctuation = avg>0 ? (max-min)/avg*100 : 0;
+    if (fluctuation > 50)
+      items.push('日销售额波动较大('+fluctuation.toFixed(0)+'%)，建议分析波峰波谷原因，优化排班和促销节奏');
+    else
+      items.push('日销售额波动可控，运营节奏稳定');
+
+    if (currentPeriod === 'week') items.push('关注周末与工作日客流差异，合理配置周末促销资源');
+    if (currentPeriod === 'month') items.push('月度下旬冲刺关键期，聚焦日均缺口门店定向突破');
+
+    box.innerHTML = '<div class="suggest-title">💡 节奏管控</div>'
+      + items.map(function(t){return '<div class="suggest-item">'+t+'</div>';}).join('');
+    box.style.display = 'block';
+    box.className = 'suggest-box' + (fluctuation>50 ? ' warn' : ' info');
+  })();
+
+  // ── 时段建议 (月报) ──
+  (function(){
+    var box = document.getElementById('suggestHour');
+    if (!box) return;
+    var hd = d.hourly_data;
+    if (!hd || !hd.length) { box.style.display = 'none'; return; }
+    var items = [];
+    // 找高峰期
+    var peakHours = hd.filter(function(h){return h.pct >= 5;});
+    var peakLabels = peakHours.map(function(h){return h.hour_label;}).join('-');
+    items.push('销售高峰集中在'+peakLabels+'，建议高峰时段增加人手保障服务质量');
+
+    // 找低谷期可提升
+    var lowHours = hd.filter(function(h){return h.pct < 2 && h.pct > 0.3;});
+    if (lowHours.length) {
+      var lowLabels = lowHours.map(function(h){return h.hour_label;}).slice(0,3);
+      items.push('低峰时段('+lowLabels.join('/')+')客流稀少，可尝试限时秒杀或社群预热引流');
+    }
+
+    // 晚高峰 vs 早高峰
+    var evening = hd.filter(function(h){var hr=parseInt(h.hour_label);return hr>=17&&hr<=20;});
+    var eveningPct = evening.reduce(function(s,h){return s+h.pct;},0);
+    if (eveningPct > 40)
+      items.push('晚高峰占比超40%，考虑在18-19点设置到店有礼活动进一步拉动');
+
+    box.innerHTML = '<div class="suggest-title">💡 排班与促销</div>'
+      + items.map(function(t){return '<div class="suggest-item">'+t+'</div>';}).join('');
+    box.style.display = 'block';
+    box.className = 'suggest-box info';
+  })();
+
+  // ── 门店明细建议 ──
+  (function(){
+    var box = document.getElementById('suggestStore');
+    if (!box) return;
+    var items = [];
+    var lowRate = stores.filter(function(s){return s._rate < 50;});
+    if (lowRate.length)
+      items.push('⚠ 完成率<50%门店：'+lowRate.map(function(s){return s.name;}).join('、')+'，建议店长约谈并制定周度追赶计划');
+
+    var lowGrowth = stores.filter(function(s){return s._growth!==null && s._growth < -20;});
+    if (lowGrowth.length)
+      items.push('环比下滑>20%门店需重点关注：检查商圈变化、竞品动态及团队状态');
+
+    if (!items.length) items.push('整体门店运营健康，各指标正常');
+    box.innerHTML = '<div class="suggest-title">💡 门店预警</div>'
+      + items.map(function(t){return '<div class="suggest-item">'+t+'</div>';}).join('');
+    box.style.display = 'block';
+    box.className = 'suggest-box' + (lowRate.length||lowGrowth.length ? ' warn' : ' good');
+  })();
+}
+
 // ── Alert System ──
 function renderAlerts(d) {
   var alerts = [];
@@ -1527,6 +1779,7 @@ function renderAll() {
     ['renderRanking', function(){ renderRanking(d.stores); }],
     ['renderCategory', function(){ renderCategory(d.category_breakdown, d.total_sales); }],
     ['renderAlerts', renderAlerts],
+    ['renderSuggestions', renderSuggestions],
     ['renderTrendChart', renderTrendChart],
     ['renderAreaChart', renderAreaChart],
     ['renderCatChart', renderCatChart],
