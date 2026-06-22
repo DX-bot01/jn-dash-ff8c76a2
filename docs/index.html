@@ -302,6 +302,47 @@
     font-size:11px; color:var(--text-muted); margin-left:6px;
   }
 
+  /* ── Category Profit Table ── */
+  .profit-table { width:100%; border-collapse:collapse; }
+  .profit-table th { font-size:11px; color:var(--text-muted); font-weight:500; padding:8px 10px; text-align:right; border-bottom:1px solid var(--border); }
+  .profit-table th:first-child { text-align:left; }
+  .profit-table td { font-size:12px; padding:8px 10px; border-bottom:1px solid #f5f5f5; text-align:right; }
+  .profit-table td:first-child { text-align:left; font-weight:600; }
+  .profit-table td.pr-bar { min-width:70px; }
+  .profit-table .pr-bar-inner { height:18px; border-radius:3px; display:flex; align-items:center; padding:0 6px; font-size:10px; font-weight:700; color:#fff; transition:width .4s; }
+  .profit-table .pr-high { background:linear-gradient(90deg, #16a34a, #15803d); }
+  .profit-table .pr-mid  { background:linear-gradient(90deg, #2563eb, #1d4ed8); }
+  .profit-table .pr-low  { background:linear-gradient(90deg, #f59e0b, #d97706); }
+  .profit-table .pr-loss { background:linear-gradient(90deg, #dc2626, #b91c1c); }
+  .profit-table .pr-neg { color:var(--red); font-weight:600; }
+  .profit-table .pr-pos { color:var(--green); font-weight:600; }
+  .profit-table .pr-info { font-size:10px; color:var(--text-muted); }
+
+  /* ── Recharge Ring Panel ── */
+  .recharge-ring-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .recharge-ring-left { display:flex; flex-direction:column; gap:12px; }
+  .recharge-ring-kpi-row { display:flex; gap:12px; }
+  .recharge-ring-kpi {
+    flex:1; background:var(--card-glass); backdrop-filter:blur(10px);
+    border-radius:10px; padding:14px; border:1px solid rgba(255,255,255,0.5);
+    box-shadow:var(--shadow-sm);
+  }
+  .recharge-ring-kpi .rrk-label { font-size:11px; color:var(--text-muted); margin-bottom:6px; }
+  .recharge-ring-kpi .rrk-value { font-size:22px; font-weight:700; }
+  .recharge-ring-kpi .rrk-trend { font-size:11px; margin-top:4px; }
+  .recharge-ring-table-wrap { max-height:360px; overflow-y:auto; }
+  .recharge-ring-table-wrap::-webkit-scrollbar { width:4px; }
+  .recharge-ring-table-wrap::-webkit-scrollbar-thumb { background:#d1d5db; border-radius:2px; }
+  .recharge-ring-table { width:100%; border-collapse:collapse; }
+  .recharge-ring-table th { font-size:11px; color:var(--text-muted); font-weight:500; padding:6px 8px; text-align:left; border-bottom:1px solid var(--border); }
+  .recharge-ring-table th.right { text-align:right; }
+  .recharge-ring-table td { font-size:12px; padding:6px 8px; border-bottom:1px solid #f5f5f5; }
+  .recharge-ring-table td.right { text-align:right; font-variant-numeric:tabular-nums; }
+  .recharge-ring-table .rr-up { color:var(--green); font-weight:600; }
+  .recharge-ring-table .rr-down { color:var(--red); font-weight:600; }
+  .recharge-ring-table .rr-flat { color:var(--text-muted); }
+  @media (max-width:960px) { .recharge-ring-grid { grid-template-columns:1fr; } }
+
   /* Sortable table */
   .store-table-wrap {
     max-height:520px; overflow:auto; border-radius:var(--radius);
@@ -616,6 +657,67 @@
         <div class="chart-drag-bar" title="拖拽调整高度"></div>
       </div>
       <div class="suggest-box" id="suggestHour" style="display:none;margin-top:0"></div>
+    </div>
+
+    <!-- Row 3.7: Category Profit Analysis -->
+    <div class="panel full" style="margin-bottom:18px;display:none" id="profitPanel">
+      <div class="panel-header">
+        <span class="panel-title">📊 品类利润分析</span>
+        <span class="panel-sub" id="profitSub">毛利率 · 利润贡献排名</span>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="profit-table">
+          <thead><tr>
+            <th>品类</th>
+            <th>实收金额</th>
+            <th>销售成本</th>
+            <th>毛利额</th>
+            <th>毛利率</th>
+            <th class="pr-bar">毛利占比</th>
+            <th>上期毛利率</th>
+            <th>变化</th>
+          </tr></thead>
+          <tbody id="profitBody"></tbody>
+        </table>
+      </div>
+      <div class="suggest-box" id="suggestProfit" style="display:none;margin-top:12px"></div>
+    </div>
+
+    <!-- Row 3.8: Recharge Ring Analysis -->
+    <div class="panel full" style="margin-bottom:18px" id="rechargeRingPanel">
+      <div class="panel-header">
+        <span class="panel-title">💳 充值到账金额环比分析</span>
+        <span class="panel-sub" id="rechargeRingSub">到账金额 · 较上期</span>
+      </div>
+      <div class="recharge-ring-grid">
+        <div class="recharge-ring-left">
+          <div class="recharge-ring-kpi-row">
+            <div class="recharge-ring-kpi">
+              <div class="rrk-label">📥 到账金额（本期）</div>
+              <div class="rrk-value" id="rrkReceived">--</div>
+              <div class="rrk-trend"><span class="kpi-trend" id="rrkRecTrend">--</span> 较上期</div>
+            </div>
+            <div class="recharge-ring-kpi">
+              <div class="rrk-label">📤 实付金额（本期）</div>
+              <div class="rrk-value" id="rrkPaid">--</div>
+              <div class="rrk-trend" style="font-size:11px;color:var(--text-muted)" id="rrkArrivalRate">--</div>
+            </div>
+          </div>
+          <div class="chart-wrap h240" id="rechargeRingChartWrap">
+            <div id="rechargeRingChart" style="width:100%;height:calc(100% - 10px)"></div>
+            <div class="chart-drag-bar" title="拖拽调整高度"></div>
+          </div>
+        </div>
+        <div class="recharge-ring-table-wrap">
+          <table class="recharge-ring-table" id="rechargeRingTable">
+            <thead><tr>
+              <th>#</th><th>门店</th><th>区域</th><th class="right">到账金额</th><th class="right">上期到账</th><th class="right">环比</th>
+            </tr></thead>
+            <tbody id="rechargeRingBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="suggest-box" id="suggestRechargeRing" style="display:none;margin-top:12px"></div>
     </div>
 
     <!-- Row 4: 门店明细与异常预警 (full width) -->
@@ -1784,6 +1886,157 @@ function renderAreaCompletion(d) {
   });
 }
 
+// ── Category Profit Analysis ──
+function renderCategoryProfit(d) {
+  var cp = d.category_profit;
+  var panel = document.getElementById('profitPanel');
+  if (!cp || !cp.length) { if (panel) panel.style.display = 'none'; return; }
+  if (panel) panel.style.display = 'block';
+
+  var totalProfit = cp.reduce(function(s,c){ return s + c.profit; }, 0);
+
+  var html = '';
+  cp.forEach(function(c){
+    var marginCls = c.margin >= 25 ? 'pr-high' : c.margin >= 12 ? 'pr-mid' : c.margin >= 0 ? 'pr-low' : 'pr-loss';
+    var profitPct = totalProfit > 0 ? (c.profit / totalProfit * 100).toFixed(1) : 0;
+    var marginDelta = c.last_margin > 0 ? (c.margin - c.last_margin).toFixed(2) : '--';
+    var deltaCls = '';
+    var deltaSign = '';
+    if (marginDelta !== '--') {
+      var md = parseFloat(marginDelta);
+      if (md > 0) { deltaCls = 'pr-pos'; deltaSign = '+'; }
+      else if (md < 0) { deltaCls = 'pr-neg'; }
+      else { deltaCls = 'pr-flat'; }
+    }
+
+    html += '<tr>'+
+      '<td>'+c.name+'</td>'+
+      '<td>¥'+c.revenue.toLocaleString()+'</td>'+
+      '<td>¥'+c.cost.toLocaleString()+'</td>'+
+      '<td class="'+(c.profit>=0?'pr-pos':'pr-neg')+'">¥'+c.profit.toLocaleString()+'</td>'+
+      '<td><b style="color:'+(c.margin>=15?'var(--green)':c.margin>=5?'var(--amber)':'var(--red)')+'">'+c.margin.toFixed(2)+'%</b></td>'+
+      '<td class="pr-bar"><div class="pr-bar-inner '+marginCls+'" style="width:'+Math.max(profitPct,3)+'%">'+profitPct+'%</div></td>'+
+      '<td class="pr-info">'+(c.last_margin>0?c.last_margin.toFixed(2)+'%':'--')+'</td>'+
+      '<td class="'+deltaCls+'">'+(marginDelta!=='--'?deltaSign+marginDelta+'p.p.':'--')+'</td>'+
+      '</tr>';
+  });
+  document.getElementById('profitBody').innerHTML = html;
+
+  // Suggestion
+  var box = document.getElementById('suggestProfit');
+  var items = [];
+  var highMargin = cp.filter(function(c){ return c.margin >= 25 && c.profit > 0; });
+  var lowMargin  = cp.filter(function(c){ return c.margin >= 0 && c.margin < 5 && c.revenue > 0; });
+  var lossCats   = cp.filter(function(c){ return c.profit < 0; });
+  var marginDrop  = cp.filter(function(c){
+    return c.last_margin > 0 && (c.margin - c.last_margin) < -3;
+  });
+
+  if (highMargin.length) items.push('高毛利品类('+highMargin.map(function(c){return c.name;}).join('、')+')贡献'+highMargin.reduce(function(s,c){return s+c.profit;},0).toLocaleString()+'毛利，应重点推广');
+  if (lowMargin.length) items.push('低毛利走量品类('+lowMargin.map(function(c){return c.name;}).join('、')+')毛利率<5%，需优化采购成本或提价');
+  if (lossCats.length) items.push('⚠️ '+lossCats.map(function(c){return c.name;}).join('、')+'处于亏损状态，需立即审视');
+  if (marginDrop.length) items.push('毛利率下滑品类: '+marginDrop.map(function(c){return c.name;}).join('、')+'，检查是否促销过度或成本上涨');
+  if (!items.length) items.push('所有品类毛利率稳定，经营状况良好');
+
+  box.innerHTML = '<div class="suggest-title">💡 利润建议</div>'+items.map(function(t){return '<div class="suggest-item">'+t+'</div>';}).join('');
+  box.style.display = 'block';
+  box.className = 'suggest-box ' + (lossCats.length ? 'warn' : marginDrop.length ? 'warn' : 'info');
+}
+
+// ── Recharge Ring Analysis ──
+function renderRechargeRing(d) {
+  var rd = d.recharge_detail;
+  var panel = document.getElementById('rechargeRingPanel');
+  if (!rd || !rd.length) { if (panel) panel.style.display = 'none'; return; }
+  if (panel) panel.style.display = 'block';
+
+  var stores = filteredStores(rd);
+  if (!stores.length) { document.getElementById('rechargeRingPanel').style.display = 'none'; return; }
+
+  // Calculate totals from filtered stores
+  var totalReceived = stores.reduce(function(s,r){ return s + r.received; }, 0);
+  var totalLast     = stores.reduce(function(s,r){ return s + r.last_received; }, 0);
+  var recGrowth     = calcGrowth(totalReceived, totalLast);
+
+  // Estimate total paid (实付) — from recharge data, use received as proxy but we don't have paid per-store in JSON
+  // Instead use the global recharge current/last from the JSON
+  var rec = d.recharge || {};
+  var totalPaid = rec.current || totalReceived;
+  var arrivalRate = totalPaid > 0 ? (totalReceived / totalPaid * 100).toFixed(2) : '--';
+
+  document.getElementById('rrkReceived').textContent = '¥'+totalReceived.toLocaleString();
+  document.getElementById('rrkPaid').textContent = '¥'+totalPaid.toLocaleString();
+  document.getElementById('rrkArrivalRate').textContent = '到账率: '+arrivalRate+'%';
+  var rrkTrend = document.getElementById('rrkRecTrend');
+  rrkTrend.textContent = recGrowth.text;
+  rrkTrend.className = 'kpi-trend ' + recGrowth.cls;
+
+  // Update subtitle
+  var sub = document.getElementById('rechargeRingSub');
+  if (sub) {
+    if (currentPeriod === 'day') sub.textContent = '昨日到账 · 较上周同日';
+    else if (currentPeriod === 'week') sub.textContent = '本周到账 · 较上周';
+    else sub.textContent = '本月到账 · 较上月';
+  }
+
+  // Table: top 15 stores
+  var topStores = stores.slice(0, 15);
+  var html = '';
+  topStores.forEach(function(s, i){
+    var g = calcGrowth(s.received, s.last_received);
+    html += '<tr>'+
+      '<td>'+(i+1)+'</td>'+
+      '<td>'+s.store+'</td>'+
+      '<td>'+s.area+'</td>'+
+      '<td class="right">¥'+s.received.toLocaleString()+'</td>'+
+      '<td class="right">¥'+s.last_received.toLocaleString()+'</td>'+
+      '<td class="right '+(g.cls==='up'?'rr-up':g.cls==='down'?'rr-down':'rr-flat')+'">'+g.text+'</td>'+
+      '</tr>';
+  });
+  document.getElementById('rechargeRingBody').innerHTML = html;
+
+  // Chart: top 10 stores bar chart
+  var c = ensureChart('rechargeRingChart');
+  if (!c) return;
+  var chartStores = topStores.slice(0, 12);
+  c.setOption({
+    tooltip: { trigger:'axis', axisPointer:{type:'shadow'},
+      formatter: function(ps){ return '<b>'+ps[0].name+'</b><br/>'+ps.map(function(p){return p.marker+p.seriesName+': <b>¥'+(p.value||0).toLocaleString()+'</b>';}).join('<br/>'); } },
+    grid: { left:70, right:20, top:8, bottom:40 },
+    legend: { data:['本期到账','上期到账'], bottom:0, textStyle:{fontSize:11}, itemWidth:10, itemHeight:10 },
+    xAxis: {
+      type:'category',
+      data: chartStores.map(function(s){ return s.store.replace('济南','').replace('店',''); }),
+      axisLabel:{fontSize:9,rotate:30}
+    },
+    yAxis: { type:'value', axisLabel:{formatter:function(v){return (v/10000).toFixed(1)+'万';},fontSize:10} },
+    series: [
+      { name:'本期到账', type:'bar', data:chartStores.map(function(s){return s.received;}), itemStyle:{color:'#0891b2',borderRadius:[4,4,0,0]}, barGap:'20%' },
+      { name:'上期到账', type:'bar', data:chartStores.map(function(s){return s.last_received;}), itemStyle:{color:'#bfdbfe',borderRadius:[4,4,0,0]} }
+    ]
+  });
+
+  // Suggestion
+  var box = document.getElementById('suggestRechargeRing');
+  var items = [];
+  if (totalReceived > 0 && rec.last > 0) {
+    var growth = ((totalReceived - rec.last) / rec.last * 100);
+    if (growth > 10) items.push('到账金额环比增长显著，储值活动效果不错');
+    else if (growth < -10) items.push('到账金额环比下滑，需关注储值活动吸引力');
+  }
+  var bigJump = stores.filter(function(s){
+    return s.last_received > 0 && s.received > s.last_received * 2;
+  });
+  if (bigJump.length) items.push('储值爆发增长门店: '+bigJump.map(function(s){return s.store;}).join('、'));
+  var zeroRec = stores.filter(function(s){ return s.received === 0; });
+  if (zeroRec.length) items.push('本期无储值门店: '+zeroRec.map(function(s){return s.store;}).join('、')+'，建议推动储值活动');
+  if (!items.length) items.push('储值到账稳定，各门店储值表现正常');
+
+  box.innerHTML = '<div class="suggest-title">💡 储值建议</div>'+items.map(function(t){return '<div class="suggest-item">'+t+'</div>';}).join('');
+  box.style.display = 'block';
+  box.className = 'suggest-box info';
+}
+
 function renderAll() {
   var d = allData[currentPeriod];
   if (!d) return;
@@ -1800,7 +2053,9 @@ function renderAll() {
     ['renderCatChart', renderCatChart],
     ['renderDailyRevChart', renderDailyRevChart],
     ['renderHourlyChart', renderHourlyChart],
-    ['renderStoreDetail', renderStoreDetail]
+    ['renderStoreDetail', renderStoreDetail],
+    ['renderCategoryProfit', renderCategoryProfit],
+    ['renderRechargeRing', renderRechargeRing]
   ];
   for (var i=0; i<fns.length; i++) {
     try {

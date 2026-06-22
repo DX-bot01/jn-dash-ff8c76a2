@@ -538,6 +538,323 @@
     "current": 187881.03,
     "last": 254025.99
   },
+  "category_profit": [
+    {
+      "name": "酒水饮料",
+      "revenue": 906821.11,
+      "cost": 786140.04,
+      "profit": 120681.07,
+      "margin": 13.31,
+      "last_revenue": 1075536.15,
+      "last_cost": 940064.6,
+      "last_profit": 135471.55,
+      "last_margin": 12.6
+    },
+    {
+      "name": "休闲食品",
+      "revenue": 302632.46,
+      "cost": 250181.21,
+      "profit": 52451.25,
+      "margin": 17.33,
+      "last_revenue": 479657.47,
+      "last_cost": 394269.38,
+      "last_profit": 85388.09,
+      "last_margin": 17.8
+    },
+    {
+      "name": "冻品",
+      "revenue": 214006.88,
+      "cost": 165650.06,
+      "profit": 48356.82,
+      "margin": 22.6,
+      "last_revenue": 281656.07,
+      "last_cost": 219460.26,
+      "last_profit": 62195.81,
+      "last_margin": 22.08
+    },
+    {
+      "name": "洗化百货",
+      "revenue": 125075.04,
+      "cost": 102799.2,
+      "profit": 22275.84,
+      "margin": 17.81,
+      "last_revenue": 229301.97,
+      "last_cost": 201660.88,
+      "last_profit": 27641.09,
+      "last_margin": 12.05
+    },
+    {
+      "name": "方便食品",
+      "revenue": 114383.93,
+      "cost": 98023.98,
+      "profit": 16359.95,
+      "margin": 14.3,
+      "last_revenue": 174650.59,
+      "last_cost": 152579.3,
+      "last_profit": 22071.29,
+      "last_margin": 12.64
+    },
+    {
+      "name": "乳制品",
+      "revenue": 245573.8,
+      "cost": 231630.16,
+      "profit": 13943.64,
+      "margin": 5.68,
+      "last_revenue": 323030.63,
+      "last_cost": 304233.52,
+      "last_profit": 18797.11,
+      "last_margin": 5.82
+    },
+    {
+      "name": "调味干货",
+      "revenue": 104938.28,
+      "cost": 91665.42,
+      "profit": 13272.86,
+      "margin": 12.65,
+      "last_revenue": 179360.69,
+      "last_cost": 160688.83,
+      "last_profit": 18671.86,
+      "last_margin": 10.41
+    },
+    {
+      "name": "米面粮油",
+      "revenue": 74365.14,
+      "cost": 67086.8,
+      "profit": 7278.34,
+      "margin": 9.79,
+      "last_revenue": 119522.32,
+      "last_cost": 110509.75,
+      "last_profit": 9012.57,
+      "last_margin": 7.54
+    },
+    {
+      "name": "烘焙",
+      "revenue": 45895.89,
+      "cost": 41190.85,
+      "profit": 4705.04,
+      "margin": 10.25,
+      "last_revenue": 71546.27,
+      "last_cost": 64604.54,
+      "last_profit": 6941.73,
+      "last_margin": 9.7
+    },
+    {
+      "name": "香烟中类",
+      "revenue": 17839.0,
+      "cost": 15353.94,
+      "profit": 2485.06,
+      "margin": 13.93,
+      "last_revenue": 3721.0,
+      "last_cost": 3219.47,
+      "last_profit": 501.53,
+      "last_margin": 13.48
+    },
+    {
+      "name": "抖音套餐",
+      "revenue": 4411.65,
+      "cost": 2430.65,
+      "profit": 1981.0,
+      "margin": 44.9,
+      "last_revenue": 6903.24,
+      "last_cost": 5311.57,
+      "last_profit": 1591.67,
+      "last_margin": 23.06
+    },
+    {
+      "name": "低温食品",
+      "revenue": 20232.83,
+      "cost": 18664.19,
+      "profit": 1568.64,
+      "margin": 7.75,
+      "last_revenue": 23155.92,
+      "last_cost": 20335.74,
+      "last_profit": 2820.18,
+      "last_margin": 12.18
+    },
+    {
+      "name": "槟榔",
+      "revenue": 9044.26,
+      "cost": 7978.05,
+      "profit": 1066.21,
+      "margin": 11.79,
+      "last_revenue": 5871.43,
+      "last_cost": 4321.32,
+      "last_profit": 1550.11,
+      "last_margin": 26.4
+    },
+    {
+      "name": "出清",
+      "revenue": 6243.51,
+      "cost": 6243.51,
+      "profit": 0.0,
+      "margin": 0.0,
+      "last_revenue": 6281.71,
+      "last_cost": 6281.98,
+      "last_profit": -0.27,
+      "last_margin": -0.0
+    },
+    {
+      "name": "设备",
+      "revenue": 0.0,
+      "cost": 0.0,
+      "profit": 0.0,
+      "margin": 0,
+      "last_revenue": 0,
+      "last_cost": 0,
+      "last_profit": 0,
+      "last_margin": 0
+    },
+    {
+      "name": "耗材",
+      "revenue": 1139.5,
+      "cost": 1333.16,
+      "profit": -193.66,
+      "margin": -17.0,
+      "last_revenue": 1600.52,
+      "last_cost": 1934.91,
+      "last_profit": -334.39,
+      "last_margin": -20.89
+    },
+    {
+      "name": "蛋品",
+      "revenue": 41749.08,
+      "cost": 70918.96,
+      "profit": -29169.88,
+      "margin": -69.87,
+      "last_revenue": 146997.33,
+      "last_cost": 215247.69,
+      "last_profit": -68250.36,
+      "last_margin": -46.43
+    }
+  ],
+  "recharge_detail": [
+    {
+      "store": "济南文贤居店",
+      "area": "二区",
+      "received": 27417.0,
+      "last_received": 6300.0
+    },
+    {
+      "store": "济南绿地国际花都店",
+      "area": "二区",
+      "received": 22203.36,
+      "last_received": 30120.5
+    },
+    {
+      "store": "济南天鸿万卷府店",
+      "area": "一区",
+      "received": 15800.0,
+      "last_received": 24089.03
+    },
+    {
+      "store": "济南保利和塘悦色店",
+      "area": "一区",
+      "received": 14000.42,
+      "last_received": 21685.33
+    },
+    {
+      "store": "济南白马南路店",
+      "area": "二区",
+      "received": 12900.0,
+      "last_received": 22900.0
+    },
+    {
+      "store": "济南香溢澜庭店",
+      "area": "一区",
+      "received": 11600.0,
+      "last_received": 14500.0
+    },
+    {
+      "store": "济南万科城店（一）",
+      "area": "二区",
+      "received": 9739.77,
+      "last_received": 28357.4
+    },
+    {
+      "store": "济南鲁建小区店",
+      "area": "二区",
+      "received": 9304.02,
+      "last_received": 19400.01
+    },
+    {
+      "store": "济南中海云著店",
+      "area": "二区",
+      "received": 8560.9,
+      "last_received": 7390.1
+    },
+    {
+      "store": "济南城投伴山居店",
+      "area": "二区",
+      "received": 8400.0,
+      "last_received": 11681.86
+    },
+    {
+      "store": "济南中建新悦城店",
+      "area": "一区",
+      "received": 7511.16,
+      "last_received": 9200.05
+    },
+    {
+      "store": "济南梁王新城",
+      "area": "一区",
+      "received": 6700.0,
+      "last_received": 11700.0
+    },
+    {
+      "store": "济南城市之星店",
+      "area": "一区",
+      "received": 6334.8,
+      "last_received": 0
+    },
+    {
+      "store": "济南仁华居店",
+      "area": "一区",
+      "received": 5575.2,
+      "last_received": 9200.0
+    },
+    {
+      "store": "济南海信九麓府店",
+      "area": "二区",
+      "received": 5300.0,
+      "last_received": 9600.0
+    },
+    {
+      "store": "济南北徐花园店",
+      "area": "二区",
+      "received": 5100.0,
+      "last_received": 0
+    },
+    {
+      "store": "济南天鸿万象东方店",
+      "area": "一区",
+      "received": 3900.0,
+      "last_received": 8500.0
+    },
+    {
+      "store": "济南御山首府店",
+      "area": "一区",
+      "received": 3200.0,
+      "last_received": 5201.71
+    },
+    {
+      "store": "济南祥泰城店",
+      "area": "一区",
+      "received": 2000.0,
+      "last_received": 4700.0
+    },
+    {
+      "store": "济南中海山湖壹号店（一）",
+      "area": "一区",
+      "received": 1600.0,
+      "last_received": 7300.0
+    },
+    {
+      "store": "济南御景台店",
+      "area": "一区",
+      "received": 734.4,
+      "last_received": 2200.0
+    }
+  ],
   "trend": {
     "dates": [
       "06/01",
