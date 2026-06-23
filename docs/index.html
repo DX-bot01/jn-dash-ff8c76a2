@@ -795,7 +795,7 @@ function fmtMoney(v) { return '¥'+v.toLocaleString(); }
 function calcGrowth(cur, prev) {
   if (!prev || prev===0) return {text:'--',cls:''};
   var g = ((cur-prev)/prev)*100;
-  return { text: (g>=0?'+':'')+Math.abs(g).toFixed(2)+'%', cls: g>=0?'up':'down' };
+  return { text: (g>=0?'+':'-')+Math.abs(g).toFixed(2)+'%', cls: g>=0?'up':'down' };
 }
 
 // ── Area Filter ──
