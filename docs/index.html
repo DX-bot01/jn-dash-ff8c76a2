@@ -131,6 +131,7 @@
   .kpi-trend { padding: 2px 8px; border-radius: 5px; font-weight: 600; font-size: 11px; }
   .kpi-trend.up   { color: var(--green); background: var(--green-light); }
   .kpi-trend.down { color: var(--red);   background: var(--red-light); }
+  .kpi-delta { font-size:11px; color:var(--text-muted); margin-left:4px; white-space:nowrap; }
   .kpi-sub { color: var(--text-muted); }
   .kpi-time-node { font-size:10px; color: var(--text-secondary); margin-top:4px; font-weight:500; }
   .kpi-progress-node { font-size:10px; color: var(--text-secondary); margin-top:3px; display:flex; align-items:center; gap:6px; }
@@ -510,7 +511,7 @@
         <div class="kpi-value" id="kpiSales">--</div>
         <div class="kpi-footer">
           <span class="kpi-trend" id="kpiSalesTrend">--</span>
-          <span class="kpi-sub">较上期</span>
+          <span class="kpi-delta" id="kpiSalesDelta"></span>
         </div>
       </div>
       <div class="kpi-card rate">
@@ -529,7 +530,7 @@
         <div class="kpi-value" id="kpiAvgBill">--</div>
         <div class="kpi-footer">
           <span class="kpi-trend" id="kpiAvgTrend">--</span>
-          <span class="kpi-sub">较上期</span>
+          <span class="kpi-delta" id="kpiAvgDelta"></span>
         </div>
       </div>
       <div class="kpi-card stores">
@@ -545,7 +546,7 @@
         <div class="kpi-value" id="kpiRecharge">--</div>
         <div class="kpi-footer">
           <span class="kpi-trend" id="kpiRecTrend">--</span>
-          <span class="kpi-sub">较上期</span>
+          <span class="kpi-delta" id="kpiRecDelta"></span>
         </div>
       </div>
       <div class="kpi-card orders">
@@ -553,7 +554,7 @@
         <div class="kpi-value" id="kpiOrders">--</div>
         <div class="kpi-footer">
           <span class="kpi-trend" id="kpiOrdersTrend">--</span>
-          <span class="kpi-sub">较上期</span>
+          <span class="kpi-delta" id="kpiOrdersDelta"></span>
         </div>
       </div>
     </div>
@@ -793,9 +794,9 @@ function fmtPct(v) { return v.toFixed(2)+'%'; }
 function fmtMoney(v) { return '¥'+v.toLocaleString(); }
 
 function calcGrowth(cur, prev) {
-  if (!prev || prev===0) return {text:'--',cls:''};
+  if (!prev || prev===0) return {text:'--',cls:'',delta:0};
   var g = ((cur-prev)/prev)*100;
-  return { text: (g>=0?'+':'-')+Math.abs(g).toFixed(2)+'%', cls: g>=0?'up':'down' };
+  return { text: (g>=0?'+':'-')+Math.abs(g).toFixed(2)+'%', cls: g>=0?'up':'down', delta: cur-prev };
 }
 
 // ── Area Filter ──
@@ -867,6 +868,20 @@ function renderKpi(d) {
     el.textContent = txt;
     el.className = 'kpi-trend ' + (cls || '');
   };
+  var setDelta = function(id, delta, unit) {
+    var el = document.getElementById(id);
+    if (!el || !delta) { if(el) el.textContent=''; return; }
+    var sign = delta >= 0 ? '+' : '';
+    var fmtVal;
+    if (unit === '¥') {
+      fmtVal = (Math.abs(delta) >= 10000) ? (sign + (delta/10000).toFixed(2) + '万') : (sign + Math.round(Math.abs(delta)).toLocaleString());
+    } else if (unit === '¥2') { // precise for avg bill
+      fmtVal = sign + delta.toFixed(2);
+    } else {
+      fmtVal = sign + Math.round(Math.abs(delta)).toLocaleString() + '单';
+    }
+    el.textContent = '(' + fmtVal + ')';
+  };
 
   setText('kpiSales', fmt(totalSales));
   setText('kpiCompletion', fmtPct(compRate));
@@ -927,8 +942,10 @@ function renderKpi(d) {
   }
 
   setEl('kpiSalesTrend', sg.text, sg.cls);
+  setDelta('kpiSalesDelta', sg.delta, '¥');
   setEl('kpiCompTrend', '对比上期', '');
   setEl('kpiAvgTrend', ag.text, ag.cls);
+  setDelta('kpiAvgDelta', ag.delta, '¥2');
   setEl('kpiStoreTrend', (stg>=0?'+':'')+stg, stg>=0?'up':'down');
   setText('kpiCompSub', isFiltered ? '筛选: '+currentArea : '');
 
@@ -937,6 +954,7 @@ function renderKpi(d) {
     var recGrowth = calcGrowth(totalRecharge, totalRechargeLast);
     setEl('kpiRecharge', fmt(totalRecharge), '');
     setEl('kpiRecTrend', recGrowth.text, recGrowth.cls);
+    setDelta('kpiRecDelta', recGrowth.delta, '¥');
   } else {
     var rec = d.recharge || {};
     var recCur = rec.current || 0;
@@ -944,6 +962,7 @@ function renderKpi(d) {
     var recGrowth = calcGrowth(recCur, recLast);
     setEl('kpiRecharge', fmt(recCur), '');
     setEl('kpiRecTrend', recGrowth.text, recGrowth.cls);
+    setDelta('kpiRecDelta', recGrowth.delta, '¥');
   }
 
   // ── Orders (订单数) KPI ──
@@ -952,6 +971,7 @@ function renderKpi(d) {
   var ordersGrowth = calcGrowth(totalOrders, totalLastOrders);
   setText('kpiOrders', totalOrders.toLocaleString() + '单');
   setEl('kpiOrdersTrend', ordersGrowth.text, ordersGrowth.cls);
+  setDelta('kpiOrdersDelta', ordersGrowth.delta, '单');
 
   console.log('renderKpi: area='+currentArea+' stores='+stores.length+' sales='+fmt(totalSales)+' target='+fmt(targetAmt)+' comp='+fmtPct(compRate)+' orders='+totalOrders+' recharge='+fmt(totalRecharge));
 }
