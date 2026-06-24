@@ -161,22 +161,21 @@
       ]
     },
     {
-      "name": "济南香溢澜庭店（停用）",
+      "name": "济南香溢澜庭店",
       "area": "一区",
       "sales": 4761.35,
       "target": 48441.4,
       "customers": 391,
       "avg_bill": 12.18,
-      "prev_rank": 22,
-      "last_sales": 28340.21,
-      "last_orders": 2208,
+      "prev_rank": 9,
+      "last_sales": 38897.02,
+      "last_orders": 3029,
       "last_avg_bill": 12.84,
-      "recharge": 0,
-      "last_recharge": 0,
+      "recharge": 200.0,
+      "last_recharge": 4100.0,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
-        "📉 环比大跌",
-        "储值转化弱"
+        "📉 环比大跌"
       ]
     },
     {
@@ -389,7 +388,7 @@
       "target": 28000.0,
       "customers": 698,
       "avg_bill": 11.26,
-      "prev_rank": 23,
+      "prev_rank": 22,
       "last_sales": 18311.54,
       "last_orders": 1291,
       "last_avg_bill": 14.18,
