@@ -322,14 +322,15 @@
       "target": 6920.2,
       "customers": 401,
       "avg_bill": 10.93,
-      "prev_rank": 22,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
+      "prev_rank": 8,
+      "last_sales": 5341.83,
+      "last_orders": 435,
+      "last_avg_bill": 12.28,
       "recharge": 200.0,
-      "last_recharge": 0,
+      "last_recharge": 900.0,
       "suggestions": [
         "🟠 完成率偏低",
+        "📉 环比下滑",
         "客单价<¥11"
       ]
     },
@@ -765,7 +766,7 @@
       "store": "济南香溢澜庭店（一）",
       "area": "一区",
       "received": 200.0,
-      "last_received": 0
+      "last_received": 900.0
     },
     {
       "store": "济南中海云著店",

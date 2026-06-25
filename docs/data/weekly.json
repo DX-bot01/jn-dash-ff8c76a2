@@ -4,13 +4,13 @@
   "is_month": false,
   "total_sales": 309749.56,
   "last_period_sales": 792515.14,
-  "target_amount": 889928.5,
+  "target_amount": 841487.1,
   "avg_bill": 13.99,
   "last_period_avg_bill": 14.44,
   "total_customers": 22135,
   "achieved_stores": 1,
   "last_period_achieved": 15,
-  "total_stores": 23,
+  "total_stores": 22,
   "month_target": 3846373.29,
   "month_completed": 2544101.92,
   "month_remaining_days": 6,
@@ -162,17 +162,17 @@
       ]
     },
     {
-      "name": "济南香溢澜庭店",
+      "name": "济南香溢澜庭店（一）",
       "area": "一区",
-      "sales": 4761.35,
+      "sales": 9144.47,
       "target": 48441.4,
-      "customers": 391,
-      "avg_bill": 12.18,
+      "customers": 792,
+      "avg_bill": 11.55,
       "prev_rank": 9,
       "last_sales": 38897.02,
       "last_orders": 3029,
       "last_avg_bill": 12.84,
-      "recharge": 200.0,
+      "recharge": 400.0,
       "last_recharge": 4100.0,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
@@ -417,24 +417,6 @@
         "🔴 完成率<50%，紧急跟进",
         "📉 环比大跌"
       ]
-    },
-    {
-      "name": "济南香溢澜庭店（一）",
-      "area": "一区",
-      "sales": 4383.12,
-      "target": 48441.4,
-      "customers": 401,
-      "avg_bill": 10.93,
-      "prev_rank": 23,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
-      "recharge": 200.0,
-      "last_recharge": 0,
-      "suggestions": [
-        "🔴 完成率<50%，紧急跟进",
-        "客单价<¥11"
-      ]
     }
   ],
   "areas": [
@@ -452,8 +434,8 @@
       "manager": "高硕",
       "color": "#4F46E5",
       "sales": 149772.15,
-      "stores": 14,
-      "target": 495673.61000000004,
+      "stores": 13,
+      "target": 447232.21,
       "last_sales": 398731.17
     }
   ],
@@ -840,6 +822,12 @@
       "last_received": 1000.0
     },
     {
+      "store": "济南香溢澜庭店（一）",
+      "area": "一区",
+      "received": 400.0,
+      "last_received": 4100.0
+    },
+    {
       "store": "济南万科城店（一）",
       "area": "二区",
       "received": 400.0,
@@ -856,18 +844,6 @@
       "area": "一区",
       "received": 200.0,
       "last_received": 200.0
-    },
-    {
-      "store": "济南香溢澜庭店",
-      "area": "一区",
-      "received": 200.0,
-      "last_received": 4100.0
-    },
-    {
-      "store": "济南香溢澜庭店（一）",
-      "area": "一区",
-      "received": 200.0,
-      "last_received": 0
     },
     {
       "store": "济南御山首府店",
