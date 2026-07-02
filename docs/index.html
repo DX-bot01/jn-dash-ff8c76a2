@@ -1037,14 +1037,13 @@ function renderRanking(rawStores) {
   var stores = filteredStores(rawStores);
   if (!stores.length) return;
   stores.forEach(function(s){ s.rate = s.target>0 ? s.sales/s.target*100 : 0; });
-  stores.forEach(function(s){ s.sprintRate = s.sprint>0 ? s.sales/s.sprint*100 : 0; });
+  stores.forEach(function(s){ s.sprintRate = s.sprint>0 ? s.sales/s.sprint*100 : -1; });
   stores.sort(function(a,b){ return b.rate-a.rate; });
 
   var html = '';
   stores.forEach(function(s,i){
     var rank = i+1;
     var barW = Math.min(Math.round(s.rate), 100);
-    var barWs = Math.min(Math.round(s.sprintRate), 100);
     var barCls = s.rate>=90 ? 'high' : s.rate>=60 ? 'mid' : 'low';
 
     // Rank change
@@ -1067,7 +1066,7 @@ function renderRanking(rawStores) {
       '<td>'+s.name+'</td>'+
       '<td>'+areaBadge+'</td>'+
       '<td><span class="rank-bar-wrap"><span class="rank-bar '+barCls+'" style="width:'+barW+'%"></span><span class="rank-bar-label">'+s.rate.toFixed(2)+'%</span></span></td>'+
-      '<td><span class="rank-bar-wrap"><span class="rank-bar sprint" style="width:'+barWs+'%"></span><span class="rank-bar-label sprint-label">'+s.sprintRate.toFixed(2)+'%</span></span></td>'+
+      '<td>'+(s.sprintRate<0 ? '<span style="color:#9ca3af;font-size:11px">--</span>' : '<span class="rank-bar-wrap"><span class="rank-bar sprint" style="width:'+Math.min(Math.round(s.sprintRate),100)+'%"></span><span class="rank-bar-label sprint-label">'+s.sprintRate.toFixed(2)+'%</span></span>')+'</td>'+
       '<td style="text-align:right">'+changeHtml+' <span class="rank-info">'+fmt(s.sales)+'</span></td>'+
       '</tr>';
   });
