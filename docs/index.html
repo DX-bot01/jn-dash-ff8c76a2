@@ -186,14 +186,23 @@
   .gap-banner {
     background: linear-gradient(135deg, #eff6ff, #f0f9ff);
     border: 1px solid #bfdbfe; border-radius: var(--radius);
-    padding: 14px 20px; margin-bottom: 18px;
-    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    padding: 12px 18px; margin-bottom: 18px;
+    display: flex; align-items: flex-start; gap: 14px; flex-wrap: wrap;
     box-shadow: var(--shadow-sm);
   }
-  .gap-banner .gap-label { font-size: 13px; font-weight: 600; color: var(--blue-dark); white-space: nowrap; }
-  .gap-banner .gap-grid { display: flex; gap: 20px; flex-wrap: wrap; }
-  .gap-banner .gap-item { font-size: 12px; color: var(--text-secondary); }
+  .gap-banner .gap-label { font-size: 13px; font-weight: 700; color: var(--blue-dark); white-space: nowrap; padding-top: 5px; }
+  .gap-banner .gap-grid { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 720px; }
+  .gap-row { display:flex; align-items:center; gap:18px; flex-wrap:wrap; padding:4px 8px; border-radius:8px; }
+  .gap-row.base { background:rgba(37,99,235,0.035); }
+  .gap-row.sprint { background:rgba(220,38,38,0.035); }
+  .gap-row-label { font-size:12px; font-weight:700; min-width:135px; }
+  .gap-row.base .gap-row-label { color:var(--blue); }
+  .gap-row.sprint .gap-row-label { color:var(--red); }
+  .gap-banner .gap-item { font-size: 12px; color: var(--text-secondary); white-space:nowrap; }
   .gap-banner .gap-item b { color: var(--blue); font-size: 14px; }
+  .gap-row.sprint .gap-item b { color: var(--red); }
+  .gap-banner .gap-item b.gap-danger { color:var(--red); }
+  .gap-banner .gap-item b.gap-blue { color:var(--blue); }
 
   /* ── Panel Grid ── */
   .panel-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px; }
@@ -265,10 +274,11 @@
   .chart-drag-bar:hover::after { opacity: 1; }
 
   /* ── Category table ── */
-  .cat-table { width:100%; border-collapse:collapse; }
-  .cat-table th { font-size:11px; color: var(--text-muted); font-weight:500; padding:6px 10px; text-align:left; border-bottom:1px solid var(--border); }
+  .cat-table { width:100%; border-collapse:collapse; table-layout:fixed; }
+  .cat-table th { font-size:11px; color: var(--text-muted); font-weight:500; padding:6px 8px; text-align:left; border-bottom:1px solid var(--border); }
   .cat-table th.right { text-align:right; }
-  .cat-table td { font-size:13px; padding:7px 10px; border-bottom:1px solid #f5f5f5; }
+  .cat-table td { font-size:13px; padding:7px 8px; border-bottom:1px solid #f5f5f5; }
+  .cat-table td.right { text-align:right; }
   .cat-table .cat-dot { display:inline-block; width:8px; height:8px; border-radius:2px; margin-right:6px; }
   .cat-table .cat-rate { font-weight:700; text-align:right; }
   .cat-table .cat-rate.over  { color: var(--green); }
@@ -470,14 +480,8 @@
 
   <!-- ═══════ GAP CALCULATOR ═══════ -->
   <div class="gap-banner" id="gapBanner">
-    <span class="gap-label">📐 月末缺口测算</span>
-    <div class="gap-grid">
-      <span class="gap-item">月目标 <b id="gapTarget">--</b></span>
-      <span class="gap-item">已完成 <b id="gapCompleted">--</b></span>
-      <span class="gap-item">缺口 <b id="gapRemaining" style="color:var(--red)">--</b></span>
-      <span class="gap-item">剩余 <b id="gapDays">--</b> 天</span>
-      <span class="gap-item">日均需完成 <b id="gapDaily" style="color:var(--blue)">--</b></span>
-    </div>
+    <span class="gap-label">📐 目标缺口测算</span>
+    <div class="gap-grid" id="gapGrid"></div>
   </div>
 
   <!-- ═══════ AREA FILTER ═══════ -->
@@ -645,7 +649,7 @@
         </div>
         <table class="cat-table">
           <thead><tr>
-            <th>品类</th><th class="right">销售额</th><th class="right">占比</th><th class="right">完成率</th>
+            <th style="width:auto">品类</th><th class="right" style="width:80px">销售额</th><th class="right" style="width:65px">占比</th><th class="right" style="width:90px">上期占比</th><th class="right" style="width:85px">环比变化</th>
           </tr></thead>
           <tbody id="catBody"></tbody>
         </table>
@@ -1030,23 +1034,70 @@ function renderKpi(d) {
 // ── Gap Calculator ──
 function renderGap(d) {
   var gapBanner = document.getElementById('gapBanner');
-  if (!d.month_target) { if(gapBanner) gapBanner.style.display='none'; return; }
-  if (gapBanner) gapBanner.style.display='flex';
+  var gapGrid = document.getElementById('gapGrid');
+  if (!gapBanner || !gapGrid || !d.month_target) { if(gapBanner) gapBanner.style.display='none'; return; }
+  gapBanner.style.display = 'flex';
+
   var stores = filteredStores(d.stores);
   var completed = stores.reduce(function(sum,s){ return sum + (s.sales||0); }, 0);
-  var monthTarget = d.month_target;
-  if (currentArea !== 'all' && d.areas) {
-    var areaObj = d.areas.find(function(a){ return a.name === currentArea; });
-    if (areaObj && areaObj.target) monthTarget = areaObj.target;
-  }
-  var remaining = monthTarget - completed;
   var days = d.month_remaining_days || 1;
-  var daily = Math.round(remaining / days);
-  document.getElementById('gapTarget').textContent = fmtMoney(monthTarget);
-  document.getElementById('gapCompleted').textContent = fmtMoney(completed);
-  document.getElementById('gapRemaining').textContent = fmtMoney(remaining);
-  document.getElementById('gapDays').textContent = days;
-  document.getElementById('gapDaily').textContent = fmtMoney(daily);
+  var targetLabel = currentPeriod === 'week' ? '周任务' : '月任务';
+
+  function targetScale() {
+    if (currentPeriod === 'week') return 7 / 31;
+    return 1;
+  }
+
+  function sumAreaTargets(areaNames, key) {
+    if (!d.areas) return 0;
+    return d.areas.reduce(function(sum, a){
+      return areaNames.indexOf(a.name) >= 0 ? sum + (a[key] || 0) : sum;
+    }, 0);
+  }
+
+  function calcRemainingDays() {
+    if (currentPeriod !== 'week') return d.month_remaining_days || 1;
+    var m = (d.date || '').match(/~\s*(\d{2})\/(\d{2}).*截至(\d{2})\/(\d{2})/);
+    if (!m) return 7;
+    var end = new Date(2026, parseInt(m[1],10)-1, parseInt(m[2],10));
+    var cut = new Date(2026, parseInt(m[3],10)-1, parseInt(m[4],10));
+    return Math.max(1, Math.round((end - cut) / 86400000));
+  }
+  days = calcRemainingDays();
+
+  var baseTarget = 0;
+  var sprintTarget = 0;
+  var baseNote = '';
+  var sprintNote = '';
+  if (currentArea === 'all') {
+    baseTarget = sumAreaTargets(['一区','二区'], 'target');
+    sprintTarget = (d.month_sprint_target || d.sprint_amount || 0) * targetScale();
+    baseNote = '一区+二区';
+    sprintNote = '一区+二区+筹开区';
+  } else {
+    var areaObj = d.areas && d.areas.find(function(a){ return a.name === currentArea; });
+    baseTarget = areaObj ? (areaObj.target || 0) : stores.reduce(function(sum,s){ return sum + (s.target||0); }, 0);
+    sprintTarget = areaObj ? (areaObj.sprint_target || areaObj.target || 0) : stores.reduce(function(sum,s){ return sum + (s.sprint||s.target||0); }, 0);
+    baseNote = currentArea;
+    sprintNote = currentArea;
+  }
+
+  function rowHtml(type, label, note, target) {
+    var remaining = target - completed;
+    var daily = Math.round(remaining / days);
+    return '<div class="gap-row '+type+'">'
+      + '<span class="gap-row-label">'+label+'</span>'
+      + '<span class="gap-item">范围 <b>'+note+'</b></span>'
+      + '<span class="gap-item">'+targetLabel+' <b>'+fmtMoney(target)+'</b></span>'
+      + '<span class="gap-item">已完成 <b>'+fmtMoney(completed)+'</b></span>'
+      + '<span class="gap-item">缺口 <b class="gap-danger">'+fmtMoney(remaining)+'</b></span>'
+      + '<span class="gap-item">剩余 <b>'+days+'</b> 天</span>'
+      + '<span class="gap-item">日均需完成 <b class="gap-blue">'+fmtMoney(daily)+'</b></span>'
+      + '</div>';
+  }
+
+  gapGrid.innerHTML = rowHtml('base', '基础目标', baseNote, baseTarget)
+    + rowHtml('sprint', currentArea === 'all' ? '冲刺目标（含筹开）' : '冲刺目标', sprintNote, sprintTarget);
 }
 
 // ── Ranking Table ──
@@ -1099,13 +1150,22 @@ function renderCategory(cats, total) {
   cats.forEach(function(c,i){
     var pct = total>0 ? (c.sales/total*100) : 0;
     var last = c.last_sales || 0;
+    var lastShare = c.last_share || 0;
     var diff = c.sales - last;
+    var shareDiff = pct - lastShare;
     var rateCls = diff >= 0 ? 'up' : 'down';
     var diffSign = diff >= 0 ? '+' : '';
-    html += '<tr>'+
-      '<td><span class="cat-dot" style="background:'+colors[i%6]+'"></span>'+c.name+'</td>'+
+    var shareArrow = shareDiff > 0 ? '↑' : shareDiff < 0 ? '↓' : '—';
+    var shareArrowCls = shareDiff > 0 ? 'up' : shareDiff < 0 ? 'down' : '';
+    // 占比下降 → 标红
+    var shareDown = shareDiff < -0.5;
+    var shareDownStyle = shareDown ? 'color:#dc2626;font-weight:700' : '';
+    var pctDownStyle = shareDown ? 'color:#dc2626' : '';
+    html += '<tr'+(shareDown ? ' style="background:rgba(220,38,38,0.03)"' : '')+'>'+
+      '<td><span class="cat-dot" style="background:'+colors[i%6]+'"></span>'+c.name+(shareDown ? ' <span style="color:#dc2626;font-size:10px">⚠</span>' : '')+'</td>'+
       '<td class="right">'+fmt(c.sales)+'</td>'+
-      '<td class="right">'+pct.toFixed(2)+'%</td>'+
+      '<td class="right" style="'+pctDownStyle+'">'+pct.toFixed(2)+'%</td>'+
+      '<td class="right"><span style="'+shareDownStyle+'">'+lastShare.toFixed(2)+'%</span> <span class="kpi-trend '+shareArrowCls+'" style="font-size:10px;padding:1px 4px">'+shareArrow+' '+Math.abs(shareDiff).toFixed(1)+'%</span></td>'+
       '<td class="cat-rate '+rateCls+'">'+diffSign+fmt(diff)+'</td>'+
       '</tr>';
   });
@@ -1273,38 +1333,53 @@ function renderCatChart(d) {
       formatter: function(ps){
         var html = ps[0].axisValue+'<br/>';
         ps.forEach(function(p){
-          html += p.marker+' '+p.seriesName+': <b>'+(p.seriesName==='占比'?p.value.toFixed(2)+'%':'¥'+(p.value||0).toLocaleString())+'</b><br/>';
+          var isPct = p.seriesName.indexOf('占比') >= 0;
+          html += p.marker+' '+p.seriesName+': <b>'+(isPct ? p.value.toFixed(2)+'%' : '¥'+(p.value||0).toLocaleString())+'</b><br/>';
         });
         return html;
       }
     },
-    grid: { left:100, right:65, top:12, bottom:36 },
-    legend: { data:[periodLabels.cur,periodLabels.prev,'占比'], bottom:8, textStyle:{fontSize:11}, itemWidth:10, itemHeight:10, itemGap:20 },
-    xAxis: {
-      type:'value',
-      axisLabel:{formatter:function(v){return (v/10000).toFixed(1)+'万';},fontSize:11},
-      splitLine:{lineStyle:{color:'#f3f4f6'}}
-    },
+    grid: { left:100, right:80, top:12, bottom:36 },
+    legend: { data:[periodLabels.cur,periodLabels.prev,'本期占比','上期占比'], bottom:8, textStyle:{fontSize:11}, itemWidth:10, itemHeight:10, itemGap:20 },
+    xAxis: [
+      {
+        type:'value',
+        axisLabel:{formatter:function(v){return (v/10000).toFixed(1)+'万';},fontSize:11},
+        splitLine:{lineStyle:{color:'#f3f4f6'}}
+      },
+      {
+        type:'value', name:'占比', position:'top', min:0, max:100,
+        axisLabel:{formatter:'{value}%',fontSize:10},
+        splitLine:{show:false}
+      }
+    ],
     yAxis: {
       type:'category', data: cats.map(function(c){return c.name;}),
       axisLabel:{fontSize:11}, axisTick:{show:false}, inverse:true
     },
     series: [
       {
-        name: periodLabels.cur, type:'bar',
+        name: periodLabels.cur, type:'bar', xAxisIndex:0,
         data: cats.map(function(c){return c.sales;}),
         itemStyle:{borderRadius:[0,4,4,0],color:'#2563eb'}, barGap:'10%'
       },
       {
-        name: periodLabels.prev, type:'bar',
+        name: periodLabels.prev, type:'bar', xAxisIndex:0,
         data: cats.map(function(c){return c.last_sales;}),
         itemStyle:{borderRadius:[0,4,4,0],color:'#bfdbfe'}
       },
       {
-        name:'占比', type:'line',
+        name:'本期占比', type:'line', xAxisIndex:1,
         data: cats.map(function(c){return c.share||0;}),
         lineStyle:{color:'#dc2626',width:2}, symbol:'diamond', symbolSize:8,
         itemStyle:{color:'#dc2626'},
+        label:{show:true,formatter:function(p){return parseFloat(p.value).toFixed(2)+'%';},fontSize:10,fontWeight:600,position:'right'}
+      },
+      {
+        name:'上期占比', type:'line', xAxisIndex:1,
+        data: cats.map(function(c){return c.last_share||0;}),
+        lineStyle:{color:'#94a3b8',width:2,type:'dashed'}, symbol:'circle', symbolSize:6,
+        itemStyle:{color:'#94a3b8'},
         label:{show:true,formatter:function(p){return parseFloat(p.value).toFixed(2)+'%';},fontSize:10,fontWeight:600,position:'right'}
       }
     ]
@@ -2247,7 +2322,7 @@ function renderProductTop50(d) {
       '<td><span title="SKU:'+p.sku+'">'+p.name+'</span></td>'+
       '<td class="right">¥'+p.cur_receipt.toLocaleString()+'</td>'+
       '<td class="right" style="color:var(--text-secondary)">¥'+p.prev_receipt.toLocaleString()+'</td>'+
-      '<td class="right '+g.cls+'">'+g.text+deltaStr+'</td>'+
+      '<td class="right rank-change '+g.cls+'">'+g.text+deltaStr+'</td>'+
       '</tr>';
   });
   document.getElementById('productTop50Tbody').innerHTML = html;
