@@ -138,6 +138,16 @@
   .kpi-progress-bar { flex:1; height:4px; background:#e5e7eb; border-radius:2px; overflow:hidden; }
   .kpi-progress-fill { height:100%; background:linear-gradient(90deg, #2563eb, #3b82f6); border-radius:2px; transition: width 0.6s ease; }
 
+  /* ── Dual KPI (基础/冲刺) ── */
+  .kpi-dual { display:flex; gap:10px; }
+  .kpi-dual-item { flex:1; }
+  .kpi-dual-tag { font-size:10px; font-weight:600; margin-bottom:2px; padding:1px 6px; border-radius:3px; display:inline-block; }
+  .kpi-dual-item.base .kpi-dual-tag { color:#1d4ed8; background:#dbeafe; }
+  .kpi-dual-item.sprint .kpi-dual-tag { color:#b91c1c; background:#fee2e2; }
+  .kpi-dual-val { font-size:22px; font-weight:700; font-variant-numeric:tabular-nums; line-height:1.2; }
+  .kpi-dual-item.base .kpi-dual-val { color:var(--blue); }
+  .kpi-dual-item.sprint .kpi-dual-val { color:var(--red); }
+
   /* ── Alert Strip ── */
   .alert-strip {
     display: none; align-items: center; gap: 10px;
@@ -220,6 +230,8 @@
   .rank-bar.mid  { background: linear-gradient(90deg, #2563eb, #3b82f6); }
   .rank-bar.low  { background: linear-gradient(90deg, #dc2626, #ef4444); }
   .rank-bar-label { position:absolute; top:0; left:0; right:0; bottom:0; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:#fff; text-shadow: 0 1px 2px rgba(0,0,0,0.3); pointer-events:none; }
+  .rank-bar.sprint { background: linear-gradient(90deg, #dc2626, #f87171); }
+  .rank-bar-label.sprint-label { color: #fff; }
   .rank-val  { font-weight:700; text-align:right; }
   .rank-info { font-size:11px; color: var(--text-muted); text-align:right; }
 
@@ -516,10 +528,16 @@
       </div>
       <div class="kpi-card rate">
         <div class="kpi-label" id="kpiCompLabel">--</div>
-        <div class="kpi-value" id="kpiCompletion" style="display:flex;align-items:baseline;gap:8px"></div>
-        <div class="kpi-time-node" id="kpiTimeNode"></div>
-        <div class="kpi-progress-node" id="kpiProgressNode"></div>
-        <div class="kpi-comp-amount" id="kpiCompAmount" style="font-size:13px;color:var(--text-secondary);margin-top:2px;letter-spacing:0.5px"></div>
+        <div class="kpi-dual">
+          <div class="kpi-dual-item base">
+            <div class="kpi-dual-tag">基础</div>
+            <div class="kpi-dual-val" id="kpiBaseRate">--</div>
+          </div>
+          <div class="kpi-dual-item sprint">
+            <div class="kpi-dual-tag">冲刺</div>
+            <div class="kpi-dual-val" id="kpiSprintRate">--</div>
+          </div>
+        </div>
         <div class="kpi-footer">
           <span class="kpi-trend" id="kpiCompTrend">--</span>
           <span class="kpi-sub" id="kpiCompSub">--</span>
@@ -535,7 +553,16 @@
       </div>
       <div class="kpi-card stores">
         <div class="kpi-label">🏆 达标门店</div>
-        <div class="kpi-value" id="kpiStores">--</div>
+        <div class="kpi-dual">
+          <div class="kpi-dual-item base">
+            <div class="kpi-dual-tag">基础</div>
+            <div class="kpi-dual-val" id="kpiStoresBase">--</div>
+          </div>
+          <div class="kpi-dual-item sprint">
+            <div class="kpi-dual-tag">冲刺</div>
+            <div class="kpi-dual-val" id="kpiStoresSprint">--</div>
+          </div>
+        </div>
         <div class="kpi-footer">
           <span class="kpi-trend" id="kpiStoreTrend">--</span>
           <span class="kpi-sub">较上期</span>
@@ -573,7 +600,7 @@
         <div class="rank-scroll">
           <table class="rank-table">
             <thead><tr>
-              <th>#</th><th>门店</th><th>区域</th><th style="min-width:110px">完成率</th><th class="right">环比</th>
+              <th>#</th><th>门店</th><th>区域</th><th style="min-width:80px">基础</th><th style="min-width:80px">冲刺</th><th class="right">环比</th>
             </tr></thead>
             <tbody id="rankBody"></tbody>
           </table>
@@ -827,7 +854,7 @@ function renderKpi(d) {
 
   // Recalculate totals from filtered stores
   var totalSales = 0, totalCustomers = 0, totalRecharge = 0, totalRechargeLast = 0;
-  var achieved = 0, totalStores = stores.length;
+  var achieved = 0, sprintAchieved = 0, totalStores = stores.length;
   stores.forEach(function(s){
     totalSales += (s.sales || 0);
     totalCustomers += (s.customers || 0);
@@ -835,6 +862,8 @@ function renderKpi(d) {
     totalRechargeLast += (s.last_recharge || 0);
     var rate = s.target>0 ? (s.sales||0)/s.target*100 : 0;
     if (rate >= 100) achieved++;
+    var sr = s.sprint>0 ? (s.sales||0)/s.sprint*100 : 0;
+    if (sr >= 100) sprintAchieved++;
   });
   var avgBill = totalCustomers > 0 ? Math.round(totalSales / totalCustomers * 100) / 100 : d.avg_bill;
 
@@ -842,14 +871,19 @@ function renderKpi(d) {
   var filteredRate = d.total_sales > 0 ? totalSales / d.total_sales : 1;
   var lastSales = Math.round((d.last_period_sales || 0) * filteredRate);
   var lastAvgBill = d.last_period_avg_bill || avgBill;
+  // For last period achieved: scale proportionally
+  var lastAchieved = Math.round((d.last_period_achieved || 0) * filteredRate);
 
   // Target amount: use area target when filtered, global target otherwise
   var targetAmt = d.target_amount || 0;
+  var sprintAmt = d.sprint_amount || 0;
   if (isFiltered && d.areas) {
     var areaObj = d.areas.find(function(a){ return a.name === currentArea; });
     if (areaObj && areaObj.target) targetAmt = areaObj.target;
+    if (areaObj && areaObj.sprint_target) sprintAmt = areaObj.sprint_target;
   }
   var compRate = targetAmt > 0 ? totalSales / targetAmt * 100 : 0;
+  var sprintRate = sprintAmt > 0 ? totalSales / sprintAmt * 100 : 0;
 
   var sg = calcGrowth(totalSales, lastSales);
   var ag = calcGrowth(avgBill, lastAvgBill);
@@ -884,14 +918,13 @@ function renderKpi(d) {
   };
 
   setText('kpiSales', fmt(totalSales));
-  setText('kpiCompletion', fmtPct(compRate));
-  // Add completed/target amount line
-  var compAmountEl = document.getElementById('kpiCompAmount');
-  if (compAmountEl) {
-    compAmountEl.textContent = '已完成 ¥' + fmt(totalSales) + ' / 目标 ¥' + fmt(targetAmt);
-  }
+  // Dual completion rate
+  setText('kpiBaseRate', fmtPct(compRate));
+  setText('kpiSprintRate', fmtPct(sprintRate));
   setText('kpiAvgBill', '¥' + avgBill);
-  setText('kpiStores', achieved + '/' + totalStores);
+  // Dual achieved stores
+  setText('kpiStoresBase', achieved + '/' + totalStores);
+  setText('kpiStoresSprint', sprintAchieved + '/' + totalStores);
 
   // Dynamic label
   var compLabel = document.getElementById('kpiCompLabel');
@@ -1004,12 +1037,14 @@ function renderRanking(rawStores) {
   var stores = filteredStores(rawStores);
   if (!stores.length) return;
   stores.forEach(function(s){ s.rate = s.target>0 ? s.sales/s.target*100 : 0; });
+  stores.forEach(function(s){ s.sprintRate = s.sprint>0 ? s.sales/s.sprint*100 : 0; });
   stores.sort(function(a,b){ return b.rate-a.rate; });
 
   var html = '';
   stores.forEach(function(s,i){
     var rank = i+1;
     var barW = Math.min(Math.round(s.rate), 100);
+    var barWs = Math.min(Math.round(s.sprintRate), 100);
     var barCls = s.rate>=90 ? 'high' : s.rate>=60 ? 'mid' : 'low';
 
     // Rank change
@@ -1032,6 +1067,7 @@ function renderRanking(rawStores) {
       '<td>'+s.name+'</td>'+
       '<td>'+areaBadge+'</td>'+
       '<td><span class="rank-bar-wrap"><span class="rank-bar '+barCls+'" style="width:'+barW+'%"></span><span class="rank-bar-label">'+s.rate.toFixed(2)+'%</span></span></td>'+
+      '<td><span class="rank-bar-wrap"><span class="rank-bar sprint" style="width:'+barWs+'%"></span><span class="rank-bar-label sprint-label">'+s.sprintRate.toFixed(2)+'%</span></span></td>'+
       '<td style="text-align:right">'+changeHtml+' <span class="rank-info">'+fmt(s.sales)+'</span></td>'+
       '</tr>';
   });
