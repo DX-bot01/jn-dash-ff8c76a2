@@ -233,6 +233,15 @@
   .rank-table .rank-change.up { color: var(--green); }
   .rank-table .rank-change.down { color: var(--red); }
   .rank-table .rank-change.same { color: var(--text-muted); }
+  .product-table { min-width:1060px; table-layout:fixed; }
+  .product-table th, .product-table td { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; vertical-align:middle; }
+  .product-table th.right, .product-table td.right { text-align:right; font-variant-numeric: tabular-nums; }
+  .product-table .prod-name { max-width:360px; }
+  .product-table .prod-growth { overflow:visible; }
+  .product-table .growth-box { display:inline-grid; grid-template-columns:60px 44px; gap:8px; align-items:baseline; justify-content:end; min-width:112px; font-variant-numeric: tabular-nums; }
+  .product-table .growth-pct { text-align:right; font-weight:700; }
+  .product-table .growth-delta { text-align:right; color:var(--text-muted); font-size:9px; font-weight:600; }
+  .product-table .growth-empty { grid-template-columns:112px; color:var(--text-muted); }
   .rank-bar-wrap { width:100px; height:14px; background:#f0f0f0; border-radius:7px; overflow:hidden; display:inline-block; vertical-align:middle; position:relative; }
   .rank-bar { position:absolute; left:0; top:0; bottom:0; border-radius:7px; transition:width .4s; }
   .rank-bar.high { background: linear-gradient(90deg, #16a34a, #22c55e); }
@@ -700,9 +709,12 @@
         <span class="panel-sub" id="productTop50Sub">以实收金额排名 · 含环比变化</span>
       </div>
       <div style="overflow-x:auto">
-        <table class="rank-table">
+        <table class="rank-table product-table">
+          <colgroup>
+            <col style="width:44px"><col style="width:390px"><col style="width:90px"><col style="width:90px"><col style="width:120px"><col style="width:120px"><col style="width:135px"><col style="width:135px">
+          </colgroup>
           <thead><tr>
-            <th>#</th><th>商品名称</th><th class="right" style="min-width:78px">本期数量</th><th class="right" style="min-width:78px">上期数量</th><th class="right" style="min-width:90px">本期实收</th><th class="right" style="min-width:90px">上期实收</th><th class="right" style="min-width:105px">金额环比</th><th class="right" style="min-width:105px">数量环比</th>
+            <th>#</th><th>商品名称</th><th class="right">本期数量</th><th class="right">上期数量</th><th class="right">本期实收</th><th class="right">上期实收</th><th class="right">金额环比</th><th class="right">数量环比</th>
           </tr></thead>
           <tbody id="productTop50Tbody"></tbody>
         </table>
@@ -2312,26 +2324,24 @@ function renderProductTop50(d) {
     var rankNum = p.rank;
     var numCls = rankNum <= 3 ? 'top3' : '';
     var rankIcon = rankNum <= 3 ? ['🥇','🥈','🥉'][rankNum-1] : rankNum;
-    function deltaText(delta, isMoney) {
-      if (!delta || delta === 0) return '';
-      var absD = Math.abs(delta);
-      var sign = delta >= 0 ? '+' : '-';
-      var text = isMoney
+    function growthHtml(growth, isMoney) {
+      if (!growth.cls) return '<span class="growth-box growth-empty">--</span>';
+      var absD = Math.abs(growth.delta || 0);
+      var sign = growth.delta >= 0 ? '+' : '-';
+      var delta = isMoney
         ? (absD >= 10000 ? (absD/10000).toFixed(2)+'万' : Math.round(absD).toLocaleString())
         : Math.round(absD).toLocaleString();
-      return '<span class="kpi-delta" style="font-size:9px;display:inline-block;min-width:38px;text-align:right">' + sign + text + '</span>';
+      return '<span class="growth-box"><span class="growth-pct">'+growth.text+'</span><span class="growth-delta">'+sign+delta+'</span></span>';
     }
-    var amountDeltaStr = deltaText(amountGrowth.delta, true);
-    var qtyDeltaStr = deltaText(qtyGrowth.delta, false);
     html += '<tr>'+
       '<td class="rank-num '+numCls+'">'+rankIcon+'</td>'+
-      '<td><span title="SKU:'+p.sku+'">'+p.name+'</span></td>'+
+      '<td class="prod-name"><span title="SKU:'+p.sku+'">'+p.name+'</span></td>'+
       '<td class="right">'+(p.cur_qty || 0).toLocaleString()+'</td>'+
       '<td class="right" style="color:var(--text-secondary)">'+(p.prev_qty || 0).toLocaleString()+'</td>'+
       '<td class="right">¥'+p.cur_receipt.toLocaleString()+'</td>'+
       '<td class="right" style="color:var(--text-secondary)">¥'+p.prev_receipt.toLocaleString()+'</td>'+
-      '<td class="right rank-change '+amountGrowth.cls+'">'+amountGrowth.text+amountDeltaStr+'</td>'+
-      '<td class="right rank-change '+qtyGrowth.cls+'">'+qtyGrowth.text+qtyDeltaStr+'</td>'+
+      '<td class="right rank-change prod-growth '+amountGrowth.cls+'">'+growthHtml(amountGrowth, true)+'</td>'+
+      '<td class="right rank-change prod-growth '+qtyGrowth.cls+'">'+growthHtml(qtyGrowth, false)+'</td>'+
       '</tr>';
   });
   document.getElementById('productTop50Tbody').innerHTML = html;
