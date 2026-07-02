@@ -1,395 +1,422 @@
 {
-  "date": "2026年06月 (1-30日)",
-  "compare_date": "2026年05月",
+  "date": "2026年07月 (1-1日)",
+  "compare_date": "2026年06月",
   "is_month": true,
-  "total_sales": 3250176.06,
-  "last_period_sales": 3128793.31,
-  "target_amount": 3846373.27,
-  "avg_bill": 14.18,
-  "last_period_avg_bill": 15.25,
-  "total_customers": 229239,
-  "achieved_stores": 15,
-  "last_period_achieved": 18,
+  "total_sales": 116907.86,
+  "last_period_sales": 3250176.06,
+  "target_amount": 4184999,
+  "avg_bill": 13.48,
+  "last_period_avg_bill": 14.18,
+  "total_customers": 8673,
+  "achieved_stores": 0,
+  "last_period_achieved": 1,
   "total_stores": 22,
-  "month_target": 3846373.27,
-  "month_completed": 3250176.06,
-  "month_remaining_days": 1,
+  "month_target": 4184999,
+  "month_completed": 116907.86,
+  "month_remaining_days": 30,
   "stores": [
-    {
-      "name": "济南万科城店（一）",
-      "area": "二区",
-      "sales": 185023.21,
-      "target": 230644.8,
-      "customers": 14160,
-      "avg_bill": 13.07,
-      "prev_rank": 1,
-      "last_sales": 215323.99,
-      "last_orders": 14673,
-      "last_avg_bill": 14.67,
-      "recharge": 22513.58,
-      "last_recharge": 28357.4,
-      "suggestions": [
-        "🟡 需要提速"
-      ]
-    },
     {
       "name": "济南城投伴山居店",
       "area": "二区",
-      "sales": 216436.63,
-      "target": 242230.69,
-      "customers": 18114,
-      "avg_bill": 11.95,
+      "sales": 7404.29,
+      "target": 275062,
+      "customers": 592,
+      "avg_bill": 12.51,
       "prev_rank": 2,
-      "last_sales": 226140.28,
-      "last_orders": 17586,
-      "last_avg_bill": 12.86,
-      "recharge": 9400.0,
-      "last_recharge": 11681.86,
+      "last_sales": 216436.63,
+      "last_orders": 18114,
+      "last_avg_bill": 11.95,
+      "recharge": 100.0,
+      "last_recharge": 9400.0,
       "suggestions": [
-        "🟢 节奏正常"
-      ]
-    },
-    {
-      "name": "济南白马南路店",
-      "area": "二区",
-      "sales": 243034.57,
-      "target": 255711.78,
-      "customers": 16172,
-      "avg_bill": 15.03,
-      "prev_rank": 3,
-      "last_sales": 238725.87,
-      "last_orders": 14939,
-      "last_avg_bill": 15.98,
-      "recharge": 15700.0,
-      "last_recharge": 22900.0,
-      "suggestions": [
-        "🟢 节奏正常"
-      ]
-    },
-    {
-      "name": "济南文贤居店",
-      "area": "二区",
-      "sales": 144105.51,
-      "target": 170861.75,
-      "customers": 8805,
-      "avg_bill": 16.37,
-      "prev_rank": 20,
-      "last_sales": 92863.14,
-      "last_orders": 3622,
-      "last_avg_bill": 25.64,
-      "recharge": 38854.39,
-      "last_recharge": 6300.0,
-      "suggestions": [
-        "🟡 需要提速"
-      ]
-    },
-    {
-      "name": "济南海信九麓府店",
-      "area": "二区",
-      "sales": 155605.18,
-      "target": 167983.19,
-      "customers": 11136,
-      "avg_bill": 13.97,
-      "prev_rank": 4,
-      "last_sales": 156824.74,
-      "last_orders": 10716,
-      "last_avg_bill": 14.63,
-      "recharge": 7500.0,
-      "last_recharge": 9600.0,
-      "suggestions": [
-        "🟢 节奏正常"
-      ]
-    },
-    {
-      "name": "济南梁王新城",
-      "area": "一区",
-      "sales": 200382.12,
-      "target": 225848.35,
-      "customers": 13458,
-      "avg_bill": 14.89,
-      "prev_rank": 5,
-      "last_sales": 210846.15,
-      "last_orders": 12974,
-      "last_avg_bill": 16.25,
-      "recharge": 10227.43,
-      "last_recharge": 11700.0,
-      "suggestions": [
-        "🟢 节奏正常"
-      ]
-    },
-    {
-      "name": "济南仁华居店",
-      "area": "一区",
-      "sales": 131461.58,
-      "target": 143734.04,
-      "customers": 8221,
-      "avg_bill": 15.99,
-      "prev_rank": 6,
-      "last_sales": 134186.36,
-      "last_orders": 8207,
-      "last_avg_bill": 16.35,
-      "recharge": 7501.2,
-      "last_recharge": 9200.0,
-      "suggestions": [
-        "🟢 节奏正常"
-      ]
-    },
-    {
-      "name": "济南中海山湖壹号店（一）",
-      "area": "一区",
-      "sales": 139742.87,
-      "target": 171010.14,
-      "customers": 9784,
-      "avg_bill": 14.28,
-      "prev_rank": 7,
-      "last_sales": 159650.62,
-      "last_orders": 10078,
-      "last_avg_bill": 15.84,
-      "recharge": 6000.0,
-      "last_recharge": 7300.0,
-      "suggestions": [
-        "🟡 需要提速"
-      ]
-    },
-    {
-      "name": "济南中海云著店",
-      "area": "二区",
-      "sales": 117237.95,
-      "target": 121625.02,
-      "customers": 8420,
-      "avg_bill": 13.92,
-      "prev_rank": 8,
-      "last_sales": 113545.96,
-      "last_orders": 7877,
-      "last_avg_bill": 14.41,
-      "recharge": 10160.9,
-      "last_recharge": 7390.1,
-      "suggestions": [
-        "🟢 节奏正常"
-      ]
-    },
-    {
-      "name": "济南香溢澜庭店（一）",
-      "area": "一区",
-      "sales": 165181.5,
-      "target": 207605.99,
-      "customers": 12664,
-      "avg_bill": 13.04,
-      "prev_rank": 9,
-      "last_sales": 193815.56,
-      "last_orders": 12712,
-      "last_avg_bill": 15.25,
-      "recharge": 13100.0,
-      "last_recharge": 14500.0,
-      "suggestions": [
-        "🟡 需要提速"
-      ]
-    },
-    {
-      "name": "济南天鸿万卷府店",
-      "area": "一区",
-      "sales": 173424.96,
-      "target": 196786.69,
-      "customers": 13390,
-      "avg_bill": 12.95,
-      "prev_rank": 10,
-      "last_sales": 183714.94,
-      "last_orders": 11998,
-      "last_avg_bill": 15.31,
-      "recharge": 22700.0,
-      "last_recharge": 24089.03,
-      "suggestions": [
-        "🟢 节奏正常"
-      ]
-    },
-    {
-      "name": "济南保利和塘悦色店",
-      "area": "一区",
-      "sales": 128911.81,
-      "target": 157403.34,
-      "customers": 9779,
-      "avg_bill": 13.18,
-      "prev_rank": 11,
-      "last_sales": 146947.67,
-      "last_orders": 9850,
-      "last_avg_bill": 14.92,
-      "recharge": 18500.42,
-      "last_recharge": 21685.33,
-      "suggestions": [
-        "🟡 需要提速"
-      ]
-    },
-    {
-      "name": "济南祥泰城店",
-      "area": "一区",
-      "sales": 121134.34,
-      "target": 125370.37,
-      "customers": 9502,
-      "avg_bill": 12.75,
-      "prev_rank": 12,
-      "last_sales": 117042.52,
-      "last_orders": 8450,
-      "last_avg_bill": 13.85,
-      "recharge": 3042.12,
-      "last_recharge": 4700.0,
-      "suggestions": [
-        "🟢 节奏正常"
-      ]
-    },
-    {
-      "name": "济南御山首府店",
-      "area": "一区",
-      "sales": 147773.3,
-      "target": 143067.56,
-      "customers": 10097,
-      "avg_bill": 14.64,
-      "prev_rank": 13,
-      "last_sales": 160931.33,
-      "last_orders": 10939,
-      "last_avg_bill": 14.71,
-      "recharge": 3880.9,
-      "last_recharge": 5201.71,
-      "suggestions": [
-        "🟢 节奏正常"
-      ]
-    },
-    {
-      "name": "济南御景台店",
-      "area": "一区",
-      "sales": 84855.24,
-      "target": 80041.29,
-      "customers": 7407,
-      "avg_bill": 11.46,
-      "prev_rank": 14,
-      "last_sales": 128322.09,
-      "last_orders": 9751,
-      "last_avg_bill": 13.16,
-      "recharge": 1062.56,
-      "last_recharge": 2200.0,
-      "suggestions": [
-        "🟢 节奏正常",
+        "🔴 完成率<50%，紧急跟进",
         "📉 环比大跌",
         "储值转化弱"
       ]
     },
     {
+      "name": "济南万科城店（一）",
+      "area": "二区",
+      "sales": 7458.71,
+      "target": 235139,
+      "customers": 533,
+      "avg_bill": 13.99,
+      "prev_rank": 1,
+      "last_sales": 185023.21,
+      "last_orders": 14160,
+      "last_avg_bill": 13.07,
+      "recharge": 300.0,
+      "last_recharge": 22513.58,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌"
+      ]
+    },
+    {
+      "name": "济南白马南路店",
+      "area": "二区",
+      "sales": 8561.95,
+      "target": 308864,
+      "customers": 571,
+      "avg_bill": 14.99,
+      "prev_rank": 3,
+      "last_sales": 243034.57,
+      "last_orders": 16172,
+      "last_avg_bill": 15.03,
+      "recharge": 600.0,
+      "last_recharge": 15700.0,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌"
+      ]
+    },
+    {
+      "name": "济南文贤居店",
+      "area": "二区",
+      "sales": 4264.96,
+      "target": 198440,
+      "customers": 295,
+      "avg_bill": 14.46,
+      "prev_rank": 4,
+      "last_sales": 144105.51,
+      "last_orders": 8805,
+      "last_avg_bill": 16.37,
+      "recharge": 400.0,
+      "last_recharge": 38854.39,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌"
+      ]
+    },
+    {
+      "name": "济南海信九麓府店",
+      "area": "二区",
+      "sales": 5615.24,
+      "target": 197753,
+      "customers": 458,
+      "avg_bill": 12.26,
+      "prev_rank": 5,
+      "last_sales": 155605.18,
+      "last_orders": 11136,
+      "last_avg_bill": 13.97,
+      "recharge": 402.1,
+      "last_recharge": 7500.0,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌"
+      ]
+    },
+    {
+      "name": "济南梁王新城",
+      "area": "一区",
+      "sales": 7533.01,
+      "target": 254659,
+      "customers": 495,
+      "avg_bill": 15.22,
+      "prev_rank": 6,
+      "last_sales": 200382.12,
+      "last_orders": 13458,
+      "last_avg_bill": 14.89,
+      "recharge": 300.0,
+      "last_recharge": 10227.43,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌"
+      ]
+    },
+    {
+      "name": "济南仁华居店",
+      "area": "一区",
+      "sales": 4622.31,
+      "target": 167070,
+      "customers": 258,
+      "avg_bill": 17.92,
+      "prev_rank": 7,
+      "last_sales": 131461.58,
+      "last_orders": 8221,
+      "last_avg_bill": 15.99,
+      "recharge": 500.0,
+      "last_recharge": 7501.2,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌"
+      ]
+    },
+    {
+      "name": "济南中海云著店",
+      "area": "二区",
+      "sales": 3902.75,
+      "target": 148994,
+      "customers": 315,
+      "avg_bill": 12.39,
+      "prev_rank": 9,
+      "last_sales": 117237.95,
+      "last_orders": 8420,
+      "last_avg_bill": 13.92,
+      "recharge": 100.0,
+      "last_recharge": 10160.9,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌"
+      ]
+    },
+    {
+      "name": "济南天鸿万卷府店",
+      "area": "一区",
+      "sales": 6177.86,
+      "target": 220400,
+      "customers": 419,
+      "avg_bill": 14.74,
+      "prev_rank": 11,
+      "last_sales": 173424.96,
+      "last_orders": 13390,
+      "last_avg_bill": 12.95,
+      "recharge": 1300.0,
+      "last_recharge": 22700.0,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌"
+      ]
+    },
+    {
+      "name": "济南保利和塘悦色店",
+      "area": "一区",
+      "sales": 5109.38,
+      "target": 163829,
+      "customers": 418,
+      "avg_bill": 12.22,
+      "prev_rank": 12,
+      "last_sales": 128911.81,
+      "last_orders": 9779,
+      "last_avg_bill": 13.18,
+      "recharge": 200.0,
+      "last_recharge": 18500.42,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌"
+      ]
+    },
+    {
+      "name": "济南祥泰城店",
+      "area": "一区",
+      "sales": 4197.32,
+      "target": 153945,
+      "customers": 421,
+      "avg_bill": 9.97,
+      "prev_rank": 13,
+      "last_sales": 121134.34,
+      "last_orders": 9502,
+      "last_avg_bill": 12.75,
+      "recharge": 100.0,
+      "last_recharge": 3042.12,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌",
+        "客单价<¥11"
+      ]
+    },
+    {
+      "name": "济南御山首府店",
+      "area": "一区",
+      "sales": 7185.11,
+      "target": 203491,
+      "customers": 391,
+      "avg_bill": 18.38,
+      "prev_rank": 14,
+      "last_sales": 147773.3,
+      "last_orders": 10097,
+      "last_avg_bill": 14.64,
+      "recharge": 0,
+      "last_recharge": 3880.9,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌",
+        "储值转化弱"
+      ]
+    },
+    {
+      "name": "济南御景台店",
+      "area": "一区",
+      "sales": 3054.88,
+      "target": 116850,
+      "customers": 294,
+      "avg_bill": 10.39,
+      "prev_rank": 15,
+      "last_sales": 84855.24,
+      "last_orders": 7407,
+      "last_avg_bill": 11.46,
+      "recharge": 200.0,
+      "last_recharge": 1062.56,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌",
+        "客单价<¥11"
+      ]
+    },
+    {
       "name": "济南天鸿万象东方店",
       "area": "一区",
-      "sales": 108002.96,
-      "target": 122098.45,
-      "customers": 8171,
-      "avg_bill": 13.22,
-      "prev_rank": 15,
-      "last_sales": 113987.94,
-      "last_orders": 7560,
-      "last_avg_bill": 15.08,
-      "recharge": 6843.29,
-      "last_recharge": 8500.0,
+      "sales": 4591.02,
+      "target": 148725,
+      "customers": 337,
+      "avg_bill": 13.62,
+      "prev_rank": 16,
+      "last_sales": 108002.96,
+      "last_orders": 8171,
+      "last_avg_bill": 13.22,
+      "recharge": 600.0,
+      "last_recharge": 6843.29,
       "suggestions": [
-        "🟢 节奏正常"
+        "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌"
       ]
     },
     {
       "name": "济南中建新悦城店",
       "area": "一区",
-      "sales": 136308.28,
-      "target": 103743.23,
-      "customers": 8355,
-      "avg_bill": 16.31,
-      "prev_rank": 16,
-      "last_sales": 173934.68,
-      "last_orders": 9659,
-      "last_avg_bill": 18.01,
-      "recharge": 12827.77,
-      "last_recharge": 9200.05,
-      "suggestions": [
-        "🟢 节奏正常",
-        "📉 环比下滑"
-      ]
-    },
-    {
-      "name": "济南绿地国际花都店",
-      "area": "二区",
-      "sales": 178565.33,
-      "target": 186494.52,
-      "customers": 12042,
-      "avg_bill": 14.83,
+      "sales": 4276.51,
+      "target": 187703,
+      "customers": 295,
+      "avg_bill": 14.5,
       "prev_rank": 17,
-      "last_sales": 174106.44,
-      "last_orders": 10748,
-      "last_avg_bill": 16.2,
-      "recharge": 28703.36,
-      "last_recharge": 30120.5,
+      "last_sales": 136308.28,
+      "last_orders": 8355,
+      "last_avg_bill": 16.31,
+      "recharge": 100.0,
+      "last_recharge": 12827.77,
       "suggestions": [
-        "🟢 节奏正常"
-      ]
-    },
-    {
-      "name": "济南鲁建小区店",
-      "area": "二区",
-      "sales": 195955.31,
-      "target": 194112.07,
-      "customers": 13883,
-      "avg_bill": 14.11,
-      "prev_rank": 18,
-      "last_sales": 181217.98,
-      "last_orders": 12391,
-      "last_avg_bill": 14.62,
-      "recharge": 12104.02,
-      "last_recharge": 19400.01,
-      "suggestions": [
-        "🟢 节奏正常"
-      ]
-    },
-    {
-      "name": "济南城市之星店",
-      "area": "一区",
-      "sales": 81656.12,
-      "target": 120000.0,
-      "customers": 5431,
-      "avg_bill": 15.04,
-      "prev_rank": 19,
-      "last_sales": 6665.05,
-      "last_orders": 503,
-      "last_avg_bill": 13.25,
-      "recharge": 8634.8,
-      "last_recharge": 0,
-      "suggestions": [
-        "🟠 完成率偏低"
+        "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌"
       ]
     },
     {
       "name": "济南北徐花园店",
       "area": "二区",
-      "sales": 138078.97,
-      "target": 120000.0,
-      "customers": 5451,
-      "avg_bill": 25.33,
-      "prev_rank": 22,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
-      "recharge": 6500.0,
-      "last_recharge": 0,
+      "sales": 2587.27,
+      "target": 145054,
+      "customers": 143,
+      "avg_bill": 18.09,
+      "prev_rank": 21,
+      "last_sales": 138078.97,
+      "last_orders": 5451,
+      "last_avg_bill": 25.33,
+      "recharge": 0,
+      "last_recharge": 6500.0,
       "suggestions": [
-        "🟢 节奏正常"
+        "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌",
+        "储值转化弱"
+      ]
+    },
+    {
+      "name": "济南中海山湖壹号店（一）",
+      "area": "一区",
+      "sales": 4746.43,
+      "target": 177594,
+      "customers": 370,
+      "avg_bill": 12.83,
+      "prev_rank": 8,
+      "last_sales": 139742.87,
+      "last_orders": 9784,
+      "last_avg_bill": 14.28,
+      "recharge": 0,
+      "last_recharge": 6000.0,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌",
+        "储值转化弱"
+      ]
+    },
+    {
+      "name": "济南香溢澜庭店（一）",
+      "area": "一区",
+      "sales": 5662.51,
+      "target": 209923,
+      "customers": 455,
+      "avg_bill": 12.45,
+      "prev_rank": 10,
+      "last_sales": 165181.5,
+      "last_orders": 12664,
+      "last_avg_bill": 13.04,
+      "recharge": 100.0,
+      "last_recharge": 13100.0,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌"
+      ]
+    },
+    {
+      "name": "济南绿地国际花都店",
+      "area": "二区",
+      "sales": 6684.98,
+      "target": 226932,
+      "customers": 481,
+      "avg_bill": 13.9,
+      "prev_rank": 18,
+      "last_sales": 178565.33,
+      "last_orders": 12042,
+      "last_avg_bill": 14.83,
+      "recharge": 900.0,
+      "last_recharge": 28703.36,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌"
+      ]
+    },
+    {
+      "name": "济南鲁建小区店",
+      "area": "二区",
+      "sales": 5945.62,
+      "target": 249033,
+      "customers": 466,
+      "avg_bill": 12.76,
+      "prev_rank": 19,
+      "last_sales": 195955.31,
+      "last_orders": 13883,
+      "last_avg_bill": 14.11,
+      "recharge": 100.0,
+      "last_recharge": 12104.02,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌"
       ]
     },
     {
       "name": "济南梦世界店",
-      "area": "一区",
-      "sales": 57298.32,
-      "target": 120000.0,
-      "customers": 4797,
-      "avg_bill": 11.94,
+      "area": "二区",
+      "sales": 4403.89,
+      "target": 80631,
+      "customers": 451,
+      "avg_bill": 9.76,
       "prev_rank": 22,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
+      "last_sales": 57298.32,
+      "last_orders": 4797,
+      "last_avg_bill": 11.94,
       "recharge": 0,
       "last_recharge": 0,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌",
+        "客单价<¥11",
+        "储值转化弱"
+      ]
+    },
+    {
+      "name": "济南城市之星店",
+      "area": "一区",
+      "sales": 2921.86,
+      "target": 114908,
+      "customers": 215,
+      "avg_bill": 13.59,
+      "prev_rank": 20,
+      "last_sales": 81656.12,
+      "last_orders": 5431,
+      "last_avg_bill": 15.04,
+      "recharge": 0,
+      "last_recharge": 8634.8,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌",
         "储值转化弱"
       ]
     }
@@ -399,678 +426,428 @@
       "name": "一区",
       "manager": "高硕",
       "color": "#4F46E5",
-      "sales": 1676133.4,
-      "stores": 13,
-      "target": 1916709.45,
-      "last_sales": 1730044.91
+      "sales": 60078.2,
+      "stores": 12,
+      "target": 2119097,
+      "last_sales": 1618835.08
     },
     {
       "name": "二区",
       "manager": "古子箴",
       "color": "#0891B2",
-      "sales": 1574042.66,
-      "stores": 9,
-      "target": 1689663.82,
-      "last_sales": 1398748.4
+      "sales": 56829.66,
+      "stores": 10,
+      "target": 2065902,
+      "last_sales": 1631340.98
     }
   ],
   "category_breakdown": [
     {
       "name": "酒水饮料",
-      "sales": 1354580.71,
-      "share": 41.7,
-      "last_sales": 1075536.15
+      "sales": 44887.65,
+      "share": 38.4,
+      "last_sales": 1354580.71
     },
     {
       "name": "休闲食品",
-      "sales": 430324.16,
-      "share": 13.2,
-      "last_sales": 479657.47
+      "sales": 16885.26,
+      "share": 14.4,
+      "last_sales": 430324.16
     },
     {
       "name": "乳制品",
-      "sales": 349561.46,
-      "share": 10.8,
-      "last_sales": 323030.63
+      "sales": 12065.72,
+      "share": 10.3,
+      "last_sales": 349561.46
     },
     {
       "name": "冻品",
-      "sales": 304169.88,
+      "sales": 11000.06,
       "share": 9.4,
-      "last_sales": 281656.07
+      "last_sales": 304169.88
     },
     {
       "name": "洗化百货",
-      "sales": 197227.89,
-      "share": 6.1,
-      "last_sales": 229301.97
+      "sales": 8005.51,
+      "share": 6.8,
+      "last_sales": 197227.89
     },
     {
       "name": "方便食品",
-      "sales": 162213.51,
-      "share": 5.0,
-      "last_sales": 174650.59
+      "sales": 6151.39,
+      "share": 5.3,
+      "last_sales": 162213.51
     },
     {
       "name": "调味干货",
-      "sales": 144343.64,
-      "share": 4.4,
-      "last_sales": 179360.69
+      "sales": 4890.19,
+      "share": 4.2,
+      "last_sales": 144343.64
     },
     {
       "name": "米面粮油",
-      "sales": 101979.28,
-      "share": 3.1,
-      "last_sales": 119522.32
-    },
-    {
-      "name": "烘焙",
-      "sales": 64706.47,
-      "share": 2.0,
-      "last_sales": 71546.27
-    },
-    {
-      "name": "蛋品",
-      "sales": 54012.55,
-      "share": 1.7,
-      "last_sales": 146997.33
-    },
-    {
-      "name": "低温食品",
-      "sales": 30078.99,
-      "share": 0.9,
-      "last_sales": 23155.92
+      "sales": 3720.1,
+      "share": 3.2,
+      "last_sales": 101979.28
     },
     {
       "name": "香烟中类",
-      "sales": 26613.0,
-      "share": 0.8,
-      "last_sales": 3721.0
+      "sales": 2899.0,
+      "share": 2.5,
+      "last_sales": 26613.0
+    },
+    {
+      "name": "烘焙",
+      "sales": 2727.67,
+      "share": 2.3,
+      "last_sales": 64706.47
+    },
+    {
+      "name": "蛋品",
+      "sales": 1494.4,
+      "share": 1.3,
+      "last_sales": 54012.55
+    },
+    {
+      "name": "低温食品",
+      "sales": 1369.6,
+      "share": 1.2,
+      "last_sales": 30078.99
     },
     {
       "name": "槟榔",
-      "sales": 12878.94,
+      "sales": 477.6,
       "share": 0.4,
-      "last_sales": 5871.43
+      "last_sales": 12878.94
     },
     {
       "name": "出清",
-      "sales": 9785.81,
-      "share": 0.3,
-      "last_sales": 6281.71
-    },
-    {
-      "name": "抖音套餐",
-      "sales": 5899.87,
+      "sales": 206.87,
       "share": 0.2,
-      "last_sales": 6903.24
+      "last_sales": 9785.81
     },
     {
       "name": "耗材",
-      "sales": 1799.9,
+      "sales": 69.4,
       "share": 0.1,
-      "last_sales": 1600.52
+      "last_sales": 1799.9
     },
     {
-      "name": "设备",
-      "sales": 0.0,
+      "name": "抖音套餐",
+      "sales": 57.44,
       "share": 0.0,
-      "last_sales": 0
+      "last_sales": 5899.87
     }
   ],
   "recharge": {
-    "current": 265856.74,
-    "last": 254025.99
+    "current": 6302.1,
+    "last": 265856.74
   },
   "category_profit": [
     {
       "name": "酒水饮料",
-      "revenue": 1354580.71,
-      "cost": 1174015.42,
-      "profit": 180565.29,
-      "margin": 13.33,
-      "last_revenue": 1075536.15,
-      "last_cost": 940064.6,
-      "last_profit": 135471.55,
-      "last_margin": 12.6
+      "revenue": 44887.65,
+      "cost": 38742.01,
+      "profit": 6145.64,
+      "margin": 13.69,
+      "last_revenue": 1354580.71,
+      "last_cost": 1174015.42,
+      "last_profit": 180565.29,
+      "last_margin": 13.33
     },
     {
       "name": "休闲食品",
-      "revenue": 430324.16,
-      "cost": 355709.82,
-      "profit": 74614.34,
-      "margin": 17.34,
-      "last_revenue": 479657.47,
-      "last_cost": 394269.38,
-      "last_profit": 85388.09,
-      "last_margin": 17.8
+      "revenue": 16885.26,
+      "cost": 13825.55,
+      "profit": 3059.71,
+      "margin": 18.12,
+      "last_revenue": 430324.16,
+      "last_cost": 355709.82,
+      "last_profit": 74614.34,
+      "last_margin": 17.34
     },
     {
       "name": "冻品",
-      "revenue": 304169.88,
-      "cost": 233846.59,
-      "profit": 70323.29,
-      "margin": 23.12,
-      "last_revenue": 281656.07,
-      "last_cost": 219460.26,
-      "last_profit": 62195.81,
-      "last_margin": 22.08
+      "revenue": 11000.06,
+      "cost": 8253.89,
+      "profit": 2746.17,
+      "margin": 24.97,
+      "last_revenue": 304169.88,
+      "last_cost": 233846.59,
+      "last_profit": 70323.29,
+      "last_margin": 23.12
     },
     {
       "name": "洗化百货",
-      "revenue": 197227.89,
-      "cost": 164805.09,
-      "profit": 32422.8,
-      "margin": 16.44,
-      "last_revenue": 229301.97,
-      "last_cost": 201660.88,
-      "last_profit": 27641.09,
-      "last_margin": 12.05
+      "revenue": 8005.51,
+      "cost": 6769.25,
+      "profit": 1236.26,
+      "margin": 15.44,
+      "last_revenue": 197227.89,
+      "last_cost": 164805.09,
+      "last_profit": 32422.8,
+      "last_margin": 16.44
     },
     {
       "name": "方便食品",
-      "revenue": 162213.51,
-      "cost": 138730.31,
-      "profit": 23483.2,
-      "margin": 14.48,
-      "last_revenue": 174650.59,
-      "last_cost": 152579.3,
-      "last_profit": 22071.29,
-      "last_margin": 12.64
+      "revenue": 6151.39,
+      "cost": 5223.08,
+      "profit": 928.31,
+      "margin": 15.09,
+      "last_revenue": 162213.51,
+      "last_cost": 138730.31,
+      "last_profit": 23483.2,
+      "last_margin": 14.48
     },
     {
       "name": "乳制品",
-      "revenue": 349561.46,
-      "cost": 329012.78,
-      "profit": 20548.68,
-      "margin": 5.88,
-      "last_revenue": 323030.63,
-      "last_cost": 304233.52,
-      "last_profit": 18797.11,
-      "last_margin": 5.82
+      "revenue": 12065.72,
+      "cost": 11170.27,
+      "profit": 895.45,
+      "margin": 7.42,
+      "last_revenue": 349561.46,
+      "last_cost": 329012.78,
+      "last_profit": 20548.68,
+      "last_margin": 5.88
     },
     {
       "name": "调味干货",
-      "revenue": 144343.64,
-      "cost": 125565.94,
-      "profit": 18777.7,
-      "margin": 13.01,
-      "last_revenue": 179360.69,
-      "last_cost": 160688.83,
-      "last_profit": 18671.86,
-      "last_margin": 10.41
-    },
-    {
-      "name": "米面粮油",
-      "revenue": 101979.28,
-      "cost": 91711.06,
-      "profit": 10268.22,
-      "margin": 10.07,
-      "last_revenue": 119522.32,
-      "last_cost": 110509.75,
-      "last_profit": 9012.57,
-      "last_margin": 7.54
-    },
-    {
-      "name": "烘焙",
-      "revenue": 64706.47,
-      "cost": 57750.75,
-      "profit": 6955.72,
-      "margin": 10.75,
-      "last_revenue": 71546.27,
-      "last_cost": 64604.54,
-      "last_profit": 6941.73,
-      "last_margin": 9.7
+      "revenue": 4890.19,
+      "cost": 4236.86,
+      "profit": 653.33,
+      "margin": 13.36,
+      "last_revenue": 144343.64,
+      "last_cost": 125565.94,
+      "last_profit": 18777.7,
+      "last_margin": 13.01
     },
     {
       "name": "香烟中类",
-      "revenue": 26613.0,
-      "cost": 22865.26,
-      "profit": 3747.74,
-      "margin": 14.08,
-      "last_revenue": 3721.0,
-      "last_cost": 3219.47,
-      "last_profit": 501.53,
-      "last_margin": 13.48
+      "revenue": 2899.0,
+      "cost": 2416.95,
+      "profit": 482.05,
+      "margin": 16.63,
+      "last_revenue": 26613.0,
+      "last_cost": 22865.26,
+      "last_profit": 3747.74,
+      "last_margin": 14.08
+    },
+    {
+      "name": "米面粮油",
+      "revenue": 3720.1,
+      "cost": 3324.87,
+      "profit": 395.23,
+      "margin": 10.62,
+      "last_revenue": 101979.28,
+      "last_cost": 91711.06,
+      "last_profit": 10268.22,
+      "last_margin": 10.07
+    },
+    {
+      "name": "烘焙",
+      "revenue": 2727.67,
+      "cost": 2336.51,
+      "profit": 391.16,
+      "margin": 14.34,
+      "last_revenue": 64706.47,
+      "last_cost": 57750.75,
+      "last_profit": 6955.72,
+      "last_margin": 10.75
     },
     {
       "name": "低温食品",
-      "revenue": 30078.99,
-      "cost": 27763.56,
-      "profit": 2315.43,
-      "margin": 7.7,
-      "last_revenue": 23155.92,
-      "last_cost": 20335.74,
-      "last_profit": 2820.18,
-      "last_margin": 12.18
-    },
-    {
-      "name": "抖音套餐",
-      "revenue": 5899.87,
-      "cost": 3739.09,
-      "profit": 2160.78,
-      "margin": 36.62,
-      "last_revenue": 6903.24,
-      "last_cost": 5311.57,
-      "last_profit": 1591.67,
-      "last_margin": 23.06
+      "revenue": 1369.6,
+      "cost": 1217.41,
+      "profit": 152.19,
+      "margin": 11.11,
+      "last_revenue": 30078.99,
+      "last_cost": 27763.56,
+      "last_profit": 2315.43,
+      "last_margin": 7.7
     },
     {
       "name": "槟榔",
-      "revenue": 12878.94,
-      "cost": 11434.09,
-      "profit": 1444.85,
-      "margin": 11.22,
-      "last_revenue": 5871.43,
-      "last_cost": 4321.32,
-      "last_profit": 1550.11,
-      "last_margin": 26.4
+      "revenue": 477.6,
+      "cost": 432.0,
+      "profit": 45.6,
+      "margin": 9.55,
+      "last_revenue": 12878.94,
+      "last_cost": 11434.09,
+      "last_profit": 1444.85,
+      "last_margin": 11.22
     },
     {
-      "name": "设备",
-      "revenue": 0.0,
-      "cost": 0.0,
-      "profit": 0.0,
-      "margin": 0,
-      "last_revenue": 0,
-      "last_cost": 0,
-      "last_profit": 0,
-      "last_margin": 0
-    },
-    {
-      "name": "出清",
-      "revenue": 9785.81,
-      "cost": 9787.96,
-      "profit": -2.15,
-      "margin": -0.02,
-      "last_revenue": 6281.71,
-      "last_cost": 6281.98,
-      "last_profit": -0.27,
-      "last_margin": -0.0
+      "name": "抖音套餐",
+      "revenue": 57.44,
+      "cost": 50.12,
+      "profit": 7.32,
+      "margin": 12.74,
+      "last_revenue": 5899.87,
+      "last_cost": 3739.09,
+      "last_profit": 2160.78,
+      "last_margin": 36.62
     },
     {
       "name": "耗材",
-      "revenue": 1799.9,
-      "cost": 2218.77,
-      "profit": -418.87,
-      "margin": -23.27,
-      "last_revenue": 1600.52,
-      "last_cost": 1934.91,
-      "last_profit": -334.39,
-      "last_margin": -20.89
+      "revenue": 69.4,
+      "cost": 62.46,
+      "profit": 6.94,
+      "margin": 10.0,
+      "last_revenue": 1799.9,
+      "last_cost": 2218.77,
+      "last_profit": -418.87,
+      "last_margin": -23.27
+    },
+    {
+      "name": "出清",
+      "revenue": 206.87,
+      "cost": 206.87,
+      "profit": 0.0,
+      "margin": 0.0,
+      "last_revenue": 9785.81,
+      "last_cost": 9787.96,
+      "last_profit": -2.15,
+      "last_margin": -0.02
     },
     {
       "name": "蛋品",
-      "revenue": 54012.55,
-      "cost": 83884.92,
-      "profit": -29872.37,
-      "margin": -55.31,
-      "last_revenue": 146997.33,
-      "last_cost": 215247.69,
-      "last_profit": -68250.36,
-      "last_margin": -46.43
+      "revenue": 1494.4,
+      "cost": 1502.46,
+      "profit": -8.06,
+      "margin": -0.54,
+      "last_revenue": 54012.55,
+      "last_cost": 83884.92,
+      "last_profit": -29872.37,
+      "last_margin": -55.31
     }
   ],
   "recharge_detail": [
     {
-      "store": "济南文贤居店",
-      "area": "二区",
-      "received": 38854.39,
-      "last_received": 6300.0
+      "store": "济南天鸿万卷府店",
+      "area": "一区",
+      "received": 1300.0,
+      "last_received": 22700.0
     },
     {
       "store": "济南绿地国际花都店",
       "area": "二区",
-      "received": 28703.36,
-      "last_received": 30120.5
-    },
-    {
-      "store": "济南天鸿万卷府店",
-      "area": "一区",
-      "received": 22700.0,
-      "last_received": 24089.03
-    },
-    {
-      "store": "济南万科城店（一）",
-      "area": "二区",
-      "received": 22513.58,
-      "last_received": 28357.4
-    },
-    {
-      "store": "济南保利和塘悦色店",
-      "area": "一区",
-      "received": 18500.42,
-      "last_received": 21685.33
-    },
-    {
-      "store": "济南白马南路店",
-      "area": "二区",
-      "received": 15700.0,
-      "last_received": 22900.0
-    },
-    {
-      "store": "济南香溢澜庭店（一）",
-      "area": "一区",
-      "received": 13100.0,
-      "last_received": 14500.0
-    },
-    {
-      "store": "济南中建新悦城店",
-      "area": "一区",
-      "received": 12827.77,
-      "last_received": 9200.05
-    },
-    {
-      "store": "济南鲁建小区店",
-      "area": "二区",
-      "received": 12104.02,
-      "last_received": 19400.01
-    },
-    {
-      "store": "济南梁王新城",
-      "area": "一区",
-      "received": 10227.43,
-      "last_received": 11700.0
-    },
-    {
-      "store": "济南中海云著店",
-      "area": "二区",
-      "received": 10160.9,
-      "last_received": 7390.1
-    },
-    {
-      "store": "济南城投伴山居店",
-      "area": "二区",
-      "received": 9400.0,
-      "last_received": 11681.86
-    },
-    {
-      "store": "济南城市之星店",
-      "area": "一区",
-      "received": 8634.8,
-      "last_received": 0
-    },
-    {
-      "store": "济南仁华居店",
-      "area": "一区",
-      "received": 7501.2,
-      "last_received": 9200.0
-    },
-    {
-      "store": "济南海信九麓府店",
-      "area": "二区",
-      "received": 7500.0,
-      "last_received": 9600.0
+      "received": 900.0,
+      "last_received": 28703.36
     },
     {
       "store": "济南天鸿万象东方店",
       "area": "一区",
-      "received": 6843.29,
-      "last_received": 8500.0
+      "received": 600.0,
+      "last_received": 6843.29
     },
     {
-      "store": "济南北徐花园店",
+      "store": "济南白马南路店",
       "area": "二区",
-      "received": 6500.0,
-      "last_received": 0
+      "received": 600.0,
+      "last_received": 15700.0
     },
     {
-      "store": "济南中海山湖壹号店（一）",
+      "store": "济南仁华居店",
       "area": "一区",
-      "received": 6000.0,
-      "last_received": 7300.0
+      "received": 500.0,
+      "last_received": 7501.2
     },
     {
-      "store": "济南御山首府店",
-      "area": "一区",
-      "received": 3880.9,
-      "last_received": 5201.71
+      "store": "济南海信九麓府店",
+      "area": "二区",
+      "received": 402.1,
+      "last_received": 7500.0
     },
     {
-      "store": "济南祥泰城店",
+      "store": "济南文贤居店",
+      "area": "二区",
+      "received": 400.0,
+      "last_received": 38854.39
+    },
+    {
+      "store": "济南梁王新城",
       "area": "一区",
-      "received": 3042.12,
-      "last_received": 4700.0
+      "received": 300.0,
+      "last_received": 10227.43
+    },
+    {
+      "store": "济南万科城店（一）",
+      "area": "二区",
+      "received": 300.0,
+      "last_received": 22513.58
     },
     {
       "store": "济南御景台店",
       "area": "一区",
-      "received": 1062.56,
-      "last_received": 2200.0
+      "received": 200.0,
+      "last_received": 1062.56
     },
     {
-      "store": "济南祝甸东方花园店",
+      "store": "济南保利和塘悦色店",
+      "area": "一区",
+      "received": 200.0,
+      "last_received": 18500.42
+    },
+    {
+      "store": "济南中建新悦城店",
+      "area": "一区",
+      "received": 100.0,
+      "last_received": 12827.77
+    },
+    {
+      "store": "济南香溢澜庭店（一）",
+      "area": "一区",
+      "received": 100.0,
+      "last_received": 13100.0
+    },
+    {
+      "store": "济南中海云著店",
       "area": "二区",
       "received": 100.0,
-      "last_received": 0
+      "last_received": 10160.9
+    },
+    {
+      "store": "济南鲁建小区店",
+      "area": "二区",
+      "received": 100.0,
+      "last_received": 12104.02
+    },
+    {
+      "store": "济南城投伴山居店",
+      "area": "二区",
+      "received": 100.0,
+      "last_received": 9400.0
+    },
+    {
+      "store": "济南祥泰城店",
+      "area": "一区",
+      "received": 100.0,
+      "last_received": 3042.12
     }
   ],
   "trend": {
     "dates": [
-      "06/01",
-      "06/02",
-      "06/03",
-      "06/04",
-      "06/05",
-      "06/06",
-      "06/07",
-      "06/08",
-      "06/09",
-      "06/10",
-      "06/11",
-      "06/12",
-      "06/13",
-      "06/14",
-      "06/15",
-      "06/16",
-      "06/17",
-      "06/18",
-      "06/19",
-      "06/20",
-      "06/21",
-      "06/22",
-      "06/23",
-      "06/24",
-      "06/25",
-      "06/26",
-      "06/27",
-      "06/28",
-      "06/29",
-      "06/30"
+      "07/01"
     ],
     "sales_amounts": [
-      107880.6,
-      104806.77,
-      93623.31,
-      96925.18,
-      106598.87,
-      109324.79,
-      121859.06,
-      90926.81,
-      88048.71,
-      86730.18,
-      91502.95,
-      105833.32,
-      126060.49,
-      111716.18,
-      90560.47,
-      93475.7,
-      89436.95,
-      142951.71,
-      134939.81,
-      124782.71,
-      116367.79,
-      119608.79,
-      91279.56,
-      98861.21,
-      108245.57,
-      125442.44,
-      144177.6,
-      128761.16,
-      109341.57,
-      90105.8
+      116907.86
     ],
     "completion_rates": [
-      84.1,
-      81.7,
-      73.0,
-      75.6,
-      83.1,
-      85.3,
-      95.0,
-      70.9,
-      68.7,
-      67.6,
-      71.4,
-      82.5,
-      98.3,
-      87.1,
-      70.6,
-      72.9,
-      69.8,
-      111.5,
-      105.2,
-      97.3,
-      90.8,
-      93.3,
-      71.2,
-      77.1,
-      84.4,
-      97.8,
-      112.5,
-      100.4,
-      85.3,
-      70.3
+      86.6
     ],
     "daily_targets": [
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44,
-      128212.44
+      134999.97
     ]
   },
   "daily_revenue": {
     "labels": [
-      "06/01",
-      "06/02",
-      "06/03",
-      "06/04",
-      "06/05",
-      "06/06",
-      "06/07",
-      "06/08",
-      "06/09",
-      "06/10",
-      "06/11",
-      "06/12",
-      "06/13",
-      "06/14",
-      "06/15",
-      "06/16",
-      "06/17",
-      "06/18",
-      "06/19",
-      "06/20",
-      "06/21",
-      "06/22",
-      "06/23",
-      "06/24",
-      "06/25",
-      "06/26",
-      "06/27",
-      "06/28",
-      "06/29",
-      "06/30"
+      "07/01"
     ],
     "cur": [
-      107880.6,
-      104806.77,
-      93623.31,
-      96925.18,
-      106598.87,
-      109324.79,
-      121859.06,
-      90926.81,
-      88048.71,
-      86730.18,
-      91502.95,
-      105833.32,
-      126060.49,
-      111716.18,
-      90560.47,
-      93475.7,
-      89436.95,
-      142951.71,
-      134939.81,
-      124782.71,
-      116367.79,
-      119608.79,
-      91279.56,
-      98861.21,
-      108245.57,
-      125442.44,
-      144177.6,
-      128761.16,
-      109341.57,
-      90105.8
+      116907.86
     ],
     "prev": [
-      116297.52,
-      92971.45,
-      86339.14,
-      105827.7,
-      104977.74,
-      78155.5,
-      88142.18,
-      85124.31,
-      90685.73,
-      109405.1,
-      79294.79,
-      85017.1,
-      87373.15,
-      85669.1,
-      169707.23,
-      131451.17,
-      139834.42,
-      79512.95,
-      82076.98,
-      77798.08,
-      87854.41,
-      85548.75,
-      106512.85,
-      106707.03,
-      65019.68,
-      70438.66,
-      93052.26,
-      111115.41,
-      140710.63,
-      141817.06
+      107880.6
     ]
   },
   "hourly_data": [
