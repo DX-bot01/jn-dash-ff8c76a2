@@ -5,7 +5,7 @@
   "total_sales": 116907.86,
   "last_period_sales": 3250176.06,
   "target_amount": 5405399,
-  "sprint_amount": 4995853,
+  "sprint_amount": 6216253,
   "avg_bill": 13.48,
   "last_period_avg_bill": 14.18,
   "total_customers": 8673,
@@ -15,7 +15,7 @@
   "last_sprint_achieved": 0,
   "total_stores": 22,
   "month_target": 5405399,
-  "month_sprint_target": 4995853,
+  "month_sprint_target": 6216253,
   "month_completed": 116907.86,
   "month_remaining_days": 30,
   "stores": [
