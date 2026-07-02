@@ -689,6 +689,22 @@
       <div class="suggest-box" id="suggestHour" style="display:none;margin-top:0"></div>
     </div>
 
+    <!-- Row 3.6: Product Top50 Sales Ranking -->
+    <div class="panel full" style="margin-bottom:18px;display:none" id="productTop50Panel">
+      <div class="panel-header">
+        <span class="panel-title">🏅 商品销售 Top50</span>
+        <span class="panel-sub" id="productTop50Sub">以实收金额排名 · 含环比变化</span>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="rank-table">
+          <thead><tr>
+            <th>#</th><th>商品名称</th><th style="min-width:90px">实收金额</th><th style="min-width:90px">上期实收</th><th class="right">环比</th>
+          </tr></thead>
+          <tbody id="productTop50Tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
     <!-- Row 3.7: Category Profit Analysis -->
     <div class="panel full" style="margin-bottom:18px;display:none" id="profitPanel">
       <div class="panel-header">
@@ -2197,6 +2213,47 @@ function renderRechargeRing(d) {
   box.className = 'suggest-box info';
 }
 
+// ── Product Top50 Sales Ranking ──
+function renderProductTop50(d) {
+  var pt = d.product_top50;
+  var panel = document.getElementById('productTop50Panel');
+  if (!pt || !pt.length) {
+    panel.style.display = 'none';
+    return;
+  }
+  panel.style.display = 'block';
+
+  var sub = document.getElementById('productTop50Sub');
+  if (sub) {
+    if (currentPeriod === 'day') sub.textContent = '昨日实收 Top50 · 环比上周同日';
+    else if (currentPeriod === 'week') sub.textContent = '本周实收 Top50 · 环比上周';
+    else sub.textContent = '本月实收 Top50 · 环比上月';
+  }
+
+  var html = '';
+  pt.forEach(function(p) {
+    var g = calcGrowth(p.cur_receipt, p.prev_receipt);
+    var rankNum = p.rank;
+    var numCls = rankNum <= 3 ? 'top3' : '';
+    var rankIcon = rankNum <= 3 ? ['🥇','🥈','🥉'][rankNum-1] : rankNum;
+    var deltaStr = '';
+    if (g.delta && g.delta !== 0) {
+      var absD = Math.abs(g.delta);
+      var sign = g.delta >= 0 ? '+' : '-';
+      deltaStr = ' <span class="kpi-delta" style="font-size:9px">' + sign + (absD >= 10000 ? (absD/10000).toFixed(2)+'万' : Math.round(absD).toLocaleString()) + '</span>';
+    }
+    html += '<tr>'+
+      '<td class="rank-num '+numCls+'">'+rankIcon+'</td>'+
+      '<td><span title="SKU:'+p.sku+'">'+p.name+'</span></td>'+
+      '<td class="right">¥'+p.cur_receipt.toLocaleString()+'</td>'+
+      '<td class="right" style="color:var(--text-secondary)">¥'+p.prev_receipt.toLocaleString()+'</td>'+
+      '<td class="right '+g.cls+'">'+g.text+deltaStr+'</td>'+
+      '</tr>';
+  });
+  document.getElementById('productTop50Tbody').innerHTML = html;
+}
+
+
 function renderAll() {
   var d = allData[currentPeriod];
   if (!d) return;
@@ -2215,7 +2272,8 @@ function renderAll() {
     ['renderHourlyChart', renderHourlyChart],
     ['renderStoreDetail', renderStoreDetail],
     ['renderCategoryProfit', renderCategoryProfit],
-    ['renderRechargeRing', renderRechargeRing]
+    ['renderRechargeRing', renderRechargeRing],
+    ['renderProductTop50', renderProductTop50]
   ];
   for (var i=0; i<fns.length; i++) {
     try {
