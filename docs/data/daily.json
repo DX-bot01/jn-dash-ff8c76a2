@@ -11,7 +11,7 @@
   "achieved_stores": 11,
   "last_period_achieved": 1,
   "total_stores": 22,
-  "month_target": 4184999,
+  "month_target": 5405399,
   "month_completed": 116907.86,
   "month_remaining_days": 30,
   "stores": [
@@ -812,10 +812,10 @@
       116907.86
     ],
     "completion_rates": [
-      86.6
+      67.0
     ],
     "daily_targets": [
-      134999.97
+      174367.71
     ]
   },
   "daily_revenue": null

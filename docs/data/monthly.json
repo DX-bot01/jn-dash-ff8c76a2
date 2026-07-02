@@ -4,14 +4,14 @@
   "is_month": true,
   "total_sales": 116907.86,
   "last_period_sales": 3250176.06,
-  "target_amount": 4184999,
+  "target_amount": 5405399,
   "avg_bill": 13.48,
   "last_period_avg_bill": 14.18,
   "total_customers": 8673,
   "achieved_stores": 0,
   "last_period_achieved": 1,
   "total_stores": 22,
-  "month_target": 4184999,
+  "month_target": 5405399,
   "month_completed": 116907.86,
   "month_remaining_days": 30,
   "stores": [
@@ -833,10 +833,10 @@
       116907.86
     ],
     "completion_rates": [
-      86.6
+      67.0
     ],
     "daily_targets": [
-      134999.97
+      174367.71
     ]
   },
   "daily_revenue": {
@@ -850,174 +850,346 @@
       107880.6
     ]
   },
-  "hourly_data": [
-    {
-      "hour": 0,
-      "hour_label": "00时",
-      "amount": 54769.69,
-      "pct": 1.69,
-      "orders": 3512
-    },
-    {
-      "hour": 1,
-      "hour_label": "01时",
-      "amount": 38089.17,
-      "pct": 1.17,
-      "orders": 2323
-    },
-    {
-      "hour": 2,
-      "hour_label": "02时",
-      "amount": 24528.87,
-      "pct": 0.75,
-      "orders": 1519
-    },
-    {
-      "hour": 3,
-      "hour_label": "03时",
-      "amount": 13543.88,
-      "pct": 0.42,
-      "orders": 825
-    },
-    {
-      "hour": 4,
-      "hour_label": "04时",
-      "amount": 9122.53,
-      "pct": 0.28,
-      "orders": 564
-    },
-    {
-      "hour": 5,
-      "hour_label": "05时",
-      "amount": 7125.3,
-      "pct": 0.22,
-      "orders": 535
-    },
-    {
-      "hour": 6,
-      "hour_label": "06时",
-      "amount": 10607.47,
-      "pct": 0.33,
-      "orders": 964
-    },
-    {
-      "hour": 7,
-      "hour_label": "07时",
-      "amount": 60752.8,
-      "pct": 1.87,
-      "orders": 5172
-    },
-    {
-      "hour": 8,
-      "hour_label": "08时",
-      "amount": 92300.64,
-      "pct": 2.84,
-      "orders": 6606
-    },
-    {
-      "hour": 9,
-      "hour_label": "09时",
-      "amount": 143133.03,
-      "pct": 4.4,
-      "orders": 7637
-    },
-    {
-      "hour": 10,
-      "hour_label": "10时",
-      "amount": 147195.95,
-      "pct": 4.53,
-      "orders": 9460
-    },
-    {
-      "hour": 11,
-      "hour_label": "11时",
-      "amount": 153975.33,
-      "pct": 4.74,
-      "orders": 11143
-    },
-    {
-      "hour": 12,
-      "hour_label": "12时",
-      "amount": 154575.39,
-      "pct": 4.76,
-      "orders": 10983
-    },
-    {
-      "hour": 13,
-      "hour_label": "13时",
-      "amount": 107800.98,
-      "pct": 3.32,
-      "orders": 8868
-    },
-    {
-      "hour": 14,
-      "hour_label": "14时",
-      "amount": 98129.43,
-      "pct": 3.02,
-      "orders": 7614
-    },
-    {
-      "hour": 15,
-      "hour_label": "15时",
-      "amount": 120345.42,
-      "pct": 3.7,
-      "orders": 9175
-    },
-    {
-      "hour": 16,
-      "hour_label": "16时",
-      "amount": 184476.76,
-      "pct": 5.68,
-      "orders": 14582
-    },
-    {
-      "hour": 17,
-      "hour_label": "17时",
-      "amount": 263277.38,
-      "pct": 8.1,
-      "orders": 19251
-    },
-    {
-      "hour": 18,
-      "hour_label": "18时",
-      "amount": 354955.33,
-      "pct": 10.92,
-      "orders": 23568
-    },
-    {
-      "hour": 19,
-      "hour_label": "19时",
-      "amount": 357303.64,
-      "pct": 10.99,
-      "orders": 24465
-    },
-    {
-      "hour": 20,
-      "hour_label": "20时",
-      "amount": 355368.33,
-      "pct": 10.93,
-      "orders": 25343
-    },
-    {
-      "hour": 21,
-      "hour_label": "21时",
-      "amount": 269263.64,
-      "pct": 8.28,
-      "orders": 19108
-    },
-    {
-      "hour": 22,
-      "hour_label": "22时",
-      "amount": 149334.75,
-      "pct": 4.59,
-      "orders": 10615
-    },
-    {
-      "hour": 23,
-      "hour_label": "23时",
-      "amount": 80200.36,
-      "pct": 2.47,
-      "orders": 5407
-    }
-  ]
+  "hourly_data": {
+    "cur": [
+      {
+        "hour": 0,
+        "hour_label": "00时",
+        "amount": 1615.05,
+        "pct": 1.38,
+        "orders": 79
+      },
+      {
+        "hour": 1,
+        "hour_label": "01时",
+        "amount": 904.89,
+        "pct": 0.77,
+        "orders": 46
+      },
+      {
+        "hour": 2,
+        "hour_label": "02时",
+        "amount": 772.03,
+        "pct": 0.66,
+        "orders": 45
+      },
+      {
+        "hour": 3,
+        "hour_label": "03时",
+        "amount": 392.8,
+        "pct": 0.34,
+        "orders": 32
+      },
+      {
+        "hour": 4,
+        "hour_label": "04时",
+        "amount": 407.55,
+        "pct": 0.35,
+        "orders": 20
+      },
+      {
+        "hour": 5,
+        "hour_label": "05时",
+        "amount": 94.59,
+        "pct": 0.08,
+        "orders": 9
+      },
+      {
+        "hour": 6,
+        "hour_label": "06时",
+        "amount": 237.09,
+        "pct": 0.2,
+        "orders": 24
+      },
+      {
+        "hour": 7,
+        "hour_label": "07时",
+        "amount": 1888.61,
+        "pct": 1.62,
+        "orders": 165
+      },
+      {
+        "hour": 8,
+        "hour_label": "08时",
+        "amount": 2304.36,
+        "pct": 1.97,
+        "orders": 201
+      },
+      {
+        "hour": 9,
+        "hour_label": "09时",
+        "amount": 6559.49,
+        "pct": 5.61,
+        "orders": 290
+      },
+      {
+        "hour": 10,
+        "hour_label": "10时",
+        "amount": 4351.71,
+        "pct": 3.72,
+        "orders": 359
+      },
+      {
+        "hour": 11,
+        "hour_label": "11时",
+        "amount": 5219.28,
+        "pct": 4.46,
+        "orders": 436
+      },
+      {
+        "hour": 12,
+        "hour_label": "12时",
+        "amount": 5381.07,
+        "pct": 4.6,
+        "orders": 468
+      },
+      {
+        "hour": 13,
+        "hour_label": "13时",
+        "amount": 3116.39,
+        "pct": 2.67,
+        "orders": 313
+      },
+      {
+        "hour": 14,
+        "hour_label": "14时",
+        "amount": 3681.14,
+        "pct": 3.15,
+        "orders": 316
+      },
+      {
+        "hour": 15,
+        "hour_label": "15时",
+        "amount": 4120.03,
+        "pct": 3.52,
+        "orders": 375
+      },
+      {
+        "hour": 16,
+        "hour_label": "16时",
+        "amount": 6073.14,
+        "pct": 5.19,
+        "orders": 509
+      },
+      {
+        "hour": 17,
+        "hour_label": "17时",
+        "amount": 9109.42,
+        "pct": 7.79,
+        "orders": 707
+      },
+      {
+        "hour": 18,
+        "hour_label": "18时",
+        "amount": 12470.46,
+        "pct": 10.67,
+        "orders": 824
+      },
+      {
+        "hour": 19,
+        "hour_label": "19时",
+        "amount": 13869.57,
+        "pct": 11.86,
+        "orders": 921
+      },
+      {
+        "hour": 20,
+        "hour_label": "20时",
+        "amount": 13101.53,
+        "pct": 11.21,
+        "orders": 1000
+      },
+      {
+        "hour": 21,
+        "hour_label": "21时",
+        "amount": 12622.36,
+        "pct": 10.8,
+        "orders": 899
+      },
+      {
+        "hour": 22,
+        "hour_label": "22时",
+        "amount": 5804.77,
+        "pct": 4.97,
+        "orders": 426
+      },
+      {
+        "hour": 23,
+        "hour_label": "23时",
+        "amount": 2810.53,
+        "pct": 2.4,
+        "orders": 209
+      }
+    ],
+    "prev": [
+      {
+        "hour": 0,
+        "hour_label": "00时",
+        "amount": 54769.69,
+        "pct": 1.69,
+        "orders": 3512
+      },
+      {
+        "hour": 1,
+        "hour_label": "01时",
+        "amount": 38089.17,
+        "pct": 1.17,
+        "orders": 2323
+      },
+      {
+        "hour": 2,
+        "hour_label": "02时",
+        "amount": 24528.87,
+        "pct": 0.75,
+        "orders": 1519
+      },
+      {
+        "hour": 3,
+        "hour_label": "03时",
+        "amount": 13543.88,
+        "pct": 0.42,
+        "orders": 825
+      },
+      {
+        "hour": 4,
+        "hour_label": "04时",
+        "amount": 9122.53,
+        "pct": 0.28,
+        "orders": 564
+      },
+      {
+        "hour": 5,
+        "hour_label": "05时",
+        "amount": 7125.3,
+        "pct": 0.22,
+        "orders": 535
+      },
+      {
+        "hour": 6,
+        "hour_label": "06时",
+        "amount": 10607.47,
+        "pct": 0.33,
+        "orders": 964
+      },
+      {
+        "hour": 7,
+        "hour_label": "07时",
+        "amount": 60752.8,
+        "pct": 1.87,
+        "orders": 5172
+      },
+      {
+        "hour": 8,
+        "hour_label": "08时",
+        "amount": 92300.64,
+        "pct": 2.84,
+        "orders": 6606
+      },
+      {
+        "hour": 9,
+        "hour_label": "09时",
+        "amount": 143133.03,
+        "pct": 4.4,
+        "orders": 7637
+      },
+      {
+        "hour": 10,
+        "hour_label": "10时",
+        "amount": 147195.95,
+        "pct": 4.53,
+        "orders": 9460
+      },
+      {
+        "hour": 11,
+        "hour_label": "11时",
+        "amount": 153975.33,
+        "pct": 4.74,
+        "orders": 11143
+      },
+      {
+        "hour": 12,
+        "hour_label": "12时",
+        "amount": 154575.39,
+        "pct": 4.76,
+        "orders": 10983
+      },
+      {
+        "hour": 13,
+        "hour_label": "13时",
+        "amount": 107800.98,
+        "pct": 3.32,
+        "orders": 8868
+      },
+      {
+        "hour": 14,
+        "hour_label": "14时",
+        "amount": 98129.43,
+        "pct": 3.02,
+        "orders": 7614
+      },
+      {
+        "hour": 15,
+        "hour_label": "15时",
+        "amount": 120345.42,
+        "pct": 3.7,
+        "orders": 9175
+      },
+      {
+        "hour": 16,
+        "hour_label": "16时",
+        "amount": 184476.76,
+        "pct": 5.68,
+        "orders": 14582
+      },
+      {
+        "hour": 17,
+        "hour_label": "17时",
+        "amount": 263277.38,
+        "pct": 8.1,
+        "orders": 19251
+      },
+      {
+        "hour": 18,
+        "hour_label": "18时",
+        "amount": 354955.33,
+        "pct": 10.92,
+        "orders": 23568
+      },
+      {
+        "hour": 19,
+        "hour_label": "19时",
+        "amount": 357303.64,
+        "pct": 10.99,
+        "orders": 24465
+      },
+      {
+        "hour": 20,
+        "hour_label": "20时",
+        "amount": 355368.33,
+        "pct": 10.93,
+        "orders": 25343
+      },
+      {
+        "hour": 21,
+        "hour_label": "21时",
+        "amount": 269263.64,
+        "pct": 8.28,
+        "orders": 19108
+      },
+      {
+        "hour": 22,
+        "hour_label": "22时",
+        "amount": 149334.75,
+        "pct": 4.59,
+        "orders": 10615
+      },
+      {
+        "hour": 23,
+        "hour_label": "23时",
+        "amount": 80200.36,
+        "pct": 2.47,
+        "orders": 5407
+      }
+    ]
+  }
 }
