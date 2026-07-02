@@ -702,7 +702,7 @@
       <div style="overflow-x:auto">
         <table class="rank-table">
           <thead><tr>
-            <th>#</th><th>商品名称</th><th style="min-width:78px">本期数量</th><th style="min-width:78px">上期数量</th><th style="min-width:90px">实收金额</th><th style="min-width:90px">上期实收</th><th class="right">环比</th>
+            <th>#</th><th>商品名称</th><th class="right" style="min-width:78px">本期数量</th><th class="right" style="min-width:78px">上期数量</th><th class="right" style="min-width:90px">本期实收</th><th class="right" style="min-width:90px">上期实收</th><th class="right" style="min-width:105px">金额环比</th><th class="right" style="min-width:105px">数量环比</th>
           </tr></thead>
           <tbody id="productTop50Tbody"></tbody>
         </table>
@@ -2307,16 +2307,22 @@ function renderProductTop50(d) {
 
   var html = '';
   pt.forEach(function(p) {
-    var g = calcGrowth(p.cur_receipt, p.prev_receipt);
+    var amountGrowth = calcGrowth(p.cur_receipt, p.prev_receipt);
+    var qtyGrowth = calcGrowth(p.cur_qty || 0, p.prev_qty || 0);
     var rankNum = p.rank;
     var numCls = rankNum <= 3 ? 'top3' : '';
     var rankIcon = rankNum <= 3 ? ['🥇','🥈','🥉'][rankNum-1] : rankNum;
-    var deltaStr = '';
-    if (g.delta && g.delta !== 0) {
-      var absD = Math.abs(g.delta);
-      var sign = g.delta >= 0 ? '+' : '-';
-      deltaStr = ' <span class="kpi-delta" style="font-size:9px">' + sign + (absD >= 10000 ? (absD/10000).toFixed(2)+'万' : Math.round(absD).toLocaleString()) + '</span>';
+    function deltaText(delta, isMoney) {
+      if (!delta || delta === 0) return '';
+      var absD = Math.abs(delta);
+      var sign = delta >= 0 ? '+' : '-';
+      var text = isMoney
+        ? (absD >= 10000 ? (absD/10000).toFixed(2)+'万' : Math.round(absD).toLocaleString())
+        : Math.round(absD).toLocaleString();
+      return '<span class="kpi-delta" style="font-size:9px;display:inline-block;min-width:38px;text-align:right">' + sign + text + '</span>';
     }
+    var amountDeltaStr = deltaText(amountGrowth.delta, true);
+    var qtyDeltaStr = deltaText(qtyGrowth.delta, false);
     html += '<tr>'+
       '<td class="rank-num '+numCls+'">'+rankIcon+'</td>'+
       '<td><span title="SKU:'+p.sku+'">'+p.name+'</span></td>'+
@@ -2324,7 +2330,8 @@ function renderProductTop50(d) {
       '<td class="right" style="color:var(--text-secondary)">'+(p.prev_qty || 0).toLocaleString()+'</td>'+
       '<td class="right">¥'+p.cur_receipt.toLocaleString()+'</td>'+
       '<td class="right" style="color:var(--text-secondary)">¥'+p.prev_receipt.toLocaleString()+'</td>'+
-      '<td class="right rank-change '+g.cls+'">'+g.text+deltaStr+'</td>'+
+      '<td class="right rank-change '+amountGrowth.cls+'">'+amountGrowth.text+amountDeltaStr+'</td>'+
+      '<td class="right rank-change '+qtyGrowth.cls+'">'+qtyGrowth.text+qtyDeltaStr+'</td>'+
       '</tr>';
   });
   document.getElementById('productTop50Tbody').innerHTML = html;
