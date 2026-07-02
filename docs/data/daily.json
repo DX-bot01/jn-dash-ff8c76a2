@@ -749,19 +749,19 @@
       "store": "济南天鸿万卷府店",
       "area": "一区",
       "received": 1300.0,
-      "last_received": 0
+      "last_received": 1500.0
     },
     {
       "store": "济南绿地国际花都店",
       "area": "二区",
       "received": 900.0,
-      "last_received": 0
+      "last_received": 300.0
     },
     {
       "store": "济南天鸿万象东方店",
       "area": "一区",
       "received": 600.0,
-      "last_received": 0
+      "last_received": 600.0
     },
     {
       "store": "济南白马南路店",
@@ -773,67 +773,67 @@
       "store": "济南仁华居店",
       "area": "一区",
       "received": 500.0,
-      "last_received": 0
+      "last_received": 200.0
     },
     {
       "store": "济南海信九麓府店",
       "area": "二区",
       "received": 402.1,
-      "last_received": 0
+      "last_received": 100.0
     },
     {
       "store": "济南文贤居店",
       "area": "二区",
       "received": 400.0,
-      "last_received": 0
+      "last_received": 500.0
     },
     {
       "store": "济南梁王新城",
       "area": "一区",
       "received": 300.0,
-      "last_received": 0
+      "last_received": 200.0
     },
     {
       "store": "济南万科城店（一）",
       "area": "二区",
       "received": 300.0,
-      "last_received": 0
+      "last_received": 100.0
     },
     {
       "store": "济南御景台店",
       "area": "一区",
       "received": 200.0,
-      "last_received": 0
+      "last_received": 100.0
     },
     {
       "store": "济南保利和塘悦色店",
       "area": "一区",
       "received": 200.0,
-      "last_received": 0
+      "last_received": 100.0
     },
     {
       "store": "济南中建新悦城店",
       "area": "一区",
       "received": 100.0,
-      "last_received": 0
+      "last_received": 300.0
     },
     {
       "store": "济南香溢澜庭店（一）",
       "area": "一区",
       "received": 100.0,
-      "last_received": 0
+      "last_received": 200.0
     },
     {
       "store": "济南中海云著店",
       "area": "二区",
       "received": 100.0,
-      "last_received": 0
+      "last_received": 200.0
     },
     {
       "store": "济南鲁建小区店",
       "area": "二区",
       "received": 100.0,
-      "last_received": 0
+      "last_received": 200.0
     },
     {
       "store": "济南城投伴山居店",
@@ -845,7 +845,7 @@
       "store": "济南祥泰城店",
       "area": "一区",
       "received": 100.0,
-      "last_received": 0
+      "last_received": 100.0
     }
   ],
   "trend": {
