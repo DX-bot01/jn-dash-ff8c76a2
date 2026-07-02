@@ -873,6 +873,7 @@
       "cur_qty": 136,
       "prev_receipt": 0.0,
       "prev_amount": 0.0,
+      "prev_qty": 0,
       "change": 2702.25,
       "change_pct": 100.0
     },
@@ -885,6 +886,7 @@
       "cur_qty": 92,
       "prev_receipt": 1294.8,
       "prev_amount": 1294.8,
+      "prev_qty": 52,
       "change": 996.0,
       "change_pct": 76.92
     },
@@ -897,6 +899,7 @@
       "cur_qty": 29,
       "prev_receipt": 1668.2,
       "prev_amount": 1668.2,
+      "prev_qty": 38,
       "change": -395.1,
       "change_pct": -23.68
     },
@@ -909,6 +912,7 @@
       "cur_qty": 518,
       "prev_receipt": 787.2,
       "prev_amount": 795.0,
+      "prev_qty": 318,
       "change": 481.4,
       "change_pct": 61.15
     },
@@ -921,6 +925,7 @@
       "cur_qty": 247,
       "prev_receipt": 1141.5,
       "prev_amount": 1158.3,
+      "prev_qty": 237,
       "change": 49.6,
       "change_pct": 4.35
     },
@@ -933,6 +938,7 @@
       "cur_qty": 567,
       "prev_receipt": 936.33,
       "prev_amount": 937.29,
+      "prev_qty": 471,
       "change": 176.7,
       "change_pct": 18.87
     },
@@ -945,6 +951,7 @@
       "cur_qty": 154,
       "prev_receipt": 756.12,
       "prev_amount": 767.0,
+      "prev_qty": 118,
       "change": 238.28,
       "change_pct": 31.51
     },
@@ -957,6 +964,7 @@
       "cur_qty": 257,
       "prev_receipt": 980.66,
       "prev_amount": 988.4,
+      "prev_qty": 256,
       "change": 9.64,
       "change_pct": 0.98
     },
@@ -969,6 +977,7 @@
       "cur_qty": 277,
       "prev_receipt": 639.24,
       "prev_amount": 640.5,
+      "prev_qty": 183,
       "change": 326.46,
       "change_pct": 51.07
     },
@@ -981,6 +990,7 @@
       "cur_qty": 306,
       "prev_receipt": 627.42,
       "prev_amount": 635.36,
+      "prev_qty": 205,
       "change": 315.6,
       "change_pct": 50.3
     },
@@ -993,6 +1003,7 @@
       "cur_qty": 170,
       "prev_receipt": 2808.0,
       "prev_amount": 2808.0,
+      "prev_qty": 520,
       "change": -1899.08,
       "change_pct": -67.63
     },
@@ -1005,6 +1016,7 @@
       "cur_qty": 17,
       "prev_receipt": 0.0,
       "prev_amount": 0.0,
+      "prev_qty": 0,
       "change": 901.0,
       "change_pct": 100.0
     },
@@ -1017,6 +1029,7 @@
       "cur_qty": 55,
       "prev_receipt": 588.0,
       "prev_amount": 607.6,
+      "prev_qty": 31,
       "change": 286.5,
       "change_pct": 48.72
     },
@@ -1029,6 +1042,7 @@
       "cur_qty": 416,
       "prev_receipt": 925.5,
       "prev_amount": 929.33,
+      "prev_qty": 467,
       "change": -102.68,
       "change_pct": -11.09
     },
@@ -1041,6 +1055,7 @@
       "cur_qty": 175,
       "prev_receipt": 887.09,
       "prev_amount": 916.3,
+      "prev_qty": 187,
       "change": -65.07,
       "change_pct": -7.34
     },
@@ -1053,6 +1068,7 @@
       "cur_qty": 31,
       "prev_receipt": 0.0,
       "prev_amount": 0.0,
+      "prev_qty": 0,
       "change": 803.0,
       "change_pct": 100.0
     },
@@ -1065,6 +1081,7 @@
       "cur_qty": 32,
       "prev_receipt": 1465.48,
       "prev_amount": 1469.1,
+      "prev_qty": 59,
       "change": -670.43,
       "change_pct": -45.75
     },
@@ -1077,6 +1094,7 @@
       "cur_qty": 414,
       "prev_receipt": 519.65,
       "prev_amount": 524.4,
+      "prev_qty": 276,
       "change": 263.68,
       "change_pct": 50.74
     },
@@ -1089,6 +1107,7 @@
       "cur_qty": 152,
       "prev_receipt": 578.5,
       "prev_amount": 586.5,
+      "prev_qty": 115,
       "change": 178.87,
       "change_pct": 30.92
     },
@@ -1101,6 +1120,7 @@
       "cur_qty": 38,
       "prev_receipt": 557.2,
       "prev_amount": 557.2,
+      "prev_qty": 28,
       "change": 199.0,
       "change_pct": 35.71
     },
@@ -1113,6 +1133,7 @@
       "cur_qty": 107,
       "prev_receipt": 657.12,
       "prev_amount": 666.4,
+      "prev_qty": 98,
       "change": 61.42,
       "change_pct": 9.35
     },
@@ -1125,6 +1146,7 @@
       "cur_qty": 239,
       "prev_receipt": 739.73,
       "prev_amount": 744.51,
+      "prev_qty": 249,
       "change": -29.18,
       "change_pct": -3.94
     },
@@ -1137,6 +1159,7 @@
       "cur_qty": 121,
       "prev_receipt": 597.0,
       "prev_amount": 601.8,
+      "prev_qty": 102,
       "change": 111.5,
       "change_pct": 18.68
     },
@@ -1149,6 +1172,7 @@
       "cur_qty": 398,
       "prev_receipt": 572.86,
       "prev_amount": 581.86,
+      "prev_qty": 326,
       "change": 126.04,
       "change_pct": 22.0
     },
@@ -1161,6 +1185,7 @@
       "cur_qty": 117,
       "prev_receipt": 1857.79,
       "prev_amount": 1858.5,
+      "prev_qty": 315,
       "change": -1168.91,
       "change_pct": -62.92
     },
@@ -1173,6 +1198,7 @@
       "cur_qty": 16,
       "prev_receipt": 1201.2,
       "prev_amount": 1201.2,
+      "prev_qty": 28,
       "change": -514.8,
       "change_pct": -42.86
     },
@@ -1185,6 +1211,7 @@
       "cur_qty": 345,
       "prev_receipt": 539.14,
       "prev_amount": 539.6,
+      "prev_qty": 284,
       "change": 115.22,
       "change_pct": 21.37
     },
@@ -1197,6 +1224,7 @@
       "cur_qty": 160,
       "prev_receipt": 561.6,
       "prev_amount": 561.6,
+      "prev_qty": 144,
       "change": 62.4,
       "change_pct": 11.11
     },
@@ -1209,6 +1237,7 @@
       "cur_qty": 1039,
       "prev_receipt": 391.1,
       "prev_amount": 555.9,
+      "prev_qty": 560,
       "change": 227.69,
       "change_pct": 58.22
     },
@@ -1221,6 +1250,7 @@
       "cur_qty": 14,
       "prev_receipt": 614.6,
       "prev_amount": 614.6,
+      "prev_qty": 14,
       "change": 0.0,
       "change_pct": 0.0
     },
@@ -1233,6 +1263,7 @@
       "cur_qty": 114,
       "prev_receipt": 551.2,
       "prev_amount": 637.2,
+      "prev_qty": 108,
       "change": 39.4,
       "change_pct": 7.15
     },
@@ -1245,6 +1276,7 @@
       "cur_qty": 151,
       "prev_receipt": 571.7,
       "prev_amount": 576.0,
+      "prev_qty": 128,
       "change": 15.32,
       "change_pct": 2.68
     },
@@ -1257,6 +1289,7 @@
       "cur_qty": 4,
       "prev_receipt": 0.0,
       "prev_amount": 0.0,
+      "prev_qty": 0,
       "change": 552.0,
       "change_pct": 100.0
     },
@@ -1269,6 +1302,7 @@
       "cur_qty": 37,
       "prev_receipt": 246.5,
       "prev_amount": 246.5,
+      "prev_qty": 17,
       "change": 290.0,
       "change_pct": 117.65
     },
@@ -1281,6 +1315,7 @@
       "cur_qty": 39,
       "prev_receipt": 333.6,
       "prev_amount": 333.6,
+      "prev_qty": 24,
       "change": 190.7,
       "change_pct": 57.16
     },
@@ -1293,6 +1328,7 @@
       "cur_qty": 5,
       "prev_receipt": 199.8,
       "prev_amount": 199.8,
+      "prev_qty": 2,
       "change": 299.7,
       "change_pct": 150.0
     },
@@ -1305,6 +1341,7 @@
       "cur_qty": 74,
       "prev_receipt": 526.79,
       "prev_amount": 530.4,
+      "prev_qty": 78,
       "change": -28.02,
       "change_pct": -5.32
     },
@@ -1317,6 +1354,7 @@
       "cur_qty": 115,
       "prev_receipt": 227.9,
       "prev_amount": 227.9,
+      "prev_qty": 53,
       "change": 260.68,
       "change_pct": 114.38
     },
@@ -1329,6 +1367,7 @@
       "cur_qty": 188,
       "prev_receipt": 247.6,
       "prev_amount": 250.0,
+      "prev_qty": 100,
       "change": 201.13,
       "change_pct": 81.23
     },
@@ -1341,6 +1380,7 @@
       "cur_qty": 75,
       "prev_receipt": 400.66,
       "prev_amount": 403.0,
+      "prev_qty": 62,
       "change": 41.13,
       "change_pct": 10.27
     },
@@ -1353,6 +1393,7 @@
       "cur_qty": 124,
       "prev_receipt": 300.58,
       "prev_amount": 301.0,
+      "prev_qty": 86,
       "change": 131.74,
       "change_pct": 43.83
     },
@@ -1365,6 +1406,7 @@
       "cur_qty": 89,
       "prev_receipt": 357.24,
       "prev_amount": 364.0,
+      "prev_qty": 70,
       "change": 65.91,
       "change_pct": 18.45
     },
@@ -1377,6 +1419,7 @@
       "cur_qty": 83,
       "prev_receipt": 297.4,
       "prev_amount": 301.6,
+      "prev_qty": 58,
       "change": 100.81,
       "change_pct": 33.9
     },
@@ -1389,6 +1432,7 @@
       "cur_qty": 72,
       "prev_receipt": 44.0,
       "prev_amount": 44.0,
+      "prev_qty": 8,
       "change": 351.34,
       "change_pct": 798.5
     },
@@ -1401,6 +1445,7 @@
       "cur_qty": 31,
       "prev_receipt": 180.6,
       "prev_amount": 180.6,
+      "prev_qty": 14,
       "change": 214.3,
       "change_pct": 118.66
     },
@@ -1413,6 +1458,7 @@
       "cur_qty": 7,
       "prev_receipt": 165.0,
       "prev_amount": 165.0,
+      "prev_qty": 3,
       "change": 220.0,
       "change_pct": 133.33
     },
@@ -1425,6 +1471,7 @@
       "cur_qty": 95,
       "prev_receipt": 273.0,
       "prev_amount": 273.0,
+      "prev_qty": 70,
       "change": 96.56,
       "change_pct": 35.37
     },
@@ -1437,6 +1484,7 @@
       "cur_qty": 14,
       "prev_receipt": 224.1,
       "prev_amount": 224.1,
+      "prev_qty": 9,
       "change": 124.5,
       "change_pct": 55.56
     },
@@ -1449,6 +1497,7 @@
       "cur_qty": 29,
       "prev_receipt": 375.8,
       "prev_amount": 380.8,
+      "prev_qty": 32,
       "change": -32.13,
       "change_pct": -8.55
     },
@@ -1461,6 +1510,7 @@
       "cur_qty": 87,
       "prev_receipt": 222.3,
       "prev_amount": 222.3,
+      "prev_qty": 57,
       "change": 117.0,
       "change_pct": 52.63
     }

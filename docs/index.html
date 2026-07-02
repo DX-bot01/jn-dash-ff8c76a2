@@ -702,7 +702,7 @@
       <div style="overflow-x:auto">
         <table class="rank-table">
           <thead><tr>
-            <th>#</th><th>商品名称</th><th style="min-width:90px">实收金额</th><th style="min-width:90px">上期实收</th><th class="right">环比</th>
+            <th>#</th><th>商品名称</th><th style="min-width:78px">本期数量</th><th style="min-width:78px">上期数量</th><th style="min-width:90px">实收金额</th><th style="min-width:90px">上期实收</th><th class="right">环比</th>
           </tr></thead>
           <tbody id="productTop50Tbody"></tbody>
         </table>
@@ -2320,6 +2320,8 @@ function renderProductTop50(d) {
     html += '<tr>'+
       '<td class="rank-num '+numCls+'">'+rankIcon+'</td>'+
       '<td><span title="SKU:'+p.sku+'">'+p.name+'</span></td>'+
+      '<td class="right">'+(p.cur_qty || 0).toLocaleString()+'</td>'+
+      '<td class="right" style="color:var(--text-secondary)">'+(p.prev_qty || 0).toLocaleString()+'</td>'+
       '<td class="right">¥'+p.cur_receipt.toLocaleString()+'</td>'+
       '<td class="right" style="color:var(--text-secondary)">¥'+p.prev_receipt.toLocaleString()+'</td>'+
       '<td class="right rank-change '+g.cls+'">'+g.text+deltaStr+'</td>'+
