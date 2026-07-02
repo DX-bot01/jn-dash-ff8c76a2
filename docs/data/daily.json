@@ -454,112 +454,112 @@
       "sales": 44887.65,
       "share": 38.4,
       "last_sales": 42914.31,
-      "last_share": 0
+      "last_share": 43.4
     },
     {
       "name": "休闲食品",
       "sales": 16885.26,
       "share": 14.4,
       "last_sales": 13337.7,
-      "last_share": 0
+      "last_share": 13.5
     },
     {
       "name": "乳制品",
       "sales": 12065.72,
       "share": 10.3,
       "last_sales": 10140.47,
-      "last_share": 0
+      "last_share": 10.3
     },
     {
       "name": "冻品",
       "sales": 11000.06,
       "share": 9.4,
       "last_sales": 9903.74,
-      "last_share": 0
+      "last_share": 10.0
     },
     {
       "name": "洗化百货",
       "sales": 8005.51,
       "share": 6.8,
       "last_sales": 5313.38,
-      "last_share": 0
+      "last_share": 5.4
     },
     {
       "name": "方便食品",
       "sales": 6151.39,
       "share": 5.3,
       "last_sales": 4787.24,
-      "last_share": 0
+      "last_share": 4.8
     },
     {
       "name": "调味干货",
       "sales": 4890.19,
       "share": 4.2,
       "last_sales": 4326.63,
-      "last_share": 0
+      "last_share": 4.4
     },
     {
       "name": "米面粮油",
       "sales": 3720.1,
       "share": 3.2,
       "last_sales": 2831.4,
-      "last_share": 0
+      "last_share": 2.9
     },
     {
       "name": "香烟中类",
       "sales": 2899.0,
       "share": 2.5,
       "last_sales": 903.0,
-      "last_share": 0
+      "last_share": 0.9
     },
     {
       "name": "烘焙",
       "sales": 2727.67,
       "share": 2.3,
       "last_sales": 1868.36,
-      "last_share": 0
+      "last_share": 1.9
     },
     {
       "name": "蛋品",
       "sales": 1494.4,
       "share": 1.3,
       "last_sales": 878.2,
-      "last_share": 0
+      "last_share": 0.9
     },
     {
       "name": "低温食品",
       "sales": 1369.6,
       "share": 1.2,
       "last_sales": 876.24,
-      "last_share": 0
+      "last_share": 0.9
     },
     {
       "name": "槟榔",
       "sales": 477.6,
       "share": 0.4,
       "last_sales": 323.09,
-      "last_share": 0
+      "last_share": 0.3
     },
     {
       "name": "出清",
       "sales": 206.87,
       "share": 0.2,
       "last_sales": 279.65,
-      "last_share": 0
+      "last_share": 0.3
     },
     {
       "name": "耗材",
       "sales": 69.4,
       "share": 0.1,
       "last_sales": 49.1,
-      "last_share": 0
+      "last_share": 0.0
     },
     {
       "name": "抖音套餐",
       "sales": 57.44,
       "share": 0.0,
       "last_sales": 128.7,
-      "last_share": 0
+      "last_share": 0.1
     }
   ],
   "recharge": {
