@@ -4,8 +4,8 @@
   "is_month": false,
   "total_sales": 426645.1,
   "last_period_sales": 816376.33,
-  "target_amount": 944999.76,
-  "sprint_amount": 1128095.8599999999,
+  "target_amount": 1220573.91,
+  "sprint_amount": 1403670.01,
   "avg_bill": 13.44,
   "last_period_avg_bill": 13.96,
   "total_customers": 31742,
@@ -14,7 +14,7 @@
   "sprint_achieved": 0,
   "last_sprint_achieved": 2,
   "total_stores": 22,
-  "active_total_stores": 22,
+  "active_total_stores": 31,
   "month_target": 5405399,
   "month_sprint_target": 6216253,
   "month_completed": 3477373.79,
@@ -443,6 +443,177 @@
         "🔴 完成率<50%，紧急跟进",
         "📉 环比大跌"
       ]
+    },
+    {
+      "name": "新店1",
+      "area": "筹开区",
+      "sales": 0,
+      "target": 30619.35,
+      "sprint": 30619.35,
+      "customers": 0,
+      "avg_bill": 0,
+      "prev_rank": 23,
+      "last_sales": 0,
+      "last_orders": 0,
+      "last_avg_bill": 0,
+      "recharge": 0,
+      "last_recharge": 0,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "储值转化弱"
+      ]
+    },
+    {
+      "name": "新店2",
+      "area": "筹开区",
+      "sales": 0,
+      "target": 30619.35,
+      "sprint": 30619.35,
+      "customers": 0,
+      "avg_bill": 0,
+      "prev_rank": 24,
+      "last_sales": 0,
+      "last_orders": 0,
+      "last_avg_bill": 0,
+      "recharge": 0,
+      "last_recharge": 0,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "储值转化弱"
+      ]
+    },
+    {
+      "name": "新店3",
+      "area": "筹开区",
+      "sales": 0,
+      "target": 30619.35,
+      "sprint": 30619.35,
+      "customers": 0,
+      "avg_bill": 0,
+      "prev_rank": 25,
+      "last_sales": 0,
+      "last_orders": 0,
+      "last_avg_bill": 0,
+      "recharge": 0,
+      "last_recharge": 0,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "储值转化弱"
+      ]
+    },
+    {
+      "name": "新店4",
+      "area": "筹开区",
+      "sales": 0,
+      "target": 30619.35,
+      "sprint": 30619.35,
+      "customers": 0,
+      "avg_bill": 0,
+      "prev_rank": 26,
+      "last_sales": 0,
+      "last_orders": 0,
+      "last_avg_bill": 0,
+      "recharge": 0,
+      "last_recharge": 0,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "储值转化弱"
+      ]
+    },
+    {
+      "name": "新店5",
+      "area": "筹开区",
+      "sales": 0,
+      "target": 30619.35,
+      "sprint": 30619.35,
+      "customers": 0,
+      "avg_bill": 0,
+      "prev_rank": 27,
+      "last_sales": 0,
+      "last_orders": 0,
+      "last_avg_bill": 0,
+      "recharge": 0,
+      "last_recharge": 0,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "储值转化弱"
+      ]
+    },
+    {
+      "name": "新店6",
+      "area": "筹开区",
+      "sales": 0,
+      "target": 30619.35,
+      "sprint": 30619.35,
+      "customers": 0,
+      "avg_bill": 0,
+      "prev_rank": 28,
+      "last_sales": 0,
+      "last_orders": 0,
+      "last_avg_bill": 0,
+      "recharge": 0,
+      "last_recharge": 0,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "储值转化弱"
+      ]
+    },
+    {
+      "name": "新店7",
+      "area": "筹开区",
+      "sales": 0,
+      "target": 30619.35,
+      "sprint": 30619.35,
+      "customers": 0,
+      "avg_bill": 0,
+      "prev_rank": 29,
+      "last_sales": 0,
+      "last_orders": 0,
+      "last_avg_bill": 0,
+      "recharge": 0,
+      "last_recharge": 0,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "储值转化弱"
+      ]
+    },
+    {
+      "name": "新店8",
+      "area": "筹开区",
+      "sales": 0,
+      "target": 30619.35,
+      "sprint": 30619.35,
+      "customers": 0,
+      "avg_bill": 0,
+      "prev_rank": 30,
+      "last_sales": 0,
+      "last_orders": 0,
+      "last_avg_bill": 0,
+      "recharge": 0,
+      "last_recharge": 0,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "储值转化弱"
+      ]
+    },
+    {
+      "name": "新店9",
+      "area": "筹开区",
+      "sales": 0,
+      "target": 30619.35,
+      "sprint": 30619.35,
+      "customers": 0,
+      "avg_bill": 0,
+      "prev_rank": 31,
+      "last_sales": 0,
+      "last_orders": 0,
+      "last_avg_bill": 0,
+      "recharge": 0,
+      "last_recharge": 0,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "储值转化弱"
+      ]
     }
   ],
   "areas": [
@@ -467,6 +638,17 @@
       "target": 466493.99000000005,
       "sprint_target": 555144.05,
       "last_sales": 439887.87
+    },
+    {
+      "name": "筹开区",
+      "manager": "代航宇",
+      "color": "#DC2626",
+      "sales": 0,
+      "stores": 9,
+      "active_stores": 0,
+      "target": 275574.15,
+      "sprint_target": 275574.15,
+      "last_sales": 0
     }
   ],
   "category_breakdown": [
