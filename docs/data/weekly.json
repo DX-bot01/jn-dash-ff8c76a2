@@ -14,6 +14,7 @@
   "sprint_achieved": 0,
   "last_sprint_achieved": 2,
   "total_stores": 22,
+  "active_total_stores": 22,
   "month_target": 5405399,
   "month_sprint_target": 6216253,
   "month_completed": 3477373.79,
@@ -451,6 +452,7 @@
       "color": "#4F46E5",
       "sales": 215966.6,
       "stores": 12,
+      "active_stores": 12,
       "target": 478505.7699999999,
       "sprint_target": 572951.8099999999,
       "last_sales": 376488.46
@@ -461,6 +463,7 @@
       "color": "#0891B2",
       "sales": 210678.5,
       "stores": 10,
+      "active_stores": 10,
       "target": 466493.99000000005,
       "sprint_target": 555144.05,
       "last_sales": 439887.87
