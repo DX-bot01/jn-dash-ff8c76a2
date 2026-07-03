@@ -881,6 +881,18 @@ function filteredAreas(areas) {
   return areas.filter(function(a){ return a.name === currentArea; });
 }
 
+function targetScaleForPeriod() {
+  if (currentPeriod === 'week') return 7 / 31;
+  return 1;
+}
+
+function sumAreaTargets(d, areaNames, key) {
+  if (!d || !d.areas) return 0;
+  return d.areas.reduce(function(sum, a){
+    return areaNames.indexOf(a.name) >= 0 ? sum + (a[key] || 0) : sum;
+  }, 0);
+}
+
 // ── KPI Rendering ──
 function renderKpi(d) {
   var stores = filteredStores(d.stores);
@@ -908,16 +920,25 @@ function renderKpi(d) {
   // For last period achieved: scale proportionally
   var lastAchieved = Math.round((d.last_period_achieved || 0) * filteredRate);
 
-  // Target amount: use area target when filtered, global target otherwise
+  // 完成率口径：基础只看一区+二区；冲刺全局包含筹开区，单区域按该区域冲刺任务
   var targetAmt = d.target_amount || 0;
   var sprintAmt = d.sprint_amount || 0;
-  if (isFiltered && d.areas) {
+  var baseSales = totalSales;
+  var sprintSales = totalSales;
+  if (!isFiltered) {
+    var operatingAreas = ['一区','二区'];
+    var operatingStores = (d.stores || []).filter(function(s){ return operatingAreas.indexOf(s.area) >= 0; });
+    baseSales = operatingStores.reduce(function(sum, s){ return sum + (s.sales || 0); }, 0);
+    sprintSales = (d.stores || []).reduce(function(sum, s){ return sum + (s.sales || 0); }, 0);
+    targetAmt = sumAreaTargets(d, operatingAreas, 'target');
+    sprintAmt = (d.month_sprint_target || d.sprint_amount || 0) * targetScaleForPeriod();
+  } else if (d.areas) {
     var areaObj = d.areas.find(function(a){ return a.name === currentArea; });
     if (areaObj && areaObj.target) targetAmt = areaObj.target;
     if (areaObj && areaObj.sprint_target) sprintAmt = areaObj.sprint_target;
   }
-  var compRate = targetAmt > 0 ? totalSales / targetAmt * 100 : 0;
-  var sprintRate = sprintAmt > 0 ? totalSales / sprintAmt * 100 : 0;
+  var compRate = targetAmt > 0 ? baseSales / targetAmt * 100 : 0;
+  var sprintRate = sprintAmt > 0 ? sprintSales / sprintAmt * 100 : 0;
 
   var sg = calcGrowth(totalSales, lastSales);
   var ag = calcGrowth(avgBill, lastAvgBill);
@@ -1055,18 +1076,6 @@ function renderGap(d) {
   var days = d.month_remaining_days || 1;
   var targetLabel = currentPeriod === 'week' ? '周任务' : '月任务';
 
-  function targetScale() {
-    if (currentPeriod === 'week') return 7 / 31;
-    return 1;
-  }
-
-  function sumAreaTargets(areaNames, key) {
-    if (!d.areas) return 0;
-    return d.areas.reduce(function(sum, a){
-      return areaNames.indexOf(a.name) >= 0 ? sum + (a[key] || 0) : sum;
-    }, 0);
-  }
-
   function calcRemainingDays() {
     if (currentPeriod !== 'week') return d.month_remaining_days || 1;
     var m = (d.date || '').match(/~\s*(\d{2})\/(\d{2}).*截至(\d{2})\/(\d{2})/);
@@ -1082,8 +1091,8 @@ function renderGap(d) {
   var baseNote = '';
   var sprintNote = '';
   if (currentArea === 'all') {
-    baseTarget = sumAreaTargets(['一区','二区'], 'target');
-    sprintTarget = (d.month_sprint_target || d.sprint_amount || 0) * targetScale();
+    baseTarget = sumAreaTargets(d, ['一区','二区'], 'target');
+    sprintTarget = (d.month_sprint_target || d.sprint_amount || 0) * targetScaleForPeriod();
     baseNote = '一区+二区';
     sprintNote = '一区+二区+筹开区';
   } else {
