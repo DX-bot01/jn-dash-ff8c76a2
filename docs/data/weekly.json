@@ -4,8 +4,8 @@
   "is_month": false,
   "total_sales": 426645.1,
   "last_period_sales": 816376.33,
-  "target_amount": 989653.66,
-  "sprint_amount": 1180706.96,
+  "target_amount": 944999.76,
+  "sprint_amount": 1128095.8599999999,
   "avg_bill": 13.44,
   "last_period_avg_bill": 13.96,
   "total_customers": 31742,
@@ -13,7 +13,7 @@
   "last_period_achieved": 5,
   "sprint_achieved": 0,
   "last_sprint_achieved": 2,
-  "total_stores": 23,
+  "total_stores": 22,
   "month_target": 5405399,
   "month_sprint_target": 6216253,
   "month_completed": 3477373.79,
@@ -96,22 +96,22 @@
       ]
     },
     {
-      "name": "济南海信九麓府店（停用）",
+      "name": "济南海信九麓府店",
       "area": "二区",
-      "sales": 5615.24,
+      "sales": 14817.65,
       "target": 44653.9,
       "sprint": 52611.1,
-      "customers": 458,
-      "avg_bill": 12.26,
-      "prev_rank": 23,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
-      "recharge": 0,
-      "last_recharge": 0,
+      "customers": 1137,
+      "avg_bill": 13.03,
+      "prev_rank": 5,
+      "last_sales": 36643.73,
+      "last_orders": 2866,
+      "last_avg_bill": 12.79,
+      "recharge": 802.1,
+      "last_recharge": 1800.0,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
-        "储值转化弱"
+        "📉 环比大跌"
       ]
     },
     {
@@ -442,25 +442,6 @@
         "🔴 完成率<50%，紧急跟进",
         "📉 环比大跌"
       ]
-    },
-    {
-      "name": "济南海信九麓府店",
-      "area": "二区",
-      "sales": 9202.41,
-      "target": 44653.9,
-      "sprint": 52611.1,
-      "customers": 679,
-      "avg_bill": 13.55,
-      "prev_rank": 5,
-      "last_sales": 36643.73,
-      "last_orders": 2866,
-      "last_avg_bill": 12.79,
-      "recharge": 802.1,
-      "last_recharge": 1800.0,
-      "suggestions": [
-        "🔴 完成率<50%，紧急跟进",
-        "📉 环比大跌"
-      ]
     }
   ],
   "areas": [
@@ -479,9 +460,9 @@
       "manager": "古子箴",
       "color": "#0891B2",
       "sales": 210678.5,
-      "stores": 11,
-      "target": 511147.8900000001,
-      "sprint_target": 607755.15,
+      "stores": 10,
+      "target": 466493.99000000005,
+      "sprint_target": 555144.05,
       "last_sales": 439887.87
     }
   ],
