@@ -882,6 +882,7 @@ function filteredAreas(areas) {
 }
 
 function targetScaleForPeriod() {
+  if (currentPeriod === 'day') return 1 / 31;
   if (currentPeriod === 'week') return 7 / 31;
   return 1;
 }
