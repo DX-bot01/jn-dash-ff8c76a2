@@ -95,19 +95,19 @@
       ]
     },
     {
-      "name": "济南海信九麓府店（一）",
+      "name": "济南海信九麓府店",
       "area": "二区",
       "sales": 6261.39,
       "target": 6379.13,
       "sprint": 7515.87,
       "customers": 420,
       "avg_bill": 14.91,
-      "prev_rank": 31,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
+      "prev_rank": 5,
+      "last_sales": 5797.83,
+      "last_orders": 451,
+      "last_avg_bill": 12.86,
       "recharge": 400.0,
-      "last_recharge": 0,
+      "last_recharge": 600.0,
       "suggestions": [
         "🟢 节奏正常"
       ]
@@ -1015,10 +1015,10 @@
       "last_received": 0
     },
     {
-      "store": "济南海信九麓府店（一）",
+      "store": "济南海信九麓府店",
       "area": "二区",
       "received": 400.0,
-      "last_received": 0
+      "last_received": 600.0
     },
     {
       "store": "济南天鸿万卷府店",

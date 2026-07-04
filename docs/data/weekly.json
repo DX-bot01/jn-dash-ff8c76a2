@@ -4,8 +4,8 @@
   "is_month": false,
   "total_sales": 565726.41,
   "last_period_sales": 816376.33,
-  "target_amount": 1265227.81,
-  "sprint_amount": 1456281.1099999999,
+  "target_amount": 1220573.91,
+  "sprint_amount": 1403670.01,
   "avg_bill": 13.51,
   "last_period_avg_bill": 13.96,
   "total_customers": 41883,
@@ -14,7 +14,7 @@
   "sprint_achieved": 1,
   "last_sprint_achieved": 2,
   "total_stores": 22,
-  "active_total_stores": 32,
+  "active_total_stores": 31,
   "month_target": 5405399,
   "month_sprint_target": 6216253,
   "month_completed": 3616455.1,
@@ -99,16 +99,16 @@
     {
       "name": "济南海信九麓府店",
       "area": "二区",
-      "sales": 14817.65,
+      "sales": 21079.04,
       "target": 44653.9,
       "sprint": 52611.1,
-      "customers": 1137,
-      "avg_bill": 13.03,
+      "customers": 1557,
+      "avg_bill": 13.54,
       "prev_rank": 5,
       "last_sales": 36643.73,
       "last_orders": 2866,
       "last_avg_bill": 12.79,
-      "recharge": 802.1,
+      "recharge": 1202.1,
       "last_recharge": 1800.0,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
@@ -441,24 +441,6 @@
       ]
     },
     {
-      "name": "济南海信九麓府店（一）",
-      "area": "二区",
-      "sales": 6261.39,
-      "target": 44653.9,
-      "sprint": 52611.1,
-      "customers": 420,
-      "avg_bill": 14.91,
-      "prev_rank": 32,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
-      "recharge": 400.0,
-      "last_recharge": 0,
-      "suggestions": [
-        "🔴 完成率<50%，紧急跟进"
-      ]
-    },
-    {
       "name": "济南祝甸东方花园店",
       "area": "筹开区",
       "sales": 7273.4,
@@ -466,7 +448,7 @@
       "sprint": 30619.35,
       "customers": 316,
       "avg_bill": 23.02,
-      "prev_rank": 32,
+      "prev_rank": 31,
       "last_sales": 0,
       "last_orders": 0,
       "last_avg_bill": 0,
@@ -647,9 +629,9 @@
       "color": "#0891B2",
       "sales": 276971.72,
       "stores": 10,
-      "active_stores": 11,
-      "target": 511147.8900000001,
-      "sprint_target": 607755.15,
+      "active_stores": 10,
+      "target": 466493.99000000005,
+      "sprint_target": 555144.05,
       "last_sales": 439887.87
     },
     {
@@ -1040,6 +1022,12 @@
       "last_received": 2827.43
     },
     {
+      "store": "济南海信九麓府店",
+      "area": "二区",
+      "received": 1202.1,
+      "last_received": 1800.0
+    },
+    {
       "store": "济南御山首府店",
       "area": "一区",
       "received": 1000.0,
@@ -1050,12 +1038,6 @@
       "area": "一区",
       "received": 900.0,
       "last_received": 4200.0
-    },
-    {
-      "store": "济南海信九麓府店",
-      "area": "二区",
-      "received": 802.1,
-      "last_received": 1800.0
     },
     {
       "store": "济南城投伴山居店",
@@ -1086,12 +1068,6 @@
       "area": "一区",
       "received": 500.0,
       "last_received": 1400.0
-    },
-    {
-      "store": "济南海信九麓府店（一）",
-      "area": "二区",
-      "received": 400.0,
-      "last_received": 0
     },
     {
       "store": "济南北徐花园店",
