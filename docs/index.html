@@ -1074,8 +1074,17 @@ function renderGap(d) {
 
   var stores = filteredStores(d.stores);
   var completed = stores.reduce(function(sum,s){ return sum + (s.sales||0); }, 0);
+  var operatingAreas = ['一区','二区'];
+  var baseCompleted = completed;
+  var sprintCompleted = completed;
+  if (currentArea === 'all') {
+    // 基础行只统计任务表内经营区域门店；非任务表门店/筹开区销售只进入冲刺行
+    baseCompleted = (d.stores || []).filter(function(s){ return operatingAreas.indexOf(s.area) >= 0; })
+      .reduce(function(sum,s){ return sum + (s.sales||0); }, 0);
+    sprintCompleted = (d.stores || []).reduce(function(sum,s){ return sum + (s.sales||0); }, 0);
+  }
   var days = d.month_remaining_days || 1;
-  var targetLabel = currentPeriod === 'week' ? '周任务' : '月任务';
+  var targetLabel = currentPeriod === 'day' ? '日任务' : (currentPeriod === 'week' ? '周任务' : '月任务');
 
   function calcRemainingDays() {
     if (currentPeriod !== 'week') return d.month_remaining_days || 1;
@@ -1092,7 +1101,7 @@ function renderGap(d) {
   var baseNote = '';
   var sprintNote = '';
   if (currentArea === 'all') {
-    baseTarget = sumAreaTargets(d, ['一区','二区'], 'target');
+    baseTarget = sumAreaTargets(d, operatingAreas, 'target');
     sprintTarget = (d.month_sprint_target || d.sprint_amount || 0) * targetScaleForPeriod();
     baseNote = '一区+二区';
     sprintNote = '一区+二区+筹开区';
@@ -1104,22 +1113,22 @@ function renderGap(d) {
     sprintNote = currentArea;
   }
 
-  function rowHtml(type, label, note, target) {
-    var remaining = target - completed;
+  function rowHtml(type, label, note, target, completedAmount) {
+    var remaining = target - completedAmount;
     var daily = Math.round(remaining / days);
     return '<div class="gap-row '+type+'">'
       + '<span class="gap-row-label">'+label+'</span>'
       + '<span class="gap-item">范围 <b>'+note+'</b></span>'
       + '<span class="gap-item">'+targetLabel+' <b>'+fmtMoney(target)+'</b></span>'
-      + '<span class="gap-item">已完成 <b>'+fmtMoney(completed)+'</b></span>'
+      + '<span class="gap-item">已完成 <b>'+fmtMoney(completedAmount)+'</b></span>'
       + '<span class="gap-item">缺口 <b class="gap-danger">'+fmtMoney(remaining)+'</b></span>'
       + '<span class="gap-item">剩余 <b>'+days+'</b> 天</span>'
       + '<span class="gap-item">日均需完成 <b class="gap-blue">'+fmtMoney(daily)+'</b></span>'
       + '</div>';
   }
 
-  gapGrid.innerHTML = rowHtml('base', '基础目标', baseNote, baseTarget)
-    + rowHtml('sprint', currentArea === 'all' ? '冲刺目标（含筹开）' : '冲刺目标', sprintNote, sprintTarget);
+  gapGrid.innerHTML = rowHtml('base', '基础目标', baseNote, baseTarget, baseCompleted)
+    + rowHtml('sprint', currentArea === 'all' ? '冲刺目标（含筹开）' : '冲刺目标', sprintNote, sprintTarget, sprintCompleted);
 }
 
 // ── Ranking Table ──
