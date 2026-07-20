@@ -416,21 +416,22 @@
       ]
     },
     {
-      "name": "济南仁华居店（一）",
+      "name": "济南仁华居店",
       "area": "一区",
       "sales": 3929.42,
       "target": 5195.29,
       "sprint": 6349.71,
       "customers": 268,
       "avg_bill": 14.66,
-      "prev_rank": 30,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
+      "prev_rank": 8,
+      "last_sales": 5955.15,
+      "last_orders": 368,
+      "last_avg_bill": 16.18,
       "recharge": 0,
-      "last_recharge": 0,
+      "last_recharge": 500.0,
       "suggestions": [
         "🟡 需要提速",
+        "📉 环比大跌",
         "储值转化弱"
       ]
     },
