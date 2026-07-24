@@ -76,6 +76,18 @@
   }
   .btn-refresh:hover { background: var(--blue-light); color: var(--blue); border-color: var(--blue); }
   .refresh-time { font-size: 12px; color: var(--text-muted); }
+  .share-link-row {
+    margin-top: 8px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    font-size: 12px; color: var(--text-secondary);
+  }
+  .share-link-row .share-label { color: var(--text-muted); font-weight: 600; }
+  .share-link-row a {
+    display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px;
+    border-radius: 999px; background: rgba(37,99,235,0.08); color: var(--blue);
+    text-decoration: none; font-weight: 600; border: 1px solid rgba(37,99,235,0.12);
+  }
+  .share-link-row a:hover { background: var(--blue-light); border-color: var(--blue); }
+  .share-link-row a.backup { background: rgba(22,163,74,0.08); color: var(--green); border-color: rgba(22,163,74,0.14); }
 
   /* ── Area Filter ── */
   .area-filter-row { display:flex; align-items:center; gap:8px; margin-bottom:18px; flex-wrap:wrap; }
@@ -465,6 +477,11 @@
       </div>
       <div class="header-meta" style="margin-top:8px; gap:18px;" id="areaInfo">
         🔵 <b>一区</b> 高硕 · 14店&emsp;🟢 <b>二区</b> 古子箴 · 10店&emsp;🔴 <b>筹开区</b> 代航宇 · 0店
+      </div>
+      <div class="share-link-row">
+        <span class="share-label">分享网址</span>
+        <a href="https://f4f5740a35384e568051d73b504d1740.app.codebuddy.work" target="_blank" rel="noopener">CloudStudio 稳定链接</a>
+        <a class="backup" href="https://dx-bot01.github.io/jn-dash-ff8c76a2/" target="_blank" rel="noopener">GitHub 备用链接</a>
       </div>
     </div>
     <div class="header-right">

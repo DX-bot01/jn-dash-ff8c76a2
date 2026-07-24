@@ -101,14 +101,15 @@
       "sprint": 7866.74,
       "customers": 188,
       "avg_bill": 12.97,
-      "prev_rank": 30,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
+      "prev_rank": 4,
+      "last_sales": 4993.18,
+      "last_orders": 309,
+      "last_avg_bill": 16.16,
       "recharge": 100.0,
-      "last_recharge": 0,
+      "last_recharge": 1300.0,
       "suggestions": [
-        "🔴 完成率<50%，紧急跟进"
+        "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌"
       ]
     },
     {
@@ -202,7 +203,7 @@
       ]
     },
     {
-      "name": "济南御景台店",
+      "name": "济南御景台店（一）",
       "area": "一区",
       "sales": -24.0,
       "target": 3621.68,
@@ -368,7 +369,7 @@
       ]
     },
     {
-      "name": "济南中海云著店",
+      "name": "济南中海云著店（一）",
       "area": "二区",
       "sales": 3731.04,
       "target": 4633.16,
@@ -386,7 +387,7 @@
       ]
     },
     {
-      "name": "济南仁华居店",
+      "name": "济南仁华居店（一）",
       "area": "一区",
       "sales": 3948.46,
       "target": 5195.29,
@@ -404,7 +405,7 @@
       ]
     },
     {
-      "name": "济南祥泰城店",
+      "name": "济南祥泰城店（一）",
       "area": "一区",
       "sales": 2832.01,
       "target": 4787.13,
@@ -963,7 +964,7 @@
       "last_received": 226.17
     },
     {
-      "store": "济南中海云著店",
+      "store": "济南中海云著店（一）",
       "area": "二区",
       "received": 400.0,
       "last_received": 0
@@ -1020,7 +1021,7 @@
       "store": "济南文贤居店（一）",
       "area": "二区",
       "received": 100.0,
-      "last_received": 0
+      "last_received": 1300.0
     },
     {
       "store": "济南春华居店",
@@ -1035,7 +1036,7 @@
       "last_received": 0
     },
     {
-      "store": "济南仁华居店",
+      "store": "济南仁华居店（一）",
       "area": "一区",
       "received": 100.0,
       "last_received": 0

@@ -173,7 +173,7 @@
       ]
     },
     {
-      "name": "济南祥泰城店",
+      "name": "济南祥泰城店（一）",
       "area": "一区",
       "sales": 9175.07,
       "target": 33509.9,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "name": "济南御景台店",
+      "name": "济南御景台店（一）",
       "area": "一区",
       "sales": 7285.81,
       "target": 25351.74,
@@ -336,7 +336,7 @@
       "sprint": 30619.35,
       "customers": 1261,
       "avg_bill": 15.2,
-      "prev_rank": 27,
+      "prev_rank": 26,
       "last_sales": 24691.51,
       "last_orders": 1138,
       "last_avg_bill": 21.7,
@@ -387,7 +387,7 @@
       ]
     },
     {
-      "name": "济南中海云著店",
+      "name": "济南中海云著店（一）",
       "area": "二区",
       "sales": 13965.3,
       "target": 32432.13,
@@ -406,7 +406,7 @@
       ]
     },
     {
-      "name": "济南仁华居店",
+      "name": "济南仁华居店（一）",
       "area": "一区",
       "sales": 14828.22,
       "target": 36367.03,
@@ -491,14 +491,15 @@
       "sprint": 55067.19,
       "customers": 653,
       "avg_bill": 13.26,
-      "prev_rank": 30,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
+      "prev_rank": 4,
+      "last_sales": 31630.11,
+      "last_orders": 1960,
+      "last_avg_bill": 16.14,
       "recharge": 39.68,
-      "last_recharge": 0,
+      "last_recharge": 9400.0,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌",
         "储值转化弱"
       ]
     },
@@ -510,7 +511,7 @@
       "sprint": 30619.35,
       "customers": 0,
       "avg_bill": 0,
-      "prev_rank": 28,
+      "prev_rank": 27,
       "last_sales": 0,
       "last_orders": 0,
       "last_avg_bill": 0,
@@ -529,7 +530,7 @@
       "sprint": 30619.35,
       "customers": 0,
       "avg_bill": 0,
-      "prev_rank": 29,
+      "prev_rank": 28,
       "last_sales": 0,
       "last_orders": 0,
       "last_avg_bill": 0,
@@ -548,7 +549,7 @@
       "sprint": 30619.35,
       "customers": 0,
       "avg_bill": 0,
-      "prev_rank": 30,
+      "prev_rank": 29,
       "last_sales": 0,
       "last_orders": 0,
       "last_avg_bill": 0,
@@ -567,7 +568,7 @@
       "sprint": 30619.35,
       "customers": 0,
       "avg_bill": 0,
-      "prev_rank": 31,
+      "prev_rank": 30,
       "last_sales": 0,
       "last_orders": 0,
       "last_avg_bill": 0,
@@ -586,7 +587,7 @@
       "sprint": 30619.35,
       "customers": 0,
       "avg_bill": 0,
-      "prev_rank": 32,
+      "prev_rank": 31,
       "last_sales": 0,
       "last_orders": 0,
       "last_avg_bill": 0,
@@ -1027,19 +1028,19 @@
       "last_received": 400.0
     },
     {
-      "store": "济南中海云著店",
+      "store": "济南中海云著店（一）",
       "area": "二区",
       "received": 600.0,
       "last_received": 400.0
     },
     {
-      "store": "济南仁华居店",
+      "store": "济南仁华居店（一）",
       "area": "一区",
       "received": 500.0,
       "last_received": 500.0
     },
     {
-      "store": "济南祥泰城店",
+      "store": "济南祥泰城店（一）",
       "area": "一区",
       "received": 300.0,
       "last_received": 500.0
@@ -1063,7 +1064,7 @@
       "last_received": 0
     },
     {
-      "store": "济南御景台店",
+      "store": "济南御景台店（一）",
       "area": "一区",
       "received": 100.0,
       "last_received": 1100.0
@@ -1072,7 +1073,7 @@
       "store": "济南文贤居店（一）",
       "area": "二区",
       "received": 39.68,
-      "last_received": 0
+      "last_received": 9400.0
     }
   ],
   "trend": {
