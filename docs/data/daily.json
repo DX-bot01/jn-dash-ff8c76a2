@@ -202,21 +202,22 @@
       ]
     },
     {
-      "name": "济南御景台店（停用）",
+      "name": "济南御景台店",
       "area": "一区",
       "sales": -24.0,
       "target": 3621.68,
       "sprint": 4632.26,
       "customers": 1,
       "avg_bill": -24.0,
-      "prev_rank": 30,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
+      "prev_rank": 13,
+      "last_sales": 3297.42,
+      "last_orders": 270,
+      "last_avg_bill": 12.21,
       "recharge": 0,
       "last_recharge": 0,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌",
         "客单价<¥11",
         "储值转化弱"
       ]
@@ -403,21 +404,22 @@
       ]
     },
     {
-      "name": "济南祥泰城店（一）",
+      "name": "济南祥泰城店",
       "area": "一区",
       "sales": 2832.01,
       "target": 4787.13,
       "sprint": 5850.9,
       "customers": 294,
       "avg_bill": 9.63,
-      "prev_rank": 30,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
+      "prev_rank": 11,
+      "last_sales": 3480.22,
+      "last_orders": 337,
+      "last_avg_bill": 10.33,
       "recharge": 0,
-      "last_recharge": 0,
+      "last_recharge": 100.0,
       "suggestions": [
         "🟠 完成率偏低",
+        "📉 环比下滑",
         "客单价<¥11",
         "储值转化弱"
       ]
