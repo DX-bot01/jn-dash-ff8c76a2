@@ -1,76 +1,75 @@
 {
-  "date": "2026年07月 (1-19日)",
+  "date": "2026年07月 (1-23日)",
   "compare_date": "2026年06月",
   "is_month": true,
-  "total_sales": 2629073.24,
+  "total_sales": 3146297.05,
   "last_period_sales": 3250176.06,
   "target_amount": 5250399,
   "sprint_amount": 6216253,
-  "avg_bill": 14.25,
+  "avg_bill": 14.1,
   "last_period_avg_bill": 14.18,
-  "total_customers": 184473,
-  "achieved_stores": 2,
+  "total_customers": 223165,
+  "achieved_stores": 3,
   "last_period_achieved": 1,
-  "sprint_achieved": 2,
+  "sprint_achieved": 3,
   "last_sprint_achieved": 0,
   "total_stores": 22,
-  "active_total_stores": 31,
+  "active_total_stores": 36,
   "month_target": 5250399,
   "month_sprint_target": 6216253,
-  "month_completed": 2629073.24,
-  "month_remaining_days": 12,
+  "month_completed": 3146297.05,
+  "month_remaining_days": 8,
   "stores": [
     {
       "name": "济南城投伴山居店",
       "area": "二区",
-      "sales": 131992.45,
+      "sales": 159530.45,
       "target": 265156,
       "sprint": 324077,
-      "customers": 11165,
-      "avg_bill": 11.82,
+      "customers": 13519,
+      "avg_bill": 11.8,
       "prev_rank": 2,
       "last_sales": 216436.63,
       "last_orders": 18114,
       "last_avg_bill": 11.95,
-      "recharge": 2500.0,
+      "recharge": 3300.0,
       "last_recharge": 9400.0,
-      "suggestions": [
-        "🔴 完成率<50%，紧急跟进",
-        "📉 环比大跌"
-      ]
-    },
-    {
-      "name": "济南万科城店（一）",
-      "area": "二区",
-      "sales": 140438.91,
-      "target": 226671,
-      "sprint": 277041,
-      "customers": 10824,
-      "avg_bill": 12.97,
-      "prev_rank": 1,
-      "last_sales": 185023.21,
-      "last_orders": 14160,
-      "last_avg_bill": 13.07,
-      "recharge": 13498.58,
-      "last_recharge": 22513.58,
       "suggestions": [
         "🟠 完成率偏低",
         "📉 环比下滑"
       ]
     },
     {
+      "name": "济南万科城店（一）",
+      "area": "二区",
+      "sales": 170845.41,
+      "target": 226671,
+      "sprint": 277041,
+      "customers": 13209,
+      "avg_bill": 12.93,
+      "prev_rank": 1,
+      "last_sales": 185023.21,
+      "last_orders": 14160,
+      "last_avg_bill": 13.07,
+      "recharge": 18598.58,
+      "last_recharge": 22513.58,
+      "suggestions": [
+        "🟡 需要提速"
+      ]
+    },
+    {
       "name": "济南白马南路店",
       "area": "二区",
-      "sales": 171804.24,
+      "sales": 204195.67,
       "target": 297741,
       "sprint": 363903,
-      "customers": 11490,
-      "avg_bill": 14.95,
+      "customers": 13769,
+      "avg_bill": 14.83,
       "prev_rank": 3,
       "last_sales": 243034.57,
       "last_orders": 16172,
       "last_avg_bill": 15.03,
-      "recharge": 14700.0,
+      "recharge": 18300.0,
       "last_recharge": 15700.0,
       "suggestions": [
         "🟠 完成率偏低",
@@ -80,11 +79,11 @@
     {
       "name": "济南文贤居店",
       "area": "二区",
-      "sales": 92622.8,
+      "sales": 64529.78,
       "target": 190667,
       "sprint": 243869,
-      "customers": 5874,
-      "avg_bill": 15.77,
+      "customers": 4135,
+      "avg_bill": 15.61,
       "prev_rank": 4,
       "last_sales": 144105.51,
       "last_orders": 8805,
@@ -99,225 +98,222 @@
     {
       "name": "济南海信九麓府店（一）",
       "area": "二区",
-      "sales": 95953.11,
+      "sales": 116078.26,
       "target": 190631,
       "sprint": 232992,
-      "customers": 6931,
-      "avg_bill": 13.84,
+      "customers": 8457,
+      "avg_bill": 13.73,
       "prev_rank": 5,
       "last_sales": 155605.18,
       "last_orders": 11136,
       "last_avg_bill": 13.97,
-      "recharge": 3624.07,
+      "recharge": 4824.07,
       "last_recharge": 7500.0,
       "suggestions": [
         "🟠 完成率偏低",
-        "📉 环比大跌"
+        "📉 环比下滑"
       ]
     },
     {
       "name": "济南梁王新城",
       "area": "一区",
-      "sales": 140115.57,
+      "sales": 168528.68,
       "target": 245487,
       "sprint": 300038,
-      "customers": 9218,
-      "avg_bill": 15.2,
+      "customers": 11147,
+      "avg_bill": 15.12,
       "prev_rank": 6,
       "last_sales": 200382.12,
       "last_orders": 13458,
       "last_avg_bill": 14.89,
-      "recharge": 7000.0,
+      "recharge": 11900.0,
       "last_recharge": 10227.43,
       "suggestions": [
         "🟠 完成率偏低",
-        "📉 环比大跌"
+        "📉 环比下滑"
       ]
     },
     {
       "name": "济南仁华居店",
       "area": "一区",
-      "sales": 77930.48,
+      "sales": 92758.7,
       "target": 161054,
       "sprint": 196841,
-      "customers": 5310,
-      "avg_bill": 14.68,
+      "customers": 6383,
+      "avg_bill": 14.53,
       "prev_rank": 7,
       "last_sales": 131461.58,
       "last_orders": 8221,
       "last_avg_bill": 15.99,
-      "recharge": 3369.3,
+      "recharge": 3869.3,
       "last_recharge": 7501.2,
+      "suggestions": [
+        "🟠 完成率偏低",
+        "📉 环比下滑"
+      ]
+    },
+    {
+      "name": "济南中海云著店",
+      "area": "二区",
+      "sales": 86486.71,
+      "target": 143628,
+      "sprint": 175544,
+      "customers": 6860,
+      "avg_bill": 12.61,
+      "prev_rank": 9,
+      "last_sales": 117237.95,
+      "last_orders": 8420,
+      "last_avg_bill": 13.92,
+      "recharge": 4141.13,
+      "last_recharge": 10160.9,
+      "suggestions": [
+        "🟠 完成率偏低",
+        "📉 环比下滑"
+      ]
+    },
+    {
+      "name": "济南天鸿万卷府店",
+      "area": "一区",
+      "sales": 144061.58,
+      "target": 212462,
+      "sprint": 259674,
+      "customers": 10065,
+      "avg_bill": 14.31,
+      "prev_rank": 11,
+      "last_sales": 173424.96,
+      "last_orders": 13390,
+      "last_avg_bill": 12.95,
+      "recharge": 13904.49,
+      "last_recharge": 22700.0,
+      "suggestions": [
+        "🟠 完成率偏低",
+        "📉 环比下滑"
+      ]
+    },
+    {
+      "name": "济南保利和塘悦色店",
+      "area": "一区",
+      "sales": 114174.24,
+      "target": 157930,
+      "sprint": 193023,
+      "customers": 8993,
+      "avg_bill": 12.7,
+      "prev_rank": 12,
+      "last_sales": 128911.81,
+      "last_orders": 9779,
+      "last_avg_bill": 13.18,
+      "recharge": 12200.0,
+      "last_recharge": 18500.42,
+      "suggestions": [
+        "🟡 需要提速"
+      ]
+    },
+    {
+      "name": "济南祥泰城店",
+      "area": "一区",
+      "sales": 58682.71,
+      "target": 148401,
+      "sprint": 181378,
+      "customers": 5018,
+      "avg_bill": 11.69,
+      "prev_rank": 13,
+      "last_sales": 121134.34,
+      "last_orders": 9502,
+      "last_avg_bill": 12.75,
+      "recharge": 2600.0,
+      "last_recharge": 3042.12,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
         "📉 环比大跌"
       ]
     },
     {
-      "name": "济南中海云著店",
-      "area": "二区",
-      "sales": 72521.41,
-      "target": 143628,
-      "sprint": 175544,
-      "customers": 5765,
-      "avg_bill": 12.58,
-      "prev_rank": 9,
-      "last_sales": 117237.95,
-      "last_orders": 8420,
-      "last_avg_bill": 13.92,
-      "recharge": 3541.13,
-      "last_recharge": 10160.9,
-      "suggestions": [
-        "🟠 完成率偏低",
-        "📉 环比大跌"
-      ]
-    },
-    {
-      "name": "济南天鸿万卷府店",
-      "area": "一区",
-      "sales": 119410.6,
-      "target": 212462,
-      "sprint": 259674,
-      "customers": 8311,
-      "avg_bill": 14.37,
-      "prev_rank": 11,
-      "last_sales": 173424.96,
-      "last_orders": 13390,
-      "last_avg_bill": 12.95,
-      "recharge": 11104.49,
-      "last_recharge": 22700.0,
-      "suggestions": [
-        "🟠 完成率偏低",
-        "📉 环比大跌"
-      ]
-    },
-    {
-      "name": "济南保利和塘悦色店",
-      "area": "一区",
-      "sales": 96227.87,
-      "target": 157930,
-      "sprint": 193023,
-      "customers": 7449,
-      "avg_bill": 12.92,
-      "prev_rank": 12,
-      "last_sales": 128911.81,
-      "last_orders": 9779,
-      "last_avg_bill": 13.18,
-      "recharge": 10600.0,
-      "last_recharge": 18500.42,
-      "suggestions": [
-        "🟠 完成率偏低",
-        "📉 环比下滑"
-      ]
-    },
-    {
-      "name": "济南祥泰城店",
-      "area": "一区",
-      "sales": 76736.14,
-      "target": 148401,
-      "sprint": 181378,
-      "customers": 6629,
-      "avg_bill": 11.58,
-      "prev_rank": 13,
-      "last_sales": 121134.34,
-      "last_orders": 9502,
-      "last_avg_bill": 12.75,
-      "recharge": 2400.0,
-      "last_recharge": 3042.12,
-      "suggestions": [
-        "🟠 完成率偏低",
-        "📉 环比大跌"
-      ]
-    },
-    {
       "name": "济南御山首府店",
       "area": "一区",
-      "sales": 123215.82,
+      "sales": 149030.44,
       "target": 195519,
       "sprint": 250076,
-      "customers": 8092,
-      "avg_bill": 15.23,
+      "customers": 9766,
+      "avg_bill": 15.26,
       "prev_rank": 14,
       "last_sales": 147773.3,
       "last_orders": 10097,
       "last_avg_bill": 14.64,
-      "recharge": 3200.0,
+      "recharge": 3400.0,
       "last_recharge": 3880.9,
       "suggestions": [
-        "🟠 完成率偏低",
-        "📉 环比下滑"
+        "🟡 需要提速"
       ]
     },
     {
       "name": "济南御景台店",
       "area": "一区",
-      "sales": 60908.61,
+      "sales": 49682.24,
       "target": 112272,
       "sprint": 143600,
-      "customers": 5293,
-      "avg_bill": 11.51,
+      "customers": 4406,
+      "avg_bill": 11.28,
       "prev_rank": 15,
       "last_sales": 84855.24,
       "last_orders": 7407,
       "last_avg_bill": 11.46,
-      "recharge": 2500.0,
+      "recharge": 2600.0,
       "last_recharge": 1062.56,
       "suggestions": [
-        "🟠 完成率偏低",
-        "📉 环比下滑"
+        "🔴 完成率<50%，紧急跟进",
+        "📉 环比大跌"
       ]
     },
     {
       "name": "济南天鸿万象东方店",
       "area": "一区",
-      "sales": 81461.71,
+      "sales": 97582.39,
       "target": 142899,
       "sprint": 182773,
-      "customers": 6226,
-      "avg_bill": 13.08,
+      "customers": 7586,
+      "avg_bill": 12.86,
       "prev_rank": 16,
       "last_sales": 108002.96,
       "last_orders": 8171,
       "last_avg_bill": 13.22,
-      "recharge": 7400.0,
+      "recharge": 10200.0,
       "last_recharge": 6843.29,
+      "suggestions": [
+        "🟠 完成率偏低"
+      ]
+    },
+    {
+      "name": "济南中建新悦城店",
+      "area": "一区",
+      "sales": 112970.36,
+      "target": 180350,
+      "sprint": 230674,
+      "customers": 7314,
+      "avg_bill": 15.45,
+      "prev_rank": 17,
+      "last_sales": 136308.28,
+      "last_orders": 8355,
+      "last_avg_bill": 16.31,
+      "recharge": 7688.0,
+      "last_recharge": 12827.77,
       "suggestions": [
         "🟠 完成率偏低",
         "📉 环比下滑"
       ]
     },
     {
-      "name": "济南中建新悦城店",
-      "area": "一区",
-      "sales": 93663.03,
-      "target": 180350,
-      "sprint": 230674,
-      "customers": 6105,
-      "avg_bill": 15.34,
-      "prev_rank": 17,
-      "last_sales": 136308.28,
-      "last_orders": 8355,
-      "last_avg_bill": 16.31,
-      "recharge": 5688.0,
-      "last_recharge": 12827.77,
-      "suggestions": [
-        "🟠 完成率偏低",
-        "📉 环比大跌"
-      ]
-    },
-    {
       "name": "济南北徐花园店",
       "area": "二区",
-      "sales": 84256.05,
+      "sales": 93151.19,
       "target": 139157,
       "sprint": 180149,
-      "customers": 3027,
-      "avg_bill": 27.83,
+      "customers": 3625,
+      "avg_bill": 25.7,
       "prev_rank": 21,
       "last_sales": 138078.97,
       "last_orders": 5451,
       "last_avg_bill": 25.33,
-      "recharge": 4300.0,
+      "recharge": 4599.42,
       "last_recharge": 6500.0,
       "suggestions": [
         "🟠 完成率偏低",
@@ -327,87 +323,85 @@
     {
       "name": "济南中海山湖壹号店（一）",
       "area": "一区",
-      "sales": 117457.69,
+      "sales": 139389.3,
       "target": 171199,
       "sprint": 209241,
-      "customers": 8083,
-      "avg_bill": 14.53,
+      "customers": 9722,
+      "avg_bill": 14.34,
       "prev_rank": 8,
       "last_sales": 139742.87,
       "last_orders": 9784,
       "last_avg_bill": 14.28,
-      "recharge": 6400.0,
+      "recharge": 7700.0,
       "last_recharge": 6000.0,
       "suggestions": [
-        "🟠 完成率偏低",
-        "📉 环比下滑"
+        "🟡 需要提速"
       ]
     },
     {
       "name": "济南香溢澜庭店（一）",
       "area": "一区",
-      "sales": 109201.31,
+      "sales": 129836.2,
       "target": 202364,
       "sprint": 247331,
-      "customers": 8922,
-      "avg_bill": 12.24,
+      "customers": 10641,
+      "avg_bill": 12.2,
       "prev_rank": 10,
       "last_sales": 165181.5,
       "last_orders": 12664,
       "last_avg_bill": 13.04,
-      "recharge": 4900.0,
+      "recharge": 6087.79,
       "last_recharge": 13100.0,
-      "suggestions": [
-        "🟠 完成率偏低",
-        "📉 环比大跌"
-      ]
-    },
-    {
-      "name": "济南绿地国际花都店",
-      "area": "二区",
-      "sales": 129747.74,
-      "target": 218759,
-      "sprint": 267371,
-      "customers": 9448,
-      "avg_bill": 13.73,
-      "prev_rank": 18,
-      "last_sales": 178565.33,
-      "last_orders": 12042,
-      "last_avg_bill": 14.83,
-      "recharge": 20237.04,
-      "last_recharge": 28703.36,
       "suggestions": [
         "🟠 完成率偏低",
         "📉 环比下滑"
       ]
     },
     {
+      "name": "济南绿地国际花都店",
+      "area": "二区",
+      "sales": 154124.07,
+      "target": 218759,
+      "sprint": 267371,
+      "customers": 11308,
+      "avg_bill": 13.63,
+      "prev_rank": 18,
+      "last_sales": 178565.33,
+      "last_orders": 12042,
+      "last_avg_bill": 14.83,
+      "recharge": 24352.64,
+      "last_recharge": 28703.36,
+      "suggestions": [
+        "🟡 需要提速"
+      ]
+    },
+    {
       "name": "济南鲁建小区店",
       "area": "二区",
-      "sales": 135206.89,
+      "sales": 165516.11,
       "target": 240064,
       "sprint": 293410,
-      "customers": 10197,
-      "avg_bill": 13.26,
+      "customers": 12344,
+      "avg_bill": 13.41,
       "prev_rank": 19,
       "last_sales": 195955.31,
       "last_orders": 13883,
       "last_avg_bill": 14.11,
-      "recharge": 11400.0,
+      "recharge": 16299.73,
       "last_recharge": 12104.02,
       "suggestions": [
         "🟠 完成率偏低",
-        "📉 环比大跌"
+        "📉 环比下滑"
       ]
     },
     {
       "name": "济南梦世界店",
       "area": "二区",
-      "sales": 111798.04,
+      "sales": 130162.21,
       "target": 77352,
       "sprint": 100139,
-      "customers": 8947,
-      "avg_bill": 12.5,
+      "customers": 10702,
+      "avg_bill": 12.16,
       "prev_rank": 22,
       "last_sales": 57298.32,
       "last_orders": 4797,
@@ -440,16 +434,16 @@
     {
       "name": "济南祝甸东方花园店",
       "area": "筹开区",
-      "sales": 77802.44,
+      "sales": 90596.41,
       "target": 135600,
       "sprint": 135600,
-      "customers": 4481,
-      "avg_bill": 17.36,
-      "prev_rank": 31,
+      "customers": 5421,
+      "avg_bill": 16.71,
+      "prev_rank": 36,
       "last_sales": 0,
       "last_orders": 0,
       "last_avg_bill": 0,
-      "recharge": 14589.86,
+      "recharge": 16289.86,
       "last_recharge": 100.0,
       "suggestions": [
         "🟠 完成率偏低"
@@ -458,16 +452,16 @@
     {
       "name": "济南文庄新居店",
       "area": "筹开区",
-      "sales": 116591.15,
+      "sales": 152950.87,
       "target": 135600,
       "sprint": 135600,
-      "customers": 6647,
-      "avg_bill": 17.54,
-      "prev_rank": 31,
+      "customers": 9170,
+      "avg_bill": 16.68,
+      "prev_rank": 36,
       "last_sales": 0,
       "last_orders": 0,
       "last_avg_bill": 0,
-      "recharge": 2600.0,
+      "recharge": 3526.76,
       "last_recharge": 0,
       "suggestions": [
         "🟢 节奏正常"
@@ -476,30 +470,49 @@
     {
       "name": "济南香溢紫郡店",
       "area": "筹开区",
-      "sales": 107288.15,
+      "sales": 135045.96,
       "target": 135600,
       "sprint": 135600,
-      "customers": 5698,
-      "avg_bill": 18.83,
-      "prev_rank": 31,
+      "customers": 7517,
+      "avg_bill": 17.97,
+      "prev_rank": 36,
       "last_sales": 0,
       "last_orders": 0,
       "last_avg_bill": 0,
-      "recharge": 5400.0,
+      "recharge": 6400.0,
       "last_recharge": 0,
       "suggestions": [
-        "🟡 需要提速"
+        "🟢 节奏正常"
       ]
     },
     {
       "name": "济南春华居店",
       "area": "筹开区",
-      "sales": 24713.8,
+      "sales": 43887.27,
       "target": 135600,
       "sprint": 135600,
-      "customers": 1143,
-      "avg_bill": 21.62,
-      "prev_rank": 31,
+      "customers": 2404,
+      "avg_bill": 18.26,
+      "prev_rank": 36,
+      "last_sales": 0,
+      "last_orders": 0,
+      "last_avg_bill": 0,
+      "recharge": 192.81,
+      "last_recharge": 0,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "储值转化弱"
+      ]
+    },
+    {
+      "name": "济南文贤居店（停用）",
+      "area": "二区",
+      "sales": 28093.02,
+      "target": 190667,
+      "sprint": 243869,
+      "customers": 1739,
+      "avg_bill": 16.15,
+      "prev_rank": 36,
       "last_sales": 0,
       "last_orders": 0,
       "last_avg_bill": 0,
@@ -508,6 +521,82 @@
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
         "储值转化弱"
+      ]
+    },
+    {
+      "name": "济南祥泰城店（停用）",
+      "area": "一区",
+      "sales": 21607.51,
+      "target": 148401,
+      "sprint": 181378,
+      "customers": 1928,
+      "avg_bill": 11.21,
+      "prev_rank": 36,
+      "last_sales": 0,
+      "last_orders": 0,
+      "last_avg_bill": 0,
+      "recharge": 0,
+      "last_recharge": 0,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "储值转化弱"
+      ]
+    },
+    {
+      "name": "济南御景台店（停用）",
+      "area": "一区",
+      "sales": 18512.18,
+      "target": 112272,
+      "sprint": 143600,
+      "customers": 1611,
+      "avg_bill": 11.49,
+      "prev_rank": 36,
+      "last_sales": 0,
+      "last_orders": 0,
+      "last_avg_bill": 0,
+      "recharge": 0,
+      "last_recharge": 0,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "储值转化弱"
+      ]
+    },
+    {
+      "name": "济南文贤居店（一）",
+      "area": "二区",
+      "sales": 8658.91,
+      "target": 190667,
+      "sprint": 243869,
+      "customers": 653,
+      "avg_bill": 13.26,
+      "prev_rank": 36,
+      "last_sales": 0,
+      "last_orders": 0,
+      "last_avg_bill": 0,
+      "recharge": 39.68,
+      "last_recharge": 0,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "储值转化弱"
+      ]
+    },
+    {
+      "name": "济南祥泰城店（一）",
+      "area": "一区",
+      "sales": 5620.99,
+      "target": 148401,
+      "sprint": 181378,
+      "customers": 555,
+      "avg_bill": 10.13,
+      "prev_rank": 36,
+      "last_sales": 0,
+      "last_orders": 0,
+      "last_avg_bill": 0,
+      "recharge": 100.0,
+      "last_recharge": 0,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
+        "客单价<¥11"
       ]
     },
     {
@@ -611,29 +700,29 @@
       "name": "一区",
       "manager": "高硕",
       "color": "#4F46E5",
-      "sales": 1136336.06,
+      "sales": 1342444.75,
       "stores": 12,
-      "active_stores": 12,
-      "target": 2040173,
-      "sprint_target": 2537358,
+      "active_stores": 15,
+      "target": 2449247,
+      "sprint_target": 3043714,
       "last_sales": 1618835.08
     },
     {
       "name": "二区",
       "manager": "古子箴",
       "color": "#0891B2",
-      "sales": 1166341.64,
+      "sales": 1381371.79,
       "stores": 10,
-      "active_stores": 10,
-      "target": 1989826,
-      "sprint_target": 2458495,
+      "active_stores": 12,
+      "target": 2371160,
+      "sprint_target": 2946233,
       "last_sales": 1631340.98
     },
     {
       "name": "筹开区",
       "manager": "代航宇",
       "color": "#DC2626",
-      "sales": 326395.54,
+      "sales": 422480.51,
       "stores": 9,
       "active_stores": 4,
       "target": 1220400,
@@ -644,128 +733,128 @@
   "category_breakdown": [
     {
       "name": "酒水饮料",
-      "sales": 1029692.32,
-      "share": 39.2,
+      "sales": 1226564.53,
+      "share": 39.0,
       "last_sales": 1354580.71,
       "last_share": 41.7
     },
     {
       "name": "休闲食品",
-      "sales": 351051.69,
-      "share": 13.4,
+      "sales": 425706.63,
+      "share": 13.5,
       "last_sales": 430324.16,
       "last_share": 13.2
     },
     {
       "name": "乳制品",
-      "sales": 287517.11,
-      "share": 10.9,
+      "sales": 346022.94,
+      "share": 11.0,
       "last_sales": 349561.46,
       "last_share": 10.8
     },
     {
       "name": "冻品",
-      "sales": 243007.97,
+      "sales": 288065.54,
       "share": 9.2,
       "last_sales": 304169.88,
       "last_share": 9.4
     },
     {
       "name": "洗化百货",
-      "sales": 238668.36,
-      "share": 9.1,
+      "sales": 277469.61,
+      "share": 8.8,
       "last_sales": 197227.89,
       "last_share": 6.1
     },
     {
       "name": "方便食品",
-      "sales": 131998.41,
-      "share": 5.0,
+      "sales": 158929.96,
+      "share": 5.1,
       "last_sales": 162213.51,
       "last_share": 5.0
     },
     {
       "name": "调味干货",
-      "sales": 109988.44,
+      "sales": 131799.18,
       "share": 4.2,
       "last_sales": 144343.64,
       "last_share": 4.4
     },
     {
       "name": "米面粮油",
-      "sales": 81954.36,
+      "sales": 96414.89,
       "share": 3.1,
       "last_sales": 101979.28,
       "last_share": 3.1
     },
     {
       "name": "烘焙",
-      "sales": 50501.13,
+      "sales": 60689.59,
       "share": 1.9,
       "last_sales": 64706.47,
       "last_share": 2.0
     },
     {
       "name": "蛋品",
-      "sales": 32060.76,
-      "share": 1.2,
+      "sales": 40840.77,
+      "share": 1.3,
       "last_sales": 54012.55,
       "last_share": 1.7
     },
     {
+      "name": "香烟中类",
+      "sales": 36859.0,
+      "share": 1.2,
+      "last_sales": 26613.0,
+      "last_share": 0.8
+    },
+    {
       "name": "低温食品",
-      "sales": 28293.63,
+      "sales": 35017.0,
       "share": 1.1,
       "last_sales": 30078.99,
       "last_share": 0.9
     },
     {
-      "name": "香烟中类",
-      "sales": 27070.0,
-      "share": 1.0,
-      "last_sales": 26613.0,
-      "last_share": 0.8
-    },
-    {
       "name": "槟榔",
-      "sales": 8088.6,
+      "sales": 10495.8,
       "share": 0.3,
       "last_sales": 12878.94,
       "last_share": 0.4
     },
     {
       "name": "出清",
-      "sales": 5024.19,
+      "sales": 6535.54,
       "share": 0.2,
       "last_sales": 9785.81,
       "last_share": 0.3
     },
     {
       "name": "抖音套餐",
-      "sales": 2662.68,
+      "sales": 3120.78,
       "share": 0.1,
       "last_sales": 5899.87,
       "last_share": 0.2
     },
     {
       "name": "耗材",
-      "sales": 1493.59,
+      "sales": 1765.29,
       "share": 0.1,
       "last_sales": 1799.9,
       "last_share": 0.1
     }
   ],
   "recharge": {
-    "current": 190713.87,
+    "current": 232875.66,
     "last": 265856.74
   },
   "category_profit": [
     {
       "name": "酒水饮料",
-      "revenue": 1029692.32,
-      "cost": 892640.61,
-      "profit": 137051.71,
-      "margin": 13.31,
+      "revenue": 1226564.53,
+      "cost": 1062268.57,
+      "profit": 164295.96,
+      "margin": 13.39,
       "last_revenue": 1354580.71,
       "last_cost": 1174015.42,
       "last_profit": 180565.29,
@@ -773,10 +862,10 @@
     },
     {
       "name": "休闲食品",
-      "revenue": 351051.69,
-      "cost": 287888.65,
-      "profit": 63163.04,
-      "margin": 17.99,
+      "revenue": 425706.63,
+      "cost": 348018.79,
+      "profit": 77687.84,
+      "margin": 18.25,
       "last_revenue": 430324.16,
       "last_cost": 355709.82,
       "last_profit": 74614.34,
@@ -784,10 +873,10 @@
     },
     {
       "name": "冻品",
-      "revenue": 243007.97,
-      "cost": 182387.59,
-      "profit": 60620.38,
-      "margin": 24.95,
+      "revenue": 288065.54,
+      "cost": 215663.54,
+      "profit": 72402.0,
+      "margin": 25.13,
       "last_revenue": 304169.88,
       "last_cost": 233846.59,
       "last_profit": 70323.29,
@@ -795,10 +884,10 @@
     },
     {
       "name": "洗化百货",
-      "revenue": 238668.36,
-      "cost": 210878.29,
-      "profit": 27790.07,
-      "margin": 11.64,
+      "revenue": 277469.61,
+      "cost": 243854.16,
+      "profit": 33615.45,
+      "margin": 12.12,
       "last_revenue": 197227.89,
       "last_cost": 164805.09,
       "last_profit": 32422.8,
@@ -806,10 +895,10 @@
     },
     {
       "name": "方便食品",
-      "revenue": 131998.41,
-      "cost": 111855.16,
-      "profit": 20143.25,
-      "margin": 15.26,
+      "revenue": 158929.96,
+      "cost": 134441.37,
+      "profit": 24488.59,
+      "margin": 15.41,
       "last_revenue": 162213.51,
       "last_cost": 138730.31,
       "last_profit": 23483.2,
@@ -817,10 +906,10 @@
     },
     {
       "name": "乳制品",
-      "revenue": 287517.11,
-      "cost": 269388.77,
-      "profit": 18128.34,
-      "margin": 6.31,
+      "revenue": 346022.94,
+      "cost": 323671.5,
+      "profit": 22351.44,
+      "margin": 6.46,
       "last_revenue": 349561.46,
       "last_cost": 329012.78,
       "last_profit": 20548.68,
@@ -828,10 +917,10 @@
     },
     {
       "name": "调味干货",
-      "revenue": 109988.44,
-      "cost": 96683.88,
-      "profit": 13304.56,
-      "margin": 12.1,
+      "revenue": 131799.18,
+      "cost": 115456.8,
+      "profit": 16342.38,
+      "margin": 12.4,
       "last_revenue": 144343.64,
       "last_cost": 125565.94,
       "last_profit": 18777.7,
@@ -839,10 +928,10 @@
     },
     {
       "name": "米面粮油",
-      "revenue": 81954.36,
-      "cost": 73941.68,
-      "profit": 8012.68,
-      "margin": 9.78,
+      "revenue": 96414.89,
+      "cost": 86901.47,
+      "profit": 9513.42,
+      "margin": 9.87,
       "last_revenue": 101979.28,
       "last_cost": 91711.06,
       "last_profit": 10268.22,
@@ -850,10 +939,10 @@
     },
     {
       "name": "烘焙",
-      "revenue": 50501.13,
-      "cost": 43308.19,
-      "profit": 7192.94,
-      "margin": 14.24,
+      "revenue": 60689.59,
+      "cost": 51885.66,
+      "profit": 8803.93,
+      "margin": 14.51,
       "last_revenue": 64706.47,
       "last_cost": 57750.75,
       "last_profit": 6955.72,
@@ -861,10 +950,10 @@
     },
     {
       "name": "香烟中类",
-      "revenue": 27070.0,
-      "cost": 23266.67,
-      "profit": 3803.33,
-      "margin": 14.05,
+      "revenue": 36859.0,
+      "cost": 31811.6,
+      "profit": 5047.4,
+      "margin": 13.69,
       "last_revenue": 26613.0,
       "last_cost": 22865.26,
       "last_profit": 3747.74,
@@ -872,10 +961,10 @@
     },
     {
       "name": "低温食品",
-      "revenue": 28293.63,
-      "cost": 25011.89,
-      "profit": 3281.74,
-      "margin": 11.6,
+      "revenue": 35017.0,
+      "cost": 30870.46,
+      "profit": 4146.54,
+      "margin": 11.84,
       "last_revenue": 30078.99,
       "last_cost": 27763.56,
       "last_profit": 2315.43,
@@ -883,9 +972,9 @@
     },
     {
       "name": "槟榔",
-      "revenue": 8088.6,
-      "cost": 7317.0,
-      "profit": 771.6,
+      "revenue": 10495.8,
+      "cost": 9495.0,
+      "profit": 1000.8,
       "margin": 9.54,
       "last_revenue": 12878.94,
       "last_cost": 11434.09,
@@ -894,10 +983,10 @@
     },
     {
       "name": "抖音套餐",
-      "revenue": 2662.68,
-      "cost": 2288.03,
-      "profit": 374.65,
-      "margin": 14.07,
+      "revenue": 3120.78,
+      "cost": 2657.07,
+      "profit": 463.71,
+      "margin": 14.86,
       "last_revenue": 5899.87,
       "last_cost": 3739.09,
       "last_profit": 2160.78,
@@ -905,10 +994,10 @@
     },
     {
       "name": "出清",
-      "revenue": 5024.19,
-      "cost": 5024.39,
-      "profit": -0.2,
-      "margin": -0.0,
+      "revenue": 6535.54,
+      "cost": 6536.79,
+      "profit": -1.25,
+      "margin": -0.02,
       "last_revenue": 9785.81,
       "last_cost": 9787.96,
       "last_profit": -2.15,
@@ -916,10 +1005,10 @@
     },
     {
       "name": "耗材",
-      "revenue": 1493.59,
-      "cost": 1607.82,
-      "profit": -114.23,
-      "margin": -7.65,
+      "revenue": 1765.29,
+      "cost": 1937.12,
+      "profit": -171.83,
+      "margin": -9.73,
       "last_revenue": 1799.9,
       "last_cost": 2218.77,
       "last_profit": -418.87,
@@ -927,10 +1016,10 @@
     },
     {
       "name": "蛋品",
-      "revenue": 32060.76,
-      "cost": 32269.32,
-      "profit": -208.56,
-      "margin": -0.65,
+      "revenue": 40840.77,
+      "cost": 41020.25,
+      "profit": -179.48,
+      "margin": -0.44,
       "last_revenue": 54012.55,
       "last_cost": 83884.92,
       "last_profit": -29872.37,
@@ -939,88 +1028,94 @@
   ],
   "recharge_detail": [
     {
+      "store": "济南绿地国际花都店",
+      "area": "二区",
+      "received": 24352.64,
+      "last_received": 28703.36
+    },
+    {
       "store": "济南文贤居店",
       "area": "二区",
       "received": 23387.63,
       "last_received": 38854.39
     },
     {
-      "store": "济南绿地国际花都店",
+      "store": "济南万科城店（一）",
       "area": "二区",
-      "received": 20237.04,
-      "last_received": 28703.36
+      "received": 18598.58,
+      "last_received": 22513.58
     },
     {
       "store": "济南白马南路店",
       "area": "二区",
-      "received": 14700.0,
+      "received": 18300.0,
       "last_received": 15700.0
-    },
-    {
-      "store": "济南祝甸东方花园店",
-      "area": "",
-      "received": 14589.86,
-      "last_received": 100.0
-    },
-    {
-      "store": "济南万科城店（一）",
-      "area": "二区",
-      "received": 13498.58,
-      "last_received": 22513.58
     },
     {
       "store": "济南鲁建小区店",
       "area": "二区",
-      "received": 11400.0,
+      "received": 16299.73,
       "last_received": 12104.02
+    },
+    {
+      "store": "济南祝甸东方花园店",
+      "area": "",
+      "received": 16289.86,
+      "last_received": 100.0
     },
     {
       "store": "济南天鸿万卷府店",
       "area": "一区",
-      "received": 11104.49,
+      "received": 13904.49,
       "last_received": 22700.0
     },
     {
       "store": "济南保利和塘悦色店",
       "area": "一区",
-      "received": 10600.0,
+      "received": 12200.0,
       "last_received": 18500.42
-    },
-    {
-      "store": "济南天鸿万象东方店",
-      "area": "一区",
-      "received": 7400.0,
-      "last_received": 6843.29
     },
     {
       "store": "济南梁王新城",
       "area": "一区",
-      "received": 7000.0,
+      "received": 11900.0,
       "last_received": 10227.43
+    },
+    {
+      "store": "济南天鸿万象东方店",
+      "area": "一区",
+      "received": 10200.0,
+      "last_received": 6843.29
     },
     {
       "store": "济南中海山湖壹号店（一）",
       "area": "一区",
-      "received": 6400.0,
+      "received": 7700.0,
       "last_received": 6000.0
     },
     {
       "store": "济南中建新悦城店",
       "area": "一区",
-      "received": 5688.0,
+      "received": 7688.0,
       "last_received": 12827.77
     },
     {
       "store": "济南香溢紫郡店",
       "area": "",
-      "received": 5400.0,
+      "received": 6400.0,
       "last_received": 0
     },
     {
       "store": "济南香溢澜庭店（一）",
       "area": "一区",
-      "received": 4900.0,
+      "received": 6087.79,
       "last_received": 13100.0
+    },
+    {
+      "store": "济南海信九麓府店（一）",
+      "area": "二区",
+      "received": 4824.07,
+      "last_received": 7500.0
     },
     {
       "store": "济南梦世界店",
@@ -1031,55 +1126,49 @@
     {
       "store": "济南北徐花园店",
       "area": "二区",
-      "received": 4300.0,
+      "received": 4599.42,
       "last_received": 6500.0
-    },
-    {
-      "store": "济南海信九麓府店（一）",
-      "area": "二区",
-      "received": 3624.07,
-      "last_received": 7500.0
     },
     {
       "store": "济南中海云著店",
       "area": "二区",
-      "received": 3541.13,
+      "received": 4141.13,
       "last_received": 10160.9
     },
     {
       "store": "济南仁华居店",
       "area": "一区",
-      "received": 3369.3,
+      "received": 3869.3,
       "last_received": 7501.2
-    },
-    {
-      "store": "济南御山首府店",
-      "area": "一区",
-      "received": 3200.0,
-      "last_received": 3880.9
     },
     {
       "store": "济南文庄新居店",
       "area": "",
-      "received": 2600.0,
+      "received": 3526.76,
       "last_received": 0
+    },
+    {
+      "store": "济南御山首府店",
+      "area": "一区",
+      "received": 3400.0,
+      "last_received": 3880.9
     },
     {
       "store": "济南城投伴山居店",
       "area": "二区",
-      "received": 2500.0,
+      "received": 3300.0,
       "last_received": 9400.0
     },
     {
       "store": "济南御景台店",
       "area": "一区",
-      "received": 2500.0,
+      "received": 2600.0,
       "last_received": 1062.56
     },
     {
       "store": "济南祥泰城店",
       "area": "一区",
-      "received": 2400.0,
+      "received": 2600.0,
       "last_received": 3042.12
     },
     {
@@ -1087,6 +1176,24 @@
       "area": "一区",
       "received": 1773.77,
       "last_received": 8634.8
+    },
+    {
+      "store": "济南春华居店",
+      "area": "",
+      "received": 192.81,
+      "last_received": 0
+    },
+    {
+      "store": "济南祥泰城店（一）",
+      "area": "一区",
+      "received": 100.0,
+      "last_received": 0
+    },
+    {
+      "store": "济南文贤居店（一）",
+      "area": "二区",
+      "received": 39.68,
+      "last_received": 0
     }
   ],
   "trend": {
@@ -1109,7 +1216,11 @@
       "07/16",
       "07/17",
       "07/18",
-      "07/19"
+      "07/19",
+      "07/20",
+      "07/21",
+      "07/22",
+      "07/23"
     ],
     "sales_amounts": [
       116932.76,
@@ -1130,7 +1241,11 @@
       134944.28,
       135313.96,
       164112.37,
-      149047.64
+      149200.14,
+      125151.1,
+      134955.2,
+      126217.05,
+      130747.96
     ],
     "completion_rates": [
       69.0,
@@ -1151,9 +1266,17 @@
       79.7,
       79.9,
       96.9,
-      88.0
+      88.1,
+      73.9,
+      79.7,
+      74.5,
+      77.2
     ],
     "daily_targets": [
+      169367.71,
+      169367.71,
+      169367.71,
+      169367.71,
       169367.71,
       169367.71,
       169367.71,
@@ -1195,7 +1318,11 @@
       "07/16",
       "07/17",
       "07/18",
-      "07/19"
+      "07/19",
+      "07/20",
+      "07/21",
+      "07/22",
+      "07/23"
     ],
     "cur": [
       116932.76,
@@ -1216,7 +1343,11 @@
       134944.28,
       135313.96,
       164112.37,
-      149047.64
+      149200.14,
+      125151.1,
+      134955.2,
+      126217.05,
+      130747.96
     ],
     "prev": [
       107880.6,
@@ -1237,7 +1368,11 @@
       93475.7,
       89436.95,
       142951.71,
-      134939.81
+      134939.81,
+      124782.71,
+      116367.79,
+      119608.79,
+      91279.56
     ]
   },
   "product_top50": [
@@ -1245,651 +1380,651 @@
       "rank": 1,
       "name": "云冈云感亲护12卷卫生纸3kg",
       "sku": "10621020",
-      "cur_receipt": 123001.61,
-      "cur_amount": 123479.5,
-      "cur_qty": 6205,
+      "cur_receipt": 136399.09,
+      "cur_amount": 136971.7,
+      "cur_qty": 6883,
       "prev_receipt": 22875.61,
       "prev_amount": 23024.3,
       "prev_qty": 1157,
-      "change": 100126.0,
-      "change_pct": 437.7
+      "change": 113523.48,
+      "change_pct": 496.26
     },
     {
       "rank": 2,
-      "name": "可口可乐500ml",
-      "sku": "10131007",
-      "cur_receipt": 47770.91,
-      "cur_amount": 50993.75,
-      "cur_qty": 25625,
-      "prev_receipt": 23562.53,
-      "prev_amount": 23669.06,
-      "prev_qty": 11894,
-      "change": 24208.38,
-      "change_pct": 102.74
-    },
-    {
-      "rank": 3,
       "name": "蒙牛小枕240ml*16",
       "sku": "10101020",
-      "cur_receipt": 45727.66,
-      "cur_amount": 45840.9,
-      "cur_qty": 1841,
+      "cur_receipt": 54307.79,
+      "cur_amount": 54456.3,
+      "cur_qty": 2187,
       "prev_receipt": 52877.2,
       "prev_amount": 53086.8,
       "prev_qty": 2132,
-      "change": -7149.54,
-      "change_pct": -13.52
+      "change": 1430.59,
+      "change_pct": 2.71
+    },
+    {
+      "rank": 3,
+      "name": "可口可乐500ml",
+      "sku": "10131007",
+      "cur_receipt": 51124.83,
+      "cur_amount": 54378.74,
+      "cur_qty": 27326,
+      "prev_receipt": 23562.53,
+      "prev_amount": 23669.06,
+      "prev_qty": 11894,
+      "change": 27562.3,
+      "change_pct": 116.98
     },
     {
       "rank": 4,
-      "name": "青岛啤酒经典听500ml",
-      "sku": "10191031",
-      "cur_receipt": 32158.38,
-      "cur_amount": 32373.0,
-      "cur_qty": 5995,
-      "prev_receipt": 0.0,
-      "prev_amount": 0.0,
-      "prev_qty": 0,
-      "change": 32158.38,
-      "change_pct": 100.0
-    },
-    {
-      "rank": 5,
       "name": "青岛啤酒经典瓶500ml",
       "sku": "10351004",
-      "cur_receipt": 31527.98,
-      "cur_amount": 32131.3,
-      "cur_qty": 6565,
+      "cur_receipt": 37460.14,
+      "cur_amount": 38196.4,
+      "cur_qty": 7804,
       "prev_receipt": 44444.26,
       "prev_amount": 45177.9,
       "prev_qty": 9249,
-      "change": -12916.28,
-      "change_pct": -29.06
+      "change": -6984.12,
+      "change_pct": -15.71
+    },
+    {
+      "rank": 5,
+      "name": "青岛啤酒经典听500ml",
+      "sku": "10191031",
+      "cur_receipt": 35637.11,
+      "cur_amount": 35888.4,
+      "cur_qty": 6646,
+      "prev_receipt": 0.0,
+      "prev_amount": 0.0,
+      "prev_qty": 0,
+      "change": 35637.11,
+      "change_pct": 100.0
     },
     {
       "rank": 6,
       "name": "汾酒清香型白酒53度475ml",
       "sku": "10211051",
-      "cur_receipt": 25988.8,
-      "cur_amount": 25988.8,
-      "cur_qty": 592,
+      "cur_receipt": 31651.9,
+      "cur_amount": 31651.9,
+      "cur_qty": 721,
       "prev_receipt": 48377.8,
       "prev_amount": 48377.8,
       "prev_qty": 1102,
-      "change": -22389.0,
-      "change_pct": -46.28
+      "change": -16725.9,
+      "change_pct": -34.57
     },
     {
       "rank": 7,
       "name": "雪花啤酒劲畅8度听500ml",
       "sku": "10351010",
-      "cur_receipt": 24065.83,
-      "cur_amount": 24276.01,
-      "cur_qty": 12199,
+      "cur_receipt": 29133.49,
+      "cur_amount": 29362.45,
+      "cur_qty": 14755,
       "prev_receipt": 29512.43,
       "prev_amount": 29627.12,
       "prev_qty": 14888,
-      "change": -5446.6,
-      "change_pct": -18.46
+      "change": -378.94,
+      "change_pct": -1.28
     },
     {
       "rank": 8,
-      "name": "普利思纯净水533ml量贩装",
-      "sku": "10311004",
-      "cur_receipt": 23981.35,
-      "cur_amount": 24975.3,
-      "cur_qty": 5097,
-      "prev_receipt": 26052.65,
-      "prev_amount": 27591.9,
-      "prev_qty": 5631,
-      "change": -2071.3,
-      "change_pct": -7.95
-    },
-    {
-      "rank": 9,
-      "name": "蓝带啤酒500ml",
-      "sku": "10191041",
-      "cur_receipt": 23653.76,
-      "cur_amount": 23815.38,
-      "cur_qty": 6157,
-      "prev_receipt": 31679.18,
-      "prev_amount": 31801.82,
-      "prev_qty": 8233,
-      "change": -8025.42,
-      "change_pct": -25.33
-    },
-    {
-      "rank": 10,
       "name": "蒙牛特仑苏纯牛奶250ml*12",
       "sku": "10101021",
-      "cur_receipt": 23605.13,
-      "cur_amount": 23617.4,
-      "cur_qty": 526,
+      "cur_receipt": 29050.67,
+      "cur_amount": 29095.2,
+      "cur_qty": 648,
       "prev_receipt": 26102.13,
       "prev_amount": 26131.8,
       "prev_qty": 582,
-      "change": -2497.0,
-      "change_pct": -9.57
+      "change": 2948.54,
+      "change_pct": 11.3
     },
     {
-      "rank": 11,
+      "rank": 9,
+      "name": "普利思纯净水533ml量贩装",
+      "sku": "10311004",
+      "cur_receipt": 28861.82,
+      "cur_amount": 29997.8,
+      "cur_qty": 6122,
+      "prev_receipt": 26052.65,
+      "prev_amount": 27591.9,
+      "prev_qty": 5631,
+      "change": 2809.17,
+      "change_pct": 10.78
+    },
+    {
+      "rank": 10,
       "name": "崂山啤酒劲爽听500ml",
       "sku": "10351006",
-      "cur_receipt": 22983.47,
-      "cur_amount": 23526.3,
-      "cur_qty": 9411,
+      "cur_receipt": 27569.73,
+      "cur_amount": 28206.3,
+      "cur_qty": 11283,
       "prev_receipt": 29666.83,
       "prev_amount": 30263.9,
       "prev_qty": 12107,
-      "change": -6683.36,
-      "change_pct": -22.53
+      "change": -2097.1,
+      "change_pct": -7.07
+    },
+    {
+      "rank": 11,
+      "name": "蓝带啤酒500ml",
+      "sku": "10191041",
+      "cur_receipt": 27371.91,
+      "cur_amount": 27569.68,
+      "cur_qty": 7124,
+      "prev_receipt": 31679.18,
+      "prev_amount": 31801.82,
+      "prev_qty": 8233,
+      "change": -4307.27,
+      "change_pct": -13.6
     },
     {
       "rank": 12,
       "name": "伊利金典纯牛奶250ml*12",
       "sku": "10101028",
-      "cur_receipt": 19743.63,
-      "cur_amount": 19755.0,
-      "cur_qty": 450,
+      "cur_receipt": 24646.16,
+      "cur_amount": 24671.8,
+      "cur_qty": 562,
       "prev_receipt": 28532.92,
       "prev_amount": 28535.04,
       "prev_qty": 650,
-      "change": -8789.29,
-      "change_pct": -30.8
+      "change": -3886.76,
+      "change_pct": -13.62
     },
     {
       "rank": 13,
-      "name": "娃哈哈AD钙奶220ml*4",
-      "sku": "10181035",
-      "cur_receipt": 19037.1,
-      "cur_amount": 19363.8,
-      "cur_qty": 3282,
-      "prev_receipt": 41002.0,
-      "prev_amount": 42981.5,
-      "prev_qty": 7285,
-      "change": -21964.9,
-      "change_pct": -53.57
-    },
-    {
-      "rank": 14,
       "name": "农夫山泉东方树叶茉莉花茶500ml",
       "sku": "10321002",
-      "cur_receipt": 18638.46,
-      "cur_amount": 19787.1,
-      "cur_qty": 4715,
+      "cur_receipt": 22957.74,
+      "cur_amount": 24620.1,
+      "cur_qty": 5789,
       "prev_receipt": 16983.22,
       "prev_amount": 17023.5,
       "prev_qty": 3783,
-      "change": 1655.24,
-      "change_pct": 9.75
+      "change": 5974.52,
+      "change_pct": 35.18
+    },
+    {
+      "rank": 14,
+      "name": "娃哈哈AD钙奶220ml*4",
+      "sku": "10181035",
+      "cur_receipt": 22611.07,
+      "cur_amount": 22945.1,
+      "cur_qty": 3889,
+      "prev_receipt": 41002.0,
+      "prev_amount": 42981.5,
+      "prev_qty": 7285,
+      "change": -18390.93,
+      "change_pct": -44.85
     },
     {
       "rank": 15,
       "name": "康师傅冰红茶1L",
       "sku": "10161058",
-      "cur_receipt": 18038.97,
-      "cur_amount": 18209.5,
-      "cur_qty": 5205,
+      "cur_receipt": 21654.64,
+      "cur_amount": 21845.5,
+      "cur_qty": 6245,
       "prev_receipt": 16823.51,
       "prev_amount": 16871.6,
       "prev_qty": 4676,
-      "change": 1215.46,
-      "change_pct": 7.22
+      "change": 4831.13,
+      "change_pct": 28.72
     },
     {
       "rank": 16,
-      "name": "佳宝全脂纯牛奶1L",
-      "sku": "10271010",
-      "cur_receipt": 17917.04,
-      "cur_amount": 20473.0,
-      "cur_qty": 3470,
-      "prev_receipt": 10980.65,
-      "prev_amount": 12702.7,
-      "prev_qty": 2153,
-      "change": 6936.39,
-      "change_pct": 63.17
+      "name": "正大鲜鸡蛋30枚1.59kg",
+      "sku": "10701002",
+      "cur_receipt": 20776.49,
+      "cur_amount": 20898.4,
+      "cur_qty": 1016,
+      "prev_receipt": 3889.01,
+      "prev_amount": 3934.2,
+      "prev_qty": 158,
+      "change": 16887.48,
+      "change_pct": 434.24
     },
     {
       "rank": 17,
-      "name": "燕京U8啤酒500ml",
-      "sku": "10191047",
-      "cur_receipt": 16492.55,
-      "cur_amount": 16851.6,
-      "cur_qty": 3308,
-      "prev_receipt": 18951.61,
-      "prev_amount": 19294.8,
-      "prev_qty": 3788,
-      "change": -2459.06,
-      "change_pct": -12.98
+      "name": "佳宝全脂纯牛奶1L",
+      "sku": "10271010",
+      "cur_receipt": 20225.93,
+      "cur_amount": 22903.8,
+      "cur_qty": 3882,
+      "prev_receipt": 10980.65,
+      "prev_amount": 12702.7,
+      "prev_qty": 2153,
+      "change": 9245.28,
+      "change_pct": 84.2
     },
     {
       "rank": 18,
-      "name": "鲜鸡蛋30枚",
-      "sku": "10701001",
-      "cur_receipt": 16481.23,
-      "cur_amount": 16550.2,
-      "cur_qty": 1016,
-      "prev_receipt": 48021.21,
-      "prev_amount": 80149.5,
-      "prev_qty": 4230,
-      "change": -31539.98,
-      "change_pct": -65.68
+      "name": "燕京U8啤酒500ml",
+      "sku": "10191047",
+      "cur_receipt": 19032.65,
+      "cur_amount": 19445.9,
+      "cur_qty": 3817,
+      "prev_receipt": 18951.61,
+      "prev_amount": 19294.8,
+      "prev_qty": 3788,
+      "change": 81.04,
+      "change_pct": 0.43
     },
     {
       "rank": 19,
       "name": "五得利五星特精面粉5KG",
       "sku": "10511010",
-      "cur_receipt": 16450.69,
-      "cur_amount": 16775.7,
-      "cur_qty": 843,
+      "cur_receipt": 18958.09,
+      "cur_amount": 19283.1,
+      "cur_qty": 969,
       "prev_receipt": 21673.49,
       "prev_amount": 22009.4,
       "prev_qty": 1106,
-      "change": -5222.8,
-      "change_pct": -24.1
+      "change": -2715.4,
+      "change_pct": -12.53
     },
     {
       "rank": 20,
-      "name": "汾酒清香型白酒42度475ml",
-      "sku": "10371012",
-      "cur_receipt": 16130.4,
-      "cur_amount": 16130.4,
-      "cur_qty": 376,
-      "prev_receipt": 36293.4,
-      "prev_amount": 36293.4,
-      "prev_qty": 846,
-      "change": -20163.0,
-      "change_pct": -55.56
+      "name": "鲜鸡蛋30枚",
+      "sku": "10701001",
+      "cur_receipt": 18569.56,
+      "cur_amount": 18651.8,
+      "cur_qty": 1136,
+      "prev_receipt": 48021.21,
+      "prev_amount": 80149.5,
+      "prev_qty": 4230,
+      "change": -29451.65,
+      "change_pct": -61.33
     },
     {
       "rank": 21,
-      "name": "崂山啤酒精品500ml",
-      "sku": "10351003",
-      "cur_receipt": 15707.99,
-      "cur_amount": 15974.4,
-      "cur_qty": 5057,
-      "prev_receipt": 18954.1,
-      "prev_amount": 19262.88,
-      "prev_qty": 6217,
-      "change": -3246.11,
-      "change_pct": -17.13
+      "name": "汾酒清香型白酒42度475ml",
+      "sku": "10371012",
+      "cur_receipt": 18489.9,
+      "cur_amount": 18489.9,
+      "cur_qty": 431,
+      "prev_receipt": 36293.4,
+      "prev_amount": 36293.4,
+      "prev_qty": 846,
+      "change": -17803.5,
+      "change_pct": -49.05
     },
     {
       "rank": 22,
-      "name": "雪花啤酒经典老雪640ml",
-      "sku": "10191020",
-      "cur_receipt": 14473.95,
-      "cur_amount": 14663.2,
-      "cur_qty": 2486,
-      "prev_receipt": 0.0,
-      "prev_amount": 0.0,
-      "prev_qty": 0,
-      "change": 14473.95,
-      "change_pct": 100.0
+      "name": "崂山啤酒精品500ml",
+      "sku": "10351003",
+      "cur_receipt": 18465.18,
+      "cur_amount": 18782.88,
+      "cur_qty": 5938,
+      "prev_receipt": 18954.1,
+      "prev_amount": 19262.88,
+      "prev_qty": 6217,
+      "change": -488.92,
+      "change_pct": -2.58
     },
     {
       "rank": 23,
-      "name": "雪花啤酒冰山勇闯天涯瓶500ml",
-      "sku": "10351011",
-      "cur_receipt": 14292.83,
-      "cur_amount": 14443.57,
-      "cur_qty": 4831,
-      "prev_receipt": 18726.28,
-      "prev_amount": 18860.08,
-      "prev_qty": 6308,
-      "change": -4433.45,
-      "change_pct": -23.68
-    },
-    {
-      "rank": 24,
-      "name": "正大鲜鸡蛋30枚1.59kg",
-      "sku": "10701002",
-      "cur_receipt": 14173.61,
-      "cur_amount": 14271.7,
-      "cur_qty": 683,
-      "prev_receipt": 3889.01,
-      "prev_amount": 3934.2,
-      "prev_qty": 158,
-      "change": 10284.6,
-      "change_pct": 264.45
-    },
-    {
-      "rank": 25,
-      "name": "顺清柔卫生卷纸3kg",
-      "sku": "10641001",
-      "cur_receipt": 14110.16,
-      "cur_amount": 14118.3,
-      "cur_qty": 567,
-      "prev_receipt": 44286.89,
-      "prev_amount": 44396.7,
-      "prev_qty": 1783,
-      "change": -30176.73,
-      "change_pct": -68.14
-    },
-    {
-      "rank": 26,
-      "name": "青岛啤酒白啤听500ml",
-      "sku": "10351005",
-      "cur_receipt": 13715.26,
-      "cur_amount": 13850.3,
-      "cur_qty": 2131,
-      "prev_receipt": 22643.14,
-      "prev_amount": 22802.4,
-      "prev_qty": 3516,
-      "change": -8927.88,
-      "change_pct": -39.43
-    },
-    {
-      "rank": 27,
-      "name": "农夫山泉东方树叶茉莉花茶900ml",
-      "sku": "10321015",
-      "cur_receipt": 13245.03,
-      "cur_amount": 13568.1,
-      "cur_qty": 2193,
-      "prev_receipt": 13545.96,
-      "prev_amount": 13578.5,
-      "prev_qty": 2089,
-      "change": -300.93,
-      "change_pct": -2.22
-    },
-    {
-      "rank": 28,
-      "name": "娃哈哈饮用纯净水596ml",
-      "sku": "10311019",
-      "cur_receipt": 13216.4,
-      "cur_amount": 18014.7,
-      "cur_qty": 15376,
+      "name": "雪花啤酒经典老雪640ml",
+      "sku": "10191020",
+      "cur_receipt": 17420.44,
+      "cur_amount": 17636.2,
+      "cur_qty": 2990,
       "prev_receipt": 0.0,
       "prev_amount": 0.0,
       "prev_qty": 0,
-      "change": 13216.4,
+      "change": 17420.44,
       "change_pct": 100.0
+    },
+    {
+      "rank": 24,
+      "name": "顺清柔卫生卷纸3kg",
+      "sku": "10641001",
+      "cur_receipt": 17366.63,
+      "cur_amount": 17405.1,
+      "cur_qty": 699,
+      "prev_receipt": 44286.89,
+      "prev_amount": 44396.7,
+      "prev_qty": 1783,
+      "change": -26920.26,
+      "change_pct": -60.79
+    },
+    {
+      "rank": 25,
+      "name": "雪花啤酒冰山勇闯天涯瓶500ml",
+      "sku": "10351011",
+      "cur_receipt": 16973.61,
+      "cur_amount": 17140.55,
+      "cur_qty": 5733,
+      "prev_receipt": 18726.28,
+      "prev_amount": 18860.08,
+      "prev_qty": 6308,
+      "change": -1752.67,
+      "change_pct": -9.36
+    },
+    {
+      "rank": 26,
+      "name": "娃哈哈饮用纯净水596ml",
+      "sku": "10311019",
+      "cur_receipt": 16907.63,
+      "cur_amount": 23034.6,
+      "cur_qty": 19653,
+      "prev_receipt": 0.0,
+      "prev_amount": 0.0,
+      "prev_qty": 0,
+      "change": 16907.63,
+      "change_pct": 100.0
+    },
+    {
+      "rank": 27,
+      "name": "青岛啤酒白啤听500ml",
+      "sku": "10351005",
+      "cur_receipt": 16026.63,
+      "cur_amount": 16196.6,
+      "cur_qty": 2492,
+      "prev_receipt": 22643.14,
+      "prev_amount": 22802.4,
+      "prev_qty": 3516,
+      "change": -6616.51,
+      "change_pct": -29.22
+    },
+    {
+      "rank": 28,
+      "name": "农夫山泉东方树叶茉莉花茶900ml",
+      "sku": "10321015",
+      "cur_receipt": 15974.96,
+      "cur_amount": 16395.6,
+      "cur_qty": 2628,
+      "prev_receipt": 13545.96,
+      "prev_amount": 13578.5,
+      "prev_qty": 2089,
+      "change": 2429.0,
+      "change_pct": 17.93
     },
     {
       "rank": 29,
       "name": "君乐宝一斤鲜牛奶500g",
       "sku": "10281119",
-      "cur_receipt": 12840.34,
-      "cur_amount": 12940.2,
-      "cur_qty": 3318,
+      "cur_receipt": 15411.05,
+      "cur_amount": 15522.0,
+      "cur_qty": 3980,
       "prev_receipt": 16263.86,
       "prev_amount": 16333.2,
       "prev_qty": 4188,
-      "change": -3423.52,
-      "change_pct": -21.05
+      "change": -852.81,
+      "change_pct": -5.24
     },
     {
       "rank": 30,
-      "name": "伊利安慕希酸奶黄桃燕麦味200g*10",
-      "sku": "10271004",
-      "cur_receipt": 12716.38,
-      "cur_amount": 12760.0,
-      "cur_qty": 232,
-      "prev_receipt": 15197.78,
-      "prev_amount": 15235.0,
-      "prev_qty": 277,
-      "change": -2481.4,
-      "change_pct": -16.33
-    },
-    {
-      "rank": 31,
       "name": "欣和味达美味极鲜1.8L",
       "sku": "10541003",
-      "cur_receipt": 12664.02,
-      "cur_amount": 12916.2,
-      "cur_qty": 618,
+      "cur_receipt": 15109.38,
+      "cur_amount": 15382.4,
+      "cur_qty": 736,
       "prev_receipt": 0.0,
       "prev_amount": 0.0,
       "prev_qty": 0,
-      "change": 12664.02,
+      "change": 15109.38,
       "change_pct": 100.0
+    },
+    {
+      "rank": 31,
+      "name": "伊利安慕希酸奶黄桃燕麦味200g*10",
+      "sku": "10271004",
+      "cur_receipt": 14906.17,
+      "cur_amount": 14960.0,
+      "cur_qty": 272,
+      "prev_receipt": 15197.78,
+      "prev_amount": 15235.0,
+      "prev_qty": 277,
+      "change": -291.61,
+      "change_pct": -1.92
     },
     {
       "rank": 32,
       "name": "喜力啤酒经典听500ml",
       "sku": "10191038",
-      "cur_receipt": 12487.53,
-      "cur_amount": 12682.0,
-      "cur_qty": 1865,
+      "cur_receipt": 14894.77,
+      "cur_amount": 15123.2,
+      "cur_qty": 2224,
       "prev_receipt": 0.0,
       "prev_amount": 0.0,
       "prev_qty": 0,
-      "change": 12487.53,
+      "change": 14894.77,
       "change_pct": 100.0
     },
     {
       "rank": 33,
       "name": "折扣牛爆汁肉肠黑胡椒味60g",
       "sku": "10441007",
-      "cur_receipt": 12232.49,
-      "cur_amount": 12389.9,
-      "cur_qty": 6521,
+      "cur_receipt": 14718.38,
+      "cur_amount": 14896.0,
+      "cur_qty": 7840,
       "prev_receipt": 0.0,
       "prev_amount": 0.0,
       "prev_qty": 0,
-      "change": 12232.49,
+      "change": 14718.38,
       "change_pct": 100.0
     },
     {
       "rank": 34,
       "name": "可口可乐听330ml",
       "sku": "10131015",
-      "cur_receipt": 11814.63,
-      "cur_amount": 11976.62,
-      "cur_qty": 6730,
+      "cur_receipt": 13569.73,
+      "cur_amount": 13755.12,
+      "cur_qty": 7728,
       "prev_receipt": 0.0,
       "prev_amount": 0.0,
       "prev_qty": 0,
-      "change": 11814.63,
+      "change": 13569.73,
       "change_pct": 100.0
     },
     {
       "rank": 35,
       "name": "折扣牛爆汁肉肠原味60g",
       "sku": "10441006",
-      "cur_receipt": 11116.19,
-      "cur_amount": 11242.3,
-      "cur_qty": 5917,
+      "cur_receipt": 13421.9,
+      "cur_amount": 13564.1,
+      "cur_qty": 7139,
       "prev_receipt": 0.0,
       "prev_amount": 0.0,
       "prev_qty": 0,
-      "change": 11116.19,
+      "change": 13421.9,
       "change_pct": 100.0
     },
     {
       "rank": 36,
       "name": "康师傅经典红烧牛肉面105g*5",
       "sku": "10331117",
-      "cur_receipt": 10987.26,
-      "cur_amount": 11081.1,
-      "cur_qty": 859,
+      "cur_receipt": 13238.79,
+      "cur_amount": 13338.6,
+      "cur_qty": 1034,
       "prev_receipt": 11180.65,
       "prev_amount": 11243.7,
       "prev_qty": 875,
-      "change": -193.39,
-      "change_pct": -1.73
+      "change": 2058.14,
+      "change_pct": 18.41
     },
     {
       "rank": 37,
       "name": "隐春天然饮用水550ml",
       "sku": "10151006",
-      "cur_receipt": 10011.14,
-      "cur_amount": 14454.59,
-      "cur_qty": 14594,
+      "cur_receipt": 11838.31,
+      "cur_amount": 17060.99,
+      "cur_qty": 17225,
       "prev_receipt": 9896.22,
       "prev_amount": 13872.38,
       "prev_qty": 14061,
-      "change": 114.92,
-      "change_pct": 1.16
+      "change": 1942.09,
+      "change_pct": 19.62
     },
     {
       "rank": 38,
       "name": "麒麟一番榨啤酒听500ml",
       "sku": "10351019",
-      "cur_receipt": 9460.53,
-      "cur_amount": 9598.8,
-      "cur_qty": 1412,
+      "cur_receipt": 11144.05,
+      "cur_amount": 11297.4,
+      "cur_qty": 1662,
       "prev_receipt": 11758.27,
       "prev_amount": 11887.6,
       "prev_qty": 1749,
-      "change": -2297.74,
-      "change_pct": -19.54
+      "change": -614.22,
+      "change_pct": -5.22
     },
     {
       "rank": 39,
       "name": "康师傅热带冰红茶1L",
       "sku": "10321014",
-      "cur_receipt": 9369.89,
-      "cur_amount": 9450.0,
-      "cur_qty": 2700,
+      "cur_receipt": 11066.54,
+      "cur_amount": 11151.0,
+      "cur_qty": 3186,
       "prev_receipt": 9457.72,
       "prev_amount": 9478.6,
       "prev_qty": 2626,
-      "change": -87.83,
-      "change_pct": -0.93
+      "change": 1608.82,
+      "change_pct": 17.01
     },
     {
       "rank": 40,
-      "name": "可口可乐2L",
-      "sku": "10131011",
-      "cur_receipt": 9271.14,
-      "cur_amount": 9388.5,
-      "cur_qty": 1707,
-      "prev_receipt": 9260.26,
-      "prev_amount": 9295.0,
-      "prev_qty": 1690,
-      "change": 10.88,
-      "change_pct": 0.12
-    },
-    {
-      "rank": 41,
       "name": "东鹏特饮维生素功能饮料500ml",
       "sku": "10141028",
-      "cur_receipt": 9193.13,
-      "cur_amount": 9945.0,
-      "cur_qty": 2210,
+      "cur_receipt": 11041.35,
+      "cur_amount": 11934.0,
+      "cur_qty": 2652,
       "prev_receipt": 11527.94,
       "prev_amount": 11803.5,
       "prev_qty": 2623,
-      "change": -2334.81,
-      "change_pct": -20.25
+      "change": -486.59,
+      "change_pct": -4.22
+    },
+    {
+      "rank": 41,
+      "name": "可口可乐2L",
+      "sku": "10131011",
+      "cur_receipt": 10970.64,
+      "cur_amount": 11104.5,
+      "cur_qty": 2019,
+      "prev_receipt": 9260.26,
+      "prev_amount": 9295.0,
+      "prev_qty": 1690,
+      "change": 1710.38,
+      "change_pct": 18.47
     },
     {
       "rank": 42,
       "name": "伊利金典梦幻盖有机纯牛奶250ml*10",
       "sku": "10101036",
-      "cur_receipt": 8884.53,
-      "cur_amount": 8905.0,
-      "cur_qty": 137,
+      "cur_receipt": 10764.53,
+      "cur_amount": 10790.0,
+      "cur_qty": 166,
       "prev_receipt": 9815.0,
       "prev_amount": 9815.0,
       "prev_qty": 151,
-      "change": -930.47,
-      "change_pct": -9.48
+      "change": 949.53,
+      "change_pct": 9.67
     },
     {
       "rank": 43,
       "name": "元气森林外星人电解质青柠味600ml",
       "sku": "10301010",
-      "cur_receipt": 8836.37,
-      "cur_amount": 9635.6,
-      "cur_qty": 1853,
+      "cur_receipt": 10668.42,
+      "cur_amount": 11621.9,
+      "cur_qty": 2237,
       "prev_receipt": 10460.3,
       "prev_amount": 10883.5,
       "prev_qty": 2095,
-      "change": -1623.93,
-      "change_pct": -15.52
+      "change": 208.12,
+      "change_pct": 1.99
     },
     {
       "rank": 44,
       "name": "元气森林外星人电解质荔枝海盐味600ml",
       "sku": "10301011",
-      "cur_receipt": 8482.68,
-      "cur_amount": 9204.0,
-      "cur_qty": 1770,
+      "cur_receipt": 10037.9,
+      "cur_amount": 10873.2,
+      "cur_qty": 2091,
       "prev_receipt": 8700.99,
       "prev_amount": 9068.8,
       "prev_qty": 1744,
-      "change": -218.31,
-      "change_pct": -2.51
+      "change": 1336.91,
+      "change_pct": 15.37
     },
     {
       "rank": 45,
-      "name": "百事可乐500ml",
-      "sku": "10131017",
-      "cur_receipt": 8189.41,
-      "cur_amount": 8316.21,
-      "cur_qty": 4179,
-      "prev_receipt": 5298.92,
-      "prev_amount": 5306.1,
-      "prev_qty": 2307,
-      "change": 2890.49,
-      "change_pct": 54.55
-    },
-    {
-      "rank": 46,
       "name": "百岁山天然矿泉水570ml",
       "sku": "10151020",
-      "cur_receipt": 8172.41,
-      "cur_amount": 8328.2,
-      "cur_qty": 3791,
+      "cur_receipt": 9884.44,
+      "cur_amount": 10056.39,
+      "cur_qty": 4582,
       "prev_receipt": 12699.66,
       "prev_amount": 12962.79,
       "prev_qty": 5914,
-      "change": -4527.25,
-      "change_pct": -35.65
+      "change": -2815.22,
+      "change_pct": -22.17
+    },
+    {
+      "rank": 46,
+      "name": "百事可乐500ml",
+      "sku": "10131017",
+      "cur_receipt": 9867.44,
+      "cur_amount": 9999.75,
+      "cur_qty": 5025,
+      "prev_receipt": 5298.92,
+      "prev_amount": 5306.1,
+      "prev_qty": 2307,
+      "change": 4568.52,
+      "change_pct": 86.22
     },
     {
       "rank": 47,
-      "name": "脉动维生素饮料青柠味600ml",
-      "sku": "10301013",
-      "cur_receipt": 7778.62,
-      "cur_amount": 7858.5,
-      "cur_qty": 2015,
-      "prev_receipt": 8105.27,
-      "prev_amount": 8131.5,
-      "prev_qty": 2085,
-      "change": -326.65,
-      "change_pct": -4.03
-    },
-    {
-      "rank": 48,
       "name": "牛栏山陈酿白酒42°500ml",
       "sku": "10371004",
-      "cur_receipt": 7776.2,
-      "cur_amount": 7811.8,
-      "cur_qty": 562,
+      "cur_receipt": 9631.0,
+      "cur_amount": 9702.2,
+      "cur_qty": 698,
       "prev_receipt": 10302.1,
       "prev_amount": 10355.5,
       "prev_qty": 745,
-      "change": -2525.9,
-      "change_pct": -24.52
+      "change": -671.1,
+      "change_pct": -6.51
     },
     {
-      "rank": 49,
+      "rank": 48,
       "name": "怡宝纯净水555ml量贩装",
       "sku": "10311009",
-      "cur_receipt": 7672.97,
-      "cur_amount": 7735.0,
-      "cur_qty": 650,
+      "cur_receipt": 9219.08,
+      "cur_amount": 9282.0,
+      "cur_qty": 780,
       "prev_receipt": 13438.12,
       "prev_amount": 13458.9,
       "prev_qty": 1131,
-      "change": -5765.15,
-      "change_pct": -42.9
+      "change": -4219.04,
+      "change_pct": -31.4
+    },
+    {
+      "rank": 49,
+      "name": "脉动维生素饮料青柠味600ml",
+      "sku": "10301013",
+      "cur_receipt": 9104.2,
+      "cur_amount": 9192.3,
+      "cur_qty": 2357,
+      "prev_receipt": 8105.27,
+      "prev_amount": 8131.5,
+      "prev_qty": 2085,
+      "change": 998.93,
+      "change_pct": 12.32
     },
     {
       "rank": 50,
-      "name": "鲁花5S压榨一级花生油5L",
-      "sku": "10501002",
-      "cur_receipt": 7456.67,
-      "cur_amount": 7554.6,
-      "cur_qty": 54,
-      "prev_receipt": 0.0,
-      "prev_amount": 0.0,
-      "prev_qty": 0,
-      "change": 7456.67,
-      "change_pct": 100.0
+      "name": "红牛拉罐装250ml",
+      "sku": "10141006",
+      "cur_receipt": 9020.69,
+      "cur_amount": 9084.6,
+      "cur_qty": 2163,
+      "prev_receipt": 11608.73,
+      "prev_amount": 11659.2,
+      "prev_qty": 2776,
+      "change": -2588.04,
+      "change_pct": -22.29
     }
   ],
   "hourly_data": {
@@ -1897,170 +2032,170 @@
       {
         "hour": 0,
         "hour_label": "00时",
-        "amount": 44330.79,
-        "pct": 1.93,
-        "orders": 2852
+        "amount": 48647.62,
+        "pct": 1.97,
+        "orders": 3133
       },
       {
         "hour": 1,
         "hour_label": "01时",
-        "amount": 29065.16,
-        "pct": 1.26,
-        "orders": 1878
+        "amount": 32159.69,
+        "pct": 1.3,
+        "orders": 2038
       },
       {
         "hour": 2,
         "hour_label": "02时",
-        "amount": 20080.25,
-        "pct": 0.87,
-        "orders": 1287
+        "amount": 22122.38,
+        "pct": 0.9,
+        "orders": 1414
       },
       {
         "hour": 3,
         "hour_label": "03时",
-        "amount": 11977.61,
-        "pct": 0.52,
-        "orders": 749
+        "amount": 13089.47,
+        "pct": 0.53,
+        "orders": 816
       },
       {
         "hour": 4,
         "hour_label": "04时",
-        "amount": 7655.41,
-        "pct": 0.33,
-        "orders": 479
+        "amount": 8936.37,
+        "pct": 0.36,
+        "orders": 550
       },
       {
         "hour": 5,
         "hour_label": "05时",
-        "amount": 5939.55,
-        "pct": 0.26,
-        "orders": 445
+        "amount": 6646.9,
+        "pct": 0.27,
+        "orders": 492
       },
       {
         "hour": 6,
         "hour_label": "06时",
-        "amount": 7370.18,
-        "pct": 0.32,
-        "orders": 712
+        "amount": 8048.37,
+        "pct": 0.33,
+        "orders": 775
       },
       {
         "hour": 7,
         "hour_label": "07时",
-        "amount": 42295.36,
-        "pct": 1.84,
-        "orders": 3669
+        "amount": 46374.71,
+        "pct": 1.88,
+        "orders": 4012
       },
       {
         "hour": 8,
         "hour_label": "08时",
-        "amount": 65482.37,
-        "pct": 2.84,
-        "orders": 4965
+        "amount": 72841.35,
+        "pct": 2.95,
+        "orders": 5561
       },
       {
         "hour": 9,
         "hour_label": "09时",
-        "amount": 84462.03,
-        "pct": 3.67,
-        "orders": 5837
+        "amount": 91762.06,
+        "pct": 3.72,
+        "orders": 6403
       },
       {
         "hour": 10,
         "hour_label": "10时",
-        "amount": 104422.14,
-        "pct": 4.53,
-        "orders": 7215
+        "amount": 111312.26,
+        "pct": 4.51,
+        "orders": 7757
       },
       {
         "hour": 11,
         "hour_label": "11时",
-        "amount": 112504.41,
-        "pct": 4.89,
-        "orders": 8429
+        "amount": 120151.16,
+        "pct": 4.87,
+        "orders": 9034
       },
       {
         "hour": 12,
         "hour_label": "12时",
-        "amount": 98131.07,
-        "pct": 4.26,
-        "orders": 8379
+        "amount": 104241.9,
+        "pct": 4.22,
+        "orders": 9064
       },
       {
         "hour": 13,
         "hour_label": "13时",
-        "amount": 84176.37,
-        "pct": 3.66,
-        "orders": 6740
+        "amount": 89466.61,
+        "pct": 3.62,
+        "orders": 7270
       },
       {
         "hour": 14,
         "hour_label": "14时",
-        "amount": 75927.74,
-        "pct": 3.3,
-        "orders": 6041
+        "amount": 79808.75,
+        "pct": 3.23,
+        "orders": 6318
       },
       {
         "hour": 15,
         "hour_label": "15时",
-        "amount": 82123.87,
-        "pct": 3.57,
-        "orders": 6794
+        "amount": 88451.33,
+        "pct": 3.58,
+        "orders": 7267
       },
       {
         "hour": 16,
         "hour_label": "16时",
-        "amount": 118399.56,
-        "pct": 5.14,
-        "orders": 8814
+        "amount": 124866.1,
+        "pct": 5.06,
+        "orders": 9374
       },
       {
         "hour": 17,
         "hour_label": "17时",
-        "amount": 188203.79,
-        "pct": 8.17,
-        "orders": 12683
+        "amount": 202648.29,
+        "pct": 8.21,
+        "orders": 13756
       },
       {
         "hour": 18,
         "hour_label": "18时",
-        "amount": 240497.16,
-        "pct": 10.44,
-        "orders": 16227
+        "amount": 255789.82,
+        "pct": 10.36,
+        "orders": 17315
       },
       {
         "hour": 19,
         "hour_label": "19时",
-        "amount": 244111.47,
-        "pct": 10.6,
-        "orders": 16925
+        "amount": 264394.49,
+        "pct": 10.71,
+        "orders": 18047
       },
       {
         "hour": 20,
         "hour_label": "20时",
-        "amount": 255032.21,
-        "pct": 11.08,
-        "orders": 18518
+        "amount": 270752.01,
+        "pct": 10.97,
+        "orders": 19649
       },
       {
         "hour": 21,
         "hour_label": "21时",
-        "amount": 201068.44,
+        "amount": 215609.97,
         "pct": 8.73,
-        "orders": 14406
+        "orders": 15386
       },
       {
         "hour": 22,
         "hour_label": "22时",
-        "amount": 116377.07,
-        "pct": 5.05,
-        "orders": 8087
+        "amount": 123475.11,
+        "pct": 5.0,
+        "orders": 8535
       },
       {
         "hour": 23,
         "hour_label": "23时",
-        "amount": 63043.69,
-        "pct": 2.74,
-        "orders": 4373
+        "amount": 66832.48,
+        "pct": 2.71,
+        "orders": 4642
       }
     ],
     "prev": [
