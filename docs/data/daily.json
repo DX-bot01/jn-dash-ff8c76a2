@@ -430,12 +430,12 @@
       "sprint": 8376.58,
       "customers": 462,
       "avg_bill": 11.74,
-      "prev_rank": 30,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
+      "prev_rank": 8,
+      "last_sales": 6091.92,
+      "last_orders": 452,
+      "last_avg_bill": 13.48,
       "recharge": 200.0,
-      "last_recharge": 0,
+      "last_recharge": 600.0,
       "suggestions": [
         "🟡 需要提速"
       ]
@@ -1017,7 +1017,7 @@
       "store": "济南天鸿万卷府店（一）",
       "area": "一区",
       "received": 200.0,
-      "last_received": 0
+      "last_received": 600.0
     },
     {
       "store": "济南鲁建小区店",
