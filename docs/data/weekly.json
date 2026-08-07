@@ -2,13 +2,13 @@
   "date": "08/03 ~ 08/09 (截至08/06)",
   "compare_date": "上周 (07/27-08/02)",
   "is_month": false,
-  "total_sales": 592705.62,
-  "last_period_sales": 1015412.95,
+  "total_sales": 581151.96,
+  "last_period_sales": 1007188.65,
   "target_amount": 1096118.17,
   "sprint_amount": 1144475.05,
-  "avg_bill": 13.13,
-  "last_period_avg_bill": 13.85,
-  "total_customers": 45130,
+  "avg_bill": 13.18,
+  "last_period_avg_bill": 13.89,
+  "total_customers": 44107,
   "achieved_stores": 2,
   "last_period_achieved": 21,
   "sprint_achieved": 1,
@@ -17,7 +17,7 @@
   "active_total_stores": 28,
   "month_target": 4854237.68,
   "month_sprint_target": 5068389.55,
-  "month_completed": 5068584.78,
+  "month_completed": 5048806.82,
   "month_remaining_days": 25,
   "stores": [
     {
@@ -498,25 +498,6 @@
       ]
     },
     {
-      "name": "济南梦世界店（停用）",
-      "area": "筹开区",
-      "sales": 11553.66,
-      "target": 32245.16,
-      "sprint": 32245.16,
-      "customers": 1023,
-      "avg_bill": 11.29,
-      "prev_rank": 26,
-      "last_sales": 8224.3,
-      "last_orders": 796,
-      "last_avg_bill": 10.33,
-      "recharge": 0,
-      "last_recharge": 0,
-      "suggestions": [
-        "🔴 完成率<50%，紧急跟进",
-        "储值转化弱"
-      ]
-    },
-    {
       "name": "济南狮子张店",
       "area": "筹开区",
       "sales": 1.0,
@@ -533,6 +514,25 @@
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
         "客单价<¥11",
+        "储值转化弱"
+      ]
+    },
+    {
+      "name": "济南伟东新都店",
+      "area": "筹开区",
+      "sales": 0,
+      "target": 32245.16,
+      "sprint": 32245.16,
+      "customers": 0,
+      "avg_bill": 0,
+      "prev_rank": 26,
+      "last_sales": 0,
+      "last_orders": 0,
+      "last_avg_bill": 0,
+      "recharge": 0,
+      "last_recharge": 0,
+      "suggestions": [
+        "🔴 完成率<50%，紧急跟进",
         "储值转化弱"
       ]
     },
@@ -583,69 +583,69 @@
       "name": "筹开区",
       "manager": "马新超",
       "color": "#DC2626",
-      "sales": 39617.2,
+      "sales": 28063.54,
       "stores": 4,
-      "active_stores": 3,
+      "active_stores": 2,
       "target": 128980.64,
       "sprint_target": 128980.64,
-      "last_sales": 68156.12
+      "last_sales": 59931.82
     }
   ],
   "category_breakdown": [
     {
       "name": "酒水饮料",
-      "sales": 238261.77,
-      "share": 40.2,
-      "last_sales": 392800.62,
-      "last_share": 38.7
+      "sales": 234241.06,
+      "share": 40.3,
+      "last_sales": 389189.88,
+      "last_share": 38.6
     },
     {
       "name": "休闲食品",
-      "sales": 75847.39,
-      "share": 12.8,
-      "last_sales": 137435.4,
+      "sales": 74008.67,
+      "share": 12.7,
+      "last_sales": 136286.07,
       "last_share": 13.5
     },
     {
       "name": "乳制品",
-      "sales": 67868.16,
-      "share": 11.5,
-      "last_sales": 116678.69,
+      "sales": 65848.05,
+      "share": 11.3,
+      "last_sales": 115765.69,
       "last_share": 11.5
     },
     {
       "name": "冻品",
-      "sales": 58791.62,
+      "sales": 57586.78,
       "share": 9.9,
-      "last_sales": 87570.11,
+      "last_sales": 86518.97,
       "last_share": 8.6
     },
     {
       "name": "洗化百货",
-      "sales": 37727.06,
+      "sales": 37087.66,
       "share": 6.4,
-      "last_sales": 75111.63,
+      "last_sales": 74687.03,
       "last_share": 7.4
     },
     {
       "name": "方便食品",
-      "sales": 29577.87,
+      "sales": 28810.08,
       "share": 5.0,
-      "last_sales": 51163.62,
+      "last_sales": 50572.92,
       "last_share": 5.0
     },
     {
       "name": "调味干货",
-      "sales": 22690.59,
+      "sales": 22322.59,
       "share": 3.8,
-      "last_sales": 39338.68,
+      "last_sales": 39191.98,
       "last_share": 3.9
     },
     {
       "name": "米面粮油",
-      "sales": 17728.66,
+      "sales": 17325.16,
       "share": 3.0,
-      "last_sales": 29669.58,
+      "last_sales": 29526.18,
       "last_share": 2.9
     },
     {
@@ -657,16 +657,16 @@
     },
     {
       "name": "烘焙",
-      "sales": 11991.3,
+      "sales": 11746.11,
       "share": 2.0,
-      "last_sales": 20084.84,
+      "last_sales": 19945.85,
       "last_share": 2.0
     },
     {
       "name": "低温食品",
-      "sales": 7125.73,
+      "sales": 7096.13,
       "share": 1.2,
-      "last_sales": 11253.12,
+      "last_sales": 11211.62,
       "last_share": 1.1
     },
     {
@@ -692,16 +692,16 @@
     },
     {
       "name": "出清",
-      "sales": 1891.9,
+      "sales": 1886.9,
       "share": 0.3,
-      "last_sales": 4802.5,
+      "last_sales": 4798.5,
       "last_share": 0.5
     },
     {
       "name": "耗材",
-      "sales": 309.1,
+      "sales": 298.3,
       "share": 0.1,
-      "last_sales": 449.8,
+      "last_sales": 439.6,
       "last_share": 0.0
     }
   ],
@@ -712,80 +712,80 @@
   "category_profit": [
     {
       "name": "酒水饮料",
-      "revenue": 238261.77,
-      "cost": 205588.66,
-      "profit": 32673.11,
-      "margin": 13.71,
-      "last_revenue": 392800.62,
-      "last_cost": 340140.42,
-      "last_profit": 52660.2,
-      "last_margin": 13.41
+      "revenue": 234241.06,
+      "cost": 202207.74,
+      "profit": 32033.32,
+      "margin": 13.68,
+      "last_revenue": 389189.88,
+      "last_cost": 337100.06,
+      "last_profit": 52089.82,
+      "last_margin": 13.38
     },
     {
       "name": "冻品",
-      "revenue": 58791.62,
-      "cost": 43160.87,
-      "profit": 15630.75,
+      "revenue": 57586.78,
+      "cost": 42275.19,
+      "profit": 15311.59,
       "margin": 26.59,
-      "last_revenue": 87570.11,
-      "last_cost": 64916.83,
-      "last_profit": 22653.28,
-      "last_margin": 25.87
+      "last_revenue": 86518.97,
+      "last_cost": 64147.06,
+      "last_profit": 22371.91,
+      "last_margin": 25.86
     },
     {
       "name": "休闲食品",
-      "revenue": 75847.39,
-      "cost": 60881.95,
-      "profit": 14965.44,
-      "margin": 19.73,
-      "last_revenue": 137435.4,
-      "last_cost": 111047.23,
-      "last_profit": 26388.17,
-      "last_margin": 19.2
+      "revenue": 74008.67,
+      "cost": 59423.17,
+      "profit": 14585.5,
+      "margin": 19.71,
+      "last_revenue": 136286.07,
+      "last_cost": 110130.02,
+      "last_profit": 26156.05,
+      "last_margin": 19.19
     },
     {
       "name": "洗化百货",
-      "revenue": 37727.06,
-      "cost": 31593.58,
-      "profit": 6133.48,
-      "margin": 16.26,
-      "last_revenue": 75111.63,
-      "last_cost": 64508.54,
-      "last_profit": 10603.09,
-      "last_margin": 14.12
+      "revenue": 37087.66,
+      "cost": 31026.89,
+      "profit": 6060.77,
+      "margin": 16.34,
+      "last_revenue": 74687.03,
+      "last_cost": 64166.24,
+      "last_profit": 10520.79,
+      "last_margin": 14.09
     },
     {
       "name": "方便食品",
-      "revenue": 29577.87,
-      "cost": 24755.84,
-      "profit": 4822.03,
-      "margin": 16.3,
-      "last_revenue": 51163.62,
-      "last_cost": 43089.72,
-      "last_profit": 8073.9,
-      "last_margin": 15.78
+      "revenue": 28810.08,
+      "cost": 24111.11,
+      "profit": 4698.97,
+      "margin": 16.31,
+      "last_revenue": 50572.92,
+      "last_cost": 42595.43,
+      "last_profit": 7977.49,
+      "last_margin": 15.77
     },
     {
       "name": "乳制品",
-      "revenue": 67868.16,
-      "cost": 63201.53,
-      "profit": 4666.63,
+      "revenue": 65848.05,
+      "cost": 61318.98,
+      "profit": 4529.07,
       "margin": 6.88,
-      "last_revenue": 116678.69,
-      "last_cost": 109411.57,
-      "last_profit": 7267.12,
-      "last_margin": 6.23
+      "last_revenue": 115765.69,
+      "last_cost": 108580.53,
+      "last_profit": 7185.16,
+      "last_margin": 6.21
     },
     {
       "name": "调味干货",
-      "revenue": 22690.59,
-      "cost": 19450.45,
-      "profit": 3240.14,
-      "margin": 14.28,
-      "last_revenue": 39338.68,
-      "last_cost": 34060.64,
-      "last_profit": 5278.04,
-      "last_margin": 13.42
+      "revenue": 22322.59,
+      "cost": 19142.02,
+      "profit": 3180.57,
+      "margin": 14.25,
+      "last_revenue": 39191.98,
+      "last_cost": 33944.06,
+      "last_profit": 5247.92,
+      "last_margin": 13.39
     },
     {
       "name": "香烟中类",
@@ -800,36 +800,36 @@
     },
     {
       "name": "烘焙",
-      "revenue": 11991.3,
-      "cost": 10104.05,
-      "profit": 1887.25,
-      "margin": 15.74,
-      "last_revenue": 20084.84,
-      "last_cost": 16983.71,
-      "last_profit": 3101.13,
-      "last_margin": 15.44
+      "revenue": 11746.11,
+      "cost": 9905.35,
+      "profit": 1840.76,
+      "margin": 15.67,
+      "last_revenue": 19945.85,
+      "last_cost": 16869.96,
+      "last_profit": 3075.89,
+      "last_margin": 15.42
     },
     {
       "name": "米面粮油",
-      "revenue": 17728.66,
-      "cost": 16034.84,
-      "profit": 1693.82,
-      "margin": 9.55,
-      "last_revenue": 29669.58,
-      "last_cost": 26987.88,
-      "last_profit": 2681.7,
-      "last_margin": 9.04
+      "revenue": 17325.16,
+      "cost": 15700.6,
+      "profit": 1624.56,
+      "margin": 9.38,
+      "last_revenue": 29526.18,
+      "last_cost": 26869.63,
+      "last_profit": 2656.55,
+      "last_margin": 9.0
     },
     {
       "name": "低温食品",
-      "revenue": 7125.73,
-      "cost": 6199.99,
-      "profit": 925.74,
-      "margin": 12.99,
-      "last_revenue": 11253.12,
-      "last_cost": 9836.14,
-      "last_profit": 1416.98,
-      "last_margin": 12.59
+      "revenue": 7096.13,
+      "cost": 6173.39,
+      "profit": 922.74,
+      "margin": 13.0,
+      "last_revenue": 11211.62,
+      "last_cost": 9799.5,
+      "last_profit": 1412.12,
+      "last_margin": 12.6
     },
     {
       "name": "抖音套餐",
@@ -866,25 +866,25 @@
     },
     {
       "name": "出清",
-      "revenue": 1891.9,
-      "cost": 1891.9,
+      "revenue": 1886.9,
+      "cost": 1886.9,
       "profit": 0.0,
       "margin": 0.0,
-      "last_revenue": 4802.5,
-      "last_cost": 4803.1,
+      "last_revenue": 4798.5,
+      "last_cost": 4799.1,
       "last_profit": -0.6,
       "last_margin": -0.01
     },
     {
       "name": "耗材",
-      "revenue": 309.1,
-      "cost": 528.9,
-      "profit": -219.8,
-      "margin": -71.11,
-      "last_revenue": 449.8,
-      "last_cost": 1365.74,
-      "last_profit": -915.94,
-      "last_margin": -203.63
+      "revenue": 298.3,
+      "cost": 517.6,
+      "profit": -219.3,
+      "margin": -73.52,
+      "last_revenue": 439.6,
+      "last_cost": 1352.91,
+      "last_profit": -913.31,
+      "last_margin": -207.76
     }
   ],
   "recharge_detail": [
@@ -1111,12 +1111,12 @@
       124905.88,
       123352.34,
       169776.44,
-      175195.59,
-      166270.18,
-      150318.5,
-      149171.39,
-      146635.37,
-      146580.36
+      170731.84,
+      162509.63,
+      146826.84,
+      145139.5,
+      143167.2,
+      146018.42
     ],
     "completion_rates": [
       85.8,
@@ -1150,12 +1150,12 @@
       95.2,
       94.0,
       129.4,
-      133.5,
-      126.7,
-      114.6,
-      113.7,
-      111.8,
-      111.7
+      130.1,
+      123.9,
+      111.9,
+      110.6,
+      109.1,
+      111.3
     ],
     "daily_targets": [
       131195.61,
@@ -1208,10 +1208,10 @@
       "周日"
     ],
     "cur": [
-      150318.5,
-      149171.39,
-      146635.37,
-      146580.36,
+      146826.84,
+      145139.5,
+      143167.2,
+      146018.42,
       0,
       0,
       0
@@ -1222,8 +1222,8 @@
       124905.88,
       123352.34,
       169776.44,
-      175195.59,
-      166270.18
+      170731.84,
+      162509.63
     ]
   },
   "product_top50": [
