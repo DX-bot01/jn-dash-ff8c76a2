@@ -476,7 +476,7 @@
         <span id="updateTime">--</span>
       </div>
       <div class="header-meta" style="margin-top:8px; gap:18px;" id="areaInfo">
-        🔵 <b>一区</b> 高硕 · 14店&emsp;🟢 <b>二区</b> 古子箴 · 10店&emsp;🔴 <b>筹开区</b> 代航宇 · 0店
+        🔵 <b>一区</b> 刘志远 · 8店&emsp;🟢 <b>二区</b> 古子箴 · 8店&emsp;🟩 <b>三区</b> 高硕 · 7店&emsp;🔴 <b>四区</b> 张韩 · 7店
       </div>
       <div class="share-link-row">
         <span class="share-label">分享网址</span>
@@ -514,9 +514,10 @@
   <div class="area-filter-row">
     <span class="area-filter-label">📍 区域:</span>
     <button class="area-btn active" data-area="all" onclick="switchArea('all')">🌐 全部</button>
-    <button class="area-btn" data-area="一区" onclick="switchArea('一区')">🔵 一区 · 高硕</button>
+    <button class="area-btn" data-area="一区" onclick="switchArea('一区')">🔵 一区 · 刘志远</button>
     <button class="area-btn" data-area="二区" onclick="switchArea('二区')">🟢 二区 · 古子箴</button>
-    <button class="area-btn" data-area="筹开区" onclick="switchArea('筹开区')">🔴 筹开区 · 代航宇</button>
+    <button class="area-btn" data-area="三区" onclick="switchArea('三区')">🟩 三区 · 高硕</button>
+    <button class="area-btn" data-area="四区" onclick="switchArea('四区')">🔴 四区 · 张韩</button>
   </div>
 
   <!-- ═══════ AREA COMPLETION ROW ═══════ -->
@@ -938,13 +939,13 @@ function renderKpi(d) {
   // For last period achieved: scale proportionally
   var lastAchieved = Math.round((d.last_period_achieved || 0) * filteredRate);
 
-  // 完成率口径：基础只看一区+二区；冲刺全局包含筹开区，单区域按该区域冲刺任务
+  // 完成率口径：基础=全部经营区（一区~四区）；冲刺=全部区域
   var targetAmt = d.target_amount || 0;
   var sprintAmt = d.sprint_amount || 0;
   var baseSales = totalSales;
   var sprintSales = totalSales;
   if (!isFiltered) {
-    var operatingAreas = ['一区','二区'];
+    var operatingAreas = ['一区','二区','三区','四区'];
     var operatingStores = (d.stores || []).filter(function(s){ return operatingAreas.indexOf(s.area) >= 0; });
     baseSales = operatingStores.reduce(function(sum, s){ return sum + (s.sales || 0); }, 0);
     sprintSales = (d.stores || []).reduce(function(sum, s){ return sum + (s.sales || 0); }, 0);
@@ -1091,11 +1092,11 @@ function renderGap(d) {
 
   var stores = filteredStores(d.stores);
   var completed = stores.reduce(function(sum,s){ return sum + (s.sales||0); }, 0);
-  var operatingAreas = ['一区','二区'];
+  var operatingAreas = ['一区','二区','三区','四区'];
   var baseCompleted = completed;
   var sprintCompleted = completed;
   if (currentArea === 'all') {
-    // 基础行只统计任务表内经营区域门店；非任务表门店/筹开区销售只进入冲刺行
+    // 基础行只统计任务表内经营区域门店；全部门店销售进入冲刺行
     baseCompleted = (d.stores || []).filter(function(s){ return operatingAreas.indexOf(s.area) >= 0; })
       .reduce(function(sum,s){ return sum + (s.sales||0); }, 0);
     sprintCompleted = (d.stores || []).reduce(function(sum,s){ return sum + (s.sales||0); }, 0);
@@ -1120,8 +1121,8 @@ function renderGap(d) {
   if (currentArea === 'all') {
     baseTarget = sumAreaTargets(d, operatingAreas, 'target');
     sprintTarget = (d.month_sprint_target || d.sprint_amount || 0) * targetScaleForPeriod();
-    baseNote = '一区+二区';
-    sprintNote = '一区+二区+筹开区';
+    baseNote = '四区合计';
+    sprintNote = '四区合计';
   } else {
     var areaObj = d.areas && d.areas.find(function(a){ return a.name === currentArea; });
     baseTarget = areaObj ? (areaObj.target || 0) : stores.reduce(function(sum,s){ return sum + (s.target||0); }, 0);
@@ -1174,7 +1175,7 @@ function renderRanking(rawStores) {
     var numCls = rank===1 ? 'top1' : rank===2 ? 'top2' : rank===3 ? 'top3' : '';
 
     var areaBadge = '';
-    var areaMap = {'一区':'🔵','二区':'🟢','筹开区':'🔴'};
+    var areaMap = {'一区':'🔵','二区':'🟢','三区':'🟩','四区':'🔴'};
     if (s.area && areaMap[s.area]) areaBadge = ' <span style="font-size:11px">'+areaMap[s.area]+'</span>';
     else if (s.district) areaBadge = ' <span style="font-size:11px;color:#9ca3af">'+s.district+'</span>';
 
@@ -1295,7 +1296,7 @@ function renderAreaChart(d) {
   if (!d.areas||!d.areas.length) return;
   var c = ensureChart('areaChart');
   if (!c) return;
-  var areaColors = {'一区':'#4F46E5','二区':'#0891B2','筹开区':'#DC2626'};
+  var areaColors = {'一区':'#4F46E5','二区':'#0891B2','三区':'#0D9488','四区':'#DC2626'};
 
   if (currentArea !== 'all' && d.stores) {
     // Show individual stores for selected area
@@ -2051,7 +2052,7 @@ function renderStoreDetail(d) {
     // Build rows
     var html = '';
     display.forEach(function(s){
-      var areaCls = {'一区':'area-1','二区':'area-2','筹开区':'area-4'}[s.area]||'';
+      var areaCls = {'一区':'area-1','二区':'area-2','三区':'area-3','四区':'area-4'}[s.area]||'';
       var mgr = areaMgr[s.area]||'';
 
       var growthCls = function(v){ return v>0?'st-up':v<0?'st-down':'st-flat'; };
@@ -2469,7 +2470,7 @@ function updateRangeLabel() {
   // 动态更新区域门店数
   if (d && d.areas) {
     var aLines = [];
-    var colors = {'一区':'🔵','二区':'🟢','筹开区':'🔴'};
+    var colors = {'一区':'🔵','二区':'🟢','三区':'🟩','四区':'🔴'};
     d.areas.forEach(function(a){
       var icon = colors[a.name] || '⚪';
       var mgr = a.manager || '';
@@ -2495,7 +2496,7 @@ function updateAreaFilterBtns() {
     if (d && d.areas) {
       var area = d.areas.find(function(a){ return a.name === areaName; });
       if (area && area.stores) {
-        var emoji = {'一区':'🔵','二区':'🟢','筹开区':'🔴'}[areaName]||'';
+        var emoji = {'一区':'🔵','二区':'🟢','三区':'🟩','四区':'🔴'}[areaName]||'';
         b.textContent = emoji + ' '+areaName+' · '+(area.manager||'')+' · '+area.stores+'店';
       }
     }
