@@ -216,6 +216,29 @@
   .gap-banner .gap-item b.gap-danger { color:var(--red); }
   .gap-banner .gap-item b.gap-blue { color:var(--blue); }
 
+  /* ── 隐藏汇总（总基础目标） ── */
+  .hidden-summary {
+    background: linear-gradient(135deg, #fefce8, #fffbeb);
+    border: 1px dashed #fbbf24; border-radius: var(--radius);
+    margin-bottom: 18px; overflow: hidden; box-shadow: var(--shadow-sm);
+  }
+  .hs-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 9px 16px; cursor: pointer; user-select: none;
+    font-size: 13px; font-weight: 700; color: #92400e;
+  }
+  .hs-header:hover { background: rgba(251,191,36,0.10); }
+  .hs-toggle { font-size: 12px; color: #b45309; transition: transform .2s; }
+  .hidden-summary.open .hs-toggle { transform: rotate(180deg); }
+  .hs-body { padding: 2px 16px 14px; }
+  .hs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 10px; }
+  .hs-item { background: rgba(255,255,255,0.65); border-radius: 10px; padding: 10px 12px; border: 1px solid rgba(251,191,36,0.18); }
+  .hs-item .hs-k { font-size: 11px; color: #92400e; opacity: .85; }
+  .hs-item .hs-v { font-size: 17px; font-weight: 800; color: #92400e; margin-top: 2px; }
+  .hs-item .hs-v.ok { color: #15803d; }
+  .hs-item .hs-v.warn { color: #b45309; }
+  .hs-item .hs-v.danger { color: #b91c1c; }
+
   /* ── Panel Grid ── */
   .panel-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px; }
   .panel {
@@ -508,6 +531,17 @@
   <div class="gap-banner" id="gapBanner">
     <span class="gap-label">📐 目标缺口测算</span>
     <div class="gap-grid" id="gapGrid"></div>
+  </div>
+
+  <!-- ═══════ 隐藏汇总：总基础目标 ═══════ -->
+  <div class="hidden-summary" id="hiddenSummary">
+    <div class="hs-header" onclick="toggleHiddenSummary()">
+      <span>📊 总基础目标汇总（点击展开）</span>
+      <span class="hs-toggle">▾</span>
+    </div>
+    <div class="hs-body" id="hsBody" style="display:none">
+      <div class="hs-grid" id="hsGrid"></div>
+    </div>
   </div>
 
   <!-- ═══════ AREA FILTER ═══════ -->
@@ -1147,6 +1181,55 @@ function renderGap(d) {
 
   gapGrid.innerHTML = rowHtml('base', '基础目标', baseNote, baseTarget, baseCompleted)
     + rowHtml('sprint', currentArea === 'all' ? '冲刺目标（含筹开）' : '冲刺目标', sprintNote, sprintTarget, sprintCompleted);
+}
+
+// ── 隐藏汇总：总基础目标（独立考核口径） ──
+var HIDDEN_BASE_TARGET = 4388855.70; // 用户总基础销售目标
+
+function toggleHiddenSummary() {
+  var body = document.getElementById('hsBody');
+  var sum = document.getElementById('hiddenSummary');
+  if (!body || !sum) return;
+  var open = body.style.display !== 'none';
+  body.style.display = open ? 'none' : 'block';
+  sum.classList.toggle('open', !open);
+}
+
+function renderHiddenSummary(d) {
+  var grid = document.getElementById('hsGrid');
+  if (!grid || !d) return;
+  // 仅月报口径展示
+  if (currentPeriod !== 'month') { document.getElementById('hiddenSummary').style.display = 'none'; return; }
+  document.getElementById('hiddenSummary').style.display = 'block';
+
+  var cur = d.total_sales || 0;
+  var target = HIDDEN_BASE_TARGET;
+  var rate = target > 0 ? cur / target * 100 : 0;
+  var remaining = target - cur;
+  var daysLeft = d.month_remaining_days || 1;
+  var dailyNeed = remaining > 0 ? remaining / daysLeft : 0;
+  // 时间进度（按当月天数）
+  var m = (d.date || '').match(/(\d+)日/);
+  var elapsed = m ? parseInt(m[1], 10) : 1;
+  var totalDays = 30;
+  var timePct = elapsed / totalDays * 100;
+  var timeAmt = target * timePct / 100;
+  var vsTime = timeAmt > 0 ? cur / timeAmt * 100 : 0;
+
+  function item(k, v, cls) {
+    return '<div class="hs-item"><div class="hs-k">'+k+'</div><div class="hs-v '+(cls||'')+'">'+v+'</div></div>';
+  }
+  function rateCls(r) { return r >= 100 ? 'ok' : (r >= 90 ? 'warn' : 'danger'); }
+
+  grid.innerHTML =
+    item('总基础目标', fmtMoney(target), '') +
+    item('本月累计', fmtMoney(cur), '') +
+    item('完成率', fmtPct(rate), rateCls(rate)) +
+    item('时间进度', fmtPct(timePct), '') +
+    item('实际/时间进度', fmtPct(vsTime), rateCls(vsTime)) +
+    item('剩余缺口', fmtMoney(remaining), remaining > 0 ? 'danger' : 'ok') +
+    item('剩余天数', daysLeft + ' 天', '') +
+    item('剩余日均需达', fmtMoney(dailyNeed), dailyNeed > 0 ? 'warn' : 'ok');
 }
 
 // ── Ranking Table ──
@@ -2391,6 +2474,7 @@ function renderAll() {
   var fns = [
     ['renderKpi', renderKpi],
     ['renderGap', renderGap],
+    ['renderHiddenSummary', renderHiddenSummary],
     ['renderAreaCompletion', renderAreaCompletion],
     ['renderRanking', function(){ renderRanking(d.stores); }],
     ['renderCategory', function(){ renderCategory(d.category_breakdown, d.total_sales); }],
