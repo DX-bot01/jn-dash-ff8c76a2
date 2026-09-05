@@ -32,12 +32,11 @@
       "last_sales": 207452.32,
       "last_orders": 17807,
       "last_avg_bill": 11.65,
-      "recharge": 0,
+      "recharge": 1200.0,
       "last_recharge": 6800.0,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
-        "📉 环比大跌",
-        "储值转化弱"
+        "📉 环比大跌"
       ]
     },
     {
@@ -52,12 +51,11 @@
       "last_sales": 229627.78,
       "last_orders": 17921,
       "last_avg_bill": 12.81,
-      "recharge": 0,
+      "recharge": 1631.2,
       "last_recharge": 18400.0,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
-        "📉 环比大跌",
-        "储值转化弱"
+        "📉 环比大跌"
       ]
     },
     {
@@ -72,12 +70,11 @@
       "last_sales": 281977.42,
       "last_orders": 19435,
       "last_avg_bill": 14.51,
-      "recharge": 0,
+      "recharge": 1000.0,
       "last_recharge": 17400.0,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
-        "📉 环比大跌",
-        "储值转化弱"
+        "📉 环比大跌"
       ]
     },
     {
@@ -92,7 +89,7 @@
       "last_sales": 309992.47,
       "last_orders": 19195,
       "last_avg_bill": 16.15,
-      "recharge": 0,
+      "recharge": 100.0,
       "last_recharge": 6686.59,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
@@ -132,7 +129,7 @@
       "last_sales": 110976.84,
       "last_orders": 7672,
       "last_avg_bill": 14.47,
-      "recharge": 0,
+      "recharge": 0.0,
       "last_recharge": 6600.0,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
@@ -152,7 +149,7 @@
       "last_sales": 114065.03,
       "last_orders": 6090,
       "last_avg_bill": 18.73,
-      "recharge": 0,
+      "recharge": 100.0,
       "last_recharge": 14400.0,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
@@ -172,12 +169,11 @@
       "last_sales": 172895.79,
       "last_orders": 12640,
       "last_avg_bill": 13.68,
-      "recharge": 0,
+      "recharge": 900.0,
       "last_recharge": 13828.49,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
-        "📉 环比大跌",
-        "储值转化弱"
+        "📉 环比大跌"
       ]
     },
     {
@@ -192,7 +188,7 @@
       "last_sales": 238237.96,
       "last_orders": 15928,
       "last_avg_bill": 14.96,
-      "recharge": 0,
+      "recharge": 300.0,
       "last_recharge": 13099.8,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
@@ -212,7 +208,7 @@
       "last_sales": 145643.61,
       "last_orders": 11464,
       "last_avg_bill": 12.7,
-      "recharge": 0,
+      "recharge": 400.0,
       "last_recharge": 10700.0,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
@@ -232,7 +228,7 @@
       "last_sales": 220243.53,
       "last_orders": 15043,
       "last_avg_bill": 14.64,
-      "recharge": 0,
+      "recharge": 200.0,
       "last_recharge": 3300.0,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
@@ -252,7 +248,7 @@
       "last_sales": 136700.98,
       "last_orders": 11567,
       "last_avg_bill": 11.82,
-      "recharge": 0,
+      "recharge": 200.0,
       "last_recharge": 22516.2,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
@@ -272,12 +268,11 @@
       "last_sales": 163314.44,
       "last_orders": 10472,
       "last_avg_bill": 15.6,
-      "recharge": 0,
+      "recharge": 700.0,
       "last_recharge": 15000.0,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
-        "📉 环比大跌",
-        "储值转化弱"
+        "📉 环比大跌"
       ]
     },
     {
@@ -312,12 +307,11 @@
       "last_sales": 116012.5,
       "last_orders": 8971,
       "last_avg_bill": 12.93,
-      "recharge": 0,
+      "recharge": 700.0,
       "last_recharge": 10800.0,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
-        "📉 环比大跌",
-        "储值转化弱"
+        "📉 环比大跌"
       ]
     },
     {
@@ -332,12 +326,11 @@
       "last_sales": 233895.03,
       "last_orders": 15958,
       "last_avg_bill": 14.66,
-      "recharge": 0,
+      "recharge": 900.0,
       "last_recharge": 24839.8,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
-        "📉 环比大跌",
-        "储值转化弱"
+        "📉 环比大跌"
       ]
     },
     {
@@ -352,12 +345,11 @@
       "last_sales": 164310.07,
       "last_orders": 12178,
       "last_avg_bill": 13.49,
-      "recharge": 0,
+      "recharge": 400.0,
       "last_recharge": 16900.0,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
-        "📉 环比大跌",
-        "储值转化弱"
+        "📉 环比大跌"
       ]
     },
     {
@@ -372,12 +364,11 @@
       "last_sales": 201491.56,
       "last_orders": 14863,
       "last_avg_bill": 13.56,
-      "recharge": 0,
+      "recharge": 500.0,
       "last_recharge": 19966.39,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
-        "📉 环比大跌",
-        "储值转化弱"
+        "📉 环比大跌"
       ]
     },
     {
@@ -392,12 +383,11 @@
       "last_sales": 171118.06,
       "last_orders": 14549,
       "last_avg_bill": 11.76,
-      "recharge": 0,
+      "recharge": 600.0,
       "last_recharge": 24200.0,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
-        "📉 环比大跌",
-        "储值转化弱"
+        "📉 环比大跌"
       ]
     },
     {
@@ -412,12 +402,11 @@
       "last_sales": 220965.13,
       "last_orders": 14067,
       "last_avg_bill": 15.71,
-      "recharge": 0,
+      "recharge": 600.0,
       "last_recharge": 27122.14,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
-        "📉 环比大跌",
-        "储值转化弱"
+        "📉 环比大跌"
       ]
     },
     {
@@ -432,12 +421,11 @@
       "last_sales": 130263.29,
       "last_orders": 9980,
       "last_avg_bill": 13.05,
-      "recharge": 0,
+      "recharge": 800.0,
       "last_recharge": 18398.9,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
-        "📉 环比大跌",
-        "储值转化弱"
+        "📉 环比大跌"
       ]
     },
     {
@@ -452,12 +440,11 @@
       "last_sales": 139174.43,
       "last_orders": 9576,
       "last_avg_bill": 14.53,
-      "recharge": 0,
+      "recharge": 600.0,
       "last_recharge": 11953.5,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
-        "📉 环比大跌",
-        "储值转化弱"
+        "📉 环比大跌"
       ]
     },
     {
@@ -472,12 +459,11 @@
       "last_sales": 127773.93,
       "last_orders": 10947,
       "last_avg_bill": 11.67,
-      "recharge": 0,
+      "recharge": 800.0,
       "last_recharge": 20233.6,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
-        "📉 环比大跌",
-        "储值转化弱"
+        "📉 环比大跌"
       ]
     },
     {
@@ -492,7 +478,7 @@
       "last_sales": 99898.93,
       "last_orders": 4259,
       "last_avg_bill": 23.46,
-      "recharge": 0,
+      "recharge": 200.0,
       "last_recharge": 18099.69,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
@@ -512,12 +498,11 @@
       "last_sales": 113786.02,
       "last_orders": 9466,
       "last_avg_bill": 12.02,
-      "recharge": 0,
+      "recharge": 300.0,
       "last_recharge": 13600.0,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
-        "📉 环比大跌",
-        "储值转化弱"
+        "📉 环比大跌"
       ]
     },
     {
@@ -532,12 +517,11 @@
       "last_sales": 183552.95,
       "last_orders": 13671,
       "last_avg_bill": 13.43,
-      "recharge": 0,
+      "recharge": 1300.0,
       "last_recharge": 28300.0,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
-        "📉 环比大跌",
-        "储值转化弱"
+        "📉 环比大跌"
       ]
     },
     {
@@ -552,12 +536,11 @@
       "last_sales": 210339.3,
       "last_orders": 14760,
       "last_avg_bill": 14.25,
-      "recharge": 0,
+      "recharge": 1400.0,
       "last_recharge": 30079.85,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
-        "📉 环比大跌",
-        "储值转化弱"
+        "📉 环比大跌"
       ]
     },
     {
@@ -572,12 +555,11 @@
       "last_sales": 219851.09,
       "last_orders": 16565,
       "last_avg_bill": 13.27,
-      "recharge": 0,
+      "recharge": 1041.2,
       "last_recharge": 16642.5,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
-        "📉 环比大跌",
-        "储值转化弱"
+        "📉 环比大跌"
       ]
     },
     {
@@ -780,7 +762,7 @@
     }
   ],
   "recharge": {
-    "current": 0,
+    "current": 16872.4,
     "last": 455420.08
   },
   "category_profit": [
@@ -961,7 +943,164 @@
       "last_margin": -41.78
     }
   ],
-  "recharge_detail": [],
+  "recharge_detail": [
+    {
+      "store": "济南万科城店（一）",
+      "area": "四区",
+      "received": 1631.2,
+      "last_received": 18400.0
+    },
+    {
+      "store": "济南绿地国际花都店",
+      "area": "一区",
+      "received": 1400.0,
+      "last_received": 30079.85
+    },
+    {
+      "store": "济南天鸿万卷府店（一）",
+      "area": "三区",
+      "received": 1300.0,
+      "last_received": 28300.0
+    },
+    {
+      "store": "济南城投伴山居店",
+      "area": "四区",
+      "received": 1200.0,
+      "last_received": 6800.0
+    },
+    {
+      "store": "济南鲁建小区店",
+      "area": "一区",
+      "received": 1041.2,
+      "last_received": 16642.5
+    },
+    {
+      "store": "济南白马南路店",
+      "area": "一区",
+      "received": 1000.0,
+      "last_received": 17400.0
+    },
+    {
+      "store": "济南香溢紫郡店",
+      "area": "三区",
+      "received": 900.0,
+      "last_received": 24839.8
+    },
+    {
+      "store": "济南海信九麓府店（一）",
+      "area": "一区",
+      "received": 900.0,
+      "last_received": 13828.49
+    },
+    {
+      "store": "济南祥泰城店（一）",
+      "area": "四区",
+      "received": 800.0,
+      "last_received": 20233.6
+    },
+    {
+      "store": "济南中海云著店（一）",
+      "area": "二区",
+      "received": 800.0,
+      "last_received": 18398.9
+    },
+    {
+      "store": "济南中建新悦城店",
+      "area": "三区",
+      "received": 700.0,
+      "last_received": 15000.0
+    },
+    {
+      "store": "济南祝甸东方花园店",
+      "area": "四区",
+      "received": 700.0,
+      "last_received": 10800.0
+    },
+    {
+      "store": "济南香溢澜庭店（一）",
+      "area": "三区",
+      "received": 600.0,
+      "last_received": 24200.0
+    },
+    {
+      "store": "济南市南全福店",
+      "area": "四区",
+      "received": 600.0,
+      "last_received": 27122.14
+    },
+    {
+      "store": "济南仁华居店（一）",
+      "area": "二区",
+      "received": 600.0,
+      "last_received": 11953.5
+    },
+    {
+      "store": "济南中海山湖壹号店（一）",
+      "area": "二区",
+      "received": 500.0,
+      "last_received": 19966.39
+    },
+    {
+      "store": "济南春华居店",
+      "area": "二区",
+      "received": 400.0,
+      "last_received": 16900.0
+    },
+    {
+      "store": "济南保利和塘悦色店",
+      "area": "三区",
+      "received": 400.0,
+      "last_received": 10700.0
+    },
+    {
+      "store": "济南御景台店（一）",
+      "area": "二区",
+      "received": 300.0,
+      "last_received": 13600.0
+    },
+    {
+      "store": "济南梁王新城",
+      "area": "三区",
+      "received": 300.0,
+      "last_received": 13099.8
+    },
+    {
+      "store": "济南御山首府店",
+      "area": "二区",
+      "received": 200.0,
+      "last_received": 3300.0
+    },
+    {
+      "store": "济南锦绣泉城店",
+      "area": "四区",
+      "received": 200.0,
+      "last_received": 18099.69
+    },
+    {
+      "store": "济南天鸿万象东方店",
+      "area": "三区",
+      "received": 200.0,
+      "last_received": 22516.2
+    },
+    {
+      "store": "济南狮子张店",
+      "area": "二区",
+      "received": 100.0,
+      "last_received": 14400.0
+    },
+    {
+      "store": "济南文庄新居店",
+      "area": "一区",
+      "received": 100.0,
+      "last_received": 6686.59
+    },
+    {
+      "store": "济南文贤居店（一）",
+      "area": "一区",
+      "received": 0.0,
+      "last_received": 6600.0
+    }
+  ],
   "trend": {
     "dates": [
       "09/01",

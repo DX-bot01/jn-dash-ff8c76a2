@@ -32,12 +32,11 @@
       "last_sales": 44881.51,
       "last_orders": 3772,
       "last_avg_bill": 11.9,
-      "recharge": 400.0,
+      "recharge": 1600.0,
       "last_recharge": 1100.0,
       "suggestions": [
         "🟡 需要提速",
-        "📉 环比下滑",
-        "储值转化弱"
+        "📉 环比下滑"
       ]
     },
     {
@@ -52,12 +51,11 @@
       "last_sales": 52408.38,
       "last_orders": 4115,
       "last_avg_bill": 12.74,
-      "recharge": 400.0,
+      "recharge": 2031.2,
       "last_recharge": 3600.0,
       "suggestions": [
         "🟠 完成率偏低",
-        "📉 环比大跌",
-        "储值转化弱"
+        "📉 环比大跌"
       ]
     },
     {
@@ -72,12 +70,11 @@
       "last_sales": 63906.04,
       "last_orders": 4357,
       "last_avg_bill": 14.67,
-      "recharge": 400.0,
+      "recharge": 1400.0,
       "last_recharge": 3300.0,
       "suggestions": [
         "🟠 完成率偏低",
-        "📉 环比大跌",
-        "储值转化弱"
+        "📉 环比大跌"
       ]
     },
     {
@@ -92,7 +89,7 @@
       "last_sales": 71380.78,
       "last_orders": 4437,
       "last_avg_bill": 16.09,
-      "recharge": 500.0,
+      "recharge": 600.0,
       "last_recharge": 900.0,
       "suggestions": [
         "🟡 需要提速",
@@ -152,7 +149,7 @@
       "last_sales": 23879.49,
       "last_orders": 1585,
       "last_avg_bill": 15.07,
-      "recharge": 300.0,
+      "recharge": 400.0,
       "last_recharge": 6800.0,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
@@ -171,7 +168,7 @@
       "last_sales": 40638.22,
       "last_orders": 2831,
       "last_avg_bill": 14.35,
-      "recharge": 1100.0,
+      "recharge": 2000.0,
       "last_recharge": 3900.0,
       "suggestions": [
         "🟠 完成率偏低",
@@ -190,12 +187,11 @@
       "last_sales": 53642.12,
       "last_orders": 3478,
       "last_avg_bill": 15.42,
-      "recharge": 300.0,
+      "recharge": 600.0,
       "last_recharge": 3200.0,
       "suggestions": [
         "🟠 完成率偏低",
-        "📉 环比大跌",
-        "储值转化弱"
+        "📉 环比大跌"
       ]
     },
     {
@@ -210,11 +206,10 @@
       "last_sales": 33401.69,
       "last_orders": 2648,
       "last_avg_bill": 12.61,
-      "recharge": 200.0,
+      "recharge": 600.0,
       "last_recharge": 1900.0,
       "suggestions": [
-        "🟢 节奏正常",
-        "储值转化弱"
+        "🟢 节奏正常"
       ]
     },
     {
@@ -229,7 +224,7 @@
       "last_sales": 49509.59,
       "last_orders": 3295,
       "last_avg_bill": 15.03,
-      "recharge": 100.0,
+      "recharge": 300.0,
       "last_recharge": 600.0,
       "suggestions": [
         "🟡 需要提速",
@@ -249,7 +244,7 @@
       "last_sales": 32618.35,
       "last_orders": 2584,
       "last_avg_bill": 12.62,
-      "recharge": 800.0,
+      "recharge": 1000.0,
       "last_recharge": 7416.2,
       "suggestions": [
         "🟠 完成率偏低",
@@ -268,7 +263,7 @@
       "last_sales": 34164.32,
       "last_orders": 2227,
       "last_avg_bill": 15.34,
-      "recharge": 1500.0,
+      "recharge": 2200.0,
       "last_recharge": 3300.0,
       "suggestions": [
         "🟠 完成率偏低",
@@ -305,7 +300,7 @@
       "last_sales": 26838.6,
       "last_orders": 2103,
       "last_avg_bill": 12.76,
-      "recharge": 700.0,
+      "recharge": 1400.0,
       "last_recharge": 2700.0,
       "suggestions": [
         "🟡 需要提速",
@@ -324,7 +319,7 @@
       "last_sales": 50783.47,
       "last_orders": 3465,
       "last_avg_bill": 14.66,
-      "recharge": 800.0,
+      "recharge": 1700.0,
       "last_recharge": 5400.0,
       "suggestions": [
         "🟠 完成率偏低",
@@ -343,7 +338,7 @@
       "last_sales": 34654.41,
       "last_orders": 2420,
       "last_avg_bill": 14.32,
-      "recharge": 500.0,
+      "recharge": 900.0,
       "last_recharge": 3100.0,
       "suggestions": [
         "🟠 完成率偏低",
@@ -362,7 +357,7 @@
       "last_sales": 47188.35,
       "last_orders": 3408,
       "last_avg_bill": 13.85,
-      "recharge": 600.0,
+      "recharge": 1100.0,
       "last_recharge": 6870.3,
       "suggestions": [
         "🟠 完成率偏低",
@@ -381,7 +376,7 @@
       "last_sales": 40037.24,
       "last_orders": 3410,
       "last_avg_bill": 11.74,
-      "recharge": 500.0,
+      "recharge": 1100.0,
       "last_recharge": 7900.0,
       "suggestions": [
         "🟡 需要提速",
@@ -400,7 +395,7 @@
       "last_sales": 45328.06,
       "last_orders": 3059,
       "last_avg_bill": 14.82,
-      "recharge": 2400.0,
+      "recharge": 3000.0,
       "last_recharge": 7559.17,
       "suggestions": [
         "🟠 完成率偏低",
@@ -419,7 +414,7 @@
       "last_sales": 28238.43,
       "last_orders": 2222,
       "last_avg_bill": 12.71,
-      "recharge": 400.0,
+      "recharge": 1200.0,
       "last_recharge": 3300.0,
       "suggestions": [
         "🟠 完成率偏低",
@@ -438,7 +433,7 @@
       "last_sales": 31899.81,
       "last_orders": 2000,
       "last_avg_bill": 15.95,
-      "recharge": 600.0,
+      "recharge": 1200.0,
       "last_recharge": 2800.0,
       "suggestions": [
         "🟠 完成率偏低",
@@ -457,7 +452,7 @@
       "last_sales": 30823.09,
       "last_orders": 2549,
       "last_avg_bill": 12.09,
-      "recharge": 800.0,
+      "recharge": 1600.0,
       "last_recharge": 5461.5,
       "suggestions": [
         "🟠 完成率偏低",
@@ -477,7 +472,7 @@
       "last_sales": 90282.5,
       "last_orders": 3723,
       "last_avg_bill": 24.25,
-      "recharge": 300.0,
+      "recharge": 500.0,
       "last_recharge": 17799.69,
       "suggestions": [
         "🟢 节奏正常",
@@ -497,7 +492,7 @@
       "last_sales": 27064.53,
       "last_orders": 2280,
       "last_avg_bill": 11.87,
-      "recharge": 300.0,
+      "recharge": 600.0,
       "last_recharge": 3800.0,
       "suggestions": [
         "🟡 需要提速",
@@ -516,7 +511,7 @@
       "last_sales": 42752.27,
       "last_orders": 3070,
       "last_avg_bill": 13.93,
-      "recharge": 1700.0,
+      "recharge": 3000.0,
       "last_recharge": 6500.0,
       "suggestions": [
         "🟡 需要提速",
@@ -535,7 +530,7 @@
       "last_sales": 47497.34,
       "last_orders": 3371,
       "last_avg_bill": 14.09,
-      "recharge": 1200.0,
+      "recharge": 2600.0,
       "last_recharge": 7200.0,
       "suggestions": [
         "🟠 完成率偏低",
@@ -554,12 +549,11 @@
       "last_sales": 45033.57,
       "last_orders": 3375,
       "last_avg_bill": 13.34,
-      "recharge": 200.0,
+      "recharge": 1241.2,
       "last_recharge": 3539.4,
       "suggestions": [
         "🟠 完成率偏低",
-        "📉 环比下滑",
-        "储值转化弱"
+        "📉 环比下滑"
       ]
     },
     {
@@ -762,7 +756,7 @@
     }
   ],
   "recharge": {
-    "current": 17700.0,
+    "current": 34572.4,
     "last": 134398.89
   },
   "category_profit": [
@@ -945,64 +939,136 @@
   ],
   "recharge_detail": [
     {
-      "store": "济南市南全福店",
-      "area": "四区",
-      "received": 2400.0,
-      "last_received": 7559.17
-    },
-    {
       "store": "济南天鸿万卷府店（一）",
       "area": "三区",
-      "received": 1700.0,
+      "received": 3000.0,
       "last_received": 6500.0
     },
     {
-      "store": "济南中建新悦城店",
-      "area": "三区",
-      "received": 1500.0,
-      "last_received": 3300.0
+      "store": "济南市南全福店",
+      "area": "四区",
+      "received": 3000.0,
+      "last_received": 7559.17
     },
     {
       "store": "济南绿地国际花都店",
       "area": "一区",
-      "received": 1200.0,
+      "received": 2600.0,
       "last_received": 7200.0
+    },
+    {
+      "store": "济南中建新悦城店",
+      "area": "三区",
+      "received": 2200.0,
+      "last_received": 3300.0
+    },
+    {
+      "store": "济南万科城店（一）",
+      "area": "四区",
+      "received": 2031.2,
+      "last_received": 3600.0
     },
     {
       "store": "济南海信九麓府店（一）",
       "area": "一区",
-      "received": 1100.0,
+      "received": 2000.0,
       "last_received": 3900.0
-    },
-    {
-      "store": "济南天鸿万象东方店",
-      "area": "三区",
-      "received": 800.0,
-      "last_received": 7416.2
-    },
-    {
-      "store": "济南祥泰城店（一）",
-      "area": "四区",
-      "received": 800.0,
-      "last_received": 5461.5
     },
     {
       "store": "济南香溢紫郡店",
       "area": "三区",
-      "received": 800.0,
+      "received": 1700.0,
       "last_received": 5400.0
+    },
+    {
+      "store": "济南祥泰城店（一）",
+      "area": "四区",
+      "received": 1600.0,
+      "last_received": 5461.5
+    },
+    {
+      "store": "济南城投伴山居店",
+      "area": "四区",
+      "received": 1600.0,
+      "last_received": 1100.0
+    },
+    {
+      "store": "济南白马南路店",
+      "area": "一区",
+      "received": 1400.0,
+      "last_received": 3300.0
     },
     {
       "store": "济南祝甸东方花园店",
       "area": "四区",
-      "received": 700.0,
+      "received": 1400.0,
       "last_received": 2700.0
+    },
+    {
+      "store": "济南鲁建小区店",
+      "area": "一区",
+      "received": 1241.2,
+      "last_received": 3539.4
+    },
+    {
+      "store": "济南中海云著店（一）",
+      "area": "二区",
+      "received": 1200.0,
+      "last_received": 3300.0
+    },
+    {
+      "store": "济南仁华居店（一）",
+      "area": "二区",
+      "received": 1200.0,
+      "last_received": 2800.0
     },
     {
       "store": "济南中海山湖壹号店（一）",
       "area": "二区",
-      "received": 600.0,
+      "received": 1100.0,
       "last_received": 6870.3
+    },
+    {
+      "store": "济南香溢澜庭店（一）",
+      "area": "三区",
+      "received": 1100.0,
+      "last_received": 7900.0
+    },
+    {
+      "store": "济南天鸿万象东方店",
+      "area": "三区",
+      "received": 1000.0,
+      "last_received": 7416.2
+    },
+    {
+      "store": "济南春华居店",
+      "area": "二区",
+      "received": 900.0,
+      "last_received": 3100.0
+    },
+    {
+      "store": "济南御景台店（一）",
+      "area": "二区",
+      "received": 600.0,
+      "last_received": 3800.0
+    },
+    {
+      "store": "济南梁王新城",
+      "area": "三区",
+      "received": 600.0,
+      "last_received": 3200.0
+    },
+    {
+      "store": "济南保利和塘悦色店",
+      "area": "三区",
+      "received": 600.0,
+      "last_received": 1900.0
+    },
+    {
+      "store": "济南文庄新居店",
+      "area": "一区",
+      "received": 600.0,
+      "last_received": 900.0
     },
     {
       "store": "济南北徐花园店",
@@ -1011,93 +1077,21 @@
       "last_received": 11300.0
     },
     {
-      "store": "济南仁华居店（一）",
-      "area": "二区",
-      "received": 600.0,
-      "last_received": 2800.0
-    },
-    {
-      "store": "济南春华居店",
-      "area": "二区",
-      "received": 500.0,
-      "last_received": 3100.0
-    },
-    {
-      "store": "济南香溢澜庭店（一）",
-      "area": "三区",
-      "received": 500.0,
-      "last_received": 7900.0
-    },
-    {
-      "store": "济南文庄新居店",
-      "area": "一区",
-      "received": 500.0,
-      "last_received": 900.0
-    },
-    {
-      "store": "济南城投伴山居店",
+      "store": "济南锦绣泉城店",
       "area": "四区",
-      "received": 400.0,
-      "last_received": 1100.0
-    },
-    {
-      "store": "济南万科城店（一）",
-      "area": "四区",
-      "received": 400.0,
-      "last_received": 3600.0
-    },
-    {
-      "store": "济南白马南路店",
-      "area": "一区",
-      "received": 400.0,
-      "last_received": 3300.0
-    },
-    {
-      "store": "济南中海云著店（一）",
-      "area": "二区",
-      "received": 400.0,
-      "last_received": 3300.0
-    },
-    {
-      "store": "济南梁王新城",
-      "area": "三区",
-      "received": 300.0,
-      "last_received": 3200.0
-    },
-    {
-      "store": "济南御景台店（一）",
-      "area": "二区",
-      "received": 300.0,
-      "last_received": 3800.0
+      "received": 500.0,
+      "last_received": 17799.69
     },
     {
       "store": "济南狮子张店",
       "area": "二区",
-      "received": 300.0,
+      "received": 400.0,
       "last_received": 6800.0
-    },
-    {
-      "store": "济南锦绣泉城店",
-      "area": "四区",
-      "received": 300.0,
-      "last_received": 17799.69
-    },
-    {
-      "store": "济南保利和塘悦色店",
-      "area": "三区",
-      "received": 200.0,
-      "last_received": 1900.0
-    },
-    {
-      "store": "济南鲁建小区店",
-      "area": "一区",
-      "received": 200.0,
-      "last_received": 3539.4
     },
     {
       "store": "济南御山首府店",
       "area": "二区",
-      "received": 100.0,
+      "received": 300.0,
       "last_received": 600.0
     },
     {
