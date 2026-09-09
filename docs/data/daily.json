@@ -4,8 +4,8 @@
   "is_month": false,
   "total_sales": 131593.74,
   "last_period_sales": 141714.66,
-  "target_amount": 171031.44,
-  "sprint_amount": 183413.3,
+  "target_amount": 163632.32,
+  "sprint_amount": 175422.25,
   "avg_bill": 15.78,
   "last_period_avg_bill": 13.7,
   "total_customers": 8339,
@@ -14,7 +14,7 @@
   "sprint_achieved": 4,
   "last_sprint_achieved": 11,
   "total_stores": 30,
-  "active_total_stores": 31,
+  "active_total_stores": 30,
   "month_target": 4908969.48,
   "month_sprint_target": 5262667.69,
   "month_completed": 1212946.42,
@@ -302,22 +302,22 @@
       ]
     },
     {
-      "name": "济南香溢紫郡店（停用）",
+      "name": "济南香溢紫郡店",
       "area": "三区",
-      "sales": 365.56,
+      "sales": 3072.3,
       "target": 7399.12,
       "sprint": 7991.05,
-      "customers": 40,
-      "avg_bill": 9.14,
-      "prev_rank": 31,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
+      "customers": 211,
+      "avg_bill": 14.56,
+      "prev_rank": 16,
+      "last_sales": 7181.24,
+      "last_orders": 438,
+      "last_avg_bill": 16.4,
       "recharge": 0,
-      "last_recharge": 0,
+      "last_recharge": 200.0,
       "suggestions": [
         "🔴 完成率<50%，紧急跟进",
-        "客单价<¥11",
+        "📉 环比大跌",
         "储值转化弱"
       ]
     },
@@ -506,25 +506,6 @@
       ]
     },
     {
-      "name": "济南香溢紫郡店（一）",
-      "area": "三区",
-      "sales": 2706.74,
-      "target": 7399.12,
-      "sprint": 7991.05,
-      "customers": 171,
-      "avg_bill": 15.83,
-      "prev_rank": 31,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
-      "recharge": 0,
-      "last_recharge": 0,
-      "suggestions": [
-        "🔴 完成率<50%，紧急跟进",
-        "储值转化弱"
-      ]
-    },
-    {
       "name": "济南绿地国际花都店",
       "area": "一区",
       "sales": 4411.7,
@@ -629,9 +610,9 @@
       "color": "#0D9488",
       "sales": 30908.75,
       "stores": 7,
-      "active_stores": 8,
-      "target": 47634.18000000001,
-      "sprint_target": 51444.91,
+      "active_stores": 7,
+      "target": 40235.060000000005,
+      "sprint_target": 43453.86,
       "last_sales": 38504.86
     },
     {

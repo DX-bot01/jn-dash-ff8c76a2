@@ -14,7 +14,7 @@
   "sprint_achieved": 0,
   "last_sprint_achieved": 26,
   "total_stores": 30,
-  "active_total_stores": 32,
+  "active_total_stores": 30,
   "month_target": 4908969.4799999995,
   "month_sprint_target": 5262667.69,
   "month_completed": 1212946.42,
@@ -314,11 +314,11 @@
     {
       "name": "济南香溢紫郡店",
       "area": "三区",
-      "sales": 7181.24,
+      "sales": 49908.9,
       "target": 221973.61,
       "sprint": 239731.5,
-      "customers": 438,
-      "avg_bill": 16.4,
+      "customers": 3416,
+      "avg_bill": 14.61,
       "prev_rank": 14,
       "last_sales": 233895.03,
       "last_orders": 15958,
@@ -560,44 +560,6 @@
       ]
     },
     {
-      "name": "济南香溢紫郡店（停用）",
-      "area": "三区",
-      "sales": 40020.92,
-      "target": 221973.61,
-      "sprint": 239731.5,
-      "customers": 2807,
-      "avg_bill": 14.26,
-      "prev_rank": 32,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
-      "recharge": 0,
-      "last_recharge": 0,
-      "suggestions": [
-        "🔴 完成率<50%，紧急跟进",
-        "储值转化弱"
-      ]
-    },
-    {
-      "name": "济南香溢紫郡店（一）",
-      "area": "三区",
-      "sales": 2706.74,
-      "target": 221973.61,
-      "sprint": 239731.5,
-      "customers": 171,
-      "avg_bill": 15.83,
-      "prev_rank": 32,
-      "last_sales": 0,
-      "last_orders": 0,
-      "last_avg_bill": 0,
-      "recharge": 0,
-      "last_recharge": 0,
-      "suggestions": [
-        "🔴 完成率<50%，紧急跟进",
-        "储值转化弱"
-      ]
-    },
-    {
       "name": "济南袁柳小区店",
       "area": "一区",
       "sales": 0,
@@ -665,9 +627,9 @@
       "color": "#0D9488",
       "sales": 325852.33,
       "stores": 7,
-      "active_stores": 9,
-      "target": 1650999.0999999996,
-      "sprint_target": 1783079.04,
+      "active_stores": 7,
+      "target": 1207051.88,
+      "sprint_target": 1303616.04,
       "last_sales": 1272463.03
     },
     {
