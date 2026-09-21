@@ -1112,7 +1112,11 @@ function fmtPct(v) { return v.toFixed(2)+'%'; }
 function fmtMoney(v) { return '¥'+v.toLocaleString(); }
 
 function calcGrowth(cur, prev) {
-  if (!prev || prev===0) return {text:'--',cls:'',delta:0};
+  if (!prev || prev===0) {
+    // 上期无销售：真·新增商品/门店，明确标注而非留空（避免看起来像"环比缺失"）
+    if (cur > 0) return { text:'新增', cls:'up', delta: cur };
+    return {text:'--',cls:'',delta:0};
+  }
   var g = ((cur-prev)/prev)*100;
   return { text: (g>=0?'+':'-')+Math.abs(g).toFixed(2)+'%', cls: g>=0?'up':'down', delta: cur-prev };
 }
