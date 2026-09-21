@@ -514,6 +514,7 @@
   .area-badge-sm.area-2 { background:#ccfbf1; color:#0f766e; }
   .area-badge-sm.area-3 { background:#fef3c7; color:#b45309; }
   .area-badge-sm.area-4 { background:#fee2e2; color:#b91c1c; }
+  .area-badge-sm.area-new { background:#f1f5f9; color:#64748b; }
 
   /* Suggestions tags */
   .sugg-tag {
@@ -597,6 +598,7 @@
   [data-theme="dark"] .area-badge-sm.area-2 { background:rgba(45,212,191,.18); color:#99f6e4; }
   [data-theme="dark"] .area-badge-sm.area-3 { background:rgba(251,191,36,.18); color:#fde68a; }
   [data-theme="dark"] .area-badge-sm.area-4 { background:rgba(251,113,133,.18); color:#fecdd3; }
+  [data-theme="dark"] .area-badge-sm.area-new { background:rgba(148,163,184,.20); color:#cbd5e1; }
   /* 建议标签（霓虹） */
   [data-theme="dark"] .sugg-tag.red    { background:rgba(251,113,133,.16); color:#fda4af; }
   [data-theme="dark"] .sugg-tag.orange { background:rgba(251,146,60,.16);  color:#fdba74; }
@@ -1176,18 +1178,18 @@ function renderKpi(d) {
   // For last period achieved: scale proportionally
   var lastAchieved = Math.round((d.last_period_achieved || 0) * filteredRate);
 
-  // 完成率口径：基础=全部经营区（一区~四区）；冲刺=全部区域
+  // 完成率口径：分子=全部门店销售（含"新增门店"等未下任务门店）；
+  //             分母=仅任务门店（一区~四区）目标合计（新增门店 target=0，不虚增任务）
   var targetAmt = d.target_amount || 0;
   var sprintAmt = d.sprint_amount || 0;
   var baseSales = totalSales;
   var sprintSales = totalSales;
   if (!isFiltered) {
     var operatingAreas = ['一区','二区','三区','四区'];
-    var operatingStores = (d.stores || []).filter(function(s){ return operatingAreas.indexOf(s.area) >= 0; });
-    baseSales = operatingStores.reduce(function(sum, s){ return sum + (s.sales || 0); }, 0);
+    baseSales   = (d.stores || []).reduce(function(sum, s){ return sum + (s.sales || 0); }, 0);
     sprintSales = (d.stores || []).reduce(function(sum, s){ return sum + (s.sales || 0); }, 0);
     targetAmt = sumAreaTargets(d, operatingAreas, 'target');
-    sprintAmt = (d.month_sprint_target || d.sprint_amount || 0) * targetScaleForPeriod();
+    sprintAmt = sumAreaTargets(d, operatingAreas, 'sprint_target');
   } else if (d.areas) {
     var areaObj = d.areas.find(function(a){ return a.name === currentArea; });
     if (areaObj && areaObj.target) targetAmt = areaObj.target;
@@ -1333,9 +1335,8 @@ function renderGap(d) {
   var baseCompleted = completed;
   var sprintCompleted = completed;
   if (currentArea === 'all') {
-    // 基础行只统计任务表内经营区域门店；全部门店销售进入冲刺行
-    baseCompleted = (d.stores || []).filter(function(s){ return operatingAreas.indexOf(s.area) >= 0; })
-      .reduce(function(sum,s){ return sum + (s.sales||0); }, 0);
+    // 分子=全部门店销售（含"新增门店"等未下任务门店）；分母=仅任务门店目标
+    baseCompleted   = (d.stores || []).reduce(function(sum,s){ return sum + (s.sales||0); }, 0);
     sprintCompleted = (d.stores || []).reduce(function(sum,s){ return sum + (s.sales||0); }, 0);
   }
   var days = d.month_remaining_days || 1;
@@ -1357,7 +1358,8 @@ function renderGap(d) {
   var sprintNote = '';
   if (currentArea === 'all') {
     baseTarget = sumAreaTargets(d, operatingAreas, 'target');
-    sprintTarget = (d.month_sprint_target || d.sprint_amount || 0) * targetScaleForPeriod();
+    // 冲刺目标同样取任务门店合计（区域 sprint_target 已由 convert.py 按周期缩放，避免用 /31 硬编码天数）
+    sprintTarget = sumAreaTargets(d, operatingAreas, 'sprint_target');
     baseNote = '四区合计';
     sprintNote = '四区合计';
   } else {
@@ -1440,15 +1442,17 @@ function renderRanking(rawStores) {
   if (!rawStores||!rawStores.length) return;
   var stores = filteredStores(rawStores);
   if (!stores.length) return;
-  stores.forEach(function(s){ s.rate = s.target>0 ? s.sales/s.target*100 : 0; });
+  stores.forEach(function(s){ s.rate = s.target>0 ? s.sales/s.target*100 : -1; });
   stores.forEach(function(s){ s.sprintRate = s.sprint>0 ? s.sales/s.sprint*100 : -1; });
   stores.sort(function(a,b){ return b.rate-a.rate; });
 
   var html = '';
   stores.forEach(function(s,i){
     var rank = i+1;
-    var barW = Math.min(Math.round(s.rate), 100);
-    var barCls = s.rate>=90 ? 'high' : s.rate>=60 ? 'mid' : 'low';
+    // 未下任务门店（target=0）不参与完成率排名：排在最后并显示「未下任务」
+    var noTask = !(s.target > 0);
+    var barW = noTask ? 0 : Math.min(Math.round(s.rate), 100);
+    var barCls = noTask ? 'mid' : (s.rate>=90 ? 'high' : s.rate>=60 ? 'mid' : 'low');
 
     // Rank change
     var prevRank = s.prev_rank || rank;
@@ -1461,7 +1465,7 @@ function renderRanking(rawStores) {
     var numCls = rank===1 ? 'top1' : rank===2 ? 'top2' : rank===3 ? 'top3' : '';
 
     var areaBadge = '';
-    var areaMap = {'一区':'🔵','二区':'🟢','三区':'🟩','四区':'🔴'};
+    var areaMap = {'一区':'🔵','二区':'🟢','三区':'🟩','四区':'🔴','新增门店':'⚪'};
     if (s.area && areaMap[s.area]) areaBadge = ' <span style="font-size:11px">'+areaMap[s.area]+'</span>';
     else if (s.district) areaBadge = ' <span style="font-size:11px;color:#9ca3af">'+s.district+'</span>';
 
@@ -1469,7 +1473,9 @@ function renderRanking(rawStores) {
       '<td class="rank-num '+numCls+'">'+(rank<=3 ? ['🥇','🥈','🥉'][rank-1] : rank)+'</td>'+
       '<td>'+s.name+'</td>'+
       '<td>'+areaBadge+'</td>'+
-      '<td><span class="rank-bar-wrap"><span class="rank-bar '+barCls+'" style="width:'+barW+'%"></span><span class="rank-bar-label">'+s.rate.toFixed(2)+'%</span></span></td>'+
+      '<td>'+(noTask
+          ? '<span style="color:#9ca3af;font-size:11px">未下任务</span>'
+          : '<span class="rank-bar-wrap"><span class="rank-bar '+barCls+'" style="width:'+barW+'%"></span><span class="rank-bar-label">'+s.rate.toFixed(2)+'%</span></span>')+'</td>'+
       '<td>'+(s.sprintRate<0 ? '<span style="color:#9ca3af;font-size:11px">--</span>' : '<span class="rank-bar-wrap"><span class="rank-bar sprint" style="width:'+Math.min(Math.round(s.sprintRate),100)+'%"></span><span class="rank-bar-label sprint-label">'+s.sprintRate.toFixed(2)+'%</span></span>')+'</td>'+
       '<td style="text-align:right">'+changeHtml+' <span class="rank-info">'+fmt(s.sales)+'</span></td>'+
       '</tr>';
@@ -1582,7 +1588,7 @@ function renderAreaChart(d) {
   if (!d.areas||!d.areas.length) return;
   var c = ensureChart('areaChart');
   if (!c) return;
-  var areaColors = {'一区':'#4F46E5','二区':'#0891B2','三区':'#0D9488','四区':'#DC2626'};
+  var areaColors = {'一区':'#4F46E5','二区':'#0891B2','三区':'#0D9488','四区':'#DC2626','新增门店':'#64748B'};
 
   if (currentArea !== 'all' && d.stores) {
     // Show individual stores for selected area
@@ -2000,10 +2006,12 @@ function renderSuggestions(d) {
 
   // 门店附加指标: sales_growth
   stores.forEach(function(s){
-    s._rate = s.target>0 ? s.sales/s.target*100 : 0;
+    s._rate = s.target>0 ? s.sales/s.target*100 : -1;   // 未下任务门店(target=0)不参与完成率分析
     s._growth = (s.last_sales && s.last_sales>0) ? ((s.sales-s.last_sales)/s.last_sales*100) : null;
   });
-  var sortedByRate = stores.slice().sort(function(a,b){return b._rate-a._rate;});
+  // 完成率口径仅取有任务门店
+  var ratedStores = stores.filter(function(s){ return s.target > 0; });
+  var sortedByRate = ratedStores.slice().sort(function(a,b){return b._rate-a._rate;});
   var top = sortedByRate[0], bot = sortedByRate[sortedByRate.length-1];
   var topRate = top ? top._rate : 0;
   var botRate = bot ? bot._rate : 0;
@@ -2221,7 +2229,7 @@ function renderSuggestions(d) {
     var box = document.getElementById('suggestStore');
     if (!box) return;
     var items = [];
-    var lowRate = stores.filter(function(s){return s._rate < 50;});
+    var lowRate = stores.filter(function(s){return s.target>0 && s._rate < 50;});
     if (lowRate.length)
       items.push('⚠ 完成率<50%门店：'+lowRate.map(function(s){return s.name;}).join('、')+'，建议店长约谈并制定周度追赶计划');
 
@@ -2242,11 +2250,12 @@ function renderAlerts(d) {
   var alerts = [];
   if (!d.stores) return;
 
-  // Low completion stores
+  // Low completion stores（未下任务门店 target=0 不参与完成率预警）
   var lowStores = [];
   var stores = filteredStores(d.stores);
   stores.forEach(function(s){
-    var rate = s.target>0 ? s.sales/s.target*100 : 0;
+    if (!(s.target > 0)) return;
+    var rate = s.sales/s.target*100;
     if (rate < 60) lowStores.push(s.name+' 仅<b>'+rate.toFixed(2)+'%</b>');
   });
   if (lowStores.length) alerts.push('🔴 '+lowStores.length+'家门店完成率低于60%: '+lowStores.join(' · '));
@@ -2338,7 +2347,7 @@ function renderStoreDetail(d) {
     // Build rows
     var html = '';
     display.forEach(function(s){
-      var areaCls = {'一区':'area-1','二区':'area-2','三区':'area-3','四区':'area-4'}[s.area]||'';
+      var areaCls = {'一区':'area-1','二区':'area-2','三区':'area-3','四区':'area-4','新增门店':'area-new'}[s.area]||'';
       var mgr = areaMgr[s.area]||'';
 
       var growthCls = function(v){ return v>0?'st-up':v<0?'st-down':'st-flat'; };
@@ -2375,11 +2384,15 @@ function renderStoreDetail(d) {
       html += '<td class="'+growthCls(s._recharge_growth)+'">'+growthSign(s._recharge_growth)+s._recharge_growth.toFixed(2)+'%</td>';
       // 储值占比
       html += '<td>'+s._recharge_ratio.toFixed(2)+'%</td>';
-      // 任务达成
-      var compCls = s._completion>=85?'st-good':s._completion>=60?'st-flat':'st-alert';
-      var compBarCls = s._completion>=85?'high':s._completion>=60?'mid':'low';
-      var compBarW = Math.min(Math.round(s._completion), 100);
-      html += '<td style="min-width:90px"><span class="rank-bar-wrap" style="width:80px;height:12px"><span class="rank-bar '+compBarCls+'" style="width:'+compBarW+'%"></span><span class="rank-bar-label">'+s._completion.toFixed(2)+'%</span></span></td>';
+      // 任务达成（target=0 的未下任务门店不参与完成率，显示「未下任务」）
+      var noTask = !(s.target > 0);
+      if (noTask) {
+        html += '<td style="min-width:90px"><span style="font-size:11px;color:var(--text-muted)">未下任务</span></td>';
+      } else {
+        var compBarCls = s._completion>=85?'high':s._completion>=60?'mid':'low';
+        var compBarW = Math.min(Math.round(s._completion), 100);
+        html += '<td style="min-width:90px"><span class="rank-bar-wrap" style="width:80px;height:12px"><span class="rank-bar '+compBarCls+'" style="width:'+compBarW+'%"></span><span class="rank-bar-label">'+s._completion.toFixed(2)+'%</span></span></td>';
+      }
       // 建议
       html += '<td>';
       (s.suggestions||[]).forEach(function(sugg){
