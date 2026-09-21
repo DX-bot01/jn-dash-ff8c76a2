@@ -38,6 +38,7 @@
     --gap-bg: linear-gradient(135deg, rgba(34,211,238,0.09), rgba(96,165,250,0.05));
     --hidden-bg: linear-gradient(135deg, rgba(251,191,36,0.09), rgba(251,191,36,0.03));
     --hs-item-bg: rgba(255,255,255,0.035);
+    --grey-mid: rgba(148,163,184,0.42);
     --radius: 14px;
     --shadow-sm: 0 1px 3px rgba(0,0,0,0.5);
     --shadow-md: 0 10px 30px -20px rgba(0,0,0,0.95);
@@ -76,6 +77,7 @@
     --gap-bg: linear-gradient(135deg, #eff6ff, #f0f9ff);
     --hidden-bg: linear-gradient(135deg, #fefce8, #fffbeb);
     --hs-item-bg: rgba(255,255,255,0.65);
+    --grey-mid: #d1d5db;
     --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
     --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
     --shadow-lg: 0 8px 32px rgba(0,0,0,0.08);
@@ -340,7 +342,7 @@
 
   .rank-scroll { max-height:360px; overflow-y:auto; }
   .rank-scroll::-webkit-scrollbar { width:4px; }
-  .rank-scroll::-webkit-scrollbar-thumb { background: #d1d5db; border-radius:2px; }
+  .rank-scroll::-webkit-scrollbar-thumb { background: var(--grey-mid); border-radius:2px; }
 
   /* ── Charts ── */
   .chart-wrap {
@@ -362,7 +364,7 @@
     content: ''; position: absolute;
     left: 50%; top: 50%; transform: translate(-50%, -50%);
     width: 40px; height: 4px; border-radius: 2px;
-    background: #cbd5e1;
+    background: var(--grey-mid);
     opacity: 0; transition: opacity .2s;
   }
   .chart-drag-bar:hover::after { opacity: 1; }
@@ -449,7 +451,7 @@
   .recharge-ring-kpi .rrk-trend { font-size:11px; margin-top:4px; }
   .recharge-ring-table-wrap { max-height:360px; overflow-y:auto; }
   .recharge-ring-table-wrap::-webkit-scrollbar { width:4px; }
-  .recharge-ring-table-wrap::-webkit-scrollbar-thumb { background:#d1d5db; border-radius:2px; }
+  .recharge-ring-table-wrap::-webkit-scrollbar-thumb { background:var(--grey-mid); border-radius:2px; }
   .recharge-ring-table { width:100%; border-collapse:collapse; }
   .recharge-ring-table th { font-size:11px; color:var(--text-muted); font-weight:500; padding:6px 8px; text-align:left; border-bottom:1px solid var(--border); }
   .recharge-ring-table th.right { text-align:right; }
@@ -466,7 +468,7 @@
     border:1px solid var(--border);
   }
   .store-table-wrap::-webkit-scrollbar { width:5px; height:5px; }
-  .store-table-wrap::-webkit-scrollbar-thumb { background:#d1d5db; border-radius:3px; }
+  .store-table-wrap::-webkit-scrollbar-thumb { background:var(--grey-mid); border-radius:3px; }
   .store-table {
     width:100%; border-collapse:collapse; font-size:12px;
     min-width:1200px;
@@ -1035,7 +1037,7 @@ var currentArea = 'all';
 var allData = {};
 var charts = {};
 /* ══════════ 主题系统：深色未来感 / 浅色商务风 ══════════ */
-var CC = { axis:'rgba(148,163,184,.28)', grid:'rgba(148,163,184,.10)', text:'#7c8aa3', text2:'#8fa0b8',
+var CC = { axis:'rgba(148,163,184,.28)', grid:'rgba(148,163,184,.10)', text:'#7c8aa3', text2:'#8fa0b8', mid:'rgba(148,163,184,.42)',
            ttBg:'rgba(9,13,22,.95)', ttBorder:'rgba(148,163,184,.22)', ttText:'#dbe4f0' };
 var _ECHARTS_THEMES = {
   jnDark: {
@@ -1066,9 +1068,9 @@ function currentChartTheme() { return currentTheme() === 'light' ? 'jnLight' : '
 
 function refreshChartColors() {
   CC = currentTheme() === 'light'
-    ? { axis:'#e5e7eb', grid:'#f3f4f6', text:'#9ca3af', text2:'#6b7280',
+    ? { axis:'#e5e7eb', grid:'#f3f4f6', text:'#9ca3af', text2:'#6b7280', mid:'#d1d5db',
         ttBg:'rgba(255,255,255,.96)', ttBorder:'#e5e7eb', ttText:'#1a1a2e' }
-    : { axis:'rgba(148,163,184,.28)', grid:'rgba(148,163,184,.10)', text:'#7c8aa3', text2:'#8fa0b8',
+    : { axis:'rgba(148,163,184,.28)', grid:'rgba(148,163,184,.10)', text:'#7c8aa3', text2:'#8fa0b8', mid:'rgba(148,163,184,.42)',
         ttBg:'rgba(9,13,22,.95)', ttBorder:'rgba(148,163,184,.22)', ttText:'#dbe4f0' };
 }
 
@@ -1645,7 +1647,7 @@ function renderAreaChart(d) {
       {
         name:'上期', type:'bar',
         data: d.areas.map(function(a){return a.last_sales;}),
-        itemStyle:{borderRadius:[5,5,0,0],color:CC.axis,borderColor:'#d1d5db',borderWidth:0.5}, barWidth:'45%'
+        itemStyle:{borderRadius:[5,5,0,0],color:CC.axis,borderColor:CC.mid,borderWidth:0.5}, barWidth:'45%'
       }
     ]
   });
@@ -1878,7 +1880,7 @@ function renderHourlyChart(d) {
       barWidth: '35%',
       itemStyle: {
         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-          { offset: 0, color: '#d1d5db' },
+          { offset: 0, color: CC.mid },
           { offset: 1, color: CC.grid }
         ]),
         borderRadius: [4, 4, 0, 0]
