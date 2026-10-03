@@ -665,6 +665,67 @@
     40%{transform:translateX(7px)} 60%{transform:translateX(-5px)} 80%{transform:translateX(3px)} }
   .lock-card.shake{ animation:lock-shake .42s cubic-bezier(.36,.07,.19,.97); }
 
+
+  /* ────── 实时日任务跟踪 ────── */
+  .dt-panel {
+    background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius);
+    padding:16px 18px; margin-bottom:16px; box-shadow:var(--shadow-sm);
+  }
+  .dt-head { display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:10px; margin-bottom:12px; }
+  .dt-title { font-size:15px; font-weight:700; color:var(--text-primary); }
+  .dt-sub { font-size:12px; font-weight:400; color:var(--text-secondary); margin-left:8px; }
+  .dt-tabs { display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
+  .dt-tab { font-size:12px; padding:4px 11px; border-radius:8px; border:1px solid var(--border);
+    background:transparent; color:var(--text-secondary); cursor:pointer; transition:all .18s; }
+  .dt-tab:hover { border-color:var(--blue); color:var(--blue); }
+  .dt-tab.active { background:var(--blue); border-color:var(--blue); color:#04141a; font-weight:700; }
+  .dt-sel { font-size:12px; padding:4px 9px; border-radius:8px; border:1px solid var(--border);
+    background:var(--card-bg); color:var(--text); outline:none; max-width:190px; }
+  .dt-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(118px,1fr));
+    gap:10px; margin-bottom:13px; }
+  .dt-kpi { background:var(--hover-bg); border-radius:10px; padding:9px 11px;
+    border-left:3px solid var(--blue); }
+  .dt-kpi .k { font-size:11px; color:var(--text-secondary); }
+  .dt-kpi .v { font-size:16.5px; font-weight:800; color:var(--text-primary); margin-top:2px;
+    letter-spacing:-.2px; }
+  .dt-kpi .n { font-size:10.5px; color:var(--text-muted); margin-top:1px; }
+  .dt-kpi.g { border-left-color:var(--green); }
+  .dt-kpi.g .v { color:var(--green); }
+  .dt-kpi.r { border-left-color:var(--red); }
+  .dt-kpi.r .v { color:var(--red); }
+  .dt-kpi.o { border-left-color:var(--amber); }
+  .dt-kpi.o .v { color:var(--amber); }
+  .dt-chart { height:238px; margin-bottom:12px; }
+  .dt-table-wrap { max-height:340px; overflow-y:auto; border-radius:10px;
+    border:1px solid var(--hairline); }
+  .dt-table { width:100%; border-collapse:collapse; font-size:12px; }
+  .dt-table th { position:sticky; top:0; z-index:2; background:var(--thead-bg);
+    backdrop-filter:blur(8px); font-size:11px; font-weight:700; color:var(--text-secondary);
+    padding:8px 7px; border-bottom:1px solid var(--border); text-align:right; white-space:nowrap; }
+  .dt-table th:first-child, .dt-table th:nth-child(2) { text-align:left; }
+  .dt-table td { padding:6px 7px; border-bottom:1px solid var(--hairline); text-align:right;
+    color:var(--text); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .dt-table td:first-child, .dt-table td:nth-child(2) { text-align:left; }
+  .dt-table tr:hover td { background:var(--hover-bg); }
+  .dt-table tr.dt-latest td { background:var(--sorted-bg); font-weight:700; }
+  .dt-table tr.dt-wknd td:nth-child(2) { color:var(--amber); }
+  .dt-ok { color:var(--green); font-weight:700; }
+  .dt-bad { color:var(--red); font-weight:700; }
+  .dt-mid { color:var(--amber); font-weight:700; }
+  .dt-empty { padding:26px; text-align:center; color:var(--text-muted); font-size:13px; }
+  .dt-legend { font-size:11px; color:var(--text-muted); margin-top:8px; line-height:1.7; }
+
+  /* ────── 月份不一致提示 ────── */
+  .mw-banner {
+    display:flex; align-items:flex-start; gap:11px;
+    background:linear-gradient(135deg, rgba(251,113,133,.16), rgba(251,191,36,.08));
+    border:1px solid rgba(251,113,133,.45); border-left:4px solid var(--red);
+    border-radius:12px; padding:13px 16px; margin-bottom:14px;
+  }
+  .mw-banner .mw-icon { font-size:18px; line-height:1.3; }
+  .mw-banner .mw-text { font-size:13px; color:var(--text-primary); line-height:1.65; }
+  .mw-banner .mw-text b { color:var(--red); }
 </style>
 </head>
 <body class="locked">
@@ -717,6 +778,12 @@
     </div>
   </div>
 
+  <!-- ═══════ 月份不一致提示 ═══════ -->
+  <div class="mw-banner" id="mwBanner" style="display:none">
+    <span class="mw-icon">⚠️</span>
+    <span class="mw-text" id="mwText"></span>
+  </div>
+
   <!-- ═══════ ALERT STRIP ═══════ -->
   <div class="alert-strip" id="alertStrip">
     <div class="alert-icon">⚠️</div>
@@ -740,6 +807,31 @@
     </div>
     <div class="hs-body" id="hsBody" style="display:none">
       <div class="hs-grid" id="hsGrid"></div>
+    </div>
+  </div>
+
+
+  <!-- ═══════ 实时日任务跟踪（区域 + 门店）═══════ -->
+  <div class="dt-panel" id="dtPanel" style="display:none">
+    <div class="dt-head">
+      <div class="dt-title">📅 实时日任务跟踪<span class="dt-sub" id="dtSub">--</span></div>
+      <div class="dt-tabs" id="dtTabs"></div>
+    </div>
+    <div class="dt-kpis" id="dtKpis"></div>
+    <div class="dt-chart" id="dtChart"></div>
+    <div class="dt-table-wrap">
+      <table class="dt-table">
+        <thead><tr>
+          <th style="width:76px">日期</th><th style="width:48px">星期</th>
+          <th>日应达</th><th>当日实际</th><th>日达成率</th>
+          <th>累计应达</th><th>累计实际</th><th>累计达成率</th><th>进度差</th>
+        </tr></thead>
+        <tbody id="dtBody"></tbody>
+      </table>
+    </div>
+    <div class="dt-legend">
+      💡 <b>日应达</b> = 月基础任务 ÷ 当月天数；<b>进展度差</b> = 累计实际 − 累计应达（正数领先、负数落后）。
+      切换上方页签可查看 <b>整体 / 各区域 / 单店</b>。
     </div>
   </div>
 
@@ -2745,6 +2837,206 @@ function renderProductTop50(d) {
 }
 
 
+
+// ══════════════════ 实时日任务跟踪 ══════════════════
+var DT_WD = ['日','一','二','三','四','五','六'];
+var _dtKey = 'all';        // all | 一区 … | store:门店名
+var _dtData = null;
+
+function dtFmt(n, dec) {
+  if (n === null || n === undefined) return '--';
+  dec = (dec === undefined) ? 0 : dec;
+  return n.toLocaleString('zh-CN', {minimumFractionDigits:dec, maximumFractionDigits:dec});
+}
+function dtCls(rate) {
+  if (rate >= 100) return 'dt-ok';
+  if (rate >= 90) return 'dt-mid';
+  return 'dt-bad';
+}
+
+function dtPick(key) {
+  _dtKey = key;
+  dtRender();
+}
+
+function dtRender() {
+  var d = _dtData;
+  if (!d) return;
+  var wrap = document.getElementById('dtPanel');
+  wrap.style.display = 'block';
+
+  // ---- 页签 ----
+  var tabs = document.getElementById('dtTabs');
+  var html = '';
+  html += '<button class="dt-tab' + (_dtKey === 'all' ? ' active' : '') + '" onclick="dtPick(\'all\')">🌐 整体</button>';
+  (d.areas || []).forEach(function(a) {
+    html += '<button class="dt-tab' + (_dtKey === a.name ? ' active' : '')
+      + '" onclick="dtPick(\'' + a.name + '\')">' + a.name + ' · ' + a.manager + '</button>';
+  });
+  // 门店下拉
+  html += '<select class="dt-sel" onchange="dtPick(this.value)">';
+  html += '<option value="all"' + (_dtKey.startsWith('store:') ? '' : '') + '>▾ 选择门店…</option>';
+  var byArea = {};
+  (d.stores || []).forEach(function(st) {
+    (byArea[st.area] = byArea[st.area] || []).push(st);
+  });
+  Object.keys(byArea).forEach(function(a) {
+    html += '<optgroup label="' + a + '">';
+    byArea[a].forEach(function(st) {
+      var v = 'store:' + st.name;
+      html += '<option value="' + v + '"' + (_dtKey === v ? ' selected' : '') + '>'
+        + st.name.replace('济南','') + '</option>';
+    });
+    html += '</optgroup>';
+  });
+  html += '</select>';
+  tabs.innerHTML = html;
+
+  // ---- 取数 ----
+  var obj, title;
+  if (_dtKey === 'all') { obj = d.total; title = '全区域（' + (d.stores||[]).length + ' 家门店）'; }
+  else if (_dtKey.indexOf('store:') === 0) {
+    var nm = _dtKey.slice(6);
+    obj = (d.stores || []).filter(function(x){ return x.name === nm; })[0];
+    title = nm + (obj ? ' · ' + obj.area : '');
+  } else {
+    obj = (d.areas || []).filter(function(x){ return x.name === _dtKey; })[0];
+    title = obj ? (_dtKey + ' · ' + obj.manager + ' · ' + obj.stores + ' 家') : _dtKey;
+  }
+  if (!obj) { wrap.style.display = 'none'; return; }
+
+  document.getElementById('dtSub').textContent =
+    title + '　|　' + d.month + '（' + d.month_days + '天）· 已过 ' + obj.elapsed + ' 天';
+
+  // ---- KPI ----
+  var dayT = obj.day_target, cumTgt = obj.cum_target, cum = obj.cum, rate = obj.rate, gap = obj.gap;
+  var kd = [
+    {k:'月任务', v:'¥' + dtFmt(obj.month_target), n:d.month+' 基础任务', c:''},
+    {k:'日应达', v:'¥' + dtFmt(dayT), n:'月任务 ÷ ' + d.month_days + ' 天', c:''},
+    {k:'已过天数', v:obj.elapsed + ' / ' + d.month_days, n:'有销售数据的天数', c:''},
+    {k:'累计实际', v:'¥' + dtFmt(cum), n:'同期应达 ¥' + dtFmt(cumTgt), c:''},
+    {k:'累计达成率', v:rate.toFixed(1) + '%', n:'时间进度 ' + (obj.elapsed/d.month_days*100).toFixed(1) + '%',
+      c: rate>=100?'g':(rate>=90?'o':'r')},
+    {k:'进度差', v:(gap>=0?'+':'−') + '¥' + dtFmt(Math.abs(gap)), n: gap>=0?'领先':'落后', c: gap>=0?'g':'r'}
+  ];
+  document.getElementById('dtKpis').innerHTML = kd.map(function(x){
+    return '<div class="dt-kpi ' + x.c + '"><div class="k">' + x.k + '</div><div class="v">' + x.v
+      + '</div><div class="n">' + x.n + '</div></div>';
+  }).join('');
+
+  // ---- 图表 ----
+  var c = ensureChart('dtChart');
+  if (c) {
+    var daily = obj.daily || [];
+    var labels = d.labels || [];
+    var cumArr = [], run = 0, cumTgtArr = [], runT = 0;
+    daily.forEach(function(v, i){
+      run += v; cumArr.push(+run.toFixed(2));
+      if (v > 0) runT += dayT;
+      cumTgtArr.push(+runT.toFixed(2));
+    });
+    var rateArr = cumArr.map(function(v,i){ return cumTgtArr[i] ? +(v/cumTgtArr[i]*100).toFixed(2) : null; });
+    c.setOption({
+      tooltip: { trigger:'axis', formatter:function(ps){
+        var h = ps[0].axisValue + '<br/>';
+        ps.forEach(function(p){
+          var v = p.value;
+          if (v===null||v===undefined) return;
+          if (p.seriesName === '累计达成率') h += p.marker+' '+p.seriesName+': <b>'+v+'%</b><br/>';
+          else h += p.marker+' '+p.seriesName+': <b>¥'+dtFmt(v)+'</b><br/>';
+        });
+        return h;
+      }},
+      legend: { data:['当日实际','日应达','累计达成率'], top:0, textStyle:{fontSize:11} },
+      grid: { left:64, right:56, top:34, bottom:24 },
+      xAxis: { type:'category', data:labels, axisLabel:{fontSize:10, interval: Math.max(0, Math.floor(labels.length/16))} },
+      yAxis: [
+        { type:'value', name:'金额', nameTextStyle:{fontSize:10}, axisLabel:{fontSize:10, formatter:function(v){ return (v/10000).toFixed(0)+'万'; }} },
+        { type:'value', name:'达成率', nameTextStyle:{fontSize:10}, min:0, max:160, axisLabel:{fontSize:10, formatter:'{value}%'}, splitLine:{show:false} }
+      ],
+      series: [
+        { name:'当日实际', type:'bar', data:daily, itemStyle:{ color:'#22d3ee', borderRadius:[3,3,0,0] }, barMaxWidth:22 },
+        { name:'日应达', type:'line', data:labels.map(function(){ return +dayT.toFixed(2); }),
+          symbol:'none', lineStyle:{ type:'dashed', width:1.5, color:'#fbbf24' }, itemStyle:{color:'#fbbf24'} },
+        { name:'累计达成率', type:'line', yAxisIndex:1, data:rateArr, symbol:'circle', symbolSize:4,
+          lineStyle:{ width:2, color:'#a78bfa' }, itemStyle:{color:'#a78bfa'},
+          markLine:{ silent:true, symbol:'none',
+            data:[{ yAxis:100, lineStyle:{ color:'#34d399', type:'dotted', width:1.5 },
+                    label:{ formatter:'100%', fontSize:9, color:'#34d399' } }] } }
+      ]
+    }, true);
+  }
+
+  // ---- 表格（最新在前）----
+  var body = document.getElementById('dtBody');
+  if (!daily || !daily.length) {
+    body.innerHTML = '<tr><td colspan="9" class="dt-empty">暂无数据</td></tr>';
+    return;
+  }
+  var rows = '';
+  var cRun = 0, cRunT = 0, cumList = [], cumTList = [];
+  daily.forEach(function(v){
+    cRun += v; cumList.push(cRun);
+    if (v > 0) cRunT += dayT;
+    cumTList.push(cRunT);
+  });
+  var lastIdx = -1;
+  daily.forEach(function(v,i){ if (v>0) lastIdx = i; });
+  for (var i = daily.length - 1; i >= 0; i--) {
+    var lbl = labels[i] || '';
+    var parts = lbl.split('/');
+    var mm = parseInt(parts[0],10), dd = parseInt(parts[1],10);
+    var wdIdx = 0;
+    try { wdIdx = new Date(d.month.slice(0,4) + '-' + parts[0] + '-' + parts[1] + 'T00:00:00').getDay(); } catch(e) {}
+    var v = daily[i], cumV = cumList[i], cumT = cumTList[i];
+    var dayRate = v > 0 ? (v / dayT * 100) : (v === 0 && dayT > 0 ? 0 : null);
+    var cumRate = cumT > 0 ? (cumV / cumT * 100) : null;
+    var dGap = cumV - cumT;
+    var cls = 'dt-wknd';
+    if (i === lastIdx) cls += ' dt-latest';
+    rows += '<tr class="' + cls + '">'
+      + '<td>' + (mm<10?'0':'') + mm + '/' + (dd<10?'0':'') + dd + (i===lastIdx ? ' <span style="opacity:.6">◀最新</span>' : '') + '</td>'
+      + '<td>周' + DT_WD[wdIdx] + '</td>'
+      + '<td>¥' + dtFmt(dayT) + '</td>'
+      + '<td>' + (v>0 ? '¥'+dtFmt(v) : '<span style="opacity:.35">—</span>') + '</td>'
+      + '<td class="' + (v>0 ? dtCls(dayRate||0) : '') + '">' + (v>0 ? dayRate.toFixed(1)+'%' : '—') + '</td>'
+      + '<td>¥' + dtFmt(cumT) + '</td>'
+      + '<td>¥' + dtFmt(cumV) + '</td>'
+      + '<td class="' + (cumRate===null?'':dtCls(cumRate)) + '">' + (cumRate===null?'—':cumRate.toFixed(1)+'%') + '</td>'
+      + '<td class="' + (dGap>=0?'dt-ok':'dt-bad') + '">' + (dGap>=0?'+':'−') + dtFmt(Math.abs(dGap)) + '</td>'
+      + '</tr>';
+  }
+  body.innerHTML = rows;
+}
+
+function renderDailyTrack(d) {
+  _dtData = d.daily_track;
+  if (!_dtData || !_dtData.labels || !_dtData.labels.length) {
+    document.getElementById('dtPanel').style.display = 'none';
+    return;
+  }
+  // 区域页签变动时，若当前选中区域已不存在则回退到整体
+  if (_dtKey !== 'all' && _dtKey.indexOf('store:') !== 0) {
+    var ok = (_dtData.areas || []).some(function(a){ return a.name === _dtKey; });
+    if (!ok) _dtKey = 'all';
+  }
+  dtRender();
+}
+
+
+// ══════════════════ 任务月份 / 数据月份 一致性提示 ══════════════════
+function renderMonthWarning(d) {
+  var el = document.getElementById('mwBanner');
+  var tx = document.getElementById('mwText');
+  if (!el || !tx) return;
+  var w = d && d.month_warning;
+  if (!w) { el.style.display = 'none'; return; }
+  el.style.display = 'flex';
+  tx.innerHTML = '<b>数据口径不一致</b>　' + w.msg
+    + '　<span style="opacity:.75">（任务 <b>' + w.task_month + '</b> ／ 数据 <b>'
+    + w.data_month + '</b>）</span>';
+}
+
 function renderAll() {
   var d = allData[currentPeriod];
   if (!d) return;
@@ -2765,7 +3057,9 @@ function renderAll() {
     ['renderStoreDetail', renderStoreDetail],
     ['renderCategoryProfit', renderCategoryProfit],
     ['renderRechargeRing', renderRechargeRing],
-    ['renderProductTop50', renderProductTop50]
+    ['renderMonthWarning', renderMonthWarning],
+    ['renderProductTop50', renderProductTop50],
+    ['renderDailyTrack', renderDailyTrack]
   ];
   for (var i=0; i<fns.length; i++) {
     try {
