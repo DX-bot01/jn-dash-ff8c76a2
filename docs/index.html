@@ -1036,7 +1036,7 @@
     <!-- Row 3.6: Hourly Sales Breakdown (month only) -->
     <div class="panel full" style="margin-bottom:18px;display:none" id="hourlyPanel">
       <div class="panel-header">
-        <span class="panel-title">🕐 时段销售分析（本月 vs 上月）</span>
+        <span class="panel-title" id="hourlyPanelTitle">🕐 时段销售分析（本期 vs 上期）</span>
       </div>
       <div class="chart-wrap h280" id="hourlyChartWrap">
         <div id="hourlyChart" style="width:100%;height:calc(100% - 10px)"></div>
@@ -1139,7 +1139,7 @@
         </div>
         <button class="store-export-btn" onclick="exportStoreTable()">📸 导出图片</button>
         <span class="store-source-tag">
-          <span class="csv-icon">📄</span> 数据源: <b>本月CSV</b> + <b>上月CSV</b>
+          <span class="csv-icon">📄</span> 数据源: <b>本期CSV</b> + <b>上期CSV</b>
         </span>
       </div>
       <div style="font-size:11px;color:var(--text-muted);margin-bottom:8px;">
@@ -1269,6 +1269,22 @@ function calcGrowth(cur, prev) {
   var g = ((cur-prev)/prev)*100;
   return { text: (g>=0?'+':'-')+Math.abs(g).toFixed(2)+'%', cls: g>=0?'up':'down', delta: cur-prev };
 }
+
+// ── 月报两月环比标签（跟随数据月份：如 "9月 / 8月"）──
+// 月报本期=上一个完整月，上期=上上个完整月；标签一律由 monthly.json 的 date/compare_date 推导，
+// 不再硬编码「本月/上月」，避免月初取完整月时显示错位。
+function mmLabel(s) {
+  var m = (s || '').match(/(\d{4})年(\d{1,2})月/);
+  return m ? (parseInt(m[2], 10) + '月') : '';
+}
+function monthPairLabels(md) {
+  return {
+    cur:  mmLabel(md && md.date) || '本期',
+    prev: mmLabel(md && md.compare_date) || '上期'
+  };
+}
+function curMonthLabel() { return monthPairLabels(allData.month).cur; }
+function prevMonthLabel() { return monthPairLabels(allData.month).prev; }
 
 // ── Area Filter ──
 function switchArea(area) {
@@ -1496,7 +1512,10 @@ function renderGap(d) {
   var targetLabel = currentPeriod === 'day' ? '日任务' : (currentPeriod === 'week' ? '周任务' : '月任务');
 
   function calcRemainingDays() {
-    if (currentPeriod !== 'week') return d.month_remaining_days || 1;
+    if (currentPeriod !== 'week') {
+      var mr = d.month_remaining_days;
+      return (typeof mr === 'number') ? mr : 1;   // 保留 0（完整月已收官）
+    }
     var m = (d.date || '').match(/~\s*(\d{2})\/(\d{2}).*截至(\d{2})\/(\d{2})/);
     if (!m) return 7;
     var end = new Date(2026, parseInt(m[1],10)-1, parseInt(m[2],10));
@@ -1525,15 +1544,26 @@ function renderGap(d) {
 
   function rowHtml(type, label, note, target, completedAmount) {
     var remaining = target - completedAmount;
-    var daily = Math.round(remaining / days);
+    var rate = target > 0 ? (completedAmount / target * 100) : null;
+    var tail;
+    if (days > 0) {
+      var daily = Math.round(remaining / days);
+      tail = '<span class="gap-item">缺口 <b class="gap-danger">'+fmtMoney(remaining)+'</b></span>'
+        + '<span class="gap-item">剩余 <b>'+days+'</b> 天</span>'
+        + '<span class="gap-item">日均需完成 <b class="gap-blue">'+fmtMoney(daily)+'</b></span>';
+    } else {
+      // 完整月已收官（月报两月环比口径）：改为展示达成率与差额
+      tail = '<span class="gap-item">差额 <b class="'+(remaining<=0?'gap-blue':'gap-danger')+'">'+fmtMoney(remaining)+'</b></span>'
+        + '<span class="gap-item">达成率 <b class="'+((rate!==null&&rate>=100)?'gap-blue':'gap-danger')+'">'
+          + (rate===null?'--':rate.toFixed(2)+'%')+'</b></span>'
+        + '<span class="gap-item">已收官</span>';
+    }
     return '<div class="gap-row '+type+'">'
       + '<span class="gap-row-label">'+label+'</span>'
       + '<span class="gap-item">范围 <b>'+note+'</b></span>'
       + '<span class="gap-item">'+targetLabel+' <b>'+fmtMoney(target)+'</b></span>'
       + '<span class="gap-item">已完成 <b>'+fmtMoney(completedAmount)+'</b></span>'
-      + '<span class="gap-item">缺口 <b class="gap-danger">'+fmtMoney(remaining)+'</b></span>'
-      + '<span class="gap-item">剩余 <b>'+days+'</b> 天</span>'
-      + '<span class="gap-item">日均需完成 <b class="gap-blue">'+fmtMoney(daily)+'</b></span>'
+      + tail
       + '</div>';
   }
 
@@ -1564,8 +1594,8 @@ function renderHiddenSummary(d) {
   var target = HIDDEN_BASE_TARGET;
   var rate = target > 0 ? cur / target * 100 : 0;
   var remaining = target - cur;
-  var daysLeft = d.month_remaining_days || 1;
-  var dailyNeed = remaining > 0 ? remaining / daysLeft : 0;
+  var daysLeft = (typeof d.month_remaining_days === 'number') ? d.month_remaining_days : 1;
+  var dailyNeed = (remaining > 0 && daysLeft > 0) ? remaining / daysLeft : 0;
   // 时间进度（按当月天数）
   var m = (d.date || '').match(/(\d+)日/);
   var elapsed = m ? parseInt(m[1], 10) : 1;
@@ -1581,13 +1611,13 @@ function renderHiddenSummary(d) {
 
   grid.innerHTML =
     item('总基础目标', fmtMoney(target), '') +
-    item('本月累计', fmtMoney(cur), '') +
+    item(curMonthLabel() + '累计', fmtMoney(cur), '') +
     item('完成率', fmtPct(rate), rateCls(rate)) +
     item('时间进度', fmtPct(timePct), '') +
     item('实际/时间进度', fmtPct(vsTime), rateCls(vsTime)) +
     item('剩余缺口', fmtMoney(remaining), remaining > 0 ? 'danger' : 'ok') +
-    item('剩余天数', daysLeft + ' 天', '') +
-    item('剩余日均需达', fmtMoney(dailyNeed), dailyNeed > 0 ? 'warn' : 'ok');
+    item('剩余天数', daysLeft > 0 ? (daysLeft + ' 天') : '<span class="hs-done">已收官</span>', '') +
+    item('剩余日均需达', daysLeft > 0 ? fmtMoney(dailyNeed) : '—', dailyNeed > 0 ? 'warn' : 'ok');
 }
 
 // ── Ranking Table ──
@@ -1821,7 +1851,7 @@ function renderCatChart(d) {
   var periodLabels = {cur:'本期',prev:'上期'};
   if (currentPeriod === 'day')      { periodLabels = {cur:'昨日',prev:'上周同期'}; }
   else if (currentPeriod === 'week') { periodLabels = {cur:'本周',prev:'上周'}; }
-  else if (currentPeriod === 'month'){ periodLabels = {cur:'本月',prev:'上月'}; }
+  else if (currentPeriod === 'month'){ var _mpl = monthPairLabels(allData.month); periodLabels = {cur:_mpl.cur, prev:_mpl.prev}; }
   c.setOption({
     tooltip: { trigger:'axis', axisPointer:{type:'shadow'},
       formatter: function(ps){
@@ -1898,7 +1928,8 @@ function renderDailyRevChart(d) {
   if (currentPeriod === 'week') {
     titleEl.textContent = '💰 实收金额日对比 · 本周 vs 上周';
   } else {
-    titleEl.textContent = '💰 实收金额日对比 · 本月 vs 上月';
+    var _dml = monthPairLabels(allData.month);
+    titleEl.textContent = '💰 实收金额日对比 · ' + _dml.cur + ' vs ' + _dml.prev;
   }
 
   var c = ensureChart('dailyRevChart');
@@ -1906,7 +1937,7 @@ function renderDailyRevChart(d) {
 
   var periodLabels = currentPeriod === 'week'
     ? {cur: '本周', prev: '上周'}
-    : {cur: '本月', prev: '上月'};
+    : monthPairLabels(allData.month);
 
   c.setOption({
     tooltip: {
@@ -1967,18 +1998,21 @@ function renderDailyRevChart(d) {
   });
 }
 
-// ── Hourly Sales Breakdown (month only, 本月 vs 上月对比) ──
+// ── Hourly Sales Breakdown (month only, 本期完整月 vs 上期完整月) ──
 function renderHourlyChart(d) {
   var hd = d.hourly_data;
   // Support both old flat array and new {cur, prev} structure
   var curData = (hd && hd.cur) ? hd.cur : hd;
   var prevData = (hd && hd.prev) ? hd.prev : null;
+  var ml = monthPairLabels(d);   // 月报：随数据月份动态标签（如 9月 / 8月）
 
   if (!curData || !curData.length) {
     document.getElementById('hourlyPanel').style.display = 'none';
     return;
   }
   document.getElementById('hourlyPanel').style.display = 'block';
+  var _hpt = document.getElementById('hourlyPanelTitle');
+  if (_hpt) _hpt.textContent = '🕐 时段销售分析（' + ml.cur + ' vs ' + ml.prev + '）';
 
   var wrap = document.getElementById('hourlyChartWrap');
   var el = document.getElementById('hourlyChart');
@@ -2015,7 +2049,7 @@ function renderHourlyChart(d) {
 
   var series = [
     {
-      name: '本月实收',
+      name: ml.cur + '实收',
       type: 'bar',
       data: curAmounts,
       barWidth: hasPrev ? '35%' : '60%',
@@ -2033,7 +2067,7 @@ function renderHourlyChart(d) {
 
   if (hasPrev) {
     series.push({
-      name: '上月实收',
+      name: ml.prev + '实收',
       type: 'bar',
       data: prevAmounts,
       barWidth: '35%',
@@ -2050,7 +2084,7 @@ function renderHourlyChart(d) {
 
   // 占比曲线
   series.push({
-    name: '本月占比',
+    name: ml.cur + '占比',
     type: 'line',
     yAxisIndex: 1,
     data: curPcts,
@@ -2070,7 +2104,7 @@ function renderHourlyChart(d) {
 
   if (hasPrev) {
     series.push({
-      name: '上月占比',
+      name: ml.prev + '占比',
       type: 'line',
       yAxisIndex: 1,
       data: prevPcts,
@@ -2089,7 +2123,7 @@ function renderHourlyChart(d) {
       formatter: function(params) {
         var cur = curData[params[0].dataIndex];
         var html = '<b>' + cur.hour_label + '</b><br/>'
-          + '本月实收: <b>¥' + cur.amount.toLocaleString() + '</b> · '
+          + ml.cur + '实收: <b>¥' + cur.amount.toLocaleString() + '</b> · '
           + cur.orders.toLocaleString() + '单 · 占比 <b>' + cur.pct.toFixed(2) + '%</b>';
         if (hasPrev) {
           var pr = null;
@@ -2097,19 +2131,19 @@ function renderHourlyChart(d) {
             if (prevData[j].hour === cur.hour) { pr = prevData[j]; break; }
           }
           if (pr) {
-            html += '<br/>上月实收: <b>¥' + pr.amount.toLocaleString() + '</b> · '
+            html += '<br/>' + ml.prev + '实收: <b>¥' + pr.amount.toLocaleString() + '</b> · '
               + pr.orders.toLocaleString() + '单 · 占比 <b>' + pr.pct.toFixed(2) + '%</b>';
             var diff = cur.amount - pr.amount;
             var color = diff >= 0 ? '#059669' : '#dc2626';
             var sign = diff >= 0 ? '+' : '';
-            html += '<br/>同比: <span style="color:' + color + '">' + sign + '¥' + Math.abs(diff).toLocaleString() + '</span>';
+            html += '<br/>环比: <span style="color:' + color + '">' + sign + '¥' + Math.abs(diff).toLocaleString() + '</span>';
           }
         }
         return html;
       }
     },
     legend: hasPrev ? {
-      data: ['本月实收', '上月实收', '本月占比', '上月占比'],
+      data: [ml.cur + '实收', ml.prev + '实收', ml.cur + '占比', ml.prev + '占比'],
       top: 0,
       itemWidth: 14,
       itemHeight: 10,
@@ -2728,7 +2762,7 @@ function renderRechargeRing(d) {
   if (sub) {
     if (currentPeriod === 'day') sub.textContent = '昨日到账 · 较上周同日';
     else if (currentPeriod === 'week') sub.textContent = '本周到账 · 较上周';
-    else sub.textContent = '本月到账 · 较上月';
+    else sub.textContent = curMonthLabel() + '到账 · 较' + prevMonthLabel();
   }
 
   // Table: top 15 stores
@@ -2803,7 +2837,7 @@ function renderProductTop50(d) {
   if (sub) {
     if (currentPeriod === 'day') sub.textContent = '昨日实收 Top50 · 环比上周同日';
     else if (currentPeriod === 'week') sub.textContent = '本周实收 Top50 · 环比上周';
-    else sub.textContent = '本月实收 Top50 · 环比上月';
+    else sub.textContent = curMonthLabel() + '实收 Top50 · 环比' + prevMonthLabel();
   }
 
   var html = '';
