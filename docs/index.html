@@ -666,6 +666,26 @@
   .lock-card.shake{ animation:lock-shake .42s cubic-bezier(.36,.07,.19,.97); }
 
 
+  /* ────── 完整月口径对比（月报：单店日均） ────── */
+  .cmp-panel {
+    background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius);
+    padding:16px 18px; margin-bottom:16px; box-shadow:var(--shadow-sm);
+    border-left:3px solid var(--blue);
+  }
+  .cmp-head { display:flex; align-items:baseline; justify-content:space-between;
+    flex-wrap:wrap; gap:8px; margin-bottom:12px; }
+  .cmp-title { font-size:15px; font-weight:700; color:var(--text-primary); }
+  .cmp-note { font-size:11.5px; color:var(--text-secondary); }
+  .cmp-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(134px,1fr)); gap:10px; }
+  .cmp-item { background:var(--hover-bg); border-radius:10px; padding:9px 11px; }
+  .cmp-item .k { font-size:11px; color:var(--text-secondary); }
+  .cmp-item .v { font-size:16.5px; font-weight:800; color:var(--text-primary); margin-top:2px;
+    letter-spacing:-.2px; }
+  .cmp-item .n { font-size:10.5px; color:var(--text-muted); margin-top:2px; }
+  .cmp-item.hl { border-left:3px solid var(--blue); }
+  .cmp-foot { margin-top:11px; font-size:12px; color:var(--text-secondary); line-height:1.75; }
+  .cmp-foot b { color:var(--text-primary); }
+
   /* ────── 实时日任务跟踪 ────── */
   .dt-panel {
     background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius);
@@ -808,6 +828,17 @@
     <div class="hs-body" id="hsBody" style="display:none">
       <div class="hs-grid" id="hsGrid"></div>
     </div>
+  </div>
+
+
+  <!-- ═══════ 完整月口径对比（月报专用：剔除店数/天数差异）═══════ -->
+  <div class="cmp-panel" id="cmpPanel" style="display:none">
+    <div class="cmp-head">
+      <span class="cmp-title">📐 完整月口径对比 · <span id="cmpPair">--</span></span>
+      <span class="cmp-note">两月店数 / 天数不同 → 按「单店日均」对比才可比</span>
+    </div>
+    <div class="cmp-grid" id="cmpGrid"></div>
+    <div class="cmp-foot" id="cmpFoot"></div>
   </div>
 
 
@@ -1001,7 +1032,7 @@
         </div>
         <table class="cat-table">
           <thead><tr>
-            <th style="width:auto">品类</th><th class="right" style="width:80px">销售额</th><th class="right" style="width:65px">占比</th><th class="right" style="width:90px">上期占比</th><th class="right" style="width:85px">环比变化</th>
+            <th style="width:auto">品类</th><th class="right" style="width:80px">销售额</th><th class="right" style="width:60px">占比</th><th class="right" style="width:80px">上期占比</th><th class="right" style="width:96px">占比变化</th><th class="right" style="width:70px">占比比值</th>
           </tr></thead>
           <tbody id="catBody"></tbody>
         </table>
@@ -1054,10 +1085,10 @@
       <div style="overflow-x:auto">
         <table class="rank-table product-table">
           <colgroup>
-            <col style="width:44px"><col style="width:390px"><col style="width:90px"><col style="width:90px"><col style="width:120px"><col style="width:120px"><col style="width:135px"><col style="width:135px">
+            <col style="width:44px"><col style="width:356px"><col style="width:94px"><col style="width:94px"><col style="width:100px"><col style="width:80px"><col style="width:80px"><col style="width:116px"><col style="width:116px"><col style="width:130px"><col style="width:130px">
           </colgroup>
           <thead><tr>
-            <th>#</th><th>商品名称</th><th class="right">本期数量</th><th class="right">上期数量</th><th class="right">本期实收</th><th class="right">上期实收</th><th class="right">金额环比</th><th class="right">数量环比</th>
+            <th>#</th><th>商品名称</th><th class="right">本期贡献率</th><th class="right">上期贡献率</th><th class="right">贡献率变化</th><th class="right">本期数量</th><th class="right">上期数量</th><th class="right">本期实收</th><th class="right">上期实收</th><th class="right">金额环比</th><th class="right">数量环比</th>
           </tr></thead>
           <tbody id="productTop50Tbody"></tbody>
         </table>
@@ -1685,12 +1716,19 @@ function renderCategory(cats, total) {
     var shareDown = shareDiff < -0.5;
     var shareDownStyle = shareDown ? 'color:#dc2626;font-weight:700' : '';
     var pctDownStyle = shareDown ? 'color:#dc2626' : '';
+    // 占比比值（本期占比 ÷ 上期占比，>1 结构走强）
+    var ratio = (typeof c.share_ratio === 'number' && c.share_ratio > 0) ? c.share_ratio
+              : (lastShare > 0 ? pct / lastShare : null);
+    var ratioTxt = (ratio === null) ? '<span style="color:var(--text-muted)">新增</span>'
+                 : '<span style="color:' + (ratio >= 1 ? '#dc2626' : '#16a34a') + ';font-weight:700">'
+                   + ratio.toFixed(2) + '×</span>';
     html += '<tr'+(shareDown ? ' style="background:rgba(220,38,38,0.03)"' : '')+'>'+
       '<td><span class="cat-dot" style="background:'+colors[i%6]+'"></span>'+c.name+(shareDown ? ' <span style="color:#dc2626;font-size:10px">⚠</span>' : '')+'</td>'+
       '<td class="right">'+fmt(c.sales)+'</td>'+
       '<td class="right" style="'+pctDownStyle+'">'+pct.toFixed(2)+'%</td>'+
       '<td class="right"><span style="'+shareDownStyle+'">'+lastShare.toFixed(2)+'%</span> <span class="kpi-trend '+shareArrowCls+'" style="font-size:10px;padding:1px 4px">'+shareArrow+' '+Math.abs(shareDiff).toFixed(1)+'%</span></td>'+
       '<td class="cat-rate '+rateCls+'">'+diffSign+fmt(diff)+'</td>'+
+      '<td class="right">'+ratioTxt+'</td>'+
       '</tr>';
   });
   document.getElementById('catBody').innerHTML = html;
@@ -2837,7 +2875,7 @@ function renderProductTop50(d) {
   if (sub) {
     if (currentPeriod === 'day') sub.textContent = '昨日实收 Top50 · 环比上周同日';
     else if (currentPeriod === 'week') sub.textContent = '本周实收 Top50 · 环比上周';
-    else sub.textContent = curMonthLabel() + '实收 Top50 · 环比' + prevMonthLabel();
+    else sub.textContent = curMonthLabel() + '实收 Top50 · 贡献率 = 单品实收 ÷ 全品实收';
   }
 
   var html = '';
@@ -2859,6 +2897,10 @@ function renderProductTop50(d) {
     html += '<tr>'+
       '<td class="rank-num '+numCls+'">'+rankIcon+'</td>'+
       '<td class="prod-name"><span title="SKU:'+p.sku+'">'+p.name+'</span></td>'+
+      '<td class="right" style="font-weight:700">'+(p.cur_contrib!=null ? p.cur_contrib.toFixed(2)+'%' : '--')+'</td>'+
+      '<td class="right" style="color:var(--text-secondary)">'+(p.prev_contrib!=null ? p.prev_contrib.toFixed(2)+'%' : '--')+'</td>'+
+      '<td class="right" style="font-weight:700;color:'+((p.contrib_diff||0)>=0 ? '#dc2626' : '#16a34a')+'">'
+        + (p.contrib_diff!=null ? ((p.contrib_diff>=0?'+':'')+p.contrib_diff.toFixed(2)+'pp') : '--')+'</td>'+
       '<td class="right">'+(p.cur_qty || 0).toLocaleString()+'</td>'+
       '<td class="right" style="color:var(--text-secondary)">'+(p.prev_qty || 0).toLocaleString()+'</td>'+
       '<td class="right">¥'+p.cur_receipt.toLocaleString()+'</td>'+
@@ -3058,6 +3100,55 @@ function renderDailyTrack(d) {
 }
 
 
+// ══════════════════ 完整月口径对比（单店日均 · 月报专用）══════════════════
+function renderComparison(d) {
+  var panel = document.getElementById('cmpPanel');
+  if (!panel) return;
+  var cp = d && d.comparison;
+  if (currentPeriod !== 'month' || !cp || !cp.cur || !cp.prev) {
+    panel.style.display = 'none';
+    return;
+  }
+  panel.style.display = 'block';
+
+  var cur = cp.cur || {}, prev = cp.prev || {};
+  var g = cp.per_store_daily_growth || 0;   // 单店日均环比（口径修正后）
+  var tg = cp.total_growth || 0;            // 总额环比（未修正）
+  var cls = g >= 0 ? '#ef4444' : '#10b981';   // 中国惯例：涨红跌绿
+  var tcls = tg >= 0 ? '#ef4444' : '#10b981';
+
+  function money(v) {
+    return (v || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  function sign(v) { return (v >= 0 ? '+' : '') + v.toFixed(2) + '%'; }
+  function item(k, v, n, hl) {
+    return '<div class="cmp-item' + (hl ? ' hl' : '') + '">'
+      + '<div class="k">' + k + '</div><div class="v">' + v + '</div>'
+      + '<div class="n">' + (n || '') + '</div></div>';
+  }
+
+  document.getElementById('cmpPair').textContent = (prev.month || '') + ' → ' + (cur.month || '') + ' 两月环比';
+
+  document.getElementById('cmpGrid').innerHTML =
+    item('本期单店日均', '¥' + money(cur.per_store_daily),
+         (cur.stores || 0) + ' 店 × ' + (cur.days || 0) + ' 天', true) +
+    item('上期单店日均', '¥' + money(prev.per_store_daily),
+         (prev.stores || 0) + ' 店 × ' + (prev.days || 0) + ' 天', true) +
+    item('单店日均环比', '<span style="color:' + cls + '">' + sign(g) + '</span>',
+         '★ 剔除店数/天数差异', true) +
+    item('总额环比（未修正）', '<span style="color:' + tcls + '">' + sign(tg) + '</span>',
+         '受店数变化影响') +
+    item('本期月均日销', '¥' + money(cur.daily_avg), '全月 ¥' + (cur.total || 0).toLocaleString()) +
+    item('上期月均日销', '¥' + money(prev.daily_avg), '全月 ¥' + (prev.total || 0).toLocaleString());
+
+  document.getElementById('cmpFoot').innerHTML =
+    '💡 两月门店数 <b>' + (prev.stores || 0) + ' → ' + (cur.stores || 0) + '</b>、天数 <b>'
+    + (prev.days || 0) + ' → ' + (cur.days || 0) + '</b> 均不同，直接比总额会失真；'
+    + '按 <b>单店日均</b> 看，真实经营变化为 <b style="color:' + cls + '">' + sign(g) + '</b>'
+    + '（总额口径 ' + sign(tg) + '）。类别与单品请看「占比 / 贡献率」，不受店数影响。';
+}
+
+
 // ══════════════════ 任务月份 / 数据月份 一致性提示 ══════════════════
 function renderMonthWarning(d) {
   var el = document.getElementById('mwBanner');
@@ -3093,6 +3184,7 @@ function renderAll() {
     ['renderRechargeRing', renderRechargeRing],
     ['renderMonthWarning', renderMonthWarning],
     ['renderProductTop50', renderProductTop50],
+    ['renderComparison', renderComparison],
     ['renderDailyTrack', renderDailyTrack]
   ];
   for (var i=0; i<fns.length; i++) {
