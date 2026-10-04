@@ -686,6 +686,19 @@
   .cmp-foot { margin-top:11px; font-size:12px; color:var(--text-secondary); line-height:1.75; }
   .cmp-foot b { color:var(--text-primary); }
 
+  /* ────── 月报对比口径切换 ────── */
+  .mp-tabs { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:16px;
+    padding:10px 14px; background:var(--card-bg); border:1px solid var(--border);
+    border-radius:var(--radius); box-shadow:var(--shadow-sm); }
+  .mp-tabs .mp-hint { font-size:12px; color:var(--text-secondary); margin-right:4px; }
+  .mp-tab { font-size:13px; padding:6px 14px; border-radius:9px; border:1px solid var(--border);
+    background:transparent; color:var(--text-secondary); cursor:pointer; transition:all .18s;
+    display:flex; flex-direction:column; align-items:flex-start; line-height:1.25; }
+  .mp-tab small { font-size:10.5px; opacity:.75; font-weight:400; }
+  .mp-tab:hover { border-color:var(--blue); color:var(--blue); }
+  .mp-tab.active { background:var(--blue); border-color:var(--blue); color:#04141a; font-weight:700; }
+  .mp-tab.active small { opacity:.85; }
+
   /* ────── 实时日任务跟踪 ────── */
   .dt-panel {
     background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius);
@@ -803,6 +816,9 @@
     <span class="mw-icon">⚠️</span>
     <span class="mw-text" id="mwText"></span>
   </div>
+
+  <!-- ═══════ 月报对比口径切换（当月同期 / 完整月）═══════ -->
+  <div class="mp-tabs" id="mpTabs" style="display:none"></div>
 
   <!-- ═══════ ALERT STRIP ═══════ -->
   <div class="alert-strip" id="alertStrip">
@@ -3141,11 +3157,51 @@ function renderComparison(d) {
     item('本期月均日销', '¥' + money(cur.daily_avg), '全月 ¥' + (cur.total || 0).toLocaleString()) +
     item('上期月均日销', '¥' + money(prev.daily_avg), '全月 ¥' + (prev.total || 0).toLocaleString());
 
-  document.getElementById('cmpFoot').innerHTML =
-    '💡 两月门店数 <b>' + (prev.stores || 0) + ' → ' + (cur.stores || 0) + '</b>、天数 <b>'
-    + (prev.days || 0) + ' → ' + (cur.days || 0) + '</b> 均不同，直接比总额会失真；'
-    + '按 <b>单店日均</b> 看，真实经营变化为 <b style="color:' + cls + '">' + sign(g) + '</b>'
-    + '（总额口径 ' + sign(tg) + '）。类别与单品请看「占比 / 贡献率」，不受店数影响。';
+  var _foot = '';
+  if ((cur.days || 0) !== (prev.days || 0)) {
+    _foot += '💡 两月门店数 <b>' + (prev.stores || 0) + ' → ' + (cur.stores || 0)
+          + '</b>、天数 <b>' + (prev.days || 0) + ' → ' + (cur.days || 0)
+          + '</b> 均不同，直接比总额会失真；';
+  } else {
+    _foot += '💡 本期与上期<b>同为 ' + (cur.days || 0) + ' 天</b>（同期对齐），天数差异已消除；';
+  }
+  _foot += '按 <b>单店日均</b> 看，变化为 <b style="color:' + cls + '">' + sign(g)
+        + '</b>（总额口径 ' + sign(tg) + '）。';
+  if (d.ref_prev_full) {
+    var rf = d.ref_prev_full;
+    _foot += '<br>📎 <b>参照 · ' + rf.label + '</b>：全月 ¥' + money(rf.total)
+          + '　单店日均 ¥' + money(rf.per_store_daily)
+          + '（' + (rf.stores || 0) + ' 店 × ' + (rf.days || 0) + ' 天）'
+          + ' —— 与本期「同期」口径不同，仅作水平参照。';
+  }
+  document.getElementById('cmpFoot').innerHTML = _foot;
+}
+
+
+// ══════════════════ 月报：多套对比切换（当月同期 / 完整月）══════════════════
+var currentMonthPair = '';
+
+function switchMonthPair(key) {
+  if (!allData.monthPairs || !allData.monthPairs[key]) return;
+  currentMonthPair = key;
+  allData.month = allData.monthPairs[key];
+  renderMonthPairTabs();
+  renderAll();
+}
+
+function renderMonthPairTabs() {
+  var wrap = document.getElementById('mpTabs');
+  if (!wrap) return;
+  var opts = allData.monthOptions || [];
+  if (currentPeriod !== 'month' || opts.length < 2) { wrap.style.display = 'none'; return; }
+  wrap.style.display = 'flex';
+  var html = '<span class="mp-hint">📆 对比口径</span>';
+  opts.forEach(function(o) {
+    html += '<button class="mp-tab' + (o.key === currentMonthPair ? ' active' : '') + '"'
+         +  ' onclick="switchMonthPair(\'' + o.key + '\')">' + o.label
+         +  '<small>' + (o.sub || '') + '</small></button>';
+  });
+  wrap.innerHTML = html;
 }
 
 
@@ -3183,6 +3239,7 @@ function renderAll() {
     ['renderCategoryProfit', renderCategoryProfit],
     ['renderRechargeRing', renderRechargeRing],
     ['renderMonthWarning', renderMonthWarning],
+    ['renderMonthPairTabs', renderMonthPairTabs],
     ['renderProductTop50', renderProductTop50],
     ['renderComparison', renderComparison],
     ['renderDailyTrack', renderDailyTrack]
@@ -3300,6 +3357,19 @@ async function loadData() {
       } catch(e){}
     }
     if (!success) throw new Error('无法加载数据文件，请确认 data/ 文件夹中有 daily.json、weekly.json、monthly.json');
+
+    // 月报：顶层挂着多套对比（pairs），allData.month 指向当前选中的那一套
+    var mj = allData.month || {};
+    allData.monthRoot = mj;
+    if (mj.pairs && mj.pair_options && mj.pair_options.length) {
+      allData.monthPairs   = mj.pairs;
+      allData.monthOptions = mj.pair_options;
+      currentMonthPair = mj.default_pair || mj.pair_options[0].key;
+      allData.month = mj.pairs[currentMonthPair] || mj;
+    } else {
+      allData.monthPairs = null; allData.monthOptions = [];
+      currentMonthPair = '';
+    }
 
     document.getElementById('loadingState').style.display = 'none';
     document.getElementById('dashboard').style.display = 'block';
