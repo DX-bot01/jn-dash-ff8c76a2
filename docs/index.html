@@ -3178,27 +3178,32 @@ function renderComparison(d) {
 }
 
 
-// ══════════════════ 月报：多套对比切换（当月同期 / 完整月）══════════════════
+// ══════════════════ 周报 / 月报：多套对比切换 ══════════════════
 var currentMonthPair = '';
+var currentWeekPair  = '';
 
-function switchMonthPair(key) {
-  if (!allData.monthPairs || !allData.monthPairs[key]) return;
-  currentMonthPair = key;
-  allData.month = allData.monthPairs[key];
-  renderMonthPairTabs();
+function switchPair(period, key) {
+  var pairs = (period === 'week') ? allData.weekPairs : allData.monthPairs;
+  if (!pairs || !pairs[key]) return;
+  if (period === 'week') { currentWeekPair = key;  allData.week  = pairs[key]; }
+  else                   { currentMonthPair = key; allData.month = pairs[key]; }
+  renderPairTabs();
   renderAll();
 }
 
-function renderMonthPairTabs() {
+function renderPairTabs() {
   var wrap = document.getElementById('mpTabs');
   if (!wrap) return;
-  var opts = allData.monthOptions || [];
-  if (currentPeriod !== 'month' || opts.length < 2) { wrap.style.display = 'none'; return; }
+  var period = currentPeriod, opts, cur;
+  if (period === 'week')       { opts = allData.weekOptions  || []; cur = currentWeekPair; }
+  else if (period === 'month') { opts = allData.monthOptions || []; cur = currentMonthPair; }
+  else { wrap.style.display = 'none'; return; }
+  if (opts.length < 2) { wrap.style.display = 'none'; return; }
   wrap.style.display = 'flex';
-  var html = '<span class="mp-hint">📆 对比口径</span>';
+  var html = '<span class="mp-hint">📆 ' + (period === 'week' ? '选择周次' : '对比口径') + '</span>';
   opts.forEach(function(o) {
-    html += '<button class="mp-tab' + (o.key === currentMonthPair ? ' active' : '') + '"'
-         +  ' onclick="switchMonthPair(\'' + o.key + '\')">' + o.label
+    html += '<button class="mp-tab' + (o.key === cur ? ' active' : '') + '"'
+         +  ' onclick="switchPair(\'' + period + '\',\'' + o.key + '\')">' + o.label
          +  '<small>' + (o.sub || '') + '</small></button>';
   });
   wrap.innerHTML = html;
@@ -3239,7 +3244,7 @@ function renderAll() {
     ['renderCategoryProfit', renderCategoryProfit],
     ['renderRechargeRing', renderRechargeRing],
     ['renderMonthWarning', renderMonthWarning],
-    ['renderMonthPairTabs', renderMonthPairTabs],
+    ['renderPairTabs', renderPairTabs],
     ['renderProductTop50', renderProductTop50],
     ['renderComparison', renderComparison],
     ['renderDailyTrack', renderDailyTrack]
@@ -3369,6 +3374,17 @@ async function loadData() {
     } else {
       allData.monthPairs = null; allData.monthOptions = [];
       currentMonthPair = '';
+    }
+    // 周报：多周回顾
+    var wj = allData.week || {};
+    if (wj.pairs && wj.pair_options && wj.pair_options.length) {
+      allData.weekPairs   = wj.pairs;
+      allData.weekOptions = wj.pair_options;
+      currentWeekPair = wj.default_pair || wj.pair_options[0].key;
+      allData.week = wj.pairs[currentWeekPair] || wj;
+    } else {
+      allData.weekPairs = null; allData.weekOptions = [];
+      currentWeekPair = '';
     }
 
     document.getElementById('loadingState').style.display = 'none';
