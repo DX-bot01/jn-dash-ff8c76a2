@@ -376,6 +376,19 @@
   .cat-table td { font-size:13px; padding:7px 8px; border-bottom:1px solid var(--hairline); }
   .cat-table td.right { text-align:right; }
   .cat-table .cat-dot { display:inline-block; width:8px; height:8px; border-radius:2px; margin-right:6px; }
+
+  /* ── 时段对比：口径提示 + 占比对比表 ── */
+  .hour-scope-note { font-size:12px; line-height:1.65; padding:8px 12px; margin:0 4px 10px; border-radius:8px;
+    background:rgba(251,191,36,.10); border:1px solid rgba(251,191,36,.38); color:var(--text); }
+  .hour-scope-note .hsn-sub { color:var(--text-muted); font-size:11.5px; }
+  .hour-cmp-table { width:100%; border-collapse:collapse; }
+  .hour-cmp-table th { font-size:11px; color:var(--text-muted); font-weight:500; padding:6px 8px; text-align:left;
+    border-bottom:1px solid var(--border); white-space:nowrap; }
+  .hour-cmp-table td { font-size:12.5px; padding:5px 8px; border-bottom:1px solid var(--hairline); }
+  .hour-cmp-table th.right, .hour-cmp-table td.right { text-align:right; }
+  .hour-cmp-table tr.peak td { background:rgba(59,130,246,.07); font-weight:600; }
+  .hour-cmp-table .hs-up { color:#dc2626; font-weight:700; }
+  .hour-cmp-table .hs-down { color:#16a34a; font-weight:700; }
   .cat-table .cat-rate { font-weight:700; text-align:right; }
   .cat-table .cat-rate.over  { color: var(--green); }
   .cat-table .cat-rate.under { color: var(--red); }
@@ -1085,10 +1098,12 @@
       <div class="panel-header">
         <span class="panel-title" id="hourlyPanelTitle">🕐 时段销售分析（本期 vs 上期）</span>
       </div>
+      <div class="hour-scope-note" id="hourlyScopeNote" style="display:none"></div>
       <div class="chart-wrap h280" id="hourlyChartWrap">
         <div id="hourlyChart" style="width:100%;height:calc(100% - 10px)"></div>
         <div class="chart-drag-bar" title="拖拽调整高度"></div>
       </div>
+      <div id="hourlyTableWrap" style="display:none;overflow-x:auto;padding:2px 4px 0"></div>
       <div class="suggest-box" id="suggestHour" style="display:none;margin-top:0"></div>
     </div>
 
@@ -2065,8 +2080,11 @@ function renderHourlyChart(d) {
     return;
   }
   document.getElementById('hourlyPanel').style.display = 'block';
+  // 时段报表没有日期列 → 同期模式下上期只能给「整月」，实收绝对值不可比，只比占比
+  var scopeMismatch = !!(hd && hd.scope_mismatch);
   var _hpt = document.getElementById('hourlyPanelTitle');
-  if (_hpt) _hpt.textContent = '🕐 时段销售分析（' + ml.cur + ' vs ' + ml.prev + '）';
+  if (_hpt) _hpt.textContent = '🕐 时段销售分析（' + ml.cur + ' vs ' + ml.prev + '）'
+    + (scopeMismatch ? ' · 占比口径' : '');
 
   var wrap = document.getElementById('hourlyChartWrap');
   var el = document.getElementById('hourlyChart');
@@ -2077,6 +2095,25 @@ function renderHourlyChart(d) {
   var curAmounts = curData.map(function(h) { return h.amount; });
   var curPcts = curData.map(function(h) { return h.pct; });
   var hasPrev = prevData && prevData.length > 0;
+
+  var _note = document.getElementById('hourlyScopeNote');
+  if (_note) {
+    if (scopeMismatch && hasPrev) {
+      _note.style.display = 'block';
+      _note.innerHTML = '⚠️ <b>上期时段为「整月」口径</b>（' + (hd.prev_label || ml.prev) + '），'
+        + '本期为 ' + (hd.cur_label || ml.cur) + ' ——<br>'
+        + '<span class="hsn-sub">时段报表无日期列，系统切不出「上月同期」，'
+        + '因此<b>实收绝对值不可比</b>；下方只对比<b>时段占比结构</b>（占比不受天数影响，'
+        + '可直接看消费者在一天内的购买时段分布是否迁移）。'
+        + '占比差：<span style="color:#dc2626;font-weight:700">红=占比上升</span> / '
+        + '<span style="color:#16a34a;font-weight:700">绿=占比下降</span>。</span>';
+    } else if (hasPrev) {
+      _note.style.display = 'block';
+      _note.innerHTML = '口径：本期与上期均为<b>完整自然月</b>，实收与占比均可直接对比。';
+    } else {
+      _note.style.display = 'none';
+    }
+  }
 
   // 上月数据（对齐相同时段）
   var prevAmounts = [];
@@ -2093,7 +2130,7 @@ function renderHourlyChart(d) {
     }
   }
 
-  var allAmounts = curAmounts.concat(hasPrev ? prevAmounts : []);
+  var allAmounts = curAmounts.concat((hasPrev && !scopeMismatch) ? prevAmounts : []);
   var maxAmount = Math.max.apply(null, allAmounts);
   var yMax = Math.ceil(maxAmount * 1.2 / 10000) * 10000;
 
@@ -2119,7 +2156,7 @@ function renderHourlyChart(d) {
     }
   ];
 
-  if (hasPrev) {
+  if (hasPrev && !scopeMismatch) {
     series.push({
       name: ml.prev + '实收',
       type: 'bar',
@@ -2185,19 +2222,28 @@ function renderHourlyChart(d) {
             if (prevData[j].hour === cur.hour) { pr = prevData[j]; break; }
           }
           if (pr) {
-            html += '<br/>' + ml.prev + '实收: <b>¥' + pr.amount.toLocaleString() + '</b> · '
-              + pr.orders.toLocaleString() + '单 · 占比 <b>' + pr.pct.toFixed(2) + '%</b>';
-            var diff = cur.amount - pr.amount;
-            var color = diff >= 0 ? '#059669' : '#dc2626';
-            var sign = diff >= 0 ? '+' : '';
-            html += '<br/>环比: <span style="color:' + color + '">' + sign + '¥' + Math.abs(diff).toLocaleString() + '</span>';
+            if (scopeMismatch) {
+              var pp = cur.pct - pr.pct;
+              html += '<br/>' + ml.prev + '占比(整月): <b>' + pr.pct.toFixed(2) + '%</b>'
+                + '<br/>占比差: <span style="color:' + (pp >= 0 ? '#dc2626' : '#16a34a') + '">'
+                + (pp >= 0 ? '+' : '') + pp.toFixed(2) + 'pp</span>';
+            } else {
+              html += '<br/>' + ml.prev + '实收: <b>¥' + pr.amount.toLocaleString() + '</b> · '
+                + pr.orders.toLocaleString() + '单 · 占比 <b>' + pr.pct.toFixed(2) + '%</b>';
+              var diff = cur.amount - pr.amount;
+              var color = diff >= 0 ? '#059669' : '#dc2626';
+              var sign = diff >= 0 ? '+' : '';
+              html += '<br/>环比: <span style="color:' + color + '">' + sign + '¥' + Math.abs(diff).toLocaleString() + '</span>';
+            }
           }
         }
         return html;
       }
     },
     legend: hasPrev ? {
-      data: [ml.cur + '实收', ml.prev + '实收', ml.cur + '占比', ml.prev + '占比'],
+      data: scopeMismatch
+        ? [ml.cur + '实收', ml.cur + '占比', ml.prev + '占比']
+        : [ml.cur + '实收', ml.prev + '实收', ml.cur + '占比', ml.prev + '占比'],
       top: 0,
       itemWidth: 14,
       itemHeight: 10,
@@ -2235,6 +2281,46 @@ function renderHourlyChart(d) {
   };
 
   charts.hourly.setOption(option);
+
+  // ── 月度时段占比对比表（24 小时，逐时段占比 + 占比差）──
+  var _htw = document.getElementById('hourlyTableWrap');
+  if (_htw) {
+    if (!hasPrev) {
+      _htw.style.display = 'none';
+      _htw.innerHTML = '';
+    } else {
+      var peakPct = Math.max.apply(null, curPcts);
+      var trows = '';
+      for (var k = 0; k < curData.length; k++) {
+        var _c = curData[k], _pv = null;
+        for (var _m = 0; _m < prevData.length; _m++) {
+          if (prevData[_m].hour === _c.hour) { _pv = prevData[_m]; break; }
+        }
+        var _pd = _pv ? (_c.pct - _pv.pct) : null;
+        var _pdCls = _pd === null ? '' : (_pd > 0 ? 'hs-up' : _pd < 0 ? 'hs-down' : '');
+        var _pdTxt = _pd === null ? '—' : (_pd > 0 ? '+' : '') + _pd.toFixed(2) + 'pp';
+        trows += '<tr' + (_c.pct === peakPct ? ' class="peak"' : '') + '>'
+          + '<td>' + _c.hour_label + '</td>'
+          + '<td class="right">¥' + Math.round(_c.amount).toLocaleString() + '</td>'
+          + '<td class="right">' + Math.round(_c.orders).toLocaleString() + '</td>'
+          + '<td class="right">' + _c.pct.toFixed(2) + '%</td>'
+          + '<td class="right">' + (_pv ? _pv.pct.toFixed(2) + '%' : '—') + '</td>'
+          + '<td class="right ' + _pdCls + '">' + _pdTxt + '</td></tr>';
+      }
+      _htw.style.display = 'block';
+      _htw.innerHTML = '<table class="hour-cmp-table"><thead><tr>'
+        + '<th style="width:70px">时段</th>'
+        + '<th class="right">' + ml.cur + '实收</th>'
+        + '<th class="right">订单数</th>'
+        + '<th class="right">' + ml.cur + '占比</th>'
+        + '<th class="right">' + ml.prev + '占比' + (scopeMismatch ? '（整月）' : '') + '</th>'
+        + '<th class="right">占比差</th></tr></thead><tbody>' + trows + '</tbody></table>'
+        + '<div style="font-size:11px;color:var(--text-muted);padding:6px 8px 0">'
+        + '占比 = 该时段实收 ÷ 全时段实收（合计 100%）；占比最高时段高亮。'
+        + (scopeMismatch ? '　上期为整月口径，仅占比可比，实收绝对值不可比。' : '')
+        + '</div>';
+    }
+  }
 }
 
 // ── 分析建议引擎 ──
@@ -2451,11 +2537,12 @@ function renderSuggestions(d) {
         }
         if (prev && Math.abs(cur.pct - prev.pct) >= 2) {
           var dir = cur.pct > prev.pct ? '↑' : '↓';
-          shiftItems.push(cur.hour_label + '(' + dir + (Math.abs(cur.pct - prev.pct)).toFixed(1) + '%)');
+          shiftItems.push(cur.hour_label + '(' + dir + (Math.abs(cur.pct - prev.pct)).toFixed(1) + 'pp)');
         }
       }
       if (shiftItems.length) {
-        items.push('时段占比环比变化>2%：' + shiftItems.join(' · '));
+        items.push((hd.scope_mismatch ? '时段占比结构较上月整月变化>2pp：' : '时段占比环比变化>2pp：')
+          + shiftItems.join(' · '));
       }
     }
 
