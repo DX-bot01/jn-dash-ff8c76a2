@@ -442,6 +442,13 @@
   .hv-D { background:rgba(220,38,38,.14); color:#dc2626; }
   [data-theme="dark"] .hv-A{color:#34d399} [data-theme="dark"] .hv-B{color:#60a5fa}
   [data-theme="dark"] .hv-C{color:#fbbf24} [data-theme="dark"] .hv-D{color:#fb7185}
+
+  /* ── 诊断层面板折叠 ── */
+  .hdr-right { display:flex; align-items:center; gap:10px; }
+  .pnl-toggle { font:inherit; font-size:11.5px; padding:3px 10px; border-radius:20px; cursor:pointer;
+    border:1px solid var(--border); background:transparent; color:var(--text-muted); white-space:nowrap; transition:.16s; }
+  .pnl-toggle:hover { color:var(--text); border-color:var(--text-muted); }
+  .panel.collapsed .pnl-body { display:none !important; }
   .cat-table .cat-rate { font-weight:700; text-align:right; }
   .cat-table .cat-rate.over  { color: var(--green); }
   .cat-table .cat-rate.under { color: var(--red); }
@@ -901,18 +908,6 @@
     <div class="gap-grid" id="gapGrid"></div>
   </div>
 
-  <!-- ═══════ 隐藏汇总：总基础目标 ═══════ -->
-  <div class="hidden-summary" id="hiddenSummary">
-    <div class="hs-header" onclick="toggleHiddenSummary()">
-      <span>📊 总基础目标汇总（点击展开）</span>
-      <span class="hs-toggle">▾</span>
-    </div>
-    <div class="hs-body" id="hsBody" style="display:none">
-      <div class="hs-grid" id="hsGrid"></div>
-    </div>
-  </div>
-
-
   <!-- ═══════ 完整月口径对比（月报专用：剔除店数/天数差异）═══════ -->
   <div class="cmp-panel" id="cmpPanel" style="display:none">
     <div class="cmp-head">
@@ -1107,22 +1102,28 @@
         <div class="fx-concl" id="waterfallConcl"></div>
       </div>
 
-      <!-- P2-1 品类量价拆解 -->
-      <div class="panel full" style="margin-bottom:18px" id="priceVolPanel">
+      <!-- P2-1 品类量价拆解（默认折叠） -->
+      <div class="panel full collapsed" style="margin-bottom:18px" id="priceVolPanel">
         <div class="panel-header">
           <span class="panel-title">⚖️ 品类量价拆解 · 量跌还是价跌</span>
-          <span class="panel-sub">销量效应 + 单价效应 = 实收变化</span>
+          <span class="hdr-right">
+            <span class="panel-sub">销量效应 + 单价效应 = 实收变化</span>
+            <button class="pnl-toggle" id="priceVolToggle" onclick="toggleCollapse('priceVolPanel','priceVolToggle')">展开 ▾</button>
+          </span>
         </div>
-        <div style="overflow-x:auto" id="priceVolBody"></div>
+        <div class="pnl-body" style="overflow-x:auto" id="priceVolBody"></div>
       </div>
 
-      <!-- P1-2 一次性大单 -->
-      <div class="panel full" style="margin-bottom:18px;display:none" id="bulkPanel">
+      <!-- P1-2 一次性大单（默认折叠） -->
+      <div class="panel full collapsed" style="margin-bottom:18px;display:none" id="bulkPanel">
         <div class="panel-header">
-          <span class="panel-title">⚡ 一次性大单 / 异常波动</span>
-          <span class="panel-sub">客单价 ≥ 该店日常中位数 1.8 倍且金额 ≥ 2 倍日均</span>
+          <span class="panel-title" id="bulkTitle">⚡ 一次性大单 / 异常波动</span>
+          <span class="hdr-right">
+            <span class="panel-sub">客单价 ≥ 该店日常中位数 1.8 倍且金额 ≥ 2 倍日均</span>
+            <button class="pnl-toggle" id="bulkToggle" onclick="toggleCollapse('bulkPanel','bulkToggle')">展开 ▾</button>
+          </span>
         </div>
-        <div id="bulkBody"></div>
+        <div class="pnl-body" id="bulkBody"></div>
       </div>
     </div>
 
@@ -1765,54 +1766,8 @@ function renderGap(d) {
     + rowHtml('sprint', currentArea === 'all' ? '冲刺目标（含筹开）' : '冲刺目标', sprintNote, sprintTarget, sprintCompleted);
 }
 
-// ── 隐藏汇总：总基础目标（独立考核口径） ──
-var HIDDEN_BASE_TARGET = 4388855.70; // 用户总基础销售目标
-
-function toggleHiddenSummary() {
-  var body = document.getElementById('hsBody');
-  var sum = document.getElementById('hiddenSummary');
-  if (!body || !sum) return;
-  var open = body.style.display !== 'none';
-  body.style.display = open ? 'none' : 'block';
-  sum.classList.toggle('open', !open);
-}
-
-function renderHiddenSummary(d) {
-  var grid = document.getElementById('hsGrid');
-  if (!grid || !d) return;
-  // 仅月报口径展示
-  if (currentPeriod !== 'month') { document.getElementById('hiddenSummary').style.display = 'none'; return; }
-  document.getElementById('hiddenSummary').style.display = 'block';
-
-  var cur = d.total_sales || 0;
-  var target = HIDDEN_BASE_TARGET;
-  var rate = target > 0 ? cur / target * 100 : 0;
-  var remaining = target - cur;
-  var daysLeft = (typeof d.month_remaining_days === 'number') ? d.month_remaining_days : 1;
-  var dailyNeed = (remaining > 0 && daysLeft > 0) ? remaining / daysLeft : 0;
-  // 时间进度（按当月实际天数，勿写死 30 —— 10月31天会虚高 2pp）
-  var m = (d.date || '').match(/(\d+)日/);
-  var elapsed = m ? parseInt(m[1], 10) : 1;
-  var totalDays = d.month_days || (d.daily_track && d.daily_track.month_days) || 30;
-  var timePct = elapsed / totalDays * 100;
-  var timeAmt = target * timePct / 100;
-  var vsTime = timeAmt > 0 ? cur / timeAmt * 100 : 0;
-
-  function item(k, v, cls) {
-    return '<div class="hs-item"><div class="hs-k">'+k+'</div><div class="hs-v '+(cls||'')+'">'+v+'</div></div>';
-  }
-  function rateCls(r) { return r >= 100 ? 'ok' : (r >= 90 ? 'warn' : 'danger'); }
-
-  grid.innerHTML =
-    item('总基础目标', fmtMoney(target), '') +
-    item(curMonthLabel() + '累计', fmtMoney(cur), '') +
-    item('完成率', fmtPct(rate), rateCls(rate)) +
-    item('时间进度', fmtPct(timePct), '') +
-    item('实际/时间进度', fmtPct(vsTime), rateCls(vsTime)) +
-    item('剩余缺口', fmtMoney(remaining), remaining > 0 ? 'danger' : 'ok') +
-    item('剩余天数', daysLeft > 0 ? (daysLeft + ' 天') : '<span class="hs-done">已收官</span>', '') +
-    item('剩余日均需达', daysLeft > 0 ? fmtMoney(dailyNeed) : '—', dailyNeed > 0 ? 'warn' : 'ok');
-}
+// ── 隐藏汇总已下线（2026-10-19 用户要求取消）：保留空壳函数避免 renderAll 报错 ──
+function renderHiddenSummary(d) { return; }
 
 // ── Ranking Table ──
 function renderRanking(rawStores) {
@@ -3469,6 +3424,15 @@ function jumpSeg(seg) {
   }
 }
 
+// ══════════════════ 诊断层面板折叠 ══════════════════
+function toggleCollapse(panelId, btnId) {
+  var p = document.getElementById(panelId);
+  if (!p) return;
+  var collapsed = p.classList.toggle('collapsed');
+  var b = document.getElementById(btnId);
+  if (b) b.textContent = collapsed ? '展开 ▾' : '收起 ▴';
+}
+
 // ══════════════════ P0-1 销售因子分解（客流 × 客单价）══════════════════
 function renderFactor(d) {
   var box = document.getElementById('factorGrid');
@@ -3734,6 +3698,9 @@ function renderBulk(d) {
   var b = d.bulk_orders || [];
   if (!b.length) { panel.style.display = 'none'; return; }
   panel.style.display = 'block';
+  var _bt = document.getElementById('bulkTitle');
+  if (_bt) _bt.innerHTML = '⚡ 一次性大单 / 异常波动'
+    + ' <span style="color:#dc2626;font-size:12px">· ' + b.length + ' 笔</span>';
   var total = b.reduce(function(s, x) { return s + x.excess; }, 0);
   var html = '<table class="pf-tbl"><thead><tr><th>门店</th><th>日期</th>'
     + '<th class="r">当日实收</th><th class="r">订单</th><th class="r">客单价</th>'
