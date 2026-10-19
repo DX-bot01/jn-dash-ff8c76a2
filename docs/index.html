@@ -1454,6 +1454,11 @@ var storeDetailCache = [];
 function fmt(v) { return v >= 10000 ? (v/10000).toFixed(1)+'万' : v.toLocaleString(); }
 function fmtPct(v) { return v.toFixed(2)+'%'; }
 function fmtMoney(v) { return '¥'+v.toLocaleString(); }
+// ⚠️ 必须留在全局作用域：曾被定义在 renderComparison 内部，导致诊断层 5 个函数调用时报
+//    "money is not defined"（被 renderAll 的 try/catch 吞掉 → 面板全空白，2026-10-19 踩过）
+function money(v) {
+  return (v || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
 
 function calcGrowth(cur, prev) {
   if (!prev || prev===0) {
@@ -3319,9 +3324,7 @@ function renderComparison(d) {
   var cls = g >= 0 ? '#ef4444' : '#10b981';   // 中国惯例：涨红跌绿
   var tcls = tg >= 0 ? '#ef4444' : '#10b981';
 
-  function money(v) {
-    return (v || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  }
+  // money() 已提升到全局（见文件顶部工具函数区），此处不再重复定义
   function sign(v) { return (v >= 0 ? '+' : '') + v.toFixed(2) + '%'; }
   function item(k, v, n, hl) {
     return '<div class="cmp-item' + (hl ? ' hl' : '') + '">'
@@ -3410,19 +3413,45 @@ function renderMonthWarning(d) {
 }
 
 // ══════════════════ 分层导航 ══════════════════
-function jumpSeg(seg) {
-  var map = { diag: 'segDiag', review: 'segReview', detail: 'segDetail' };
+function setSegActive(seg) {
   var btns = document.querySelectorAll('.seg-btn');
   for (var i = 0; i < btns.length; i++) {
     if (btns[i].getAttribute('data-seg') === seg) btns[i].classList.add('active');
     else btns[i].classList.remove('active');
   }
+}
+
+function jumpSeg(seg) {
+  var map = { diag: 'segDiag', review: 'segReview', detail: 'segDetail' };
+  setSegActive(seg);
   var el = document.getElementById(map[seg]);
   if (el) {
     var y = el.getBoundingClientRect().top + (window.pageYOffset || 0) - 12;
     window.scrollTo({ top: y, behavior: 'smooth' });
   }
 }
+
+// 滚动联动：手动滚动时，高亮跟随「当前所处段」，避免按钮状态与实际位置不符
+(function () {
+  var segs = [['diag', 'segDiag'], ['review', 'segReview'], ['detail', 'segDetail']];
+  var ticking = false;
+  function sync() {
+    ticking = false;
+    var cur = null, curTop = -1e9;
+    for (var i = 0; i < segs.length; i++) {
+      var el = document.getElementById(segs[i][1]);
+      if (!el) continue;
+      var t = el.getBoundingClientRect().top;
+      if (t <= 160 && t > curTop) { curTop = t; cur = segs[i][0]; }
+    }
+    if (cur) setSegActive(cur);
+  }
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(sync);
+  }, { passive: true });
+})();
 
 // ══════════════════ 诊断层面板折叠 ══════════════════
 function toggleCollapse(panelId, btnId) {
