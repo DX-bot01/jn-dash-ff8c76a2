@@ -352,6 +352,9 @@
   .chart-wrap.h280 { height:280px; }
   .chart-wrap.h240 { height:240px; }
   .chart-wrap.h220 { height:220px; }
+  /* ⚠️ 必须有确定 height：内部 canvas 用 height:calc(100% - 10px)，
+     父级只有 min-height 时百分比算不出来 → 图表空白（2026-10-20 增量瀑布踩过） */
+  .chart-wrap.h300 { height:300px; }
   .chart-drag-bar {
     height: 10px; width: 100%; cursor: row-resize;
     background: transparent;
@@ -3613,8 +3616,7 @@ function renderWaterfall(d) {
   }).reverse();
 
   chart.setOption({
-    grid: { left: 96, right: 90, top: 14, bottom: 26 },
-    tooltip: {
+    grid: { left: 96, right: 90, top: 14, bottom: 26 },    tooltip: {
       trigger: 'axis', axisPointer: { type: 'shadow' },
       formatter: function(p) {
         var v = p[0].value;
@@ -3640,6 +3642,8 @@ function renderWaterfall(d) {
       }
     }]
   });
+  // 容器尺寸可能在初始化后才确定（面板刚显示/折叠展开）→ 延后 resize 一次，避免空白
+  setTimeout(function () { try { chart.resize(); } catch (e) {} }, 30);
 
   var upSum = up.reduce(function(s, x) { return s + x.delta; }, 0);
   var dnSum = down.reduce(function(s, x) { return s + x.delta; }, 0);
