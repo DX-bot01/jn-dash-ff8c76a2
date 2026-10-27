@@ -1245,10 +1245,10 @@
       <div style="overflow-x:auto">
         <table class="rank-table product-table">
           <colgroup>
-            <col style="width:44px"><col style="width:356px"><col style="width:94px"><col style="width:94px"><col style="width:100px"><col style="width:80px"><col style="width:80px"><col style="width:116px"><col style="width:116px"><col style="width:130px"><col style="width:130px">
+            <col style="width:44px"><col style="width:356px"><col style="width:94px"><col style="width:94px"><col style="width:100px"><col style="width:80px"><col style="width:80px"><col style="width:130px"><col style="width:116px"><col style="width:116px"><col style="width:130px">
           </colgroup>
           <thead><tr>
-            <th>#</th><th>商品名称</th><th class="right">本期贡献率</th><th class="right">上期贡献率</th><th class="right">贡献率变化</th><th class="right">本期数量</th><th class="right">上期数量</th><th class="right">本期实收</th><th class="right">上期实收</th><th class="right">金额环比</th><th class="right">数量环比</th>
+            <th>#</th><th>商品名称</th><th class="right">本期贡献率</th><th class="right">上期贡献率</th><th class="right">贡献率变化</th><th class="right">本期数量</th><th class="right">上期数量</th><th class="right">数量环比</th><th class="right">本期实收</th><th class="right">上期实收</th><th class="right">金额环比</th>
           </tr></thead>
           <tbody id="productTop50Tbody"></tbody>
         </table>
@@ -3113,10 +3113,10 @@ function renderProductTop50(d) {
         + (p.contrib_diff!=null ? ((p.contrib_diff>=0?'+':'')+p.contrib_diff.toFixed(2)+'pp') : '--')+'</td>'+
       '<td class="right">'+(p.cur_qty || 0).toLocaleString()+'</td>'+
       '<td class="right" style="color:var(--text-secondary)">'+(p.prev_qty || 0).toLocaleString()+'</td>'+
+      '<td class="right rank-change prod-growth '+qtyGrowth.cls+'">'+growthHtml(qtyGrowth, false)+'</td>'+
       '<td class="right">¥'+p.cur_receipt.toLocaleString()+'</td>'+
       '<td class="right" style="color:var(--text-secondary)">¥'+p.prev_receipt.toLocaleString()+'</td>'+
       '<td class="right rank-change prod-growth '+amountGrowth.cls+'">'+growthHtml(amountGrowth, true)+'</td>'+
-      '<td class="right rank-change prod-growth '+qtyGrowth.cls+'">'+growthHtml(qtyGrowth, false)+'</td>'+
       '</tr>';
   });
   document.getElementById('productTop50Tbody').innerHTML = html;
