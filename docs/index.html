@@ -4,7 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>济南区域 · 销售数据监督仪表盘</title>
-<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<!-- ECharts 本地化（2026-11-17）：原 CDN cdn.jsdelivr.net 在国内常被墙，
+     会导致所有图表空白、「时段对比」看起来消失。改为同源 vendor/ 路径，
+     发布时由 deploy.py 一并复制到 docs/vendor/ 与 cs-site/vendor/。
+     单文件版（build_singlefile.py）会再把这份 JS 内联进去。 -->
+<script src="vendor/echarts.min.js"></script>
 <style>
   /* ══════════ 未来感深色主题（默认） ══════════ */
   :root {
